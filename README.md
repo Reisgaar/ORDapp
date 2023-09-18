@@ -1,64 +1,82 @@
-# ORDapp
+# Outer Ring Dapp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+This README provides essential information for developers and collaborators.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Introduction](#introduction)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [License](#license)
 
-## Code scaffolding
+## Introduction
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Outer Ring is a web3 game and this Angular application is designed to manage web3 tokens, governance, marketplace...
 
-## Build
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Website includes the following features:
 
-## Running unit tests
+- **Home Page**: A visually landing page with site information.
+- **Marketplace**: A place to buy and sell OR NFTs.
+- **Lootboxes**: The place to buy the lootboxes.
+- **Governance**: The place to obtain Voting Power (a token) to vote on proposals to decide game future.
+- **Lands**: The place to buy Land NFTs and stake them to earn resources.
+- **DeFi**: Pools and farms to earn profits staking GQ.
+- **Crafting**: A system to build weapon and armor NFTs with earned materials.
+- **Responsive Design**: The website is optimized for both desktop and mobile devices.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Prerequisites
 
-## Running end-to-end tests
+Before you can run the OR Dapp website locally, you need to have the following prerequisites installed:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- [Node.js](https://nodejs.org/) (version 16.x or higher)
+- [npm](https://www.npmjs.com/) (Node Package Manager)
+- [Angular CLI](https://angular.io/cli) (for development)
 
-## Further help
+## Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Clone this repository to your local machine:
 
+   ```
+   git clone ...
+   ```
 
-### Run with Docker
+2. Navigate to the project directory:
 
-In order to use this project with Docker, first use build command to generate the image, then use the run command to start the container in the 4200 port.</br>
+   ```
+   cd ...
+   ```
 
-Navigate to http://localhost:4200
+3. Install project dependencies::
 
-```bash
-// DEV - construct image and run dev container
-docker build -f ./.deploy/Dockerfile -t nld001.frontend.marketplace .
-docker run -d -p 803:80 nld001.frontend.marketplace
+   ```
+   npm install
+   ```
 
-// PRO - construct image and run pro container
-docker build -f ./.deploy/Dockerfile -t nld001.frontend.marketplace .
-docker run -d -p 804:80 nld001.frontend.marketplace
+## Usage
 
-// Run container and enter on it
-docker run -it --env-file .env -p 803:80 nld001.frontend.marketplace sh
+To start the development server and view the website locally, run:
 
-// Run container with azure image
-docker run -d --env-file .env -p 803:80 nexxyolabscomanai.azurecr.io/nld001.frontend.marketplace
-```
+  ```
+  ng serve
+  ```
 
-Bulding and running using Docker compose.
+If wallet connect doesn't work properly, try:
 
-For local:
-```bash
-# The docker-compose.local only includes the frontend service.
-docker-compose -f ./.deploy/docker-compose.local.yml up -d
-```
-For production:
-```bash
-# The docker-compose.yml includes backend and frontend services.
-docker-compose pull 
-docker-compose up -d
-```
+  ```
+  ng serve --ssl true
+  ```
+
+This command starts a development server, and you can access the website in your web browser at http://localhost:4200.
+
+## Deployment
+
+The deployment process for the OR Dapp may vary depending on your hosting platform. Angular applications can be deployed to various hosting services. Consult the documentation of your chosen hosting provider for deployment instructions.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
