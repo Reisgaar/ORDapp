@@ -1,0 +1,41 @@
+@import "/src/styleVariables.scss";
+
+
+.table-farms{
+  display: flex;
+  row-gap: 1rem;
+  flex-wrap: wrap;
+  border: none;
+}
+// // Medium devices
+// @media (min-width: 850px) {
+//   .table-farms{
+//     border: 2px solid $blue-extra-light;
+//   }
+// }
+
+
+.table-pools-row{
+  display: flex;
+  flex-wrap: wrap;
+  width: 62rem;
+  justify-content: center;
+  border: 1px solid $blue-extra-light;
+  padding: 0rem;
+  margin: 0rem;
+  // background: $blue-stake-card-background;
+  .row{
+    background: none;
+  }
+}
+.table-pools-grid{
+  display: flex;
+  flex-wrap: wrap;
+  width:100%;
+  justify-content: center;
+  // gap: 2rem;
+}
+.pool-container{
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,104 @@
+
+<div class="page" style="padding-top: 70px;">
+
+  <div class="return" [routerLink]="['/governance/proposals']">
+    <mat-icon class="icon">arrow_back</mat-icon>
+    <p>{{"governance.proposalDetail.back" | translate}}</p>
+  </div>
+
+  <div *ngIf="loadingProposal" class="spinner">
+    <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+  </div>
+
+  <div class="proposal-detail" *ngIf="!loadingProposal">
+
+    <div class="leftside">
+      <p class="title">{{proposal.title}}</p>
+
+      <div class="posted">
+        <div class="status {{proposalStatus.toLowerCase()}}">
+          <p>{{proposalStatus}}</p>
+        </div>
+        <div class="posted-data">
+          <p>Posted on {{proposal.postedData * 1000 | date}}</p>
+        </div>
+      </div>
+
+      <p style='white-space: break-spaces;' class="description">{{proposal.description}}</p>
+
+      <div class="voting">
+        <div *ngIf="proposalStatus === 'Active'" class="options">
+          <p>Make your decision:</p>
+          <p *ngFor="let option of proposal.votingOptions; let i = index" (click)="voteOnProposal(option)" class="option active">{{option}}</p>
+        </div>
+
+        <div *ngIf="proposalStatus === 'Coming'" class="options">
+          <p>Coming proposal:</p>
+          <p *ngFor="let option of proposal.votingOptions; let i = index" class="option coming">{{option}}</p>
+        </div>
+
+        <div *ngIf="proposalStatus === 'Closed'" class="options">
+          <p>Voting completed:</p>
+          <p *ngFor="let option of proposal.votingOptions; let i = index" class="option closed" [class.win]="result === proposal.votes[i]">{{option}}</p>
+        </div>
+
+        <p class="ending">{{proposalEnd}}</p>
+      </div>
+
+
+      <div class="image">
+        <img src="{{proposal.image}}" alt="Proposal image" />
+      </div>
+    </div>
+
+    <div class="rightside">
+      <div class="information">
+        <p class="title">{{"governance.proposalDetail.information" | translate}}</p>
+        <p>
+          <span class="name">{{"governance.proposalDetail.ipfsUri" | translate}}</span>
+          <span class="value"><a href="{{proposal.proposalURI}}" target="_blank">{{"governance.proposalDetail.proposal" | translate}}</a></span>
+        </p>
+        <p>
+          <span class="name">{{"governance.proposalDetail.startDate" | translate}}</span>
+          <span class="value">{{proposal.startTimeStamp * 1000 | date: 'MMM d, y, h:mm a'}}</span>
+        </p>
+        <p>
+          <span class="name">{{"governance.proposalDetail.endDate" | translate}}</span>
+          <span class="value">{{proposal.endTimeStamp * 1000 | date: 'MMM d, y, h:mm a'}}</span>
+        </p>
+      </div>
+      <div class="results" *ngIf="totalVotes !== 0">
+        <p>{{"governance.proposalDetail.currentResults" | translate}}</p>
+        <div *ngFor="let option of proposal.votingOptions; let i = index">
+          <p class="name">{{option}}</p>
+          <p class="value" *ngIf="proposal.votes">{{(proposal.votes[i] * 100 / totalVotes) | number: '1.0-2'}}%</p>
+          <div class="bar-container">
+            <div class="bar-fill" [ngStyle]=" { 'width': (proposal.votes[i] * 100 / totalVotes).toString() + '%' }"></div>
+          </div>
+        </div>
+      </div>
+      <div class="results" *ngIf="totalVotes === 0" style="text-align: center;">
+        <p style="margin: 10px;">{{"governance.proposalDetail.noVotes" | translate}}</p>
+        <p *ngIf="proposalStatus === 'Active'" style="margin: 10px;">{{"governance.proposalDetail.firstVote" | translate}}</p>
+      </div>
+      <p class="total">{{"governance.proposalDetail.votes" | translate}} <span>{{totalVotes | number: '1.0-2'}}</span></p>
+      <div class="user-votes" *ngIf="userVotes.length > 0">
+        <div class="vote vote-head">
+          <p>{{"governance.proposalDetail.yourVotes" | translate}} <span>( {{userTotalVotes | number: '1.0-2'}} )</span></p>
+        </div>
+        <div class="votes-container">
+          <div class="votes">
+            <ng-container>
+              <div class="vote vote-data" *ngFor="let vote of userVotes">
+                <p *ngIf="vote.answer.length < 20">{{vote.answer}}</p>
+                <p *ngIf="vote.answer.length >= 20">{{vote.answer | slice:0:20}}...</p>
+                <p style="text-align: center;">{{vote.amount | number: '1.0-2'}} VP</p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

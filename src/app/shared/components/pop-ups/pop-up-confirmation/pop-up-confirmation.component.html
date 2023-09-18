@@ -1,0 +1,14 @@
+<div class="close">
+  <p class="text">{{'popUp.confirmationNeeded' | translate}}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="message">
+  <ng-container *ngFor="let p of data.messages">
+    <p [innerHTML]="'popUp.' + p | translate"></p>
+  </ng-container>
+
+  <div class="buttons">
+    <span class="button" (click)="confirmationSend(false)">Cancel</span>
+    <span class="button" (click)="confirmationSend(true)">Accept</span>
+  </div>
+</div>

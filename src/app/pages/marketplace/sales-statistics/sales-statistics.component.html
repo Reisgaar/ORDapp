@@ -1,0 +1,116 @@
+<div class="stats-content">
+  <h2 class="title">{{'statistics.title' | translate}}</h2>
+
+  <ng-container *ngIf="!dataLoaded">
+    <div class="spinner">
+      <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+    </div>
+  </ng-container>
+
+  <div [class.hidden]="!dataLoaded">
+    <div class="tabs">
+      <p (click)="setSelectedTab('all')" class="tab" [class.active]="selectedTab === 'all'">{{'statistics.all' | translate}}</p>
+      <ng-container *ngFor="let nftType of allSalesByContract | keyvalue">
+        <p *ngIf="nftType.key !== 'all'" (click)="setSelectedTab(nftType.key)" class="tab" [class.active]="selectedTab === nftType.key">{{'categories.' + (nftType.key | nftContractToVariable) + 's' | translate}}</p>
+      </ng-container>
+    </div>
+
+    <div class="statistics main-stats" *ngIf="selectedTab !== 'all'">
+      <div class="block" style="width: 100%;">
+        <h3 class="subtitle">{{('statistics.nftNameSales' | translate).replace('***', ('categories.' + (selectedTab | nftContractToVariable) | translate))}}: {{actualStatistics.totalSales | number:'1.0-4'}}</h3>
+      </div>
+    </div>
+    <div class="statistics main-stats" *ngIf="selectedTab === 'all'">
+        <h3 class="subtitle">{{('statistics.nftAmountSales' | translate).replace('***', (actualStatistics.totalSales | number:'1.0-4'))}}</h3>
+        <div class="block" *ngFor="let nft of actualStatistics.nfts | keyvalue">
+        <p class="name">{{nft.key | nftContractToName}}:</p>
+        <p class="data"><span class="value">{{nft.value | number:'1.0-4'}}</span></p>
+      </div>
+    </div>
+
+    <div class="second-stats-wrapper">
+      <ng-container *ngFor="let token of ['gq', 'busd', 'bnb']">
+        <div class="statistics second-stats" *ngIf="actualStatistics.averageSale[token].counter > 0">
+          <h3 class="subtitle">{{('statistics.tokenSales' | translate).replace('***', actualStatistics.averageSale[token].counter).replace('###', token)}}</h3>
+          <img src="assets/images/tokens/{{token}}.png" class="token-image">
+          <div class="block">
+            <p class="name">{{'statistics.highestSale' | translate}}:</p>
+            <p class="data"><span class="value">{{actualStatistics.maxSale[token] | number:'1.0-4'}}</span> {{(token | uppercase)}}</p>
+          </div>
+          <div class="block">
+            <p class="name">{{'statistics.averageSale' | translate}}:</p>
+            <p class="data"><span class="value">{{(actualStatistics.averageSale[token].allSaleSum / actualStatistics.averageSale[token].counter) | number:'1.0-4'}}</span> {{(token | uppercase)}}</p>
+          </div>
+          <div class="block">
+            <p class="name">{{'statistics.movedAmount' | translate}}:</p>
+            <p class="data"><span class="value">{{actualStatistics.totalMovedTokens[token] | number:'1.0-4'}}</span> {{(token | uppercase)}}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <h3 class="subtitle">{{'statistics.transactions' | translate}}</h3>
+    <div class="table-wrapper">
+      <mat-table [dataSource]="dataSource" matSort class="sales-table">
+
+        <!-- Token Id Column -->
+        <ng-container matColumnDef="tokenId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="header">
+            {{'statistics.tokenId' | translate}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let sale" class="cell">
+            <span *ngIf="selectedTab === 'all'">{{(sale.nftContractAddress | nftContractToName)}}&nbsp;</span>
+            <a href="https://dapp.outerringmmo.com/marketplace/nft?nftContractAddress={{sale.nftContractAddress}}&id={{sale.tokenId}}" target="_blank">{{sale.tokenId}}</a>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Nft Seller Column -->
+        <ng-container matColumnDef="nftSeller">
+          <mat-header-cell *matHeaderCellDef class="header">
+            {{'statistics.nftSeller' | translate}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let sale" class="cell"> <a href="https://dapp.outerringmmo.com/profile?wallet={{sale.nftSeller}}" target="_blank">{{sale.nftSeller |shortWallet}}</a> </mat-cell>
+        </ng-container>
+
+        <!-- buyPrice Column -->
+        <ng-container matColumnDef="buyPrice">
+          <mat-header-cell *matHeaderCellDef class="header">
+            {{'statistics.buyPrice' | translate}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let sale" class="cell"> {{(sale.buyPrice | fromWei | number:'1.0-4') + ' ' + (sale.erc20Token | toTicker)}} </mat-cell>
+        </ng-container>
+
+        <!-- valueOnBusd Column -->
+        <ng-container matColumnDef="valueOnBusd">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="header">
+            <i>{{'statistics.busdValue' | translate}}*</i>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let sale" class="cell"> {{(sale.valueOnBusd | number:'1.0-4') + ' BUSD'}} </mat-cell>
+        </ng-container>
+
+        <!-- buyer Column -->
+        <ng-container matColumnDef="buyer">
+          <mat-header-cell *matHeaderCellDef class="header">
+            {{'statistics.buyer' | translate}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let sale" class="cell"> <a href="https://dapp.outerringmmo.com/profile?wallet={{sale.buyer}}" target="_blank">{{sale.buyer |shortWallet}}</a> </mat-cell>
+        </ng-container>
+
+        <!-- Block Column -->
+        <ng-container matColumnDef="block">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="header">
+            {{'statistics.block' | translate}}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let sale" class="cell"> <a href="https://bscscan.com/block/{{sale.block}}" target="_blank">{{sale.block}}</a> </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <p class="advice">*{{'statistics.tokenConversionAdvice' | translate}}</p>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20, dataSource.data.length]" showFirstLastButtons class="paginator" aria-label="Select page of sales table">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

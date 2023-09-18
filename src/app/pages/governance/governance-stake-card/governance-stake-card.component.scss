@@ -1,0 +1,228 @@
+@import 'src/styleVariables.scss';
+
+.pool {
+  text-align: left;
+  color: $white;
+  font-family: $workSans;
+
+  .data{
+    position: relative;
+    padding: 10px 20px;
+
+    &-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #ffffff20;
+      -webkit-backdrop-filter: blur(1px);
+      backdrop-filter: blur(1px);
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px 10px 0 0;
+
+      .spinner {
+        width: 100px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .multiplier {
+      background-color: $pink;
+      border-radius: 100%;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      height: 25px;
+      width: 25px;
+      text-align: center;
+
+      span {
+        vertical-align: middle;
+      }
+    }
+
+    .resume {
+
+      h1 {
+        position: relative;
+        width: max-content;
+        font-family: $workSans;
+        margin: 0;
+        font-weight: 500;
+        font-size: 1.5em;
+        line-height: 1.4em;
+
+        img {
+          position: absolute;
+          left: calc(100% + 20px);
+          top: 50%;
+          transform: translateY(calc(-50% + 5px));
+          height: 50px;
+        }
+      }
+
+      h2 {
+        font-family: $workSans;
+        margin: 0;
+        font-weight: 200;
+        font-size: 1.2em;
+        line-height: 1em;
+        letter-spacing: 1px;
+      }
+
+      .locking {
+        font-size: 0.9em;
+        white-space: nowrap;
+      }
+
+      p {
+        font-family: $workSans;
+        margin: 10px 0 25px;
+      }
+    }
+
+    .stakelp,
+    .harvest,
+    .withdraw {
+      margin: 15px 0;
+
+      .numbers {
+        vertical-align: middle;
+        display: inline-block;
+        width: calc(100% - 100px);
+
+        p {
+          font-size: 0.9em;
+          margin: 0;
+
+          span {
+            font-weight: bold;
+            color: $pink;
+          }
+
+          &.amount {
+            font-size: 1.4em;
+          }
+        }
+      }
+
+      .button {
+        cursor: pointer;
+        vertical-align: middle;
+        display: inline-block;
+        text-align: center;
+        border-radius: 10px;
+        padding: 10px 0;
+        width: 100px;
+
+        &.disabled {
+          cursor: default;
+          background-color: $grey;
+          color: $white;
+          opacity: 0.5;
+
+          &:hover {
+            background-color: $grey;
+          }
+        }
+
+        &:hover {
+          background-color: $blue-medium;
+        }
+      }
+    }
+
+    .harvest {
+
+      .button {
+        background-color: $blue-light;
+      }
+    }
+
+    .stakelp {
+
+      .button {
+        background-color: $blue-extra-light;
+      }
+    }
+
+    .withdraw {
+
+      .button {
+        background-color: $pink;
+        margin: 25px auto 0px;
+        display: block;
+        padding: 5px 15px;
+
+        &:hover {
+          background-color: $pink;
+        }
+      }
+    }
+  }
+
+  .details {
+    border-top: 2px solid $blue-extra-light;
+
+    &-data {
+      padding: 10px 20px 0;
+
+      .switcher {
+        cursor: pointer;
+        width: fit-content;
+        margin: auto 0px 5px auto;
+        color: $blue-extra-light;
+        font-size: 1.1em;
+
+        .icon {
+          vertical-align: middle;
+          color: $white;
+        }
+
+        &:hover {
+
+          .icon {
+            animation: move-arrow 1s ease-in-out infinite;
+          }
+        }
+      }
+
+      .info {
+        overflow: hidden;
+        height: 0;
+        transition: height 1s ease-in-out;
+
+        &.shown {
+          height: 180px;
+          transition: height 1s ease-in-out;
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.9em;
+
+          .right {
+            float: right;
+          }
+        }
+
+        .links {
+          margin-top: 10px;
+
+          a {
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+            color: $blue-extra-light;
+            margin: 0;
+            font-size: 0.9em;
+          }
+        }
+      }
+    }
+  }
+}

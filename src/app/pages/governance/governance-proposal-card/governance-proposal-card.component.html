@@ -1,0 +1,54 @@
+<div class="card" [routerLink]="['/governance/proposalDetails']" [queryParams]="{id: proposal.proposalId}">
+
+  <div class="block-1">
+    <div class="posted-data">
+      <img src="assets/images/logo.png" alt="Outer Ring logo" >
+      <p *ngIf="proposal.postedData">{{proposal.postedData * 1000 | date}}</p>
+    </div>
+    <div class="status {{proposalStatus.toLowerCase()}}">
+      <p>{{proposalStatus}}</p>
+    </div>
+  </div>
+
+  <div class="block-2">
+    <p class="title">{{proposal.title}}</p>
+    <p style='white-space: break-spaces;' class="text">{{proposal.description}}</p>
+  </div>
+
+  <div class="block-3">
+    <div class="image">
+      <img src="{{proposal.image}}" alt="Proposal image" />
+    </div>
+  </div>
+
+  <div class="block-4">
+
+    <div *ngIf="proposalStatus === 'Active'" class="options">
+      <p class="total">{{totalVotes | number: '1.0-2'}} votes</p>
+      <p *ngFor="let option of proposal.votingOptions; let i = index" (click)="voteOnProposal($event, option)" class="active">
+        {{option}}
+        <span class="votes" *ngIf="totalVotes > 0">{{(proposal.votes[i] * 100 / totalVotes) | number: '1.0-2'}}%</span>
+      </p>
+    </div>
+
+    <div *ngIf="proposalStatus === 'Coming'" class="options">
+      <p *ngFor="let option of proposal.votingOptions; let i = index" class="coming">{{option}}</p>
+    </div>
+
+    <div *ngIf="proposalStatus === 'Closed'" class="options">
+      <p class="total">{{totalVotes | number: '1.0-2'}} votes</p>
+      <p
+        *ngFor="let option of proposal.votingOptions; let i = index"
+        class="closed"
+        [class.win]="result === proposal.votes[i]"
+        [class.noVotes]="totalVotes === 0"
+      >
+        {{option}}
+        <span class="votes" *ngIf="totalVotes > 0">{{(proposal.votes[i] * 100 / totalVotes) | number: '1.0-2'}}%</span>
+      </p>
+    </div>
+
+    <p class="ending">{{proposalEnd}}</p>
+  </div>
+
+</div>

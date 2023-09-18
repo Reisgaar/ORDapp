@@ -1,0 +1,43 @@
+<div class="close">
+  <p class="text">Lootbox<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<!-- Main phrase for popUp -->
+<p [class.errorTitle]="data.text === 5" class="main-phrase">
+  <span *ngIf="data.text !== 2">{{texts[data.text] | translate}}</span>
+  <span *ngIf="data.text === 2">{{setTierOnText2(texts[data.text] | translate)}}</span>
+</p>
+
+<!-- If pre payment info -->
+<div *ngIf="data.text === 2 && data.tier !== 0 && data.tier !== '0'" class="payment">
+  <p class="price">{{roundedPrice}} {{currency[data.paymentCoin]}}</p>
+  <p>{{'lootbox.popUp.priceMayVary' | translate}}</p>
+  <p>{{'lootbox.popUp.payMore' | translate}}</p>
+  <div class="form">
+    <label name="slippage">{{'lootbox.popUp.slippage' | translate}}</label>
+    <input type="range" id="slip-range" name="slippage" class="form-range" value="1" min="1" max="100" [(ngModel)]="slippage">
+    <span>{{slippage}}%</span>
+  </div>
+  <div class="percentage-buttons">
+    <button (click)="setRange(5)" [class.active]="slippage === 5">5%</button>
+    <button (click)="setRange(15)" [class.active]="slippage === 15">15%</button>
+    <button (click)="setRange(25)" [class.active]="slippage === 25">25%</button>
+  </div>
+  <p>{{'lootbox.popUp.youCanPay' | translate}}</p>
+  <p class="price">{{(roundedPrice + (roundedPrice * (slippage / 100)) + 0.0001) | number:'1.0-4'}} {{currency[data.paymentCoin]}}</p>
+  <p class="advice">*{{'lootbox.popUp.correctAllowance' | translate}}</p>
+  <button class="buy-button" (click)="confirmBuy()">{{'lootbox.popUp.buy' | translate}}</button>
+</div>
+
+<div *ngIf="data.text === 2 && (data.tier === 0 || data.tier === '0')" class="payment">
+  <p class="price" style="margin-bottom: 20px;">{{roundedPrice | number: '1.0-4'}} {{currency[data.paymentCoin]}}</p>
+  <button class="buy-button" (click)="confirmBuyMistery()" *ngIf="data.tier === 0 || data.tier === '0'">{{'lootbox.popUp.buy' | translate}}</button>
+</div>
+
+<!-- Buy started -->
+<div *ngIf="data.text === 4" class="loader-container">
+  <span class="loader"></span>
+</div>
+
+<!-- If Error -->
+<p class="error">{{data.error}}</p>

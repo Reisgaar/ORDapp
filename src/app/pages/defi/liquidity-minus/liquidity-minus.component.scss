@@ -1,0 +1,122 @@
+@import "src/styleVariables.scss";
+
+.close {
+  font-family: "magistral", sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding-right: 50px;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+.remove {
+  padding: 0.5rem;
+
+  p {
+    text-align: center;
+  }
+  .form {
+    position: relative;
+    width: max-content;
+    margin: auto;
+    text-align: center;
+    border-radius: 7px;
+    border: 1px solid $blue-medium;
+
+    input {
+      display: inline-block;
+      height: 15px;
+      background-color: transparent;
+      color: $white;
+      border: none;
+      font-size: 1.3em;
+      outline: none;
+      margin: 5px 0px 10px 0;
+      padding: 5px 10px;
+      font-family: $workSans;
+      text-align: left;
+      font-size: 1.3em;
+    }
+    .bmax {
+      background: $green;
+      border-radius: 0.3rem;
+      border: none;
+      margin-right: 0.3rem;
+      height: 1.3rem;
+      &:hover {
+        background: $green-light;
+      }
+    }
+  }
+  .center-chip {
+    display: flex;
+    justify-content: center;
+    .chip {
+      margin: 0rem 0.2rem;
+    }
+  }
+  .token-sub {
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    .tex-green {
+      color: $green-light;
+    }
+  }
+  .result {
+    background: $blue-dark;
+    margin-top: 1.2rem;
+    border-radius: 0.5rem;
+    padding-top: 0.5rem;
+    .tex-med {
+      font-size: 1rem;
+    }
+    .btn-rmv {
+      border: none;
+      border-radius: 0.4rem;
+      color: $white;
+      background: $blue-medium;
+      width: 100%;
+      padding: 0.5rem 0rem;
+      margin-top: 1rem;
+      &:hover {
+        background: $blue-light;
+      }
+    }
+  }
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

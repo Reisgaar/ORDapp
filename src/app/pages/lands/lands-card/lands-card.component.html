@@ -1,0 +1,92 @@
+<div class="content {{display}}" [class.ended]="auctionEnded" [class.started]="auctionStarted && !auctionEnded">
+  <!-- IMAGE NAME AND LOCATION -->
+  <div class="image">
+    <mat-icon class="detail" (mousedown)="preventScroll($event)" (click)="clickToDetail()" (auxclick)="wheelToDetail($event)">search</mat-icon>
+    <div class="utilities">
+      <mat-icon class="icon">info</mat-icon>
+      <div class="data">
+        <p>{{'lands.home.utilities.' + (nft.size | lowercase) + '.ut1' | translate }}</p>
+        <p>{{'lands.home.utilities.' + (nft.size | lowercase) + '.ut2' | translate }}</p>
+        <p>{{'lands.home.utilities.' + (nft.size | lowercase) + '.ut3' | translate }}</p>
+        <p *ngIf="nft.size === 'Micro' || nft.size === 'Standard' || nft.size === 'Macro' || nft.size === 'Mega'">{{'lands.home.utilities.' + (nft.size | lowercase) + '.ut4' | translate }}</p>
+        <p *ngIf="nft.size === 'Standard' || nft.size === 'Macro' || nft.size === 'Mega'">{{'lands.home.utilities.' + (nft.size | lowercase) + '.ut5' | translate }}</p>
+        <p *ngIf="nft.size === 'Standard' || nft.size === 'Macro' || nft.size === 'Mega'">{{'lands.home.utilities.' + (nft.size | lowercase) + '.ut6' | translate }}</p>
+        <p *ngIf="nft.size === 'Mega'">{{'lands.home.utilities.' + (nft.size | lowercase) + '.ut7' | translate }}</p>
+      </div>
+    </div>
+    <img src="assets/images/lands/land_{{nft.size | lowercase}}.png" alt="Land NFT image" />
+  </div>
+  <p class="name">{{nft.size}} land</p>
+  <div class="location">
+    <img src="assets/images/lands/icon/{{nft.ring | deleteWhitespaces | lowercase}}.svg" class="icon" alt="Ring location" />
+    <div class="data">
+      <p class="sector">{{"lands.card.sector" | translate}}: {{nft.sector}}</p>
+      <p class="district">{{"lands.card.district" | translate}}: {{nft.district}}</p>
+    </div>
+  </div>
+  <!-- BID AND BUYOUT BUTTONS -->
+  <div class="bid" *ngIf="!auctionEnded">
+    <p class="current" *ngIf="nft.nftHighestBid !== '0'">{{"lands.card.lastBid" | translate}}:</p>
+    <p class="current" *ngIf="nft.nftHighestBid === '0'">{{"lands.card.firstBid" | translate}}:</p>
+    <p class="value" *ngIf="nft.nftHighestBid === '0'">{{(nft.minPrice | fromWei) | number: '1.0-4'}} <span class="conversion"> = {{((nft.minPrice | fromWei) * gqPriceOnBusd[0]) | number: '1.0-4'}} BUSD</span></p>
+    <p class="value" *ngIf="nft.nftHighestBid !== '0'">{{(nft.nftHighestBid | fromWei) | number: '1.0-4'}} <span class="conversion"> = {{((nft.nftHighestBid | fromWei) * gqPriceOnBusd[0]) | number: '1.0-4'}} BUSD</span></p>
+    <p class="button" *ngIf="whitelist.whitelisted && auctionStarted" (click)="bidOrBuyLandAuction('bid', false)">{{"lands.card.buttons.bid" | translate}}</p>
+    <p class="button disabled" *ngIf="!whitelist.whitelisted || !auctionStarted" (mousemove)="tooltipPosition($event)">
+      {{"lands.card.buttons.bid" | translate}}
+      <span class="not-whitelisted" *ngIf="!whitelist.whitelisted" [ngStyle]="{'top': tooltipY + 'px', 'left': tooltipX + 'px'}">{{ "lands.whitelist.size" + nft.size | translate}}</span>
+    </p>
+  </div>
+  <div class="buyout" *ngIf="!auctionEnded">
+    <p class="current">{{"lands.card.buyout" | translate}}:</p>
+    <p class="value">
+      <span *ngIf="!showActualBuyout">{{(nft.minBuyOutPrice | fromWei) | number: '1.0-4'}}</span>
+      <span *ngIf="!showActualBuyout" class="conversion"> = {{((nft.minBuyOutPrice | fromWei) * gqPriceOnBusd[0]) | number: '1.0-4'}} BUSD</span>
+      <span *ngIf="showActualBuyout">{{(actualBuyout | fromWei) | number: '1.0-4'}}</span>
+      <span *ngIf="showActualBuyout" class="conversion"> = {{((actualBuyout | fromWei) * gqPriceOnBusd[0]) | number: '1.0-4'}} BUSD</span>
+    </p>
+    <!-- Active button -->
+    <p class="button" *ngIf="whitelist.whitelisted && auctionStarted && buyoutEnabled" (click)="bidOrBuyLandAuction('buyout', true)">{{"lands.card.buttons.buy" | translate}}</p>
+    <!-- Disabled button -->
+    <p class="button disabled" *ngIf="!whitelist.whitelisted || !auctionStarted || !buyoutEnabled" (mousemove)="tooltipPosition($event)">
+      {{"lands.card.buttons.buy" | translate}}
+      <!-- tip if buyout still disabled -->
+      <span class="not-whitelisted" *ngIf="!buyoutEnabled" [ngStyle]="{'top': tooltipY + 'px', 'left': tooltipX + 'px'}">{{ "lands.buyoutDisabled" | translate}}{{nft.buyOutStartTime + '000' | date:'MMM d, y, h:mm:ss a zzzz'}}</span>
+      <!-- tip if not whitelisted -->
+      <span class="not-whitelisted" *ngIf="auctionStarted && buyoutEnabled" [ngStyle]="{'top': tooltipY + 'px', 'left': tooltipX + 'px'}">{{ "lands.whitelist.size" + nft.size | translate}}</span>
+    </p>
+  </div>
+  <!-- HIGHEST BIDDER -->
+  <div class="bid-info" *ngIf="auctionStarted && !auctionEnded">
+    <p *ngIf="nft.bidsMade !== '0'">{{"lands.card.highestBidder" | translate}}: {{nft.nftHighestBidder | shortWallet}}</p>
+    <p *ngIf="nft.bidsMade === '0'">{{"lands.card.noBidsYet" | translate}}</p>
+  </div>
+  <!-- WITHDRAW BUTTON -->
+  <div class="withdraw" *ngIf="auctionEnded">
+    <p *ngIf="nft.nftHighestBidder !== '0x0000000000000000000000000000000000000000'" class="winner">{{"lands.card.winner" | translate}}:</p>
+    <p *ngIf="nft.nftHighestBidder !== '0x0000000000000000000000000000000000000000'" class="wallet">{{nft.nftHighestBidder | shortWallet}}</p>
+    <p *ngIf="nft.nftHighestBidder === '0x0000000000000000000000000000000000000000'" class="winner">{{"lands.card.noBids" | translate}}</p>
+    <p *ngIf="nft.nftHighestBidder === '0x0000000000000000000000000000000000000000'" class="wallet">{{"lands.card.notSold" | translate}}</p>
+    <p class="button" *ngIf="(nft.nftHighestBidder | lowercase) === (userAddress | lowercase)" (click)="withdrawAuction()">{{"lands.card.buttons.withdraw" | translate}}</p>
+    <p class="button disabled" *ngIf="(nft.nftHighestBidder | lowercase) !== (userAddress | lowercase)">{{"lands.card.buttons.withdraw" | translate}}</p>
+  </div>
+  <!-- COUNTDOWN -->
+  <div class="countdown" [class.started]="auctionStarted" [class.ended]="auctionEnded">
+    <p *ngIf="!auctionStarted && !auctionEnded">{{'lands.card.startsOn' | translate}}:</p>
+    <app-countdown *ngIf="!auctionStarted" [end]="nft.startTimeStamp" (countdownEndedEvent)="receiveData($event)"></app-countdown>
+    <p *ngIf="auctionStarted && !auctionEnded">{{'lands.card.endsOn' | translate}}:</p>
+    <app-countdown *ngIf="auctionStarted" [end]="nft.endTimeStamp" (countdownEndedEvent)="receiveData($event)"></app-countdown>
+  </div>
+
+  <!-- Useful data for develop, TODO: comment on launching -->
+  <!-- <div style="position: absolute;top: 50px;left: 50%;transform: translateX(-50%);background: black;text-align: center;padding: 5px 10px;">
+    <p style="margin:0;white-space: nowrap;font-size: 0.9em;">{{nft.size + ' land (' + nft.tokenId + ')'}}</p>
+    <p style="margin:0;white-space: nowrap;font-size: 0.9em;">Auction Id: {{nft.counter}}</p>
+    <p style="margin:0;white-space: nowrap;font-size: 0.9em;">Price: {{nft.nftHighestBid | fromWei }} GQ</p>
+    <p style="margin:0;white-space: nowrap;font-size: 0.9em;">Wallet: {{nft.nftHighestBidder}}</p>
+    <p style="margin:0;white-space: nowrap;font-size: 0.9em;">whitelisted: {{whitelist.whitelisted}}</p>
+    <p style="margin:0;white-space: nowrap;font-size: 0.9em;">tokenId: {{whitelist.tokenId}}</p>
+    <p style="margin:0;white-space: nowrap;font-size: 0.9em;">nftAddress: {{whitelist.nftContractAddress | slice:0:6}}...</p>
+    <p style="margin:0;white-space: nowrap;font-size: 0.9em;">start: {{nft.startTimeStamp * 1000 | date:'MMM d, y, HH:mm:ss'}}</p>
+    <p style="margin:0;white-space: nowrap;font-size: 0.9em;">end: {{nft.endTimeStamp * 1000 | date:'MMM d, y, HH:mm:ss'}}</p>
+  </div> -->
+</div>

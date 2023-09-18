@@ -1,0 +1,29 @@
+<div class="small-list">
+  <div class="head">
+    <h3 *ngIf="category !== 'yourBids'">{{category}}</h3>
+    <h3 *ngIf="category === 'yourBids'">{{'itemViewer.' + category | translate}}</h3>
+  </div>
+  <div class="table-wrapper" [class.closed]="!viewerOpened">
+
+    <div class="items">
+      <div class="item" *ngFor="let item of items | slice:(pagActualPage*pagItemPerPage):((pagActualPage*pagItemPerPage) + pagItemPerPage)">
+        <app-nft-card [nft]="item"></app-nft-card>
+      </div>
+    </div>
+
+    <div class="pagination" *ngIf="pagTotalPages > 0">
+      <mat-icon *ngIf="pagActualPage === 0" class="arrow disabled">first_page</mat-icon>
+      <mat-icon *ngIf="pagActualPage > 0" (click)="goToFirstOrLastPage(true)" class="arrow">first_page</mat-icon>
+      <mat-icon *ngIf="pagActualPage === 0" class="arrow disabled">chevron_left</mat-icon>
+      <mat-icon *ngIf="pagActualPage > 0" (click)="changePage(false)" class="arrow">chevron_left</mat-icon>
+      <span>Page {{pagActualPage + 1}} of {{pagTotalPages + 1}}</span>
+      <mat-icon *ngIf="pagActualPage < pagTotalPages" (click)="changePage(true)" class="arrow">chevron_right</mat-icon>
+      <mat-icon *ngIf="pagActualPage >= pagTotalPages" class="arrow disabled">chevron_right</mat-icon>
+      <mat-icon *ngIf="pagActualPage < pagTotalPages" (click)="goToFirstOrLastPage(false)" class="arrow">last_page</mat-icon>
+      <mat-icon *ngIf="pagActualPage >= pagTotalPages" class="arrow disabled">last_page</mat-icon>
+    </div>
+  </div>
+  <div class="switcher" (click)="switchViewer()" *ngIf="switcherActive">
+    <mat-icon class="icon" [class.flipped]="!viewerOpened">keyboard_arrow_up</mat-icon>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="key-progress" *ngIf="loadingKeysData">
+  <mat-progress-bar mode="indeterminate" class="progress-bar"></mat-progress-bar>
+</div>
+
+<div *ngIf="!loadingKeysData && (userHasKeys || (claimData.isInWhitelist === true && claimData.keyClaimed === false))" class="keys">
+
+  <h2 class="title">{{"keyring.title" | translate}}</h2>
+  <div *ngIf="claimData.isInWhitelist === true && claimData.keyClaimed === false" class="key buttons" (click)="claimKey()">
+    <span class="button">{{'holdtel.claim' | translate}}</span>
+    <img src="assets/images/holdtel/keys/key_{{claimData.size | lowercase}}.png" alt="Key icon" />
+    <p class="tip">{{('holdtel.toClaim' | translate).replace('***', ('holdtel.roomName.' + (claimData.size | lowercase) | translate))}}</p>
+  </div>
+  <ng-container *ngIf="userHasKeys">
+    <div class="key" *ngFor="let key of holdtelKeys">
+      <img src="assets/images/holdtel/keys/key_{{key.size | lowercase}}.png" alt="Key icon" />
+      <p class="tip">{{('holdtel.ownedKey' | translate).replace('***', ('holdtel.roomName.' + (key.size | lowercase) | translate))}}</p>
+    </div>
+    <div class="key" *ngFor="let key of preAlphaKeys">
+      <img src="{{key.image320}}" alt="Key icon" />
+      <p class="tip">{{"keyring.grantsAccess" | translate}}</p>
+    </div>
+  </ng-container>
+</div>

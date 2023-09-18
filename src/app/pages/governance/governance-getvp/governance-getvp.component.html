@@ -1,0 +1,37 @@
+<div class="top-image">
+  <img src="assets/images/governance/header_stake.png" alt="Governance header image">
+</div>
+
+<div class="page">
+  <div class="head governance">
+    <p class="tip">{{"governance.getVP.tip" | translate}}</p>
+    <h1 class="title"><b>{{"governance.getVP.title1" | translate}}</b>{{"governance.getVP.title2" | translate}}<b>{{"governance.getVP.title3" | translate}}</b></h1>
+    <p class="subtitle">{{"governance.getVP.subtitle1" | translate}}</p>
+    <p class="subtitle">{{"governance.getVP.subtitle2" | translate}}</p>
+  </div>
+
+  <div class="stake">
+    <div class="stake-card">
+      <app-governance-stake-card [pool]="0"></app-governance-stake-card>
+    </div>
+    <div class="stake-card">
+      <app-governance-stake-card [pool]="1"></app-governance-stake-card>
+    </div>
+    <div class="stake-card">
+      <app-governance-stake-card [pool]="2"></app-governance-stake-card>
+    </div>
+  </div>
+
+  <div class="details">
+    <div class="data">
+      <img src="assets/images/tokens/gq.png" alt="GQ icon">
+      <p class="text">{{"governance.getVP.totalStakedGQ" | translate}}</p>
+      <p class="text total-number">{{totalStaked | number: '1.0-4'}}</p>
+    </div>
+    <div class="data">
+      <img src="assets/images/vp.png" alt="VP icon">
+      <p class="text">{{"governance.getVP.totalGeneratedVP" | translate}}</p>
+      <p class="text total-number">{{totalSupply | number: '1.0-4'}}</p>
+    </div>
+  </div>
+</div>

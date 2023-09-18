@@ -1,0 +1,32 @@
+<div class="top-image">
+  <img src="assets/images/governance/header_proposals.png" alt="Governance header image">
+</div>
+
+<div class="page">
+  <div class="head governance">
+    <p class="tip">{{"governance.proposals.tip" | translate}}</p>
+    <h1 class="title"><b>{{"governance.proposals.title1" | translate}}</b>{{"governance.proposals.title2" | translate}}<b>{{"governance.proposals.title3" | translate}}</b></h1>
+    <p class="subtitle">{{"governance.proposals.subtitle" | translate}}</p>
+  </div>
+
+  <div class="filter">
+    <div class="filter-category" (click)="filter('all')" [class.selected]="selectedFilter === 'all'">{{"governance.proposals.filterAll" | translate}}</div>
+    <div class="filter-category" (click)="filter('active')" [class.selected]="selectedFilter === 'active'">{{"governance.proposals.filterActive" | translate}}</div>
+    <div class="filter-category" (click)="filter('coming')" [class.selected]="selectedFilter === 'coming'">{{"governance.proposals.filterComing" | translate}}</div>
+    <div class="filter-category" (click)="filter('closed')" [class.selected]="selectedFilter === 'closed'">{{"governance.proposals.filterClosed" | translate}}</div>
+  </div>
+
+  <div class="proposals">
+    <div class="pagination" *ngIf="totalPages > 0">
+      <mat-icon *ngIf="paginationPage === 0" class="arrow disabled">chevron_left</mat-icon>
+      <mat-icon *ngIf="paginationPage > 0" (click)="changePage(false)" class="arrow">chevron_left</mat-icon>
+      <span>Page {{paginationPage + 1}} of {{totalPages + 1}}</span>
+      <mat-icon *ngIf="paginationPage < totalPages" (click)="changePage(true)" class="arrow">chevron_right</mat-icon>
+      <mat-icon *ngIf="paginationPage >= totalPages" class="arrow disabled">chevron_right</mat-icon>
+    </div>
+    <div *ngFor="let prop of shownProposals | slice:(paginationPage*propsPerPage):((paginationPage*propsPerPage) + propsPerPage)">
+      <app-governance-proposal-card [proposal]="prop"></app-governance-proposal-card>
+    </div>
+
+  </div>
+</div>

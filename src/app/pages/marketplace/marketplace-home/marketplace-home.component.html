@@ -1,0 +1,94 @@
+<div class="slider">
+  <div class="card">
+    <img src="assets/images/slider/card_marketplace.png" class="background" alt="Marketplace slider image"/>
+    <h1 class="title">{{ 'marketplace.head.title' | translate }}</h1>
+    <p class="text">{{ 'marketplace.head.text' | translate }}</p>
+    <div class="buttons">
+      <p class="button" [routerLink]="['/marketplace/directSales']">{{ 'marketplace.head.button1' | translate }}</p>
+      <p class="button" [routerLink]="['/marketplace/auctions']">{{ 'marketplace.head.button2' | translate }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="partnerships">
+  <div class="content">
+    <h2 class="title">{{ 'partner.collection' | translate }}</h2>
+    <div class="buttons">
+      <ng-container *ngFor="let p of partners | keyvalue">
+        <div
+          *ngIf="$any(p).value.show && $any(p).value.launched"
+          class="button {{$any(p).value.name}}"
+          [ngStyle]="{'background-image': 'url(/assets/images/partnership/' + $any(p).value.button + ')' }"
+          [routerLink]="['/marketplace/partner']"
+          [queryParams]="{partner: $any(p).value.name}"
+        >
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="todays-nft" *ngIf="latestSales.length > 0">
+  <div class="nft-list">
+    <div class="title">
+      <h2>{{ 'marketplace.home.todays' | translate }}</h2>
+      <p [routerLink]="['/marketplace/directSales']">{{ 'marketplace.home.more' | translate }}</p>
+    </div>
+    <div class="items">
+      <app-item-viewer-medium [items]="latestSales" [category]="'All'"></app-item-viewer-medium>
+    </div>
+  </div>
+</div>
+
+<div class="newsletter">
+  <div class="container">
+    <h2 class="title">{{ 'home.newsletter.title1' | translate }}.<span>{{ 'home.newsletter.title2' | translate }}</span></h2>
+    <div class="subtitle">
+      <p><b>{{ 'home.newsletter.subtitle1' | translate }}</b>{{ 'home.newsletter.subtitle2' | translate }}</p>
+      <p>{{ 'home.newsletter.subtitle3' | translate }}</p>
+    </div>
+    <div class="subscriber">
+      <div class="input">
+        <input class="email" type="email" size="20" [(ngModel)]="email" (input)="deleteMessage()" />
+        <p class="submit" (click)="submitEmail()">{{ 'home.newsletter.subscribe' | translate }}</p>
+        <p class="subscribed" *ngIf="emailSent">{{ 'home.newsletter.subscribed' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hot-bids" *ngIf="hotBids.length > 0">
+  <div class="nft-list">
+    <div class="title">
+      <h2>{{ 'marketplace.home.hotBids' | translate }}</h2>
+      <p [routerLink]="['/marketplace/auctions']">{{ 'marketplace.home.more' | translate }}</p>
+    </div>
+    <div class="items">
+      <app-item-viewer-medium [items]="hotBids" [category]="'All'"></app-item-viewer-medium>
+    </div>
+  </div>
+</div>
+
+<div class="info">
+  <div class="step">
+    <div class="step-data">
+      <img src="assets/images/marketplace/step_wallet.svg" alt="Wallet icon" />
+      <h2 class="title">{{ 'marketplace.home.steps.title1' | translate }}</h2>
+      <p class="description">{{ 'marketplace.home.steps.text1' | translate }}</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-data">
+      <img src="assets/images/marketplace/step_cart.svg" alt="Cart icon" />
+      <h2 class="title">{{ 'marketplace.home.steps.title2' | translate }}</h2>
+      <p class="description">{{ 'marketplace.home.steps.text2' | translate }}</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-data">
+      <img src="assets/images/marketplace/step_check.svg" alt="Check icon" />
+      <h2 class="title">{{ 'marketplace.home.steps.title3' | translate }}</h2>
+      <p class="description">{{ 'marketplace.home.steps.text3' | translate }}</p>
+    </div>
+  </div>
+</div>

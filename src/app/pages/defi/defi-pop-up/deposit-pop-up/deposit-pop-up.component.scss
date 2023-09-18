@@ -1,0 +1,127 @@
+@import "src/styleVariables.scss";
+
+.close {
+  font-family: "magistral", sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding-right: 50px;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+
+.vote {
+  .content {
+    padding: 10px;
+
+    p {
+      text-align: center;
+    }
+
+    .subtitle {
+      margin: 5px 0;
+      font-size: 1em;
+    }
+
+    .option {
+      margin: 5px 0 20px;
+      font-size: 1.5em;
+    }
+
+    .form {
+      position: relative;
+      width: max-content;
+      margin: auto;
+      text-align: center;
+
+      label {
+        font-family: $workSans;
+        display: block;
+      }
+
+      input {
+        display: inline-block;
+        height: 15px;
+        background-color: transparent;
+        color: #ffffff;
+        border-radius: 7px;
+        border: 1px solid #0088ff;
+        margin: 5px 0px 10px 0;
+        padding: 5px 10px;
+        font-family: $workSans;
+        text-align: center;
+        font-size: 1.3em;
+      }
+    }
+
+    .input-error {
+      color: $red-error;
+    }
+
+    .percentage-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+
+      span {
+        cursor: pointer;
+        display: inline-block;
+        border: unset;
+        font-size: 0.8em;
+        margin: 5px 10px;
+        padding: 2px 8px;
+        border-radius: 7px;
+        background: $grey-semi-dark;
+        text-align: center;
+        color: #ffffff;
+
+        &.active,
+        &:hover {
+          background-color: $blue-light;
+        }
+      }
+    }
+
+    .vote-button {
+      cursor: pointer;
+      display: block;
+      border: unset;
+      width: 150px;
+      font-size: 1.2em;
+      margin: 5px auto 5px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: $blue-medium;
+      color: $white;
+      text-transform: uppercase;
+      font-weight: bold;
+
+      &:hover {
+        background-color: $blue-light;
+      }
+    }
+  }
+}

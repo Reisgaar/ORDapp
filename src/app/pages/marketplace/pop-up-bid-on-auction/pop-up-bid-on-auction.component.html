@@ -1,0 +1,29 @@
+<div class="close">
+  <p class="text">
+    <span>{{ 'popUp.' + data.title | translate }}</span>
+    <span class="button" (click)="closePopUp()">X</span>
+  </p>
+</div>
+
+<div class="content">
+  <form>
+    <div *ngIf="data.actualPrice === '0'">
+      <p class="actual-bid">{{ 'popUp.firstBidPrice' | translate }}</p>
+      <p class="actual-bid-data">{{data.initialPrice | number: '1.0-4'}} {{data.coin}}</p>
+    </div>
+    <div *ngIf="data.actualPrice !== '0'">
+      <p class="actual-bid">{{ 'popUp.actualBidPrice' | translate }}</p>
+      <p class="actual-bid-data">{{data.actualPrice | number: '1.0-4'}} {{data.coin}}</p>
+      <p class="actual-bid">{{ 'popUp.minBidPrice' | translate }}</p>
+      <p class="actual-bid-data">{{data.minBid | number: '1.0-4'}} {{data.coin}}</p>
+    </div>
+
+    <p class="bid-label">{{ 'popUp.addBid' | translate }}</p>
+    <input type="number" class="bid-amount" id="bidAmount" name="bidAmount" min="{{minimumBid}}" value="{{minimumBid}}" [(ngModel)]="bidAmount" (input)="checkIfIsMinValue()" />
+    <p class="error" [class.active]="formError">*{{ 'popUp.lowBidError' | translate }}</p>
+    <div class="buttons">
+      <button type="reset" class="button" (click)="closePopUp()">{{ 'popUp.button.cancel' | translate }}</button>
+      <button type="submit" *ngIf="!formError" class="button" (click)="confirmBid()">{{ 'popUp.button.accept' | translate }}</button>
+      <button type="submit" *ngIf="formError" class="button disabled">{{ 'popUp.button.accept' | translate }}</button>
+    </div>
+  </form>

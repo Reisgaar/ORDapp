@@ -1,0 +1,351 @@
+@import 'src/styleVariables.scss';
+
+.video {
+  margin: auto;
+  width: 100%;
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+    }
+  }
+}
+
+.instructions {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  text-align: center;
+  color: $white;
+  margin: 80px auto;
+
+  .step-container {
+    display: table-cell;
+    vertical-align: top;
+    border: 2px solid $blue-medium;
+    border-radius: 15px;
+    padding: 30px 15px;
+
+    &.pos1 { grid-column: 1 / 4; }
+    &.pos2 { grid-column: 5 / 8; }
+    &.pos3 { grid-column: 9 / 12; }
+
+
+    .step {
+      img {
+        width: 40%;
+      }
+
+      .title {
+        font-weight: 500;
+        font-size: 1.5em;
+        margin: 15px 0;
+      }
+
+      .text {
+        font-size: 1.2em;
+        font-weight: 300;
+        line-height: 1.3em;
+        letter-spacing: 0.04em;
+      }
+    }
+  }
+}
+
+.links {
+  color: $white;
+  margin-top: 50px;
+  margin-bottom: -50px;
+
+  .image {
+    display: inline-block;
+    width: 35%;
+    vertical-align: bottom;
+  }
+
+  .interaction {
+    display: inline-block;
+    vertical-align: bottom;
+    width: calc(65% - 100px);
+    padding: 50px 70px 0 30px;
+
+    .title {
+      text-transform: uppercase;
+      font-size: 4em;
+      font-weight: 300;
+      width: 80%;
+      line-height: 1em;
+      margin: 0px 15px 50px;
+    }
+
+    .buttons {
+
+      .background {
+        position: absolute;
+        z-index: -5;
+        left: 0;
+        background-color: #13219d5c;
+        width: 100%;
+        min-width: 320px;
+        height: 260px;
+      }
+
+      &-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 40px 0;
+
+        .button {
+          cursor: pointer;
+          background-color: $blue-light;
+          text-align: center;
+          border-radius: 100px;
+          width: 200px;
+          padding: 15px;
+          margin: 20px auto;
+          font-weight: 500;
+          font-size: 1.1em;
+
+          &:hover {
+            background-color: $blue-medium;
+          }
+
+          &1 { grid-column: 1; grid-row: 1; }
+          &2 { grid-column: 2; grid-row: 1; }
+          &3 { grid-column: 1; grid-row: 2; }
+          &4 { grid-column: 2; grid-row: 2; }
+        }
+      }
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 992px) {
+  .video {
+    margin: auto;
+    width: 100%;
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  .instructions {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    text-align: center;
+    color: $white;
+    margin: 80px auto;
+
+    .step-container {
+      display: table-cell;
+      vertical-align: top;
+      border: 2px solid $blue-medium;
+      border-radius: 15px;
+      padding: 30px 15px;
+
+      &.pos1 { grid-column: 1 / 4; }
+      &.pos2 { grid-column: 5 / 8; }
+      &.pos3 { grid-column: 9 / 12; }
+
+
+      .step {
+        img {
+          width: 40%;
+        }
+
+        .title {
+          font-weight: 500;
+          font-size: 1.5em;
+          margin: 15px 0;
+        }
+
+        .text {
+          font-size: 1.2em;
+          font-weight: 300;
+          line-height: 1.3em;
+          letter-spacing: 0.04em;
+        }
+      }
+    }
+  }
+
+  .instructions {
+    grid-template-columns: repeat(1, 1fr);
+
+    .step-container {
+      margin: 0 0 30px;
+
+      &.pos1 { grid-column: 1 / 2; grid-row: 1; }
+      &.pos2 { grid-column: 1 / 2; grid-row: 2; }
+      &.pos3 { grid-column: 1 / 2; grid-row: 3; margin: 0; }
+
+
+      .step {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+
+        img {
+          grid-column: 1;
+          grid-row: 1/3;
+          align-self: center;
+          width: 90%;
+        }
+
+        .title {
+          grid-column: 2/6;
+          grid-row: 1;
+        }
+
+        .text {
+          grid-column: 2/6;
+          grid-row: 2;
+        }
+      }
+    }
+  }
+
+  .links {
+
+    .interaction {
+      width: 65%;
+      margin: 0;
+      padding: 0;
+
+      .buttons {
+
+        &-grid {
+
+          .button {
+            width: 180px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Medium devices
+@media (max-width: 768px) {
+  .links {
+    text-align: center;
+
+    .interaction {
+      margin: 0px auto;
+      padding: 0px;
+      width: 65%;
+
+      .title {
+        font-size: 3em;
+        width: 100%;
+        margin: 0 0 20px;
+      }
+
+      .buttons {
+
+        .background {
+        }
+
+        &-grid {
+          grid-template-columns: repeat(1, 1fr);
+          padding: 10px 0;
+
+          .button {
+            margin: 10px auto;
+            padding: 10px;
+
+            &1 { grid-column: 1; grid-row: 1; }
+            &2 { grid-column: 1; grid-row: 2; }
+            &3 { grid-column: 1; grid-row: 3; }
+            &4 { grid-column: 1; grid-row: 4; }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Small devices
+@media (max-width: 576px) {
+  .instructions {
+    margin: 30px auto;
+
+    .step-container {
+
+      .step {
+        display: block;
+
+        img {
+          width: 80px;
+        }
+      }
+    }
+  }
+
+  .links {
+
+    .image {
+      display: none;
+    }
+
+    .interaction {
+      width: 100%;
+
+      .title {
+        width: 100%;
+        margin: 0 auto 15px;
+        text-align: center;
+        font-size: 2.2em;
+      }
+
+      .buttons {
+
+        .background {
+
+        }
+
+        &-grid {
+          margin: 30px 0;
+
+          .button {
+
+            &1 { grid-column: 1; grid-row: 1; }
+            &2 { grid-column: 1; grid-row: 2; }
+            &3 { grid-column: 1; grid-row: 3; }
+            &4 { grid-column: 1; grid-row: 4; }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Extra small devices
+@media (max-width: 320px) {
+
+}

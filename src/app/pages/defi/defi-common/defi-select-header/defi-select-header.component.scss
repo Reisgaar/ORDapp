@@ -1,0 +1,28 @@
+@import '/src/styleVariables.scss';
+
+.div-sel{
+  background: rgba(0, 0, 0, 0.5);;
+  line-height: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.tex-sel{
+  padding: 1rem;
+  font-weight: 500;
+  font-size: 1.5em;
+  margin: 15px 0;
+  color: $white;
+  opacity: 0.62;
+  &:hover{
+    font-weight: 700;
+    opacity: 1;
+  }
+  &:active{
+    font-weight: 700;
+    opacity: 1;
+  }
+}
+.highlight{
+  font-weight: 700;
+  opacity: 1;
+}

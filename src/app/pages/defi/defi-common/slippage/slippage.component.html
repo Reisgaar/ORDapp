@@ -1,0 +1,28 @@
+<div class="close">
+  <p class="text">{{ 'popUp.' + data.title | translate }}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+<div class="slippage">
+  {{ 'defi.settings.slippageTolerance' | translate }}
+  <mat-chip-listbox>
+    <mat-chip-option *ngFor="let item of chips" selected (click)="loadSlip(item)">
+      {{ item | percent }}
+    </mat-chip-option>
+  </mat-chip-listbox>
+
+  <div class="form">
+    <input #slippage="ngModel" type="number" maxlength="3" (change)="$event ? maxCien() : null"
+      [(ngModel)]="settings.slipTolerance" name="slippage" class="input" required>
+    <span>%</span>
+  </div>
+
+  <div class="transaction">
+    {{ 'defi.settings.transactionDeadline' | translate }}
+  </div>
+  <div class="form">
+    <input type="number" [(ngModel)]="settings.transDeadLine" name="transtime" placeholder="20" class="input"
+      required>&nbsp;{{ 'defi.settings.minutes' | translate }}
+  </div>
+  <div class="approve">
+    <button [mat-dialog-close]="settings" class="btn btn-add">{{ 'defi.settings.approve' | translate | uppercase }}</button>
+  </div>
+</div>

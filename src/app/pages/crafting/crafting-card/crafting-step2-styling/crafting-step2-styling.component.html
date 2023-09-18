@@ -1,0 +1,123 @@
+<!-- FINAL IMAGE FOR ARMOR -->
+<div class="content" *ngIf="poolData.nftType === 0">
+  <div class="image">
+    <div class="weapon-name">
+      <p>{{'crafting.armors.' + weapon | translate | uppercase}}</p>
+      <p class="weapon-data"><span *ngIf="poolData.nftType === 1">{{'crafting.element' + poolData.element | translate}} - </span>Tier {{poolData.tier}}</p>
+    </div>
+    <ng-container *ngIf="poolData.nftType === 0">
+      <img
+        class="preview-part {{weapon}}"
+        id="{{weapon}}"
+        src="assets/images/crafting/armours/{{weapon}}_0{{selectedArmorAesthetic}}.png"
+      />
+    </ng-container>
+  </div>
+  <p class="armor-switcher" *ngIf="poolData.started === false">
+    Change style
+    <mat-icon class="icon prev" (click)="changeSelectedArmorAesthetic(-1)">arrow_left</mat-icon>
+    <mat-icon class="icon next" (click)="changeSelectedArmorAesthetic(1)">arrow_right</mat-icon>
+  </p>
+</div>
+<!-- FINAL IMAGE FOR WEAPON -->
+<div class="content"*ngIf="poolData.nftType === 1">
+  <div class="image">
+    <div class="weapon-name">
+      <p >{{'crafting.weapons.' + weapon | translate | uppercase}}</p>
+      <p class="weapon-data">{{'crafting.element' + poolData.element | translate}} - Tier {{poolData.tier}}</p>
+    </div>
+    <ng-container *ngFor="let part of weaponParts | keyvalue">
+      <ng-container *ngIf="!['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase))">
+        <img
+          [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(part.key)}"
+          class="preview-part {{weapon + '-' + part.key}}"
+          id="{{weapon}}_{{part.key}}_{{part.value.aesthetic}}"
+          src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{part.key}}_{{part.value.parts[part.value.aesthetic]}}.png"
+        />
+      </ng-container>
+      <ng-container *ngIf="['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase))">
+        <ng-container *ngFor="let subPart of weaponParts[part.key] | keyvalue">
+          <img
+            *ngIf="subPart.value.aesthetic > -1"
+            [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(subPart.key)}"
+            class="preview-part {{weapon + '-' + subPart.key}}"
+            id="{{weapon}}_{{subPart.key}}_{{subPart.value.aesthetic}}"
+            src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{subPart.key}}_{{subPart.value.parts[subPart.value.aesthetic]}}.png"
+          />
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+  <p class="preview-button" *ngIf="poolData.started === false" (click)="switchPreviewTo(true)">{{'crafting.customize' | translate}}</p>
+</div>
+
+<!-- IMAGE PREVIEWER POPUP -->
+<div class="preview" *ngIf="showPreview && poolData.started === false">
+  <div class="preview-pop">
+    <div class="category">
+      <h3 class="main-title">{{'crafting.weaponParts.mainParts' | translate | uppercase}}</h3>
+      <!-- MAIN PARTS -->
+      <ng-container *ngFor="let part of weaponParts | keyvalue">
+        <div class="part" *ngIf="!['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase));">
+          <p class="name">
+            {{'crafting.weaponParts.' + part.key | translate}}
+            <mat-icon class="arrow prev" (click)="changeMainImagePart(-1, part.key)">arrow_left</mat-icon>
+            <mat-icon class="arrow next" (click)="changeMainImagePart(1, part.key)">arrow_right</mat-icon>
+            <span class="partof">{{part.value.aesthetic + 1}} of {{part.value.parts.length}}</span>
+          </p>
+        </div>
+      </ng-container>
+      <!-- ADD-ON PARTS -->
+      <ng-container *ngFor="let part of weaponParts | keyvalue">
+        <div class="part" *ngIf="['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase));">
+          <h3 class="addon-title">{{'crafting.weaponParts.' + part.key | translate | uppercase}}</h3>
+          <ng-container *ngFor="let subPart of weaponParts[part.key] | keyvalue">
+            <div class="part">
+              <p class="name" [class.unnactive]="subPart.value.aesthetic === -1">
+                {{'crafting.weaponParts.' + subPart.key | translate}}
+                <mat-icon class="arrow prev" (click)="changeAddOnImagePart(-1, part.key, subPart.key)">arrow_left</mat-icon>
+                <mat-icon class="arrow next" (click)="changeAddOnImagePart(1, part.key, subPart.key)">arrow_right</mat-icon>
+                <span class="partof">{{subPart.value.aesthetic + 1}} of {{subPart.value.parts.length}}</span>
+              </p>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+    <!-- FINAL IMAGE -->
+    <div class="image">
+      <div class="random-icon" (click)="randomize(false)">
+        <div class="dice" id="dice" [style]="diceStyle">
+          <div class="side side-{{i + 1}}" *ngFor="let list of [[5], [1,9], [1,5,9], [1,3,7,9], [1,3,5,7,9],[1,3,4,6,7,9]]; let i = index">
+            <div *ngFor="let num of list" class="dot dot-{{num}}"></div>
+          </div>
+        </div>
+      </div>
+      <mat-icon class="close-icon" (click)="switchPreviewTo(false)">close</mat-icon>
+      <h2 class="weapon-name">{{'crafting.weapons.' + weapon | translate | uppercase}}</h2>
+      <img class="background" src="assets/images/crafting/preview_background.png" />
+      <ng-container *ngFor="let part of weaponParts | keyvalue">
+        <ng-container *ngIf="!['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase))">
+          <img
+            [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(part.key)}"
+            class="preview-part {{weapon + '-' + part.key}}"
+            id="{{weapon}}_{{part.key}}_{{part.value.aesthetic}}"
+            src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{part.key}}_{{part.value.parts[part.value.aesthetic]}}.png"
+          />
+        </ng-container>
+        <ng-container *ngIf="['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase))">
+          <ng-container *ngFor="let subPart of weaponParts[part.key] | keyvalue">
+            <img
+              *ngIf="subPart.value.aesthetic > -1"
+              [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(subPart.key)}"
+              class="preview-part {{weapon + '-' + subPart.key}}"
+              id="{{weapon}}_{{subPart.key}}_{{subPart.value.aesthetic}}"
+              src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{subPart.key}}_{{subPart.value.parts[subPart.value.aesthetic]}}.png"
+            />
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <p class="advice" *ngIf="addOnsAdded">*Add ons will have an extra cost.</p>
+    </div>
+  </div>
+</div>

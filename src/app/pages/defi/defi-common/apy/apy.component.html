@@ -1,0 +1,96 @@
+<div class="close">
+  <p class="text">{{ 'defi.apr.title' | translate }}<span class="button" (click)="closePopUp()"><mat-icon class="close-icon">close</mat-icon></span></p>
+</div>
+<div class="mat-content" style="padding:2rem;">
+  <!-- <div class="title">ESTIMATED REWARD</div> -->
+  <div class="tex-white">
+    <div *ngIf="isConnected && data.staked != 0">
+      {{ 'defi.apr.Reward with' | translate }}&nbsp; {{data.staked | number: "1.0-3"}} {{data.stakedTokenName}} {{'staked' | translate }}
+      <table class="table">
+        <tr>
+          <td><strong>{{ 'defi.apr.Daily' | translate }}</strong></td>
+          <td class="table-y">{{aprDayOwn1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+          <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprDayOwn2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+        </tr>
+        <tr>
+          <td><strong>{{'defi.apr.Weekly' | translate }}</strong></td>
+          <td class="table-y">{{aprWeekOwn1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+          <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprWeekOwn2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+        </tr>
+
+        <tr>
+          <td><strong>{{'defi.apr.Monthly' | translate }}</strong></td>
+          <td class="table-y">{{aprMonthOwn1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+          <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprMonthOwn2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+        </tr>
+      </table>
+    </div>
+    <div *ngIf="data.pool.type == 'Stake'">
+      {{ 'defi.apr.busdreward' | translate }}
+      <table class="table">
+          <tr>
+            <td><strong>{{ 'defi.apr.Daily' | translate }}</strong></td>
+            <td class="table-y">{{aprDay1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+            <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprDay2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+          </tr>
+          <tr>
+            <td><strong>{{'defi.apr.Weekly' | translate }}</strong></td>
+            <td class="table-y">{{aprWeek1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+            <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprWeek2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+
+          </tr>
+          <tr>
+            <td><strong>{{'defi.apr.Monthly' | translate }}</strong></td>
+            <td class="table-y">{{aprMonth1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+            <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprMonth2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+
+          </tr>
+        </table>
+      </div>
+
+      <div *ngIf="data.pool.type == 'GalacticReserve'">
+        {{ 'defi.apr.busdreward' | translate }}
+        <table class="table">
+          <tr>
+            <td><strong>{{ 'defi.apr.Daily' | translate }}</strong></td>
+            <td class="table-y">{{aprDay1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+            <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprDay2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+          </tr>
+          <tr>
+            <td><strong>{{'defi.apr.Weekly' | translate }}</strong></td>
+            <td class="table-y">{{aprWeek1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+            <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprWeek2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+
+          </tr>
+          <tr>
+            <td><strong>{{'defi.apr.Monthly' | translate }}</strong></td>
+            <td class="table-y">{{aprMonth1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+            <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprMonth2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+
+          </tr>
+        </table>
+
+        </div>
+      <div *ngIf="data.pool.type == 'GalacticAlliance'">
+        {{ 'defi.apr.busdreward' | translate }}
+          <table class="table">
+            <tr>
+              <td><strong>{{ 'defi.apr.Daily' | translate }}</strong></td>
+              <td class="table-y">{{aprDay1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+              <td class="table-y">{{aprDay2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+            </tr>
+            <tr>
+              <td><strong>{{'defi.apr.Weekly' | translate }}</strong></td>
+              <td class="table-y">{{aprWeek1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+              <td class="table-y">{{aprWeek2| number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+            </tr>
+            <tr>
+              <td><strong>{{'defi.apr.Monthly' | translate }}</strong></td>
+              <td class="table-y">{{aprMonth1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+              <td class="table-y">{{aprMonth2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
+            </tr>
+          </table>
+        </div>
+  </div>
+</div>
+

@@ -1,0 +1,162 @@
+@import '/src/styleVariables.scss';
+
+.name {
+  font-family: $magistral !important;
+  text-align: center;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+.token {
+  background: radial-gradient(ellipse at center, $blue-semi-dark 0%, $blue-extra-dark 100%);
+  border: 1px solid $blue-medium;
+  box-shadow: #3BD5F855 2px 2px 3px;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: max-content 1fr 2fr max-content;
+  gap: 15px;
+
+  .image, .available, .input, .buttons {
+    align-self: center;
+    text-align: center;
+  }
+
+  .image {
+    object-fit: contain;
+    width: 50px;
+    height: 80px;
+  }
+
+  .available {
+    margin: 15px 0;
+
+    p {
+      margin: 0;
+    }
+
+    .progress-bar {
+      max-width: 100px;
+      display: block;
+      margin: auto;
+      padding: 8px 0;
+    }
+  }
+
+  .input {
+    width: max-content;
+    max-width: 100%;
+    margin: auto;
+
+    .token-label {
+      text-transform: uppercase;
+      margin: 2px 0;
+    }
+
+    &-field {
+      position: relative;
+
+      .token-amount {
+        width: calc(100% - 20px);
+        margin: auto;
+        height: 15px;
+        background-color: transparent;
+        color: $white;
+        border-radius: 7px;
+        border: 1px solid $blue-light;
+        margin: 0 auto;
+        padding: 5px 10px;
+        font-family: $workSans;
+      }
+
+      .max {
+        cursor: pointer;
+        position: absolute;
+        width: max-content;
+        padding: 5px 10px;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
+    }
+
+    .error {
+      opacity: 0;
+      color: $red-error;
+      font-size: 0.9em;
+      line-height: 1em;
+      height: 1.5em;
+      text-align: center;
+      margin: 5px 0 0 0;
+      max-width: 250px;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  .buttons {
+    margin: 0;
+
+    .button {
+      cursor: pointer;
+      font-family: $workSans;
+      text-transform: uppercase;
+      color: $white;
+      background: linear-gradient(to right, $blue-medium, $blue-semi-dark);
+      border: none;
+      border-radius: 70px;
+      width: 160px;
+      margin: 0 auto;
+      padding: 5px 8px;
+      font-weight: 300;
+      font-size: 1.2em;
+
+      &.disabled {
+        cursor: default;
+        background: linear-gradient(to right, $grey, $grey-semi-dark) !important;
+      }
+
+      &:hover {
+        background: linear-gradient(to right, $pink, #520066);
+      }
+    }
+  }
+}
+
+
+
+/*
+ * Responsive
+ */
+
+// Medium devices
+@media (max-width: 768px) {
+  .name {
+    font-size: 1.3rem;
+  }
+
+  .token {
+    display: block;
+    width: auto;
+    max-width: 200px;
+    text-align: center;
+    margin: auto;
+
+    .total {
+      margin: 10px 0;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .input {
+
+      .error {
+        margin: 10px 0;
+      }
+    }
+  }
+}

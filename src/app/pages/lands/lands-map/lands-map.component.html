@@ -1,0 +1,434 @@
+<div class="content">
+  <h2 class="title">{{'lands.map.selectPlace' | translate}}</h2>
+
+  <!-- MAP IMAGE -->
+  <div class="wrapper" id="wrapper" (mousemove)="following($event)">
+    <div class="circle" id="map">
+
+      <svg class="map" viewBox="0 0 2000 2000" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="blur">
+                <feGaussianBlur stdDeviation="5" />
+            </filter>
+        </defs>
+
+
+        <!--
+          FIRST MAP: RINGS
+        -->
+        <g id="main-map" [class.blur]="selectedData.ring !== '' && selectedData.sector !== ''">
+
+          <image id="map" href="/assets/images/lands/city.png" />
+
+          <!-- RING BACKGROUNDS -->
+          <path id="ring-back4"
+            class="ring-back rb4"
+            [class.active]="previewedData.ring === 'Ring 3'"
+            (click)="selectSector('Ring 3', ''); selectDistrict('')"
+            (mouseenter)="previewSector('Ring 3', '', true)"
+            (mouseleave)="previewSector('', '', false)"
+            d="M987.67,252.56c-419.07,0-760,340.93-760,760c0,124.78,30.23,242.64,83.75,346.63c1.58,7.9,0.73,16.16-2.55,23.66l-102.87,234.61c-6.28,14.32-3.53,31,7,42.55l95.83,105.06c4.49,4.92,10.15,8.63,16.45,10.78l302.51,103.26c13.16,4.49,27.72,1.74,38.33-7.24l130.27-110.23c3.79-3.21,6.84-7,9.11-11.14c58.38,14.42,119.4,22.07,182.17,22.07c419.06,0,760-340.93,760-760C1747.67,593.49,1406.73,252.56,987.67,252.56zM1489.14,1514.03c-65.13,65.13-140.97,116.26-225.42,151.98c-87.44,36.98-180.31,55.73-276.05,55.73c-65.83,0-130.31-8.87-192.59-26.43c-28.3-7.98-56.14-17.75-83.46-29.31c-84.45-35.72-160.29-86.85-225.42-151.98c-62.84-62.84-112.65-135.66-148.16-216.56c-1.29-2.94-2.57-5.89-3.82-8.86c-36.98-87.44-55.73-180.31-55.73-276.05c0-95.74,18.75-188.61,55.73-276.05c35.72-84.45,86.85-160.29,151.98-225.42S627.17,394.82,711.62,359.1c87.44-36.98,180.31-55.73,276.05-55.73s188.61,18.75,276.05,55.73c84.45,35.72,160.29,86.85,225.42,151.98c65.13,65.13,116.26,140.97,151.98,225.42c36.98,87.44,55.73,180.31,55.73,276.05c0,95.74-18.75,188.61-55.73,276.05C1605.4,1373.06,1554.27,1448.9,1489.14,1514.03z"
+          />
+          <path id="ring-back3"
+            class="ring-back rb3"
+            [class.active]="previewedData.ring === 'Ring3'"
+            (click)="selectSector('Ring 2', ''); selectDistrict('')"
+            (mouseenter)="previewSector('Ring 2', '', true)"
+            (mouseleave)="previewSector('', '', false)"
+            d="M987.67,316.22c-383.96,0-696.33,312.37-696.33,696.33c0,383.96,312.37,696.33,696.33,696.33c383.96,0,696.33-312.37,696.33-696.33C1684,628.6,1371.63,316.22,987.67,316.22z M1405.88,1189.23c-22.86,54.05-55.59,102.59-97.27,144.27c-41.68,41.68-90.22,74.41-144.27,97.27c-55.96,23.67-115.4,35.67-176.68,35.67s-120.71-12-176.68-35.67c-54.05-22.86-102.59-55.59-144.27-97.27c-41.68-41.68-74.41-90.22-97.27-144.27c-23.67-55.96-35.67-115.4-35.67-176.68s12-120.71,35.67-176.68c22.86-54.05,55.59-102.59,97.27-144.27s90.22-74.41,144.27-97.27c55.96-23.67,115.4-35.67,176.68-35.67s120.71,12,176.68,35.67c54.05,22.86,102.59,55.59,144.27,97.27c41.68,41.68,74.41,90.22,97.27,144.27c23.67,55.96,35.67,115.4,35.67,176.68S1429.55,1133.27,1405.88,1189.23z"
+          />
+          <path id="ring-back2"
+            class="ring-back rb2"
+            [class.active]="previewedData.ring === 'Ring 1'"
+            (click)="selectSector('Ring 1', ''); selectDistrict('')"
+            (mouseenter)="previewSector('Ring 1', '', true)"
+            (mouseleave)="previewSector('', '', false)"
+            d="M987.67,568.67c-244.76,0-443.89,199.13-443.89,443.89c0,244.76,199.13,443.89,443.89,443.89s443.89-199.13,443.89-443.89C1431.56,767.79,1232.43,568.67,987.67,568.67z M987.67,1214c-111.08,0-201.44-90.37-201.44-201.44s90.37-201.44,201.44-201.44s201.44,90.37,201.44,201.44S1098.74,1214,987.67,1214z"
+          />
+
+          <!-- SECTORS - Remove 'locked' class from the sector to enable it -->
+          <g>
+            <path id="ring4_sectorA"
+              class="sector locked"
+              (click)="selectSector('Ring 3', 'Delta')"
+              (mouseenter)="previewSector('Ring 3', 'Delta', true)"
+              (mouseleave)="previewSector('', '', false)"
+              d="M374.33,1369l-8,66.67l-33.33,60l-72,22.67L234.33,1601v46.67l70,25.33l47.33,109.33l30.67-14.67l21.33,40l28-12l41.33,42.67l42.67-6.67l36,38.67l44-20l20,37.33l205.33-116l-53.06-92.89c0,0-149.81-59-211.2-112.86C495.35,1512.05,399.67,1410.33,374.33,1369z"
+            />
+          </g>
+          <g>
+            <path id="ring3_sectorA"
+              class="sector r3 locked"
+              (click)="selectSector('Ring 2', 'Gamma')"
+              (mouseenter)="previewSector('Ring 2', 'Gamma', true)"
+              (mouseleave)="previewSector('', '', false)"
+              d="M879.3,576.84L813,367.67c0,0,93.33-18.67,156-21.33c1.33,13.33,0,36,18.67,34.67c18.67-1.33,20-12,20-34.67c22.67-2.67,301.33,2.67,502.67,236c-46.67,44-42.67,49.33-26.67,76c-18.67,12-105.33,28-105.33,28l-4,16.44l-38.57,26.34c0,0-84.65-110.43-206.38-142.61C1023.22,552.11,953.59,562.02,879.3,576.84z"
+            />
+          </g>
+          <g>
+            <path id="ring2_sectorB"
+              class="sector r2"
+              (click)="selectSector('Ring 1', 'Beta')"
+              (mouseenter)="previewSector('Ring 1', 'Beta', true)"
+              (mouseleave)="previewSector('', '', false)"
+              d="M760.4,840.1L651.7,723.7l33.8-11.2l72.1-85.4l46.1,26.1l14.2-41.1l2.2-11.1l58.2,2.7l6.5-27.9l70.8-11.2v65.8l-29.9,11.6l-5.6,35.6l-41.8,2.7L860,708.3l-0.3,25.2l-38.2,38.2l1.8,21.9L813,811.7l-16.4,4.4l-15.1,5.3L760.4,840.1z"
+            />
+          </g>
+          <g>
+            <path id="ring2_sectorA"
+              class="sector r2"
+              (click)="selectSector('Ring 1', 'Alpha')"
+              (mouseenter)="previewSector('Ring 1', 'Alpha', true)"
+              (mouseleave)="previewSector('', '', false)"
+              d="M1161.67,851.67v-35.56l112.52-22.52l20.74,3.56c0,0,17.78,76.44,37.93,128.59c-14.22,8.89-33.78,16-33.78,16l2.37,11.85l11.85,6.52l-16.59,25.48l7.7,36.74l-11.85,8.89l-4.74-18.67l-36.15,8l-16.59-14.22l-8.3-14.81l-14.81-2.37l-0.59-24.89l13.04-6.52l-7.11-21.33l-9.48-10.67h-23.7l-5.93-43.85L1161.67,851.67z"
+            />
+          </g>
+
+          <!-- RINGS -->
+          <circle id="ring1" class="rings ring1" cx="987.7" cy="1012.6" r="196.4"/>
+          <circle id="ring2" class="rings ring2" cx="987.7" cy="1012.6" r="448.9"/>
+          <circle id="ring3" class="rings ring3" cx="987.7" cy="1012.6" r="701.3"/>
+
+          <!-- HOVERED SECTORS -->
+          <g>
+            <path id="hover4A"
+              class="hovered-sector"
+              (click)="selectSector('Ring 3', 'Delta')"
+              (mouseenter)="previewSector('Ring 3', 'Delta', true)"
+              (mouseleave)="previewSector('', '', false)"
+              [class.active]="previewedData.ring === 'Ring 3' && previewedData.sector === 'Delta'"
+              d="M358.3,1341.9l-8.8,73.6l-36.8,66.3l-79.5,25l-29.5,91.3v51.5l77.3,28l52.3,120.8l33.9-16.2l23.6,44.2l30.9-13.3l45.7,47.1l47.1-7.4l39.8,42.7l48.6-22.1l22.1,41.2l226.8-128.1L793.1,1684c0,0-165.5-65.2-233.3-124.7S386.3,1387.5,358.3,1341.9z"
+            />
+            <g>
+              <path class="letter" d="M569.4,1686.8c2.2,1.3,3,3.3,1.4,5.9l-10.1,16.6c-1.6,2.6-3.6,2.8-5.9,1.5l-9.6-5.8c-8-4.9-6.8-10.9-2.5-17.9c4.3-7,9-10.9,16.7-6.2L569.4,1686.8z M563,1691.7c0.8-1.3,0.6-2-0.7-2.7l-1.4-0.9c-5.5-3.3-8.3-3.2-11.8,2.7c-3.5,5.8-2.4,8.4,3.1,11.7l1.4,0.9c1.3,0.8,2,0.6,2.7-0.7L563,1691.7z"/>
+              <path class="letter" d="M515.3,1679.2l12,7.9c1.2,0.8,1.8,0.6,2.6-0.5l2.1-3.2l-13.3-8.7l2.8-4.3l13.3,8.7l2.3-3.6c0.8-1.2,0.6-1.8-0.5-2.6l-12.2-8l3-4.6l16.2,10.6c2.2,1.4,2.8,3.4,1.2,5.9l-10.6,16.2c-1.6,2.5-3.7,2.7-5.9,1.3l-16.1-10.5L515.3,1679.2z"/>
+              <path class="letter" d="M521.2,1655.9c2.1,1.5,2.7,3.5,1,5.9l-13.6,19.4l-5.9-4.1l11.8-16.8c0.8-1.1,0.7-1.8-0.5-2.6l-11.8-8.3l3.2-4.6L521.2,1655.9z"/>
+              <path class="letter" d="M501.1,1641.6l-13.3,18l8.4,6.2l-3.3,4.5l-22.5-16.7l3.3-4.5l8.4,6.2l13.3-18L501.1,1641.6z"/>
+              <path class="letter" d="M466.9,1647.1c-2.1,1.2-3.7,1.3-6.4-0.9c-2-1.6-3.1-3.2-2.3-6l7.4-26.1l5.9,4.7l-2,6.6l9.2,7.3l6-3.4l5.9,4.7L466.9,1647.1z M474,1635.9l-6.5-5.1l-2.7,9.2c-0.1,0.4-0.3,0.9-0.1,1c0.2,0.2,0.6-0.1,1-0.3L474,1635.9z"/>
+            </g>
+          </g>
+          <g>
+            <path id="hover3A"
+              class="hovered-sector"
+              (click)="selectSector('Ring 2', 'Gamma')"
+              (mouseenter)="previewSector('Ring 2', 'Gamma', true)"
+              (mouseleave)="previewSector('', '', false)"
+              [class.active]="previewedData.ring === 'Ring 2' && previewedData.sector === 'Gamma'"
+              d="M853.6,580.4l-72.3-228.2c0,0,101.8-20.4,170.2-23.3c1.5,14.5,0,39.3,20.4,37.8c20.4-1.5,21.8-13.1,21.8-37.8c24.7-2.9,328.7,2.9,548.3,257.4c-50.9,48-46.5,53.8-29.1,82.9c-20.4,13.1-114.9,30.5-114.9,30.5l-4.4,17.9l-42.1,28.7c0,0-92.3-120.5-225.1-155.6C1010.6,553.4,934.7,564.2,853.6,580.4z"
+            />
+            <g>
+              <path class="letter" d="M1105.4,467.7c-5.5-1.2-7.7,0.2-9,6.7c-1.4,6.5,0,8.6,5.5,9.8l3,0.6c1.4,0.3,1.9-0.1,2.2-1.4l1.4-6.6l7,1.5l-2.1,9.7c-0.6,2.9-2.5,3.8-5,3.3L1098,489c-9.2-2-10.7-7.6-8.8-16.2s5.5-13.1,14.7-11.2l13.9,3l-1.2,5.5L1105.4,467.7z"/>
+              <path class="letter" d="M1130.2,470.9c1.5-1.9,2.9-2.6,6.2-1.7c2.4,0.7,4.1,1.7,4.4,4.6l3.5,26.9l-7.3-2l-0.7-6.8l-11.4-3.1l-4.1,5.5l-7.3-2L1130.2,470.9z M1128,484l8,2.2l-1.1-9.5c0-0.5,0-0.9-0.3-1c-0.3-0.1-0.5,0.3-0.8,0.7L1128,484z"/>
+              <path class="letter" d="M1168.2,505.5c-1.4,1.8-2.6,2.9-5.6,1.8c-3-1-3.3-2.7-3.3-4.9l-0.2-17.1c0-0.5,0-1-0.3-1.1c-0.4-0.1-0.6,0.5-0.7,0.7l-6.1,18.4l-6.8-2.4l7.8-22.7c1.2-3.6,4.8-2.9,6.8-2.2c2.6,0.9,4.4,2.6,4.4,5.9l0.3,17.2c0,0.5,0.1,1.3,0.4,1.4c0.3,0.1,0.8-0.4,1.1-0.8l10.8-13.4c2.1-2.6,4.4-2.8,7.1-1.9c4.3,1.5,4.7,3.9,4,6l-7.8,22.7l-6.8-2.4l6.6-18.3c0.2-0.5,0.1-0.9-0.1-1c-0.2-0.1-0.5,0.2-0.9,0.7L1168.2,505.5z"/>
+              <path class="letter" d="M1206.2,520.6c-1.5,1.6-2.8,2.7-5.7,1.4c-2.9-1.3-3.1-2.9-2.9-5.1l1.1-17c0-0.5,0.1-1-0.2-1.1c-0.4-0.2-0.6,0.5-0.7,0.6l-7.5,17.9l-6.6-2.9l9.5-22c1.5-3.5,5-2.6,6.9-1.7c2.6,1.1,4.2,2.9,3.9,6.2l-1,17.2c0,0.5,0,1.3,0.3,1.4c0.3,0.1,0.9-0.4,1.2-0.7l11.8-12.5c2.3-2.4,4.6-2.5,7.2-1.4c4.2,1.8,4.4,4.3,3.5,6.2l-9.5,22l-6.6-2.9l7.9-17.7c0.2-0.5,0.2-0.9-0.1-1c-0.2-0.1-0.5,0.2-0.9,0.6L1206.2,520.6z"/>
+              <path class="letter" d="M1239.2,512.1c1.8-1.5,3.3-2,6.4-0.4c2.2,1.2,3.6,2.5,3.4,5.4l-2.1,27.1l-6.7-3.5l0.7-6.8l-10.5-5.4l-5.2,4.5l-6.7-3.4L1239.2,512.1z M1234.3,524.4l7.4,3.8l0.9-9.5c0.1-0.5,0.2-0.9-0.1-1s-0.6,0.2-0.9,0.5L1234.3,524.4z"/>
+            </g>
+          </g>
+          <g>
+            <path id="hover2B"
+              class="hovered-sector"
+              (click)="selectSector('Ring 1', 'Beta')"
+              (mouseenter)="previewSector('Ring 1', 'Beta', true)"
+              (mouseleave)="previewSector('', '', false)"
+              [class.active]="previewedData.ring === 'Ring 1' && previewedData.sector === 'Beta'"
+              d="M755.7,855.1L635.1,726l37.5-12.5l80-94.7l51.1,29l15.8-45.6l2.5-12.3l64.6,3l7.2-31l78.5-12.4v73L939,635.3l-6.2,39.4l-46.3,3l-20.4,31.2l-0.3,27.9l-42.4,42.4l2,24.3l-11.3,20l-18.2,4.9l-16.8,5.9L755.7,855.1z"
+            />
+            <g>
+              <path class="letter" d="m800.8 719c3.8 2.9 5.3 5.8 1.8 10.3l-9.2 11.9c-1.6 2.1-3.6 2.6-6 0.7l-15.3-11.8c-2.4-1.8-2.4-3.9-0.8-6l8.9-11.6c3-3.8 6.2-4 10.4-0.7 2.3 1.7 3.6 4.1 2.2 6.9h0.1c2.6-2.4 5-1.9 7.9 0.3zm-18.8 9.7l5.2-6.8c1.3-1.6 1.2-2.7-0.6-4-1.6-1.2-2.8-1.1-4 0.5l-4.2 5.4c-0.8 1-0.7 1.7 0.3 2.5zm7.4 5.6c1.3 1 1.8 1 2.8-0.3l4-5.3c1.3-1.7 1.3-2.9-0.5-4.3-1.8-1.4-3-1.1-4.3 0.4l-5.4 7z"/>
+              <path class="letter" d="m807.8 689l-9.6 10.7c-0.9 1.1-0.8 1.7 0.2 2.7l2.9 2.6 10.5-12 3.9 3.5-10.6 12 3.2 2.9c1.1 0.9 1.7 0.8 2.7-0.2l9.6-10.8 4.1 3.6-12.8 14.6c-1.8 1.9-3.9 2.3-6.1 0.3l-14.4-13.1c-2.2-2-2.2-4.1-0.4-6l12.7-14.5z"/>
+              <path class="letter" d="m833.4 695.9l-15.2-16.4-7.6 7.1-3.9-4.2 20.5-19 3.8 4.1-7.6 7.1 15.3 16.4z"/>
+              <path class="letter" d="m835 661c-0.6-2.3-0.4-3.8 2.3-6 2-1.6 3.7-2.3 6.3-0.8l23.9 13-6 4.7-5.9-3.4-9.2 7.3 2 6.6-5.8 4.7zm9.3 9.5l6.5-5.2-8.4-4.8c-0.3-0.2-0.7-0.5-1-0.3-0.3 0.2 0 0.6 0.1 1z"/>
+            </g>
+          </g>
+          <g>
+            <path id="hover2A"
+              class="hovered-sector"
+              (click)="selectSector('Ring 1', 'Alpha')"
+              (mouseenter)="previewSector('Ring 1', 'Alpha', true)"
+              (mouseleave)="previewSector('', '', false)"
+              [class.active]="previewedData.ring === 'Ring 1' && previewedData.sector === 'Alpha'"
+              d="M1143.6,838.9v-43l136.2-27.3l25.1,4.3c0,0,21.5,92.6,45.9,155.7c-17.2,10.8-40.9,19.4-40.9,19.4l2.9,14.3l14.3,7.9l-20.1,30.9l9.3,44.5l-14.3,10.8l-5.7-22.6l-43.8,9.7l-20.1-17.2l-10-17.9l-17.9-2.9l-0.7-30.1l15.8-7.9l-8.6-25.8l-11.5-12.9h-28.7l-7.2-53.1L1143.6,838.9z"
+            />
+            <g>
+              <path class="letter" d="M1244.2,840.6c2.4-0.2,3.9,0.4,5.4,3.4c1.2,2.2,1.5,4.1-0.4,6.4l-17.5,20.8l-3.5-6.7l4.5-5.2l-5.4-10.5l-6.8,0.7l-3.4-6.7L1244.2,840.6z M1233.1,847.9l3.8,7.4l6.3-7.2c0.3-0.3,0.7-0.7,0.5-0.9c-0.1-0.2-0.6-0.2-1.1-0.1L1233.1,847.9z"/>
+              <path class="letter" d="M1233.4,875.9c-0.9-2.4-0.4-4.4,2.4-5.5l22.1-8.6l2.6,6.7l-19.1,7.5c-1.3,0.5-1.6,1.1-1.1,2.4l5.2,13.4l-5.2,2L1233.4,875.9z"/>
+              <path class="letter" d="M1240.8,895.3l22.8-6.3c2.9-0.8,4.6,0.4,5.3,2.9l4,14.3c1.7,6-1.7,8.3-7.1,9.8c-5.4,1.5-9.6,1.3-11.2-4.7l-3.2-11.5l-8.6,2.4L1240.8,895.3z M1259,906.2c0.8,2.9,2.2,3.5,4.9,2.7c2.7-0.7,3.5-1.9,2.7-4.8l-1.7-6.1c-0.4-1.3-1-1.7-2.3-1.3l-5.7,1.6L1259,906.2z"/>
+              <path class="letter" d="M1252.8,949.9l-1.1-7.1l11.5-1.8l-1.9-12.1l-11.5,1.8l-1.1-7.1l27.6-4.4l1.1,7.1l-10.6,1.7l1.9,12.1l10.6-1.7l1.1,7.1L1252.8,949.9z"/>
+              <path class="letter" d="M1278.5,959.9c2.2,0.8,3.4,1.9,3.5,5.4c0.1,2.5-0.4,4.4-3,5.6l-24.5,11.6l-0.3-7.6l6.3-2.8l-0.5-11.8l-6.5-2.2l-0.3-7.5L1278.5,959.9z M1265.3,961.8l0.4,8.3l8.7-4c0.4-0.2,0.9-0.3,0.9-0.6c0-0.3-0.5-0.4-0.9-0.6L1265.3,961.8z"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- Transparent 100% square to avoid click events on backwards map -->
+        <g *ngIf="selectedData.ring !== '' && selectedData.sector !== ''">
+          <rect x="0" y="0" width="100%" height="100%" style="pointer-events: all; fill: none;"/>
+        </g>
+
+        <!--
+          SECOND MAPS: DISTRICTS
+        -->
+        <!-- Ring 1 - Alpha Sector - Detail Map-->
+        <g id="sector-map" *ngIf="selectedData.ring === 'Ring 1' && selectedData.sector === 'Alpha'">
+
+          <!-- BACKGROUND IMAGE -->
+          <image id="sector-image" href="/assets/images/lands/sector_alpha.png" />
+
+          <!-- DISTRICT LIMITS -->
+          <path id="district-1"
+            class="district district1"
+            [class.selected]="selectedData.district === 'District 1'"
+            (click)="selectDistrict('District 1')"
+            (mouseenter)="previewDistrict('District 1')"
+            (mouseleave)="previewDistrict('')"
+            d="M856.2,372.6l50.6,280.5l-111.2,32.2L821.9,830l-168.4,36.2l-10.5-66l-37.3-85.8l-6.8-37.3l-31-9.6L540,466.9l294.7-91.5L856.2,372.6z"
+          />
+          <path id="district-2"
+            class="district district2"
+            [class.selected]="selectedData.district === 'District 2'"
+            (click)="selectDistrict('District 2')"
+            (mouseenter)="previewDistrict('District 2')"
+            (mouseleave)="previewDistrict('')"
+            d="M856.2,372.6l127.1-16.9l27,120.4l116.6-21l16.8,154.6l37.5,160.2L821.9,830l-26.3-144.7l111.2-32.2L856.2,372.6z"
+          />
+          <path id="district-3"
+            class="district district3"
+            [class.selected]="selectedData.district === 'District 3'"
+            (click)="selectDistrict('District 3')"
+            (mouseenter)="previewDistrict('District 3')"
+            (mouseleave)="previewDistrict('')"
+            d="M1177.6,329.7l134.6,17.8l-55.9,68.6l98,356.8l-69.7,9.8l-6.9-29.6l-96.7,16.8l-37.5-160.2l-16.8-154.6l-116.6,21l-27-120.4L1177.6,329.7z"
+          />
+          <path id="district-4"
+            class="district district4"
+            [class.selected]="selectedData.district === 'District 4'"
+            (click)="selectDistrict('District 4')"
+            (mouseenter)="previewDistrict('District 4')"
+            (mouseleave)="previewDistrict('')"
+            d="M653.5,866.2L821.9,830l338.2-56.7l21,143.5L1062.7,943l20.7,128.8l39.5,200.3l-30.6,4.9l19.7,115.4l-75,20.7l-9.3,36l-114.3,10.2l-11.3-87.6l-61.6,7.2l-21.2-148.2l51.7-40.6l-40.6-44.9l-21.2-98.2L684.8,1063L653.5,866.2z"
+          />
+          <path id="district-5"
+            class="district district5"
+            [class.selected]="selectedData.district === 'District 5'"
+            (click)="selectDistrict('District 5')"
+            (mouseenter)="previewDistrict('District 5')"
+            (mouseleave)="previewDistrict('')"
+            d="M1027.7,1449.2l9.3-36l75-20.7l-19.7-115.4l30.6-4.9L1062.7,943l118.4-26.1l-21-143.5l117.7-20.3l6.9,29.6l69.7-9.8l29,105.5l66,157.5l-165.1,101.6v61l63.5,22.9l-68.6,134.6l-2.5,215.9l-204.9,58.4L1027.7,1449.2z"
+          />
+
+          <!-- SECTOR BORDER -->
+          <path id="sector-map-border" class="sector-map-border" d="M1177.6,329.7l134.6,17.8l-55.9,68.6l127,462.3l66,157.5l-165.1,101.6v61l63.5,22.9l-68.6,134.6l-2.5,215.9l-204.9,58.4l-44-181.2l-114.3,10.2l-11.9-92.3l-61,11.9l-21.2-148.2l51.7-40.6l-40.6-44.9l-21.2-98.2L684.8,1063L643,800.2l-37.3-85.8l-6.8-37.3l-31-9.6L540,466.9l294.7-91.5L1177.6,329.7 M1177.6,319.6l-1.3,0.2l-342.9,45.7l-0.8,0.1l-0.8,0.2L537,457.3l-8.1,2.5l1.2,8.4L558,669l0.9,6.3l6.1,1.9l25.2,7.8l5.7,31.3l0.2,1.1l0.5,1.1l36.8,84.6l41.6,261.5l1.5,9.6l9.6-1.2l115.4-14.9l19.2,89.2l0.6,2.6l1.8,2l33.5,36.9l-43.2,34l-4.5,3.6l0.8,5.7l21.2,148.2l1.5,10.4l10.3-2l50.5-9.8l10.5,81.7l1.2,9.5l9.6-0.9l105.7-9.4l42,172.8l2.5,10.1l10-2.9l204.9-58.4l7.2-2l0.1-7.5l2.5-213.6l67.5-132.6l5.1-10.1l-10.7-3.8l-56.9-20.5v-48.4l160.4-98.7l7.3-4.5l-3.3-7.9l-65.8-156.9l-125.5-456.7l52.6-64.6l11.3-13.9l-17.8-2.3l-134.6-17.8L1177.6,319.6L1177.6,319.6z"/>
+
+          <!-- SELECTED DISTRICT -->
+          <path id="district-1"
+            class="district-hover district-hover1 sector-alpha"
+            [class.active]="previewedData.district === 'District 1'"
+            (click)="selectDistrict('District 1')"
+            (mouseenter)="previewDistrict('District 1')"
+            (mouseleave)="previewDistrict('')"
+            d="M856.2,372.6l50.6,280.5l-111.2,32.2L821.9,830l-168.4,36.2l-10.5-66l-37.3-85.8l-6.8-37.3l-31-9.6L540,466.9l294.7-91.5L856.2,372.6z"
+          />
+          <path id="district-2"
+            class="district-hover district-hover2 sector-alpha"
+            [class.active]="previewedData.district === 'District 2'"
+            (click)="selectDistrict('District 2')"
+            (mouseenter)="previewDistrict('District 2')"
+            (mouseleave)="previewDistrict('')"
+            d="M856.2,372.6l127.1-16.9l27,120.4l116.6-21l16.8,154.6l37.5,160.2L821.9,830l-26.3-144.7l111.2-32.2L856.2,372.6z"
+          />
+          <path id="district-3"
+            class="district-hover district-hover3 sector-alpha"
+            [class.active]="previewedData.district === 'District 3'"
+            (click)="selectDistrict('District 3')"
+            (mouseenter)="previewDistrict('District 3')"
+            (mouseleave)="previewDistrict('')"
+            d="M1177.6,329.7l134.6,17.8l-55.9,68.6l98,356.8l-69.7,9.8l-6.9-29.6l-96.7,16.8l-37.5-160.2l-16.8-154.6l-116.6,21l-27-120.4L1177.6,329.7z"
+          />
+          <path id="district-4"
+            class="district-hover district-hover4 sector-alpha"
+            [class.active]="previewedData.district === 'District 4'"
+            (click)="selectDistrict('District 4')"
+            (mouseenter)="previewDistrict('District 4')"
+            (mouseleave)="previewDistrict('')"
+            d="M653.5,866.2L821.9,830l338.2-56.7l21,143.5L1062.7,943l20.7,128.8l39.5,200.3l-30.6,4.9l19.7,115.4l-75,20.7l-9.3,36l-114.3,10.2l-11.3-87.6l-61.6,7.2l-21.2-148.2l51.7-40.6l-40.6-44.9l-21.2-98.2L684.8,1063L653.5,866.2z"
+          />
+          <path id="district-5"
+            class="district-hover district-hover5 sector-alpha"
+            [class.active]="previewedData.district === 'District 5'"
+            (click)="selectDistrict('District 5')"
+            (mouseenter)="previewDistrict('District 5')"
+            (mouseleave)="previewDistrict('')"
+            d="M1027.7,1449.2l9.3-36l75-20.7l-19.7-115.4l30.6-4.9L1062.7,943l118.4-26.1l-21-143.5l117.7-20.3l6.9,29.6l69.7-9.8l29,105.5l66,157.5l-165.1,101.6v61l63.5,22.9l-68.6,134.6l-2.5,215.9l-204.9,58.4L1027.7,1449.2z"
+          />
+        </g>
+
+
+        <!-- Ring 1 - Beta Sector - Detail Map-->
+        <g id="sector-map" *ngIf="selectedData.ring === 'Ring 1' && selectedData.sector === 'Beta'">
+
+          <!-- BACKGROUND IMAGE -->
+          <image id="sector-image" href="/assets/images/lands/sector_beta.png" />
+
+          <!-- DISTRICT LIMITS -->
+          <path id="district-1"
+            class="district district1"
+            [class.selected]="selectedData.district === 'District 1'"
+            (click)="selectDistrict('District 1')"
+            (mouseenter)="previewDistrict('District 1')"
+            (mouseleave)="previewDistrict('')"
+            d="m779.1 1694.5l-191.5-211.7 165.7-138.8-65.3-69.3 124-112 259.3 253.7-292.2 278.1z"
+          />
+          <path id="district-2"
+            class="district district2"
+            [class.selected]="selectedData.district === 'District 2'"
+            (click)="selectDistrict('District 2')"
+            (mouseenter)="previewDistrict('District 2')"
+            (mouseleave)="previewDistrict('')"
+            d="m587.6 1482.8l-355-392.3 90.3-34.6 409.1-478.9 73.1 142.7 193.1 53.1c0 0 55.8 4.2 40.8 81.2-15 77-98 28-120 47l51 33-193 181 35 47.7-124 112 65.3 69.3z"
+          />
+          <path id="district-3"
+            class="district district3"
+            [class.selected]="selectedData.district === 'District 3'"
+            (click)="selectDistrict('District 3')"
+            (mouseenter)="previewDistrict('District 3')"
+            (mouseleave)="previewDistrict('')"
+            d="m932 1280.1l198.7-180.1-96.4-107.6 169.7-136.4 134.5 130.6-24.2 39.8 1.9 22.8-69.9 91.7 35.7 60.8-210.7 214.7-139.3-136.3z"
+          />
+          <path id="district-4"
+            class="district district4"
+            [class.selected]="selectedData.district === 'District 4'"
+            (click)="selectDistrict('District 4')"
+            (mouseenter)="previewDistrict('District 4')"
+            (mouseleave)="previewDistrict('')"
+            d="m932 1280.1l-120-117.4-35-47.7 193-181-51-33c0 0 6.7-10.1 46.7-2.7 37.6 4.6 74.5-0.8 75.8-69.4 1-56.7-43.3-56.2-43.3-56.2l89-288.8 53.7-5.9 26.4-12.7 82.7 97.3-160 179.4 114 114-169.7 136.4 96.4 107.6-198.7 180z"
+          />
+          <path id="district-5"
+            class="district district5"
+            [class.selected]="selectedData.district === 'District 5'"
+            (click)="selectDistrict('District 5')"
+            (mouseenter)="previewDistrict('District 5')"
+            (mouseleave)="previewDistrict('')"
+            d="m1379.3 701.3l-74-84 138.7-116 76.7 58 142-136.6c0 0 24-16.7 27.3-44 3.3-27.4-4.9-69.3 19.1-72.1-41.3 8.4-253.5 39.1-253.5 39.1l-72 14.3-216.3 105.3 82.7 97.4-160 179.3 122.1 121.3z"
+          />
+          <path id="district-6"
+            class="district district6"
+            [class.selected]="selectedData.district === 'District 6'"
+            (click)="selectDistrict('District 6')"
+            (mouseenter)="previewDistrict('District 6')"
+            (mouseleave)="previewDistrict('')"
+            d="m1780 299.6v309.6l-86.7 26.1-72.9 69.5-21.9 139.4-180.7 12.4-79.3 130-126.4-123.2 167.2-162.1-74-84 138.7-116 76.7 58 142-136.6c0 0 25.6-13 28.2-56.1 2.7-43.1-1.8-57.2 18.2-60 20-2.9 71-7 70.9-7.1z"
+          />
+
+          <!-- SECTOR BORDER -->
+          <path id="sector-map-border" class="sector-map-border" d="m778.1 1718.8l-5.8-6.5-569.1-629 109.7-42 422.6-494.8 81.2 158.8 169.9 46.8 87.4-283.8 61.8-6.6 241.8-117.6 1-0.2c2-0.4 205.4-44.8 408.9-61.8l9.2-0.9v340.9l-94.9 28.6-65.8 62.7-23.1 147-185.5 12.7-96.1 157.6 2 23.8-66.8 87.8 36.5 62.2-197.3 202.8zm-545.5-628.3l546.6 604 315-299.8 187.8-193-35.6-60.8 69.8-91.7-1.9-22.8 103.5-169.8 180.8-12.4 21.9-139.3 72.9-69.5 86.7-26.1v-309.7c-192.1 16.8-381.2 57.2-396.5 60.5l-242.7 118-53.7 5.9-89 288.8-193.1-53.1-73.1-142.7-409.1 478.8z"/>
+
+          <!-- SELECTED DISTRICT -->
+          <path id="district-1"
+            class="district-hover district-hover1 sector-beta"
+            [class.active]="previewedData.district === 'District 1'"
+            (click)="selectDistrict('District 1')"
+            (mouseenter)="previewDistrict('District 1')"
+            (mouseleave)="previewDistrict('')"
+            d="m779.1 1694.5l-191.5-211.7 165.7-138.8-65.3-69.3 124-112 259.3 253.7-292.2 278.1z"
+          />
+          <path id="district-2"
+            class="district-hover district-hover2 sector-beta"
+            [class.active]="previewedData.district === 'District 2'"
+            (click)="selectDistrict('District 2')"
+            (mouseenter)="previewDistrict('District 2')"
+            (mouseleave)="previewDistrict('')"
+            d="m587.6 1482.8l-355-392.3 90.3-34.6 409.1-478.9 73.1 142.7 193.1 53.1c0 0 55.8 4.2 40.8 81.2-15 77-98 28-120 47l51 33-193 181 35 47.7-124 112 65.3 69.3z"
+          />
+          <path id="district-3"
+            class="district-hover district-hover3 sector-beta"
+            [class.active]="previewedData.district === 'District 3'"
+            (click)="selectDistrict('District 3')"
+            (mouseenter)="previewDistrict('District 3')"
+            (mouseleave)="previewDistrict('')"
+            d="m932 1280.1l198.7-180.1-96.4-107.6 169.7-136.4 134.5 130.6-24.2 39.8 1.9 22.8-69.9 91.7 35.7 60.8-210.7 214.7-139.3-136.3z"
+          />
+          <path id="district-4"
+            class="district-hover district-hover4 sector-beta"
+            [class.active]="previewedData.district === 'District 4'"
+            (click)="selectDistrict('District 4')"
+            (mouseenter)="previewDistrict('District 4')"
+            (mouseleave)="previewDistrict('')"
+            d="m932 1280.1l-120-117.4-35-47.7 193-181-51-33c0 0 6.7-10.1 46.7-2.7 37.6 4.6 74.5-0.8 75.8-69.4 1-56.7-43.3-56.2-43.3-56.2l89-288.8 53.7-5.9 26.4-12.7 82.7 97.3-160 179.4 114 114-169.7 136.4 96.4 107.6-198.7 180z"
+          />
+          <path id="district-5"
+            class="district-hover district-hover5 sector-beta"
+            [class.active]="previewedData.district === 'District 5'"
+            (click)="selectDistrict('District 5')"
+            (mouseenter)="previewDistrict('District 5')"
+            (mouseleave)="previewDistrict('')"
+            d="m1379.3 701.3l-74-84 138.7-116 76.7 58 142-136.6c0 0 24-16.7 27.3-44 3.3-27.4-4.9-69.3 19.1-72.1-41.3 8.4-253.5 39.1-253.5 39.1l-72 14.3-216.3 105.3 82.7 97.4-160 179.3 122.1 121.3z"
+          />
+          <path id="district-6"
+            class="district-hover district-hover6 sector-beta"
+            [class.active]="previewedData.district === 'District 6'"
+            (click)="selectDistrict('District 6')"
+            (mouseenter)="previewDistrict('District 6')"
+            (mouseleave)="previewDistrict('')"
+            d="m1780 299.6v309.6l-86.7 26.1-72.9 69.5-21.9 139.4-180.7 12.4-79.3 130-126.4-123.2 167.2-162.1-74-84 138.7-116 76.7 58 142-136.6c0 0 25.6-13 28.2-56.1 2.7-43.1-1.8-57.2 18.2-60 20-2.9 71-7 70.9-7.1z"
+          />
+        </g>
+
+        <!--
+
+          TODO: add here nex sector maps when available
+
+        -->
+
+      </svg>
+    </div>
+  </div>
+
+  <div *ngIf="selectedData.ring !== '' && selectedData.sector !== ''" class="close-selection">
+    <h3 (click)="closeSelection()"><mat-icon class="icon">close</mat-icon></h3>
+  </div>
+
+  <!-- LOCATION DETAIL -->
+  <div class="location">
+    <h2 class="name" *ngIf="(selectedData.ring === '' && previewedData.ring !== '') || selectedData.ring !== ''">{{'lands.map.location' | translate}}:</h2>
+    <p class="ring">
+      <mat-icon class="icon" *ngIf="selectedData.ring !== '' && previewedData.ring === ''" (click)="selectSector('', ''); selectDistrict('')">close</mat-icon>
+      <span *ngIf="(selectedData.ring === '' && previewedData.ring !== '') || selectedData.ring !== ''">{{"lands.card.ring" | translate}}: </span>
+      <span class="value" *ngIf="previewedData.ring !== ''">{{previewedData.ring}}</span>
+      <span class="value" *ngIf="selectedData.ring !== '' && previewedData.ring === ''">{{selectedData.ring}}</span>
+    </p>
+    <p class="sector">
+      <mat-icon class="icon" *ngIf="selectedData.sector !== ''" (click)="selectSector('-1', ''); selectDistrict('')">close</mat-icon>
+      <span *ngIf="(selectedData.sector === '' && previewedData.sector !== '') || selectedData.sector !== ''">{{"lands.card.sector" | translate}}: </span>
+      <span class="value" *ngIf="selectedData.sector === '' && previewedData.sector !== ''">{{previewedData.sector}}</span>
+      <span class="value" *ngIf="selectedData.sector !== ''">{{selectedData.sector}}</span>
+    </p>
+    <p class="district" *ngIf="selectedData.ring !== ''">
+      <mat-icon class="icon" *ngIf="selectedData.district !== ''" (click)="selectDistrict('')">close</mat-icon>
+      <span *ngIf="(selectedData.district === '' && previewedData.district !== '') || selectedData.district !== ''">{{"lands.card.district" | translate}}: </span>
+      <span class="value" *ngIf="previewedData.district !== ''">{{previewedData.district}}</span>
+      <span class="value" *ngIf="selectedData.district !== '' && previewedData.district === ''">{{selectedData.district}}</span>
+    </p>
+  </div>
+
+  <!-- LAND SIZE FILTER -->
+  <div class="size-filter">
+    <h2 class="name">{{'lands.map.sizes' | translate}}:</h2>
+    <h3 class="size" [class.disabled]="selectedSizes.nano === false" (click)="filterLandsSize('nano', !selectedSizes.nano)">
+      <mat-icon class="icon">home</mat-icon> {{"lands.sizes.size1" | translate}}
+    </h3>
+    <h3 class="size" [class.disabled]="selectedSizes.micro === false" (click)="filterLandsSize('micro', !selectedSizes.micro)">
+      <mat-icon class="icon">home</mat-icon> {{"lands.sizes.size2" | translate}}
+    </h3>
+    <h3 class="size" [class.disabled]="selectedSizes.standard === false" (click)="filterLandsSize('standard', !selectedSizes.standard)">
+      <mat-icon class="icon">home</mat-icon> {{"lands.sizes.size3" | translate}}
+    </h3>
+    <h3 class="size" [class.disabled]="selectedSizes.macro === false" (click)="filterLandsSize('macro', !selectedSizes.macro)">
+      <mat-icon class="icon">home</mat-icon> {{"lands.sizes.size4" | translate}}
+    </h3>
+    <h3 class="size" [class.disabled]="selectedSizes.mega === false" (click)="filterLandsSize('mega', !selectedSizes.mega)">
+      <mat-icon class="icon">home</mat-icon> {{"lands.sizes.size5" | translate}}
+    </h3>
+  </div>
+
+</div>
+
+<p style="text-align: center;"><i><span style="display: block;">*{{'advices.map1' | translate}}</span><span style="display: block;">{{'advices.map2' | translate}}</span></i></p>

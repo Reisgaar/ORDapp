@@ -1,0 +1,257 @@
+<div class="top-image">
+  <img src="assets/images/crafting/header_home.png" alt="Crafting header image">
+</div>
+
+<div class="page">
+  <div class="head crafting">
+    <p class="tip">{{'crafting.home.tip' | translate}}</p>
+    <h1 class="title" [innerHTML]="'crafting.home.title_html' | translate"></h1>
+    <p class="subtitle">{{'crafting.home.subtitle1' | translate}}</p>
+    <p class="subtitle">{{'crafting.home.subtitle2' | translate}}</p>
+    <p class="subtitle">{{'crafting.home.subtitle3' | translate}}</p>
+  </div>
+</div>
+
+<div class="alert">
+  <p>{{'crafting.home.readCarefuly' | translate}}</p>
+</div>
+
+<div class="steps">
+
+  <div class="step">
+    <h2 class="title"><span>{{'crafting.home.firstStep' | translate}}</span>{{'crafting.home.firstStepText' | translate}}</h2>
+    <p>{{'crafting.home.selectCrafter' | translate}}</p>
+    <div class="crafters">
+      <div class="crafter">
+        <p class="name">{{'crafting.step1.pool0' | translate}}</p>
+        <img src="assets/images/crafting/card/crafter0.png" alt="Trainee crafter image">
+        <p class="tier">Tier 1</p>
+      </div>
+      <div class="crafter">
+        <p class="name">{{'crafting.step1.pool1' | translate}}</p>
+        <img src="assets/images/crafting/card/crafter1.png" alt="Senior crafter image">
+        <p class="tier">Tier 2</p>
+      </div>
+      <div class="crafter">
+        <p class="name">{{'crafting.step1.pool2' | translate}}</p>
+        <img src="assets/images/crafting/card/crafter2.png" alt="Expert crafter image">
+        <p class="tier">Tier 3</p>
+      </div>
+    </div>
+    <p>{{'crafting.home.selectType' | translate}}</p>
+    <div class="type-selector">
+      <div class="weapon">
+        <p class="name">{{'categories.weapon' | translate}}</p>
+        <p class="description">{{'crafting.home.selectWeapon' | translate}}</p>
+        <div class="selector">
+          <p>
+            <span>{{'crafting.weapons.' + items[0][selectedWeapon] | translate}}</span>
+            <mat-icon class="icon prev" (click)="changeSelectedItem(-1, 0)">arrow_left</mat-icon>
+            <mat-icon class="icon next" (click)="changeSelectedItem(1, 0)">arrow_right</mat-icon>
+          </p>
+          <p *ngIf="items[0][selectedWeapon] !== 'shotgun' && items[0][selectedWeapon] !== 'repeaterShotgun'">
+            <span *ngIf="selectedElement === 1">{{'crafting.element1' | translate}}</span>
+            <span *ngIf="selectedElement === 0">{{'crafting.element0' | translate}}</span>
+            <mat-icon class="icon prev" (click)="changeSelectedElement()">arrow_left</mat-icon>
+            <mat-icon class="icon next" (click)="changeSelectedElement()">arrow_right</mat-icon>
+          </p>
+          <p *ngIf="items[0][selectedWeapon] === 'shotgun' || items[0][selectedWeapon] === 'repeaterShotgun'">{{'crafting.element0' | translate}}</p>
+        </div>
+      </div>
+      <div class="armor">
+        <p class="name">{{'categories.armor' | translate}}</p>
+        <p class="description">{{'crafting.home.selectArmor' | translate}}</p>
+        <div class="selector">
+          <p>
+            <span>{{'crafting.armors.' + items[1][selectedArmor] | translate}}</span>
+            <mat-icon class="icon prev" (click)="changeSelectedItem(-1, 1)">arrow_left</mat-icon>
+            <mat-icon class="icon next" (click)="changeSelectedItem(1, 1)">arrow_right</mat-icon>
+          </p>
+        </div>
+      </div>
+    </div>
+    <p>{{'crafting.home.materialCost' | translate}}</p>
+    <div class="materials">
+      <div class="stage">
+        <p class="name">{{'crafting.creation' | translate}}</p>
+        <div class="material">
+          <img src="assets/images/crafting/materials/carbon.png" class="icon">
+          <p class="value">CAR: 500</p>
+          <p class="available valid">1700</p>
+        </div>
+        <div class="material">
+          <img src="assets/images/crafting/materials/hydrogen.png" class="icon">
+          <p class="value">HYD: 1000</p>
+          <p class="available valid">3700</p>
+        </div>
+      </div>
+      <div class="stage">
+        <p class="name">{{'crafting.styling' | translate}}</p>
+        <div class="material">
+          <img src="assets/images/crafting/materials/chromium.png" class="icon">
+          <p class="value">OXY: 2000</p>
+          <p class="available not-valid">1350</p>
+        </div>
+        <div class="material">
+          <img src="assets/images/crafting/materials/oxygen.png" class="icon">
+          <p class="value">CHR: 1000</p>
+          <p class="available valid">1050</p>
+        </div>
+      </div>
+      <div class="stage">
+        <p class="name">{{'crafting.assembly' | translate}}</p>
+        <div class="material">
+          <img src="assets/images/crafting/materials/aluminium.png" class="icon">
+          <p class="value">ALU: 1500</p>
+          <p class="available valid">1743</p>
+        </div>
+        <div class="material">
+          <img src="assets/images/crafting/materials/acetylene.png" class="icon">
+          <p class="value">ACE: 1200</p>
+          <p class="available not-valid">639</p>
+        </div>
+      </div>
+        <ng-template #completedStep>
+          <div class="material finished">
+            <p>{{'crafting.stageCompleted' | translate}}</p>
+          </div>
+        </ng-template>
+    </div>
+    <p>{{'crafting.home.continueWithoutMaterials' | translate}}</p>
+    <p>{{'crafting.home.processDuration' | translate}}</p>
+  </div>
+
+  <div class="step">
+    <h2 class="title"><span>{{'crafting.home.secondStep' | translate}}</span>{{'crafting.home.secondStepText' | translate}}</h2>
+    <p>{{'crafting.home.sendToStyling' | translate}}</p>
+    <p>{{'crafting.home.addExtras' | translate}}</p>
+    <div class="preview">
+      <div class="category">
+        <h3 class="main-title">{{'crafting.weaponParts.mainParts' | translate | uppercase}}</h3>
+        <!-- MAIN PARTS -->
+        <ng-container *ngFor="let part of weaponParts | keyvalue">
+          <div class="part" *ngIf="!['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase));">
+            <p class="name">
+              {{'crafting.weaponParts.' + part.key | translate}}
+              <mat-icon class="arrow prev" (click)="changeMainImagePart(-1, part.key)">arrow_left</mat-icon>
+              <mat-icon class="arrow next" (click)="changeMainImagePart(1, part.key)">arrow_right</mat-icon>
+              <span class="partof">{{part.value.aesthetic + 1}} {{'crafting.home.of' | translate}} {{part.value.parts.length}}</span>
+            </p>
+          </div>
+        </ng-container>
+        <!-- ADD-ON PARTS -->
+        <ng-container *ngFor="let part of weaponParts | keyvalue">
+          <div class="part" *ngIf="['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase));">
+            <h3 class="addon-title">{{'crafting.weaponParts.' + part.key | translate | uppercase}}</h3>
+            <ng-container *ngFor="let subPart of weaponParts[part.key] | keyvalue">
+              <div class="part">
+                <p class="name" [class.unnactive]="subPart.value.aesthetic === -1">
+                  {{'crafting.weaponParts.' + subPart.key | translate}}
+                  <mat-icon class="arrow prev" (click)="changeAddOnImagePart(-1, part.key, subPart.key)">arrow_left</mat-icon>
+                  <mat-icon class="arrow next" (click)="changeAddOnImagePart(1, part.key, subPart.key)">arrow_right</mat-icon>
+                  <span class="partof">{{subPart.value.aesthetic + 1}} {{'crafting.home.of' | translate}} {{subPart.value.parts.length}}</span>
+                </p>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+      <!-- FINAL IMAGE -->
+      <div class="image">
+        <h2 class="weapon-name">
+          {{'crafting.weapons.' + weapon | translate | uppercase}}
+          <mat-icon class="arrow prev" (click)="changeSelectedWeaponPreview(-1)">arrow_left</mat-icon>
+          <mat-icon class="arrow next" (click)="changeSelectedWeaponPreview(1)">arrow_right</mat-icon>
+        </h2>
+        <div class="element">
+          <p (click)="setElement(0)" [class.selected]="element === 0" [class.alone]="(weapon | lowercase) === 'shotgun' || (weapon | lowercase) === 'repeatershotgun'">{{'crafting.element0' | translate}}</p>
+          <p *ngIf="(weapon | lowercase) !== 'shotgun' && (weapon | lowercase) !== 'repeatershotgun'" (click)="setElement(1)" [class.selected]="element === 1">{{'crafting.element1' | translate}}</p>
+        </div>
+        <img class="background" src="assets/images/crafting/preview_background.png" />
+        <ng-container *ngFor="let part of weaponParts | keyvalue">
+          <ng-container *ngIf="!['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase))">
+            <img
+              [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(part.key)}"
+              class="preview-part {{weapon + '-' + part.key}}"
+              id="{{weapon}}_{{part.key}}_{{part.value.aesthetic}}"
+              src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{part.key}}_{{part.value.parts[part.value.aesthetic]}}.png"
+            />
+          </ng-container>
+          <ng-container *ngIf="['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase))">
+            <ng-container *ngFor="let subPart of weaponParts[part.key] | keyvalue">
+              <img
+                *ngIf="subPart.value.aesthetic > -1"
+                [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(subPart.key)}"
+                class="preview-part {{weapon + '-' + subPart.key}}"
+                id="{{weapon}}_{{subPart.key}}_{{subPart.value.aesthetic}}"
+                src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{subPart.key}}_{{subPart.value.parts[subPart.value.aesthetic]}}.png"
+              />
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <p><i>{{'crafting.home.notEditable' | translate}}</i></p>
+    <p>{{'crafting.home.processDuration' | translate}}</p>
+  </div>
+
+  <div class="step">
+    <h2 class="title"><span>{{'crafting.home.thirdStep' | translate}}</span>{{'crafting.home.thirdStepText' | translate}}</h2>
+    <p>{{'crafting.home.chooseEngineer' | translate}}</p>
+    <p>{{'crafting.home.betterEngineer' | translate}}</p>
+    <div class="engineers">
+      <div class="engineer" [class.selected]="engineers[selectedEngineer] === 'Trainee'" (click)="setSelectedEngineer(0)" (mouseenter)="setSelectedEngineer(0)">
+        <p class="name">{{'crafting.step3.trainee' | translate}}</p>
+        <img src="assets/images/crafting/card/engineer1.png" alt="Trainee engineer image">
+      </div>
+      <div class="engineer" [class.selected]="engineers[selectedEngineer] === 'Junior'" (click)="setSelectedEngineer(1)" (mouseenter)="setSelectedEngineer(1)">
+        <p class="name">{{'crafting.step3.junior' | translate}}</p>
+        <img src="assets/images/crafting/card/engineer2.png" alt="Junior engineer image">
+      </div>
+      <div class="engineer" [class.selected]="engineers[selectedEngineer] === 'Senior'" (click)="setSelectedEngineer(2)" (mouseenter)="setSelectedEngineer(2)">
+        <p class="name">{{'crafting.step3.senior' | translate}}</p>
+        <img src="assets/images/crafting/card/engineer3.png" alt="Senior engineer image">
+      </div>
+      <div class="engineer" [class.selected]="engineers[selectedEngineer] === 'Expert'" (click)="setSelectedEngineer(3)" (mouseenter)="setSelectedEngineer(3)">
+        <p class="name">{{'crafting.step3.expert' | translate}}</p>
+        <img src="assets/images/crafting/card/engineer4.png" alt="Expert engineer image">
+      </div>
+      <div class="engineer" [class.selected]="engineers[selectedEngineer] === 'Master'" (click)="setSelectedEngineer(4)" (mouseenter)="setSelectedEngineer(4)">
+        <p class="name">{{'crafting.step3.master' | translate}}</p>
+        <img src="assets/images/crafting/card/engineer5.png" alt="Master engineer image">
+      </div>
+    </div>
+    <div class="booster">
+      <div class="tier">
+        <p (click)="setSelectedTier(1)" [class.selected]="tier === 1">Tier 1</p>
+        <p (click)="setSelectedTier(2)" [class.selected]="tier === 2">Tier 2</p>
+        <p (click)="setSelectedTier(3)" [class.selected]="tier === 3">Tier 3</p>
+      </div>
+      <h3>{{'crafting.home.rarityProbabilities' | translate}}</h3>
+      <div *ngIf="tier < 3 && selectedEngineer === 4; else probabilities" class="not-available">
+        <p>{{'crafting.home.onlyWorksT3' | translate}}</p>
+      </div>
+      <ng-template #probabilities>
+        <div class="probabilities">
+          <p>{{'nft.rarity.common' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].common}}%</span></p>
+          <p>{{'nft.rarity.uncommon' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].uncommon}}%</span></p>
+          <p>{{'nft.rarity.rare' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].rare}}%</span></p>
+          <p>{{'nft.rarity.epic' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].epic}}%</span></p>
+          <p>{{'nft.rarity.legendary' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].legendary}}%</span></p>
+        </div>
+      </ng-template>
+    </div>
+    <p>{{'crafting.home.processDuration' | translate}}</p>
+  </div>
+
+  <div class="step">
+    <h2 class="title">{{'crafting.home.enjoyExperience' | translate}}</h2>
+    <div class="goto">
+      <p>{{'crafting.home.remember' | translate}}</p>
+      <p>{{'crafting.home.rememberTip1' | translate}}</p>
+      <p>{{'crafting.home.rememberTip2' | translate}}</p>
+      <p>{{'crafting.home.faqDoubts' | translate}} <span [routerLink]="['/faq']" class="link">FAQ</span></p>
+      <p class="button" [routerLink]="['/crafting/factory']">{{'crafting.home.startCrafting' | translate}}</p>
+    </div>
+  </div>
+</div>

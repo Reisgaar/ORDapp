@@ -1,0 +1,92 @@
+<div class="close">
+  <p class="text">
+    <span *ngIf="data.type === 'putSale'">{{ 'popUp.putOnSale' | translate }}</span>
+    <span *ngIf="data.type === 'putAuction'">{{ 'popUp.putOnAuction' | translate }}</span>
+    <span *ngIf="data.type === 'change'">{{ 'popUp.changePrice' | translate}}</span>
+    <span class="button" (click)="closePopUp()">X</span>
+  </p>
+</div>
+
+<div class="content">
+  <form>
+    <div class="configurator">
+      <p class="label">{{ 'popUp.price' | translate }}</p>
+      <input
+        type="number"
+        id="amount-range"
+        name="amount"
+        class="price-input"
+        [(ngModel)]="amount"
+        [value]="amount"
+        (keypress)="preventErase($event)"
+      />
+
+      <div class="currency" *ngIf="data.type === 'putSale' || data.type === 'putAuction'">
+        <p class="selected"><span class="text">{{selectedCurrency}} </span><mat-icon class="icon">arrow_drop_down</mat-icon></p>
+        <div class="options">
+          <p class="coin" [class.hidden]="selectedCurrency === 'GQ'" (click)="changeSelectedCurrencyTo('GQ')">GQ</p>
+          <p class="coin" [class.hidden]="selectedCurrency === 'BNB'" (click)="changeSelectedCurrencyTo('BNB')">BNB</p>
+          <p class="coin" [class.hidden]="selectedCurrency === 'BUSD'" (click)="changeSelectedCurrencyTo('BUSD')">BUSD</p>
+        </div>
+      </div>
+
+      <span class="fixed-currency" *ngIf="data.type === 'change'">{{data.coin}}</span>
+
+      <div *ngIf="data.type === 'putAuction'" class="custom-auction-switch">
+        <input type="checkbox" id="custom-bid" class="custom-bid" name="custom-bid" [(ngModel)]="isCustomAuction" (change)="resetCustomBid()">
+        <label for="custom-bid">{{ 'popUp.customizeAuction' | translate }}</label>
+      </div>
+
+      <div *ngIf="isCustomAuction" class="custom-auction">
+        <p class="label">{{ 'popUp.auctionTime' | translate }}</p>
+        <div class="auction-time" *ngIf="data.type === 'putAuction'">
+          <div class="radio-wrapper">
+            <input type="radio" class="radio" id="day2" name="auctionTime" [value]="172800" [(ngModel)]="auctionTime">
+            <label for="day1">2 days</label>
+          </div>
+          <div class="radio-wrapper">
+            <input type="radio" class="radio" id="day4" name="auctionTime" [value]="345600" [(ngModel)]="auctionTime">
+            <label for="day2">4 days</label>
+          </div>
+          <div class="radio-wrapper">
+            <input type="radio" class="radio" id="day6" name="auctionTime" [value]="518400" [(ngModel)]="auctionTime">
+            <label for="day3">6 days</label>
+          </div>
+        </div>
+
+        <div class="time-fee">
+          <p class="message" *ngIf="auctionTime === 345600">*{{ 'popUp.timeFee1' | translate }}</p>
+          <p class="message" *ngIf="auctionTime === 518400">*{{ 'popUp.timeFee2' | translate }}</p>
+        </div>
+
+        <p class="label">{{ 'popUp.bidIncreasePercentage' | translate }}</p>
+        <input
+          type="number"
+          class="bid-percentage"
+          id="bid-percentage"
+          name="bid-percentage"
+          min="1" max="50" step="1"
+          [value]="bidPercentage"
+          [(ngModel)]="bidPercentage"
+          (input)="fitBidPercentToLimits()"
+        />
+      </div>
+
+    </div>
+
+    <div class="info">
+      <p>{{ 'popUp.feeTransaction' | translate }}</p>
+      <p>{{ 'popUp.feeFirstOwner' | translate }}</p>
+    </div>
+
+    <div class="buttons">
+      <button type="reset" class="button" (click)="closePopUp()">{{ 'popUp.button.cancel' | translate }}</button>
+      <button type="submit" class="button" (click)="confirmPutOnSale()">{{ 'popUp.button.accept' | translate }}</button>
+    </div>
+
+    <p class="error" [class.active]="formError" *ngIf="data.type === 'putSale' || data.type === 'putAuction'">*{{ 'popUp.valueCurrencyError' | translate }}</p>
+    <p class="error" [class.active]="formError" *ngIf="data.type === 'change'">*{{ 'popUp.valueError' | translate }}
+
+  </form>
+</div>
+

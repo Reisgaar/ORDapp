@@ -1,0 +1,45 @@
+<div class="close">
+  <p class="text">FAQ<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="content">
+  <h2 class="main-title">{{'faqBaskonia.title' | translate}}</h2>
+
+  <div class="video">
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/mY5Y6MwOHys?rel=0"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <div class="question">
+    <h3 class="title">{{'faqBaskonia.whatIsMvpPack.title' | translate}}</h3>
+    <p class="answer">{{'faqBaskonia.whatIsMvpPack.answer' | translate}}</p>
+  </div>
+
+  <div class="question">
+    <h3 class="title">{{'faqBaskonia.bidOnMvpPack.title' | translate}}</h3>
+    <ol class="answer">
+      <li>{{'faqBaskonia.bidOnMvpPack.steps.step1.textPreLink' | translate}}<a href="{{'faqBaskonia.bidOnMvpPack.steps.step1.link' | translate}}">{{'faqBaskonia.bidOnMvpPack.steps.step1.linkText' | translate}}</a>.</li>
+      <li>{{'faqBaskonia.bidOnMvpPack.steps.step2' | translate}}</li>
+      <li>{{'faqBaskonia.bidOnMvpPack.steps.step3' | translate}}</li>
+      <li>{{'faqBaskonia.bidOnMvpPack.steps.step4' | translate}}</li>
+    </ol>
+  </div>
+
+  <div class="question">
+    <h3 class="title">{{'faqBaskonia.redeemMvpPack.title' | translate}}</h3>
+    <ol class="answer">
+      <li>{{'faqBaskonia.redeemMvpPack.steps.step1' | translate}}</li>
+      <li>{{'faqBaskonia.redeemMvpPack.steps.step2' | translate}}</li>
+      <li>{{'faqBaskonia.redeemMvpPack.steps.step3' | translate}}</li>
+      <li>{{'faqBaskonia.redeemMvpPack.steps.step4' | translate}}</li>
+    </ol>
+  </div>
+
+  <h3 class="more-question">{{'faqBaskonia.moreDoubts' | translate}}<span [routerLink]="['/faq']" (click)="closePopUp()">{{'faqBaskonia.checkFaq' | translate}}</span></h3>
+</div>

@@ -1,0 +1,38 @@
+<div class="top-image">
+  <img src="assets/images/item_background.png" alt="Lootbox background image" />
+</div>
+
+<div class="head">
+  <p class="tip">{{ 'lootbox.tip' | translate }}</p>
+  <h1 class="title">{{ 'lootbox.title' | translate }}</h1>
+  <p class="subtitle">{{ 'lootbox.subtitle' | translate }}</p>
+</div>
+
+<div class="advice">
+  <p>{{ 'lootbox.closedTitle' | translate }}</p>
+  <p>{{ 'lootbox.closedSubtitle' | translate }}</p>
+</div>
+
+<div class="lootboxes">
+  <div class="card">
+    <app-lootbox-card [category]="1" [disc]="discountTier == 1" [discount]="discount" [free]="freeTier == 1"></app-lootbox-card>
+  </div>
+  <div class="card">
+    <app-lootbox-card [category]="2" [disc]="discountTier == 2" [discount]="discount" [free]="freeTier == 2"></app-lootbox-card>
+  </div>
+  <div class="card">
+    <app-lootbox-card [category]="3" [disc]="discountTier == 3" [discount]="discount" [free]="freeTier == 3"></app-lootbox-card>
+  </div>
+  <div class="card">
+    <app-lootbox-card [category]="4" [disc]="discountTier == 4" [discount]="discount" [free]="freeTier == 4"></app-lootbox-card>
+  </div>
+  <div class="card">
+    <app-lootbox-card [category]="5" [disc]="discountTier == 5" [discount]="discount" [free]="freeTier == 5"></app-lootbox-card>
+  </div>
+  <div class="card">
+    <app-lootbox-card [category]="6" [disc]="discountTier == 6" [discount]="discount" [free]="freeTier == 6"></app-lootbox-card>
+  </div>
+  <div class="card">
+    <app-lootbox-card [category]="0" [disc]="discountTier == 0" [discount]="discount" [free]="freeTier == 0"></app-lootbox-card>
+  </div>
+</div>

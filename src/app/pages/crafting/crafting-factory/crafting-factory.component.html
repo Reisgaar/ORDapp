@@ -1,0 +1,84 @@
+<div class="content connect" *ngIf="walletIsConnected === false">
+  <h2>{{'crafting.craftingFactory' | translate}}</h2>
+  <div class="tabs">
+    <span class="tab" [class.active]="selectedStep === 'creation'" (click)="changeSelectedStep('creation')">{{'crafting.creation' | translate}}</span>
+    <span class="tab" [class.active]="selectedStep === 'styling'" (click)="changeSelectedStep('styling')">{{'crafting.styling' | translate}}</span>
+    <span class="tab" [class.active]="selectedStep === 'assembly'" (click)="changeSelectedStep('assembly')">{{'crafting.assembly' | translate}}</span>
+  </div>
+  <p>{{'crafting.connectWallet1' | translate}}</p>
+  <p>{{'crafting.connectWallet2' | translate}}</p>
+  <p (click)="connectionService.openModal()" class="button">{{'crafting.connectWallet' | translate}}</p>
+</div>
+
+<div class="content" *ngIf="walletIsConnected === true" style="padding: 50px 20px 20px;">
+  <h2>{{'crafting.craftingFactory' | translate}}</h2>
+
+  <div class="tabs">
+    <span class="tab" [class.active]="selectedStep === 'creation'" (click)="changeSelectedStep('creation')">{{'crafting.creation' | translate}}</span>
+    <span class="tab" [class.active]="selectedStep === 'styling'" (click)="changeSelectedStep('styling')">{{'crafting.styling' | translate}}</span>
+    <span class="tab" [class.active]="selectedStep === 'assembly'" (click)="changeSelectedStep('assembly')">{{'crafting.assembly' | translate}}</span>
+  </div>
+
+  <!-- FIRST STEP: CREATION -->
+  <div class="step" *ngIf="selectedStep === 'creation'">
+    <div class="info">
+      <p>{{'crafting.step1tip1' | translate}}</p>
+      <p>{{'crafting.step1tip2' | translate}}</p>
+      <p>{{'crafting.step1tip3' | translate}}</p>
+    </div>
+  </div>
+  <!-- SECOND STEP: STYLING -->
+  <div class="step" *ngIf="selectedStep === 'styling'">
+    <div class="info">
+      <p>{{'crafting.step2tip1' | translate}}</p>
+      <p>{{'crafting.step2tip2' | translate}}</p>
+      <p>{{'crafting.step2tip3' | translate}}</p>
+    </div>
+  </div>
+  <!-- THIRD STEP: ASSEMBLY -->
+  <div class="step" *ngIf="selectedStep === 'assembly'">
+    <div class="info">
+      <p>{{'crafting.step3tip1' | translate}}</p>
+      <p>{{'crafting.step3tip2' | translate}}</p>
+      <p>{{'crafting.step3tip3' | translate}}</p>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="walletIsConnected === true" class="discount">
+  <ng-container *ngIf="discounts.cost > 0 || discounts.time > 0">
+    <p>{{('crafting.discount' | translate).replace('***', discounts.cost).replace('###', discounts.time)}}</p>
+  </ng-container>
+  <ng-container *ngIf="discounts.cost === 0 && discounts.time === 0">
+    <p class="link" ><span [routerLink]="['/lands/materialExtraction']">{{'crafting.getDiscount1' | translate}}</span> {{'crafting.getDiscount2' | translate}}</p>
+  </ng-container>
+  <p class="tip">*{{'crafting.discountTip' | translate}}</p>
+</div>
+
+<div class="content" *ngIf="walletIsConnected === true">
+  <!-- FIRST STEP: CREATION -->
+  <div class="step" *ngIf="selectedStep === 'creation'">
+    <div class="cards">
+      <app-crafting-card [step]="1" [pool]="0" [discounts]="discounts"></app-crafting-card>
+      <app-crafting-card [step]="1" [pool]="1" [discounts]="discounts"></app-crafting-card>
+      <app-crafting-card [step]="1" [pool]="2" [discounts]="discounts"></app-crafting-card>
+    </div>
+  </div>
+  <!-- SECOND STEP: STYLING -->
+  <div class="step" *ngIf="selectedStep === 'styling'">
+    <div class="cards">
+      <app-crafting-card [step]="2" [pool]="0" [discounts]="discounts"></app-crafting-card>
+      <app-crafting-card [step]="2" [pool]="1" [discounts]="discounts"></app-crafting-card>
+      <app-crafting-card [step]="2" [pool]="2" [discounts]="discounts"></app-crafting-card>
+    </div>
+  </div>
+  <!-- THIRD STEP: ASSEMBLY -->
+  <div class="step" *ngIf="selectedStep === 'assembly'">
+    <div class="cards">
+      <app-crafting-card [step]="3" [pool]="0" [discounts]="discounts"></app-crafting-card>
+      <app-crafting-card [step]="3" [pool]="1" [discounts]="discounts"></app-crafting-card>
+      <app-crafting-card [step]="3" [pool]="2" [discounts]="discounts"></app-crafting-card>
+    </div>
+  </div>
+</div>

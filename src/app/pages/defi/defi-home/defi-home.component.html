@@ -1,0 +1,147 @@
+<!-- HEAD BLOCK -->
+<div class="slider">
+  <img src="assets/images/defi/home_defi.png" class="background" />
+  <div class="card">
+    <div class="data">
+      <h1 class="tip">{{ 'defi.head.tip' | translate }}</h1>
+      <h1 class="title"><b>{{ 'defi.head.title1' | translate }}</b> {{ 'defi.head.title2' | translate }}</h1>
+      <div class="description">
+        <p class="text">{{ 'defi.head.text1' | translate }}</p>
+        <p class="text">{{ 'defi.head.text2' | translate }}</p>
+      </div>
+      <div class="buttons">
+        <p class="button" [routerLink]="['/defi/pools']">{{ 'defi.head.button1' | translate }}</p>
+        <p class="button" [routerLink]="['/defi/farms']">{{ 'defi.head.button2' | translate }}</p>
+      </div>
+    </div>
+    <div class="image">
+      <div class="image-front">
+        <img src="assets/images/defi/visa_front.png" class="file" />
+      </div>
+      <div class="image-back">
+        <img src="assets/images/defi/visa_back.svg" class="file" />
+        <div class="stars">
+          <img src="assets/images/defi/circle.svg" class="icon circle1" />
+          <img src="assets/images/defi/circle.svg" class="icon circle2" />
+          <img src="assets/images/defi/circle.svg" class="icon circle3" />
+          <img src="assets/images/defi/star.svg" class="icon star1" />
+          <img src="assets/images/defi/star.svg" class="icon star2" />
+          <img src="assets/images/defi/star.svg" class="icon star3" />
+          <img src="assets/images/defi/star.svg" class="icon star4" />
+          <img src="assets/images/defi/star_empty.svg" class="icon star-empty1" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="statistics">
+  <div class="data-wrapper">
+    <p class="data">$GQ 17M <span>{{'defi.home.manage' | translate }}</span></p>
+    <p class="data">+450,800 <span>{{'defi.home.phase' | translate }}</span></p>
+    <p class="data">+188% APR <span>{{'defi.home.somePools' | translate }}</span></p>
+    <p class="data">+25 <span>{{'defi.home.partner' | translate }}</span></p>
+  </div>
+</div>
+
+<!-- SEPARATOR -->
+<div class="separator"></div>
+
+<div class="info">
+  <div class="details">
+    <div class="image">
+      <img src="assets/images/home_coins.png" class="desktop" />
+      <img src="assets/images/home_gq.png" class="responsive coin1" />
+      <img src="assets/images/home_sck.png" class="responsive coin2" />
+    </div>
+    <div class="text">
+      <h2>{{'defi.home.pasive' | translate }}</h2>
+      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu eleifend elit, non congue nisi. Maecenas at lacus molestie, ultrices dui eu, consequat mi</p> -->
+      <div class="buttons">
+        <p class="button" [routerLink]="['/defi/pools']" (click)="openDefiPopUp('swap')">{{'defi.header.swap' | translate }}</p>
+        <p class="button" [routerLink]="['/defi/pools']" (click)="openDefiPopUp('liquidity')">{{ 'defi.header.add' | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="data-wrapper">
+    <div class="data">
+      <p>TOP POOLS</p>
+      <div class="pools">
+        <div class="pool">
+          <p class="title">Earn GQ</p>
+          <p class="value">422.928 %<span>APR</span></p>
+        </div>
+        <div class="pool">
+          <p class="title">Cake-LP</p>
+          <p class="value">288.874 %<span>APR</span></p>
+        </div>
+        <div class="pool">
+          <p class="title">GQ + BUSD</p>
+          <p class="value">158.894 %<span>APR</span></p>
+        </div>
+        <div class="pool">
+          <p class="title">BAMBOO</p>
+          <p class="value">542.000 %<span>APR</span></p>
+        </div>
+        <div class="pool">
+          <p class="title">GQ</p>
+          <p class="value">432.321 %<span>APR</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="stars">
+      <img src="assets/images/defi/circle.svg" class="icon circle1" />
+      <img src="assets/images/defi/star.svg" class="icon star1" />
+      <img src="assets/images/defi/star.svg" class="icon star2" />
+      <img src="assets/images/defi/star_empty.svg" class="icon star-empty1" />
+    </div>
+  </div>
+</div>
+
+<div class="defi">
+  <div class="farms">
+    <h3 class="title">Earn material in our Farms</h3>
+    <div class="farms-table">
+      <div class="farm" *ngFor="let a of [1,2,3,4,5]">
+        <div class="stake">Stake methane</div>
+        <div class="earn">Earn iron</div>
+        <div class="apr">422.928 %<span>APR</span></div>
+        <div class="button">Let's farm</div>
+      </div>
+    </div>
+  </div>
+  <div class="pools">
+    <h3 class="title">Pools tokens galactics</h3>
+    <div class="pools-table">
+      <div class="pool" *ngFor="let a of [1,2,3,4]">
+        <div class="stake">GQ pool</div>
+        <div class="apr">422.928 %<span>APR</span></div>
+        <div class="button">Stake GQ</div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="benefits">
+  <h2>Our Benefits</h2>
+  <div class="benefits-wrapper">
+    <div class="benefit">
+      <img src="assets/images/defi/icon_medal.png" class="image"/>
+      <h3 class="title">High LP Reward</h3>
+      <p class="text">YLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum vestibulum risus, sit amet dapibus dolor porttitor sit amet. Maecenas in enim arcu. Maecenas porta risus eu faucibus elementum. Pellentesque consectetur nunc eu libero consequat, in scelerisque diam dapibus. Phasellus ultrices sapien eu dui tempor, quis tempus nisl bibendum.</p>
+    </div>
+    <div class="benefit">
+      <img src="assets/images/defi/icon_swap.png" class="image"/>
+      <h3 class="title">Trade Fee Free</h3>
+      <p class="text">YLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum vestibulum risus, sit amet dapibus dolor porttitor sit amet. Maecenas in enim arcu. Maecenas porta risus eu faucibus elementum. Pellentesque consectetur nunc eu libero consequat, in scelerisque diam dapibus. Phasellus ultrices sapien eu dui tempor, quis tempus nisl bibendum.</p>
+    </div>
+    <div class="benefit">
+      <img src="assets/images/defi/icon_connect.png" class="image"/>
+      <h3 class="title">Multi-partners program</h3>
+      <p class="text">YLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum vestibulum risus, sit amet dapibus dolor porttitor sit amet. Maecenas in enim arcu. Maecenas porta risus eu faucibus elementum. Pellentesque consectetur nunc eu libero consequat, in scelerisque diam dapibus. Phasellus ultrices sapien eu dui tempor, quis tempus nisl bibendum.</p>
+    </div>
+  </div> -->
+  <!-- <div class="rings">
+    <img src="assets/images/rings.svg" class="image" id="rotatingRings" [ngStyle]="{'rotate': imgRotationDeg + 'deg'}" />
+  </div> -->
+</div>

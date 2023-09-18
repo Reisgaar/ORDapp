@@ -1,0 +1,234 @@
+@import "/src/styleVariables.scss";
+.parent {
+  display: grid;
+  grid-template-columns: 165px 1fr;
+  // grid-template-rows: 2fr 2fr 1.5fr 3rem 2fr 1.5fr 3rem;
+  grid-template-rows: 2fr 2fr 1.5fr 3rem 2fr 1.5fr 3rem 2rem 3.5rem 0.5rem;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  // height: 28rem;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+  font-size: 2rem;
+  font-weight: 600;
+  align-self: center;
+}
+.div2 {
+  grid-area: 2 / 1 / 3 / 3;
+  font-size: 1rem;
+}
+.div3 {
+  grid-area: 1 / 2 / 2 / 3;
+  text-align: end;
+  margin-top: 1rem;
+}
+.div4 {
+  grid-area: 3 / 1 / 4 / 3;
+  align-self: end;
+  align-self: center;
+}
+.div5 {
+  grid-area: 4 / 1 / 5 / 3;
+  align-self: center;
+  // margin-bottom: 0.5rem;
+}
+.div6 {
+  grid-area: 5 / 1 / 6 / 3;
+  border: 1px solid $blue-extra-light;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.div7 {
+  grid-area: 6 / 1 / 7 / 3;
+  justify-self: center;
+  align-self: center;
+}
+.div8 {
+  grid-area: 7 / 1 / 8 / 3;
+  align-self: center;
+}
+.div9 {
+  grid-area: 8 / 1 / 9 / 3;
+  align-self: center;
+}
+.div10 {
+  grid-area: 9 / 1 / 10 / 3;
+  border: 1px solid $blue-extra-light;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.div11 {
+  grid-area: 10 / 1 / 11 / 3;
+  align-self: end;
+}
+.div12 {
+  grid-area: 11 / 1 / 12 / 3;
+  text-align: end;
+  align-self: center;
+}
+.div13 {
+  grid-area: 12 / 1 / 13 / 3;
+  display: grid;
+  align-items: end;
+}
+
+.wallet {
+  border: 1px solid $blue-extra-light;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.btn {
+  border: none;
+  border-radius: 0.4rem;
+  color: $white;
+  &-max {
+    background: $green;
+    margin: 0.3rem;
+    padding: 0rem 0.5rem;
+    &:hover {
+      background: $green-light;
+    }
+  }
+  &-add {
+    font-size: 1.2rem;
+    height: 2.5rem;
+    background: $blue-medium;
+    margin-top: 1rem;
+    &:hover {
+      background: $blue-light;
+    }
+  }
+  &-connect {
+    background: $pink;
+    &:hover {
+      background: $green-light;
+    }
+  }
+}
+.sel-btn {
+  padding: 0.5rem 1rem;
+  color: $blue-dark;
+  margin-bottom: 0.3rem;
+  width: 5rem;
+  &:hover {
+    background: $blue-medium;
+  }
+}
+.pair-btn {
+  padding: 0.3rem 1rem;
+  color: $white;
+  background: $blue-medium;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  &:hover {
+    background: $blue-light;
+  }
+  .img {
+    width: 30px;
+    height: 30px;
+  }
+}
+.input {
+  border: unset;
+  background: none;
+  color: white;
+  width: 100%;
+  font-size: 1rem;
+  padding-left: 1rem;
+  &:focus,
+  &:focus-visible,
+  &:focus-within,
+  &:active {
+    border: unset;
+    outline: unset;
+  }
+}
+.minimun {
+  margin: 1rem 0rem;
+  background: $blue-medium;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+}
+.send {
+  margin-top: 1rem;
+  .wallet {
+    .input {
+      border: unset;
+      background: none;
+      color: white;
+      width: 100%;
+      font-size: 1rem;
+      padding: 1rem;
+      &:focus,
+      &:focus-visible,
+      &:focus-within,
+      &:active {
+        border: unset;
+        outline: unset;
+      }
+    }
+  }
+}
+.error {
+  color: $red;
+  margin-top: 0.5rem;
+}
+// medium devices
+@media (min-width: 675px) {
+  .parent {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 2fr 2fr 1.5fr 3rem 2fr 1.5fr 3rem;
+    width: 30rem;
+    // height: 23rem;
+  }
+
+  .div1 {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .div2 {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+  .div3 {
+    grid-area: 1 / 2 / 3 / 3;
+  }
+  .div4 {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+  .div5 {
+    grid-area: 3 / 2 / 4 / 3;
+    text-align: end;
+  }
+  .div6 {
+    grid-area: 4 / 1 / 5 / 3;
+  }
+  .div7 {
+    grid-area: 5 / 1 / 6 / 3;
+  }
+  .div8 {
+    grid-area: 6 / 1 / 7 / 2;
+    align-self: center;
+  }
+  .div9 {
+    grid-area: 6 / 2 / 7 / 3;
+    text-align: end;
+  }
+  .div10 {
+    grid-area: 7 / 1 / 8 / 3;
+  }
+  .div11 {
+    grid-area: 8 / 1 / 9 / 2;
+    align-self: center;
+  }
+  .div12 {
+    grid-area: 8 / 2 / 9 / 3;
+  }
+  .div13 {
+    grid-area: 9 / 1 / 10 / 3;
+  }
+}

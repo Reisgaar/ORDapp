@@ -1,0 +1,74 @@
+<div class="top-image">
+  <img src="assets/images/governance/header_home.png" alt="Governance header image">
+</div>
+
+<div class="page">
+  <div class="head governance">
+    <p class="tip">{{"governance.home.tip" | translate}}</p>
+    <h1 class="title"><b>{{"governance.home.governance" | translate}}</b>{{"governance.home.title" | translate}}</h1>
+    <p class="subtitle">{{"governance.home.subtitle" | translate}}</p>
+  </div>
+
+  <div class="video">
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/MuIPNir0t9Q?rel=0"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <div class="step-container pos1">
+      <div class="step">
+        <img src="assets/images/tokens/gq.png" alt="GQ icon" />
+        <p class="title">{{"governance.home.step1Title" | translate}}</p>
+        <p class="text">{{"governance.home.step1Text" | translate}}</p>
+      </div>
+    </div>
+    <div class="step-container pos2">
+      <div class="step">
+        <img src="assets/images/vp.png" alt="VP icon" />
+        <p class="title">{{"governance.home.step2Title" | translate}}</p>
+        <p class="text">{{"governance.home.step2Text" | translate}}</p>
+      </div>
+    </div>
+    <div class="step-container pos3">
+      <div class="step">
+        <img src="assets/images/governance/doc_alpha.png" alt="Document icon" />
+        <p class="title">{{"governance.home.step3Title" | translate}}</p>
+        <p class="text">{{"governance.home.step3Text" | translate}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="video">
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/tv_KbuLCIII?rel=0"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <div class="links">
+    <img class="image" src="assets/images/soldier.png" alt="OR Soldier image" />
+    <div class="interaction">
+      <h2 class="title">{{"governance.home.downTitle1" | translate}}<b>{{"governance.home.downTitle2" | translate}}</b></h2>
+      <div class="buttons">
+        <div class="background"></div>
+        <div class="buttons-grid">
+          <p class="button button1" (click)="buyGqPopUp()">{{"governance.home.buyGQ" | translate}}</p>
+          <p class="button button2" [routerLink]="['/governance/getVotingPower']">{{"governance.home.getVP" | translate}}</p>
+          <p class="button button3" [routerLink]="['/governance/proposals']">{{"governance.home.participate" | translate}}</p>
+          <p class="button button4" [routerLink]="['/governance/leaveProposal']">{{"governance.home.leaveProposal" | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

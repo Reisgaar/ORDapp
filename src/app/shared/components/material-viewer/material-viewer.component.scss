@@ -1,0 +1,111 @@
+@import '/src/styleVariables.scss';
+
+.materials {
+  position: relative;
+  height: 200px;
+  width: 100%;
+
+  .slider {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    overflow: auto;
+    text-align: center;
+
+    .material {
+      color: $white;
+      background-color: $blue-card-background;
+      border-radius: 5px;
+      display: inline-block;
+      margin: 10px;
+      text-align: center;
+      width: 90px;
+      background: linear-gradient(to bottom left, $blue-card-background 20%, #354b57, $blue-card-background 80%);
+      box-shadow: inset 0px 0px 4px 0px #0d1f29;
+      filter: drop-shadow(3px 3px 5px #00000099);
+
+      .image {
+        width: 100%;
+        object-fit: contain;
+      }
+
+      .name {
+        margin: 0;
+        font-weight: 300;
+        font-size: 1.1em;
+      }
+
+      .amount {
+        font-size: 0.9em;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .arrow {
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 40px;
+
+    &.prev {
+      left: 5px;
+
+      .icon {
+        left: -5px;
+      }
+    }
+
+    &.next {
+      right: 5px;
+
+      .icon {
+        left: 5px;
+      }
+    }
+
+    .icon {
+      position: absolute;
+      color: $white;
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 992px) {
+
+}
+
+// Medium devices
+@media (max-width: 768px) {
+
+}
+
+// Small devices
+@media (max-width: 576px) {
+
+}
+
+// Extra small devices
+@media (max-width: 320px) {
+
+}

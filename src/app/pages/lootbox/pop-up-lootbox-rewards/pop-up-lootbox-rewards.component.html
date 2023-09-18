@@ -1,0 +1,43 @@
+<div class="close">
+  <p class="text">{{'lootbox.popUp.rewards' | translate}}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<h2 class="center">{{'lootbox.popUp.congratulations' | translate}}</h2>
+<p class="center">{{'lootbox.popUp.lootboxUnlocked' | translate}}</p>
+
+<div class="reward-wrapper">
+  <div *ngIf="rewardResources.length > 0" class="rewards">
+    <p class="reward resource title">
+      <span class="name">{{'lootbox.popUp.resource' | translate}}</span>
+      <span class="amount">{{'lootbox.popUp.amount' | translate}}</span>
+    </p>
+    <p *ngFor="let res of rewardResources" class="reward resource data">
+      <span class="name">{{res.name}}</span>
+      <span class="tier">{{res.amount | number:'1.0-4'}}</span>
+    </p>
+  </div>
+
+  <div *ngIf="rewardList.length > 0" class="rewards">
+    <p class="reward title">
+      <span class="name">{{'lootbox.popUp.name' | translate}}</span>
+      <span class="tier">{{'lootbox.popUp.tier' | translate}}</span>
+      <span class="rarity">{{'lootbox.popUp.rarity' | translate}}</span>
+    </p>
+    <p *ngFor="let item of rewardList" class="reward data">
+      <span class="name">
+        {{item.name}}
+        <span class="value" *ngIf="item.value">(x{{item.value}})</span>
+      </span>
+      <span class="tier" *ngIf="item.tier">{{item.tier}}</span>
+      <span class="rarity" *ngIf="item.rarity">{{item.rarity}}</span>
+    </p>
+  </div>
+</div>
+
+<div *ngIf="processedItems < sentItems" class="loader-container">
+  <span class="loader"></span>
+</div>
+
+<div class="buy-button center">
+  <a [routerLink]="['/profile']" (click)="closePopUp()"><button>{{'lootbox.popUp.toInventory' | translate}}</button></a>
+</div>

@@ -1,0 +1,15 @@
+<div class="tabs">
+  <div class="tab left" [class.active]="selectedTab === 'toGame'" (click)="changeTab('toGame')">
+    <span>SEND</span>
+  </div>
+  <div class="tab right" [class.active]="selectedTab === 'fromGame'" (click)="changeTab('fromGame')">
+    <span>RECEIVE</span>
+  </div>
+</div>
+
+<div *ngIf="selectedTab === 'toGame'">
+  <app-bridge-to-game></app-bridge-to-game>
+</div>
+<div *ngIf="selectedTab === 'fromGame'">
+  <app-bridge-from-game></app-bridge-from-game>
+</div>

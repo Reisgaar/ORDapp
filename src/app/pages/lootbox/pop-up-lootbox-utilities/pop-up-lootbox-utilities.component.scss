@@ -1,0 +1,109 @@
+@import '/src/styleVariables.scss';
+
+.close {
+  font-family: 'magistral', sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+
+.utilities-container {
+  font-family: 'Work Sans', sans-serif;
+  text-align: center;
+   text-transform: uppercase;
+
+   .weapon {
+     margin: 40px auto 30px;
+     max-width: 270px;
+     max-height: 180px;
+   }
+
+  .vehicle {
+    margin: 40px auto 30px;
+    max-width: 350px;
+    max-height: 150px;
+  }
+
+  .squared {
+    margin: 20px auto 20px;
+    max-width: 150px;
+  }
+
+  h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+
+  p {
+    margin: 5px 0;
+    font-size: 0.8em;
+    font-weight: 500;
+
+    &:first-of-type {
+      margin-top: 25px;
+    }
+  }
+}
+
+
+
+
+/*
+ * Responsive
+ */
+
+// Extra large devices
+@media (max-width: 1200px) {
+
+}
+
+// Large devices
+@media (max-width: 992px) {
+  .margin-top #contentHome {
+    margin-top: unset !important;
+  }
+}
+
+// Medium devices
+@media (max-width: 768px) {
+
+}
+
+// Small devices
+@media (max-width: 576px) {
+  .utilities-container {
+
+    .weapon,
+    .vehicle,
+    .squared {
+      max-width: 100%;
+    }
+  }
+}

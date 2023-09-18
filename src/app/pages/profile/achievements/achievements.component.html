@@ -1,0 +1,13 @@
+<div class="medal-progress" *ngIf="loadingMedalsData">
+  <mat-progress-bar mode="indeterminate" class="progress-bar"></mat-progress-bar>
+</div>
+
+<div *ngIf="userHasMedals" class="medals">
+  <h2 class="title">{{"achievements.title" | translate}}</h2>
+  <ng-container *ngFor="let m of medals | keyvalue; let index=index">
+    <div *ngIf="m.value" class="medal">
+      <img src="assets/images/medals/{{m.key}}.png" alt="Medal icon" />
+      <p class="tip">{{'achievements.' + m.key | translate}}</p>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,43 @@
+<p class="name">{{token.name | uppercase}}</p>
+
+<div class="token">
+  <img src="{{token.image}}" class="image">
+  <div class="available">
+    <p>{{'bridge.receiver.tokensAvailable' | translate}}:</p>
+    <p>
+      <span *ngIf="!tokensToRedeem" class="progress-bar">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </span>
+      <span *ngIf="tokensToRedeem">{{tokensToRedeem | fromWei | number:'1.0-4'}}</span>
+    </p>
+  </div>
+
+  <div class="input">
+    <p class="token-label">{{'bridge.receiver.amountToReceive' | translate}}:</p>
+    <div class="input-field">
+      <input type="text"
+        class="token-amount"
+        id="{{token.ticker |lowercase}}Amount"
+        name="{{token.ticker |lowercase}}Amount"
+        autocomplete="off"
+        inputmode="decimal"
+        placeholder="0.0"
+        pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+        value="0"
+        [(ngModel)]="tokenSelectedAmount"
+        (keypress)="controlInput($event)"
+        (input)="validateForm()"
+      />
+      <p (click)="setAmountToPercent(100)" class="max">{{'bridge.max' | translate}}</p>
+    </div>
+
+    <p class="error" [class.active]="formError">
+      <span>*{{'bridge.receiver.amountError' | translate}}</span>
+    </p>
+  </div>
+
+  <div class="buttons">
+    <p *ngIf="!formError && tokenSelectedAmount !== '0' && tokenSelectedAmount !== ''" class="button" (click)="claimTokens()">{{ 'popUp.button.accept' | translate }}</p>
+    <p *ngIf="formError || tokenSelectedAmount === '0' || tokenSelectedAmount === ''" class="button disabled">{{ 'popUp.button.accept' | translate }}</p>
+  </div>
+</div>

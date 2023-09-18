@@ -1,0 +1,43 @@
+@import '/src/styleVariables.scss';
+
+.content {
+  font-family: $workSans !important;
+  padding: 50px 20px;
+  margin: auto;
+  max-width: 1200px;
+  color: $white;
+
+  h1 {
+    font-family: $magistral !important;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 50px;
+  }
+
+  h2 {
+    font-family: $workSans !important;
+    margin-top: 50px;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin: auto;
+
+    th, tr, td {
+      padding: 5px 10px;
+      border: 1px solid $blue-light;
+    }
+  }
+
+  ul {
+
+    li{
+      margin-bottom: 20px;
+    }
+  }
+
+  a {
+    color: $white;
+  }
+}

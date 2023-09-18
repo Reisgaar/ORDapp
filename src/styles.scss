@@ -1,0 +1,557 @@
+@import './styleVariables.scss';
+
+.specie-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95vw;
+  height: 95vw;
+  max-width: 600px;
+  z-index: -20;
+  opacity: 0.15;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body {
+  position: relative;
+  font-family: $workSans !important;
+  margin: 0;
+  background-color: $blue-dark;
+  background: linear-gradient(to right, $blue-dark 30%, #272e61, $blue-dark 70%);
+  min-width: 320px;
+  overflow: unset !important;
+
+  // Fixes for update changes
+  .spinner { stroke: #3f51b5; }
+  .cdk-table.table { min-width: unset; }
+  .cdk-row {
+    th.cdk-header-cell, td.cdk-cell, td.cdk-footer-cell {
+      border: none;
+    }
+  }
+  // End of update error fixing
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $blue-header;
+    margin: -3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    background: $white;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, p, span, label {
+  font-family: $workSans !important;
+}
+
+.page {
+  overflow: hidden;
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px;
+}
+
+.top-image {
+  width: 100%;
+
+  img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  }
+}
+
+.head {
+  color: $white;
+  width: 100%;
+
+  .tip {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1em;
+  }
+
+  .title {
+    max-width: 700px;
+    text-transform: uppercase;
+    font-size: 5em;
+    line-height: 1em;
+    font-weight: 100;
+  }
+
+  .subtitle {
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.3em;
+  }
+}
+
+// dialogs
+.cdk-overlay-container{ //TODO to take care in other components than defi
+  z-index: 2;
+}
+.cdk-overlay-pane .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: unset;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.cdk-overlay-dark-backdrop {
+  background: $white-transparent-10;
+  backdrop-filter: blur(3px);
+}
+
+.info-dialog-container .mat-mdc-dialog-container {
+  padding: 0;
+  background: none;
+  border-radius: 10px;
+  min-width: 200px;
+}
+
+.buygq-dialog-container .mat-mdc-dialog-container,
+.lootbox-dialog-container .mat-mdc-dialog-container,
+.voting-dialog-container .mat-mdc-dialog-container,
+.partner-burn-receive-dialog-container .mat-mdc-dialog-container {
+  position: relative;
+  padding: 25px;
+  border: 1px solid $blue-medium;
+  border-radius: 15px;
+  color: $white;
+  background: $blue-dark;
+  min-width: 200px;
+}
+
+.sale-dialog-container .mat-mdc-dialog-container {
+  position: relative;
+  padding: 25px;
+  border: 1px solid $blue-medium;
+  border-radius: 15px;
+  color: $white;
+  background: $blue-dark;
+  overflow: visible;
+  min-width: 200px;
+}
+
+
+// Proposals table
+
+.proposals-table {
+  background: transparent;
+  width: 100%;
+
+  thead {
+    display: none;
+  }
+}
+
+.mat-mdc-paginator {
+  background: transparent;
+  color: white;
+  font-family: $workSans;
+  font-size: 1em;
+
+  .mat-icon-button.mat-button-disabled.mat-button-disabled {
+    color: #ffffff55 !important;
+  }
+}
+
+
+// Proposal loading progress bar
+
+.mat-progress-bar.progress-bar {
+  height: 5px;
+  width: calc(100% - 20px);
+  margin: -5px auto 0;
+
+  .mat-progress-bar-buffer {
+    background-color: $white;
+  }
+
+  .mat-progress-bar-fill::after {
+    background-color: $blue-light;
+  }
+}
+
+
+// Pagination
+
+.mat-mdc-paginator {
+  width: max-content;
+  margin: 0 0 0 auto;
+  display: inline-block !important;
+
+  .mat-mdc-icon-button.mat-mdc-button-disabled.mat-mdc-button-disabled {
+    color: #ffffff55 !important;
+  }
+
+  .mat-mdc-paginator-container {
+    min-height: 30px !important;
+    padding: 0 0 0 15px;
+  }
+
+  .mat-mdc-paginator-range-label {
+    display: none !important;
+  }
+
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__trailing {
+    border: none;
+  }
+
+
+  .mat-mdc-form-field-infix{
+    border-bottom: 1px solid $white !important;
+  }
+
+  .mat-mdc-select-value,
+  .mat-mdc-select-arrow {
+    color: $white !important;
+  }
+
+  .mat-mdc-paginator-icon {
+    fill: $white;
+  }
+}
+
+// Select panel
+
+.cdk-overlay-container .mat-mdc-select-panel {
+  border-radius: 7px !important;
+  padding: 0 !important;
+
+  .mat-mdc-option {
+    font-size: 1rem;
+    line-height: 2em;
+    min-height: 2em;
+
+    span {
+      margin: auto;
+    }
+  }
+}
+
+// Tables
+
+tbody {
+  margin: 0 auto;
+  display: block;
+}
+
+.mat-mdc-table.table-pools{
+  // border: 2px solid $blue-extra-light;
+  border-radius: 1rem;
+  background: $blue-stake-card-background;
+  min-width: auto;
+  padding: 0.6rem;
+  margin: 0.4rem;
+  mat-row{
+    margin: 0px;
+    padding-top: 0.5rem;
+  }
+  mat-cell{
+    border-bottom: 1px solid blue;
+    display: block;
+    &:last-of-type{
+      padding-right: 0px;
+      padding-left: 0px;
+      border-bottom: none;
+    }
+  }
+}
+
+.mat-mdc-menu-panel.menu-select{
+  border-radius: 1rem 1rem 1rem 1rem;
+  width: 11rem;
+  button{
+    font-size: 0.5rem;
+  &:hover{
+    background: $green-light;
+  }
+  }
+}
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 992px) {
+
+}
+
+// Medium devices
+@media (max-width: 768px) {
+
+}
+
+// Small devices
+@media (max-width: 576px) {
+  .head {
+
+    .tip {
+      text-align: center;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 2.2em;
+    }
+
+    .subtitle {
+      text-align: center;
+    }
+  }
+
+  .page {
+    padding: 20px;
+  }
+}
+
+// Extra small devices
+@media (max-width: 320px) {
+  .sale-dialog-container {
+    width: 80%;
+    min-width: 250px;
+    max-width: unset !important;
+  }
+}
+
+
+
+/*
+ *  ANIMATIONS
+ */
+
+// Animation added on controller to manage speed
+
+
+@keyframes card-1 {
+  0%   { z-index: -1; rotate: 6deg; top: 45%; left: 25%; } // pos 1
+  11%  { z-index: 0; }
+  22%  { z-index: 0;  rotate: 12deg; top: 60%; left: 35%; } // pos 2
+  33%  { z-index: 0;  rotate: 12deg; top: 60%; left: 35%; } // pos 2
+  44%  { z-index: 1;  }
+  55%  { z-index: 1;  rotate: 24deg; top: 80%; left: 40%; } // pos 3
+  66%  { z-index: 1;  rotate: 24deg;  top: 80%; left: 40%; transform: translate(-50%, -50%) rotate3d(0, 8, 5, 0deg);} // pos 3
+  77%  { z-index: 1; rotate: -15deg; top: 65%; left: 100%; transform: translate(-50%, -50%) rotate3d(-4, 20, 8, 88deg); } // 3 to 1
+  77.01% { z-index: -1; }
+  88%  { z-index: -1; rotate: 6deg;   top: 45%; left: 25%; transform: translate(-50%, -50%) rotate3d(0, 8, 5, 0deg); } // pos 1
+  100% { z-index: -1; rotate: 6deg;   top: 45%; left: 25%; } // pos 1
+}
+
+@keyframes card-2 {
+  0%   { z-index: 0;  rotate: 12deg; top: 60%; left: 35%; } // pos 2
+  11%  { z-index: 1;  }
+  22%  { z-index: 1;  rotate: 24deg; top: 80%; left: 40%; } // pos 3
+  33%  { z-index: 1;  rotate: 24deg;  top: 80%; left: 40%; transform: translate(-50%, -50%) rotate3d(0, 8, 5, 0deg);} // pos 3
+  44%  { z-index: 1; rotate: -15deg; top: 65%; left: 100%; transform: translate(-50%, -50%) rotate3d(-4, 20, 8, 88deg); } // 3 to 1
+  44.01% { z-index: -1; }
+  55%  { z-index: -1; rotate: 6deg;   top: 45%; left: 25%; transform: translate(-50%, -50%) rotate3d(0, 8, 5, 0deg); } // pos 1
+  66%  { z-index: -1; rotate: 6deg; top: 45%; left: 25%; } // pos 1
+  77%  { z-index: 0; }
+  88%  { z-index: 0;  rotate: 12deg; top: 60%; left: 35%; } // pos 2
+  100% { z-index: 0;  rotate: 12deg; top: 60%; left: 35%; } // pos 2
+}
+
+@keyframes card-3 {
+  0%   { z-index: 1;  rotate: 24deg;  top: 80%; left: 40%; transform: translate(-50%, -50%) rotate3d(0, 8, 5, 0deg);} // pos 3
+  11%   { z-index: 1; rotate: -15deg; top: 65%; left: 100%; transform: translate(-50%, -50%) rotate3d(-4, 20, 8, 88deg); } // 3 to 1
+  11.01% { z-index: -1; }
+  22%  { z-index: -1; rotate: 6deg;   top: 45%; left: 25%; transform: translate(-50%, -50%) rotate3d(0, 8, 5, 0deg); } // pos 1
+  33%  { z-index: -1; rotate: 6deg; top: 45%; left: 25%; } // pos 1
+  44%  { z-index: 0; }
+  55%  { z-index: 0;  rotate: 12deg; top: 60%; left: 35%; } // pos 2
+  66%  { z-index: 0;  rotate: 12deg; top: 60%; left: 35%; } // pos 2
+  77%  { z-index: 0;  }
+  88%  { z-index: 1;  rotate: 24deg; top: 80%; left: 40%; } // pos 3
+  100% { z-index: 1;  rotate: 24deg; top: 80%; left: 40%; } // pos 3
+}
+
+@keyframes data-scroll-1 {
+  0%     { transform: translate(0%, -50%); }
+  25%    { transform: translate(-50%, -50%); }
+  50%    { transform: translate(-100%, -50%); }
+  50.01% { transform: translate(-100%, -50%); opacity: 1; }
+  50.02% { transform: translate(-100%, -50%); opacity: 0; }
+  50.03% { transform: translate(100%, -50%); opacity: 1; }
+  75%    { transform: translate(50%, -50%); }
+  100%   { transform: translate(0%, -50%); }
+}
+
+@keyframes data-scroll-2 {
+  from { transform: translate(100%, -50%); }
+    to  { transform: translate(-100%, -50%); }
+}
+
+@keyframes districts-init {
+  from { scale: 0; transform: translate(700px, 700px); }
+  to   { scale: 1; transform: translate(0px, 0px); }
+}
+
+@keyframes move-arrow {
+  0%   { transform: translateY(-1px); }
+  50%  { transform: translateY(1px); }
+  100% { transform: translateY(-1px); }
+}
+
+@keyframes move-icon {
+  0%,
+  100% { transform: rotate(0deg); transform-origin: 50% 100%; }
+  10% { transform: rotate(2deg); }
+  20%,
+  40%,
+  60% { transform: rotate(-4deg); }
+  30%,
+  50%,
+  70% { transform: rotate(4deg); }
+  80% { transform: rotate(-2deg); }
+  90% { transform: rotate(2deg); }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes rarityBoosterWaiting-0 {
+  0%    { color: $white; }
+  12.5% { color: $white; }
+  12.6% { color: $white-transparent-60; }
+  100%  { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-1 {
+  0%    { color: $white-transparent-60; }
+  12.4% { color: $white-transparent-60; }
+  12.5% { color: $white; }
+  25%   { color: $white; }
+  25.1% { color: $white-transparent-60; }
+  87.4% { color: $white-transparent-60; }
+  87.5% { color: $white; }
+  99.9% { color: $white; }
+  100%  { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-2 {
+  0%    { color: $white-transparent-60; }
+  24.9% { color: $white-transparent-60; }
+  25%   { color: $white; }
+  37.5% { color: $white; }
+  37.6% { color: $white-transparent-60; }
+  74.9% { color: $white-transparent-60; }
+  75%   { color: $white; }
+  87.5% { color: $white; }
+  87.6% { color: $white-transparent-60; }
+  100%  { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-3 {
+  0%    { color: $white-transparent-60; }
+  37.4% { color: $white-transparent-60; }
+  37.5% { color: $white; }
+  50%   { color: $white; }
+  50.1% { color: $white-transparent-60; }
+  62.4% { color: $white-transparent-60; }
+  62.5% { color: $white; }
+  75%   { color: $white; }
+  75.1% { color: $white-transparent-60; }
+  100%  { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-4 {
+  0%    { color: $white-transparent-60; }
+  49.9% { color: $white-transparent-60; }
+  50%   { color: $white; }
+  62.5% { color: $white; }
+  62.6% { color: $white-transparent-60; }
+  100%  { color: $white-transparent-60; }
+}
+
+@keyframes land-mining {
+  0% { transform: translate(0); }
+  1% { transform: translate(-2px, 2px); }
+  2% { transform: translate(-2px, -2px); }
+  3% { transform: translate(2px, 2px); }
+  4% { transform: translate(2px, -2px); }
+  5% { transform: scale3d(1, 1, 1) translate(0); }
+  9% { transform: scale3d(1.25, 0.75, 1) translate(0);}
+  12% { transform: scale3d(0.75, 1.25, 1); }
+  15% { transform: scale3d(1.15, 0.85, 1); }
+  18% { transform: scale3d(0.95, 1.05, 1); }
+  21% { transform: scale3d(1.05, 0.95, 1); }
+  24% { transform: scale3d(1, 1, 1); }
+}
+
+@keyframes mat-mining-0 {
+  0% {opacity: 0;}
+  10.99% {opacity: 0;}
+  11%  { transform: translate(-50%, -70%) rotateX(0) scale(1); transform-origin: 50% -250%; opacity: 1; }
+  65%  { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 50% 100%; opacity: 1; }
+  100% { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 50% 100%; opacity: 1; }
+}
+
+@keyframes mat-mining-1 {
+  0% {opacity: 0;}
+  14.99% {opacity: 0;}
+  15%  { transform: translate(-50%, -70%) rotateX(0) scale(1); transform-origin: 25% -225%; opacity: 1; }
+  65%  { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 0% 100%; opacity: 1; }
+  100% { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 0% 100%; opacity: 1; }
+}
+
+@keyframes mat-mining-2 {
+  0% {opacity: 0;}
+  19.99% {opacity: 0;}
+  20%  { transform: translate(-50%, -70%) rotateX(0) scale(1); transform-origin: 75% -225%; opacity: 1; }
+  70%  { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 100% 100%; opacity: 1; }
+  100% { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 100% 100%; opacity: 1; }
+}
+
+@keyframes mat-mining-3 {
+  0% {opacity: 0;}
+  24.99% {opacity: 0;}
+  25%  { transform: translate(-50%, -70%) rotateX(0) scale(1); transform-origin: 50% -175%; opacity: 1; }
+  75%  { transform: translate(-150%, 0%) rotateX(-30deg) scale(0); transform-origin: 100% 100%; opacity: 1; }
+  100% { transform: translate(-150%, 0%) rotateX(-30deg) scale(0); transform-origin: 100% 100%; opacity: 1; }
+}
+
+@keyframes mat-mining-4 {
+  0% {opacity: 0;}
+  29.99% {opacity: 0;}
+  30%  { transform: translate(-50%, -70%) rotateX(0) scale(1); transform-origin: 100% -175%; opacity: 1; }
+  80%  { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 100% 100%; opacity: 1; }
+  100% { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 100% 100%; opacity: 1; }
+}
+
+@keyframes mat-mining-5 {
+  0% {opacity: 0;}
+  34.99% {opacity: 0;}
+  35%  { transform: translate(-50%, -70%) rotateX(0) scale(1); transform-origin: 50% -250%; opacity: 1; }
+  85%  { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 50% 100%; opacity: 1; }
+  100% { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 50% 100%; opacity: 1; }
+}

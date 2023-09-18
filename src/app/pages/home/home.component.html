@@ -1,0 +1,147 @@
+<app-slider-web-sections></app-slider-web-sections>
+
+<div class="web-description">
+  <div class="content">
+    <h1 class="title">{{ 'home.title' | translate }}</h1>
+    <p class="text">{{ 'home.subtitle' | translate }}</p>
+    <div class="join">
+      <a href="https://discord.gg/outerringmmo" target="_blank">
+        <img class="button" src="assets/images/join_discord.svg" [routerLink]="['/marketplace']" alt="Join discord button" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="newsletter">
+  <div class="container">
+    <h2 class="title">{{ 'home.newsletter.title1' | translate }}.<span>{{ 'home.newsletter.title2' | translate }}</span></h2>
+    <div class="subtitle">
+      <p><b>{{ 'home.newsletter.subtitle1' | translate }}</b>{{ 'home.newsletter.subtitle2' | translate }}</p>
+      <p>{{ 'home.newsletter.subtitle3' | translate }}</p>
+    </div>
+    <div class="subscriber">
+      <div class="input">
+        <input class="email" type="email" size="20" [(ngModel)]="email" (input)="deleteMessage()" />
+        <p class="submit" (click)="submitEmail()">{{ 'home.newsletter.subscribe' | translate }}</p>
+        <p class="subscribed" *ngIf="emailSent">{{ 'home.newsletter.subscribed' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="marketplace">
+  <div class="content">
+    <div class="data">
+      <h2 class="title">{{ 'home.marketplace.title' | translate }}</h2>
+      <p class="text">{{ 'home.marketplace.subtitle' | translate }}</p>
+      <div class="button" [routerLink]="['/marketplace']">{{ 'home.marketplace.button' | translate }}</div>
+    </div>
+    <div class="slider">
+      <div class="images">
+        <img src="assets/images/lootbox/utilities/tier2.png" [class.visible]="selectedItem === 'weapon'" alt="OR Weapon" />
+        <img src="assets/images/lootbox/utilities/tier3.png" [class.visible]="selectedItem === 'armor'" alt="OR Armor" />
+        <img src="assets/images/lootbox/utilities/vehicle-land.png" [class.visible]="selectedItem === 'landVehicle'" alt="OR Land Vehicle" />
+        <img src="assets/images/lootbox/utilities/vehicle-space.png" [class.visible]="selectedItem === 'spaceVehicle'" alt="OR Space Vehicle" />
+        <img src="assets/images/lootbox/utilities/clanStone.png" [class.visible]="selectedItem === 'clan'" alt="OR Clan Stone" />
+      </div>
+      <div class="tags">
+        <p [class.active]="selectedItem === 'weapon'" (click)="clickToChangeTab(0)">{{ 'categories.weapons' | translate }}</p>
+        <p [class.active]="selectedItem === 'armor'" (click)="clickToChangeTab(1)">{{ 'categories.armors' | translate }}</p>
+        <p [class.active]="selectedItem === 'landVehicle'" (click)="clickToChangeTab(2)">{{ 'categories.landVehicles' | translate }}</p>
+        <p [class.active]="selectedItem === 'spaceVehicle'" (click)="clickToChangeTab(3)">{{ 'categories.spaceVehicles' | translate }}</p>
+        <p [class.active]="selectedItem === 'clan'" (click)="clickToChangeTab(4)">{{ 'categories.clan' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="lootboxes">
+  <div class="content">
+    <div class="data">
+      <h2 class="title">{{ 'home.lootbox.title' | translate }}</h2>
+      <p class="text">{{ 'home.lootbox.subtitle' | translate }}</p>
+      <div class="button" [routerLink]="['/lootboxes']">{{ 'home.lootbox.button' | translate }}</div>
+    </div>
+    <div class="image">
+      <img src="assets/images/lootboxes.png" alt="OR Lootboxes" />
+    </div>
+  </div>
+</div> -->
+
+<div class="merchandising">
+  <div class="content">
+    <div class="data">
+      <h2 class="title">Outer Ring</h2>
+      <p class="text">{{ 'home.merchandising.official' | translate }}</p>
+      <div class="button">
+        <a href="https://shop.outerringmmo.com/" target="_blank">{{ 'home.merchandising.button' | translate }}</a>
+      </div>
+    </div>
+    <div class="image">
+      <img src="assets/images/store/merchandising.png" class="all" alt="All OR T-shirts" />
+      <img src="assets/images/store/shirt1.png" class="shirt1" alt="OR T-shirt" />
+      <img src="assets/images/store/shirt2.png" class="shirt2" alt="OR T-shirt" />
+      <img src="assets/images/store/shirt3.png" class="shirt3" alt="OR T-shirt" />
+      <img src="assets/images/store/shirt4.png" class="shirt4" alt="OR T-shirt" />
+    </div>
+  </div>
+</div>
+
+<div class="governance">
+  <div class="content">
+    <div class="data">
+      <h2 class="title">{{ 'home.governance.title' | translate }}</h2>
+      <p class="text">{{ 'home.governance.subtitle' | translate }}</p>
+      <div class="button" [routerLink]="['/governance']">{{ 'home.governance.button' | translate }}</div>
+    </div>
+    <div class="video">
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/MuIPNir0t9Q?rel=0"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="defi">
+  <div class="content">
+    <div class="data">
+      <h2 class="title">{{ 'home.defi.title' | translate }}</h2>
+      <p class="text">{{ 'home.defi.subtitle' | translate }}</p>
+        <div class="button"  [routerLink]="['/defi/pools']">{{ 'navigation.pools' | translate }}</div>
+        <div class="button" [routerLink]="['/defi/farms']">{{ 'navigation.farms' | translate }}</div>
+    </div>
+    <div class="image">
+      <img src="assets/images/home_coins.png" alt="Falling coins" />
+    </div>
+
+    <img class="image-responsive gq" src="assets/images/home_gq.png" alt="GQ coin" />
+    <img class="image-responsive sck" src="assets/images/home_sck.png" alt="SCK coin" />
+    <img class="image-responsive resource" src="assets/images/home_resource.png" alt="Resource coin" />
+  </div>
+</div>
+
+<div class="blog" *ngIf="posts.length > 0">
+  <div class="content">
+    <div class="data">
+      <h2 class="title">{{ 'home.blog.title' | translate }}</h2>
+    </div>
+    <div class="posts">
+      <div class="post" *ngFor="let post of posts">
+        <a class="link" href="{{post.link}}" target="_blank">
+          <div class="image">
+            <img src="{{post.postmod_data.newacf.imagen_a.sizes.thumbnail}}" alt="OR Blog Post image" />
+          </div>
+          <div class="info">
+            <h2 [innerHTML]="post.title.rendered"></h2>
+            <p [innerHTML]="(post.excerpt.rendered | slice:3:100) + '...'"></p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="34" viewBox="0 0 33 34">
+  <defs>
+    <filter id="Path" x="0" y="0" width="33" height="34" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood flood-color="#2ecef2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Grupo_4095" data-name="Grupo 4095" transform="translate(-360.331 -807.331)">
+    <g transform="matrix(1, 0, 0, 1, 360.33, 807.33)" filter="url(#Path)">
+      <rect id="Path-2" data-name="Path" width="33" height="33" rx="6" fill="#17ef97"/>
+    </g>
+    <path id="Trazado_1701" data-name="Trazado 1701" d="M8.921,8.494a.721.721,0,1,0,1.442,0V0H1.875a.721.721,0,0,0,0,1.442H7.836L.21,9.067A.721.721,0,0,0,.721,10.3a.712.712,0,0,0,.509-.211L8.921,2.4Z" transform="translate(369.307 823.635) rotate(-45)" fill="#fff"/>
+  </g>
+</svg>

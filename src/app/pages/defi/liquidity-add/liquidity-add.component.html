@@ -1,0 +1,18 @@
+<div class="parent">
+  <div class="div1">{{ 'liquidity' | translate}}fgfgfgfgfgfgfgf </div>
+  <div class="div2">{{ 'Receive materials and earn' | translate}} </div>
+  <div class="div3"><app-settings-button></app-settings-button></div>
+  <div class="div4">{{ 'From' | translate }} <span><img [src]="'assets/images/tokens/' + liquidity.token1Icon">{{liquidity.token1}} </span> </div>
+  <div class="div5">{{ 'Balance' | translate }}&nbsp;{{liquidity.token1blance}} </div>
+  <div class="div6"><input class="input" placeholder="0.0"><button class="btn btn-max">{{ 'Max' | translate | uppercase }}</button></div>
+  <div class="div7"><span><mat-icon>add</mat-icon></span> </div>
+  <div class="div8">{{ 'To' | translate }} <span><img [src]="'assets/images/tokens/' + liquidity.token2Icon">{{liquidity.token2}} </span>  </div>
+  <div class="div9">{{ 'Balance' | translate }}&nbsp;{{liquidity.token2blance}}  </div>
+  <div class="div10"><input class="input" placeholder="0.0"><button class="btn btn-max">{{ 'Max' | translate | uppercase }}</button> </div>
+  <div class="div11">{{ 'Slippage Tolerance' | translate }}</div>
+  <div class="div12">{{ liquidity.slippage | percent }} </div>
+  <div class="div13">
+    <ng-template #noConnected><button class="btn btn-connect">{{'Connect wallet' | translate | uppercase}}</button> </ng-template>
+    <button class="btn btn-add" *ngIf="connected; else noConnected">{{'Approve' | translate | uppercase}}</button>
+  </div>
+  </div>

@@ -1,0 +1,36 @@
+<!-- TITLE -->
+<div class="selected-land">
+  <ng-container *ngIf="zone.ring === ''">
+    <p class="all">{{"lands.neighbours.filterTitle1" | translate}} <b>{{"lands.viewer.filterTitle2" | translate}}</b></p>
+  </ng-container>
+
+  <ng-container *ngIf="zone.ring !== ''">
+    <p class="main">{{"lands.neighbours.neighboursOn" | translate}}:</p>
+    <p class="ring">{{zone.ring}}</p>
+    <p class="sector" *ngIf="zone.sector !== ''">{{"lands.viewer.sector" | translate}} {{zone.sector}}</p>
+    <p class="zone" *ngIf="zone.district !== ''">{{zone.district}}</p>
+  </ng-container>
+</div>
+
+<!-- NEIGHBOUR LIST -->
+<div *ngIf="loadingNeighbours" class="spinner">
+  <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+</div>
+
+<div *ngIf="neighbourList && !loadingNeighbours">
+  <div class="neighbour-list" *ngIf="neighbourList.length > 0">
+    <div *ngFor="let neighbour of neighbourList" class="neighbour" (mousedown)="preventScroll($event)" (click)="clickToDetail(neighbour.tokenId)" (auxclick)="wheelToDetail($event, neighbour.tokenId)">
+      <mat-icon class="detail">search</mat-icon>
+      <img src="assets/images/lands/land_{{neighbour.size | lowercase}}.png" class="image" alt="Land NFT image">
+      <p class="name">{{neighbour.size}} land</p>
+      <div *ngIf="!neighbour.image" class="owner">
+        <p class="wallet">{{'lands.neighbours.owner' | translate}}:</p>
+        <p>{{neighbour.currentOwner | shortWallet}}</p>
+      </div>
+      <img *ngIf="neighbour.image" src="assets/images/partnership/baskonia_logo.svg" class="logo" alt="Partner logo">
+    </div>
+  </div>
+  <div class="no-neighbour" *ngIf="neighbourList.length === 0">
+    <h2>{{'lands.neighbours.noNeighbours' | translate}}</h2>
+  </div>
+</div>

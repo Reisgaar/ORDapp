@@ -1,0 +1,142 @@
+@import '/src/styleVariables.scss';
+
+.slider {
+  position: relative;
+
+  .background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+  }
+
+  .wrapper {
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    padding: 50px 20px;
+    color: $white;
+
+    .title {
+      text-align: center;
+      font-family: $workSans;
+      text-transform: uppercase;
+      color: $white;
+      font-size: 3em;
+      line-height: 1em;
+      font-weight: 500;
+    }
+  }
+}
+
+.submenu-wrapper {
+  background: $blue-header;
+  padding: 5px 0;
+  border-top: 1px solid $blue-medium;
+  position: sticky;
+  z-index: 3;
+  top: 100px;
+
+  .submenu {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    .display,
+    .sorting {
+      color: $white;
+
+      .button {
+        cursor: pointer;
+        display: inline-block;
+        border: 1px solid $white;
+        border-radius: 5px;
+        line-height: 0;
+        padding: 4px;
+        background: $blue-semi-dark;
+        margin: 0 5px;
+
+        .icon {
+          height: 13px;
+          width: 13px;
+        }
+
+        &.active {
+          cursor: default;
+          background-color: $blue-medium;
+        }
+      }
+    }
+
+    .sorting {
+      justify-self: end;
+
+      &-name {
+
+        .icon {
+          height: auto;
+          width: auto;
+          font-size: 1.2em;
+          vertical-align: text-bottom;
+
+          &-up {
+            rotate: -90deg;
+          }
+
+          &-down {
+            rotate: 90deg;
+            transform: translateY(2px);
+          }
+        }
+      }
+    }
+  }
+}
+
+.content {
+  width: 100%;
+  overflow-x: hidden;
+
+  .block {
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+    color: $white;
+    padding: 50px 10px 30px;
+
+    .map {
+      margin: auto;
+      width: 100%;
+    }
+  }
+
+  .switcher {
+    max-width: 1200px;
+    margin: 0 auto -20px;
+    color: $white;
+    text-align: center;
+
+    .button {
+      cursor: pointer;
+      background: $blue-medium;
+      display: inline-block;
+      padding: 3px 10px;
+      margin: 0 15px;
+      border-radius: 8px;
+      text-transform: uppercase;
+
+      &.active {
+        cursor: default;
+        background-color: $blue-light;
+      }
+
+      &:hover {
+        background: $blue-light;
+      }
+    }
+  }
+}

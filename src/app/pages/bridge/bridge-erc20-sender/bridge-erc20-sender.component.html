@@ -1,0 +1,68 @@
+<p class="name">{{token.name | uppercase}}</p>
+
+<div class="token" [class.second-step]="amountIsConfirmed">
+  <img src="{{token.image | lowercase}}" class="image">
+
+  <ng-container *ngIf="!amountIsConfirmed">
+    <div class="total">
+      <p>{{'bridge.sender.yourBalance' | translate}}</p>
+      <p>
+        <span *ngIf="tokenBalance === ''" class="progress-bar">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </span>
+        <span *ngIf="tokenBalance !== ''">{{(tokenBalance | fromWei) | number:'1.0-4'}}</span>
+      </p>
+    </div>
+
+    <div class="input">
+      <p class="token-label">{{'bridge.sender.amountToTransfer' | translate}}</p>
+      <div class="input-field">
+        <input type="text"
+          class="token-amount"
+          id="{{token.ticker |lowercase}}Amount"
+          name="{{token.ticker |lowercase}}Amount"
+          autocomplete="off"
+          inputmode="decimal"
+          placeholder="0.0"
+          pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+          value="0"
+          [(ngModel)]="tokenSelectedAmount"
+          (keypress)="controlInput($event)"
+          (input)="validateForm()"
+        />
+        <p (click)="setAmountToPercent(100)" class="max">{{'bridge.max' | translate}}</p>
+      </div>
+
+      <p class="error" [class.active]="formError">
+        <span>*{{'bridge.sender.balanceError' | translate}}</span>
+      </p>
+    </div>
+
+    <div class="buttons">
+      <p *ngIf="!formError && tokenSelectedAmount !== '0'" class="button" (click)="checkAmountAndContinue()">{{ 'popUp.button.accept' | translate }}</p>
+      <p *ngIf="formError || tokenSelectedAmount === '0'" class="button disabled">{{ 'popUp.button.accept' | translate }}</p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="amountIsConfirmed">
+    <div class="wallet">
+      <div class="wallet-switcher">
+        <div class="checkbox" [class.checked]="sendToAnotherWallet" (click)="switchReceiverWalletCheckbox()"><div></div></div>
+        <span> {{'bridge.sender.sendToAnother' | translate}}</span>
+      </div>
+      <input type="text" class="token-amount" *ngIf="sendToAnotherWallet" [(ngModel)]="receiver" (input)="validateWalletInput($event)" />
+      <p class="advice" *ngIf="sendToAnotherWallet">*{{'bridge.sender.sendToAnotherFee' | translate}}</p>
+    </div>
+    <div class="confirmation">
+      <p>{{('bridge.sender.sendingTo' | translate).replace('***', (tokenSelectedAmount+ ' ' + token.ticker))}}:</p>
+      <p *ngIf="!walletError">{{receiver | shortWallet}}</p>
+      <p class="error" *ngIf="walletError">*{{'bridge.sender.addressError' | translate}}</p>
+    </div>
+    <div class="buttons">
+      <p class="button small" (click)="backToForm()">{{ 'popUp.button.back' | translate }}</p>
+      <p class="button small" (click)="sendTokenToGame()" *ngIf="!walletError">{{ 'popUp.button.accept' | translate }}</p>
+      <p class="button small disabled" *ngIf="walletError" >{{ 'popUp.button.accept' | translate }}</p>
+    </div>
+  </ng-container>
+
+</div>

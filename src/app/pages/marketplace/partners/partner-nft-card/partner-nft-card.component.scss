@@ -1,0 +1,143 @@
+@import '/src/styleVariables.scss';
+
+.nft-card {
+  cursor: pointer;
+  background: $blue-card-background;
+  padding: 15px;
+  border-radius: 15px;
+  color: $white;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  .image {
+    position: relative;
+    text-align: center;
+    height: 220px;
+    width: 220px;
+
+    .nft {
+      background: $white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 15px;
+    }
+
+    .countdown {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 100%;
+      text-align: center;
+      color: $white;
+      border-radius: 10px;
+      padding: 5px;
+      width: 100px;
+      background: $green;
+
+      &.ended {
+        background: $red;
+      }
+    }
+  }
+
+  .data {
+
+    .name {
+      position: relative;
+      margin: 15px 0 5px 0;
+      height: 35px;
+
+      h2 {
+        text-align: center;
+        line-height: 1em;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .ownership {
+      padding: 5px 0;
+
+      .image {
+        display: inline-block;
+        margin-right: 10px;
+        width: 30px;
+        height: 30px;
+
+        img {
+          width: 100%;
+
+          &.custom {
+            background: white;
+            border-radius: 15%;
+            background-image: url('/assets/images/blog_background.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+        }
+      }
+
+      .data {
+        display: inline-block;
+
+        p {
+          margin: 0;
+        }
+
+        .title {
+          font-size: 0.9em;
+          font-weight: 300;
+        }
+
+        .owner {
+          font-weight: 500;
+        }
+      }
+
+      &:hover {
+
+        .data {
+          color: $blue-extra-light;
+        }
+      }
+    }
+
+    .price {
+      padding: 5px 0;
+      border-top: 2px solid #2d697e;
+      height: 50px;
+
+      p {
+        margin: 0;
+      }
+
+      .title {
+        font-size: 0.9em;
+        font-weight: 300;
+      }
+
+      .value {
+        font-weight: 500;
+
+        .conversion {
+          white-space: nowrap;
+          font-size: 0.8em;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,151 @@
+<div class="slider"
+  (mousedown)="mouseStartSlider($event, $event.clientX)"
+  (mouseup)="mouseStopSlider($event.clientX)"
+  (touchstart)="mouseStartSlider($event, $event.changedTouches[0].screenX)"
+  (touchend)="mouseStopSlider($event.changedTouches[0].screenX)"
+>
+
+  <div class="slider-wrapper slider1" [ngStyle]="{ 'left': posSlider1 + '%', 'opacity': opacitySlider1}">
+    <div class="card lands">
+      <img src="assets/images/slider/card_lands.png" class="background" alt="Lands slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card5.tip1' | translate }}<span>{{ 'slider.card5.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card5.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card5.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" (click)="navigateTo('/lands', true)" (touchend)="navigateTo('/lands', true)">{{ 'slider.card5.button1' | translate }}</p>
+          <p class="button" (click)="navigateTo('/lands/map', true)" (touchend)="navigateTo('/lands/map', true)">{{ 'slider.card5.button2' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card marketplace">
+      <img src="assets/images/slider/card_marketplace.png" class="background" alt="Marketplace slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card1.tip1' | translate }}<span>{{ 'slider.card1.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card1.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card1.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" (click)="navigateTo('/profile', true)" (touchend)="navigateTo('/profile', true)">{{ 'slider.card1.button1' | translate }}</p>
+          <p class="button" (click)="navigateTo('/marketplace', true)" (touchend)="navigateTo('/marketplace', true)">{{ 'slider.card1.button2' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="card lootbox">
+      <img src="assets/images/slider/card_lootbox.png" class="background" alt="Lootbox slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card2.tip1' | translate }}<span>{{ 'slider.card2.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card2.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card2.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" (click)="navigateTo('/lootboxes', true)" (touchend)="navigateTo('/lootboxes', true)">{{ 'slider.card2.button1' | translate }}</p>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="card governance">
+      <img src="assets/images/slider/card_governance.png" class="background" alt="Governance slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card3.tip1' | translate }}<span>{{ 'slider.card3.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card3.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card3.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" (click)="navigateTo('/governance', true)" (touchend)="navigateTo('/governance', true)">{{ 'slider.card3.button1' | translate }}</p>
+          <p class="button" (click)="navigateTo('/governance/proposals', true)" (touchend)="navigateTo('/governance/proposals', true)">{{ 'slider.card3.button2' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card defi">
+      <img src="assets/images/slider/card_defi.png" class="background" alt="Defi slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card4.tip1' | translate }}<span>{{ 'slider.card4.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card4.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card4.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" [routerLink]="['/defi']" (touchend)="navigateTo('https://outerringmmo.com/defi', false)">{{ 'slider.card4.button1' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-wrapper slider2" [ngStyle]="{ 'left': posSlider2 + '%', 'opacity': opacitySlider2}">
+    <div class="card lands">
+      <img src="assets/images/slider/card_lands.png" class="background" alt="Lands slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card5.tip1' | translate }}<span>{{ 'slider.card5.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card5.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card5.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" (click)="navigateTo('/lands', true)" (touchend)="navigateTo('/lands', true)">{{ 'slider.card5.button1' | translate }}</p>
+          <p class="button" (click)="navigateTo('/lands/map', true)" (touchend)="navigateTo('/lands/map', true)">{{ 'slider.card5.button2' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card marketplace">
+      <img src="assets/images/slider/card_marketplace.png" class="background" alt="Marketplace slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card1.tip1' | translate }}<span>{{ 'slider.card1.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card1.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card1.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" (click)="navigateTo('/profile', true)" (touchend)="navigateTo('/profile', true)">{{ 'slider.card1.button1' | translate }}</p>
+          <p class="button" (click)="navigateTo('/marketplace', true)" (touchend)="navigateTo('/marketplace', true)">{{ 'slider.card1.button2' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="card lootbox">
+      <img src="assets/images/slider/card_lootbox.png" class="background" alt="Lootbox slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card2.tip1' | translate }}<span>{{ 'slider.card2.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card2.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card2.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" (click)="navigateTo('/lootboxes', true)" (touchend)="navigateTo('/lootboxes', true)">{{ 'slider.card2.button1' | translate }}</p>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="card governance">
+      <img src="assets/images/slider/card_governance.png" class="background" alt="Governance slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card3.tip1' | translate }}<span>{{ 'slider.card3.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card3.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card3.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" (click)="navigateTo('/governance', true)" (touchend)="navigateTo('/governance', true)">{{ 'slider.card3.button1' | translate }}</p>
+          <p class="button" (click)="navigateTo('/governance/proposals', true)" (touchend)="navigateTo('/governance/proposals', true)">{{ 'slider.card3.button2' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card defi">
+      <img src="assets/images/slider/card_defi.png" class="background" alt="Defi slider image" />
+      <div class="card-content">
+        <h2 class="tip">{{ 'slider.card4.tip1' | translate }}<span>{{ 'slider.card4.tip2' | translate }}</span></h2>
+        <h1 class="title">{{ 'slider.card4.title' | translate }}</h1>
+        <p class="text">{{ 'slider.card4.text' | translate }}</p>
+        <div class="buttons">
+          <p class="button" [routerLink]="['/defi']" (touchend)="navigateTo('https://outerringmmo.com/defi', false)">{{ 'slider.card4.button1' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="selector">
+    <div *ngFor="let a of sliderCards" class="selector-dot" (click)="setSliderVisibleCard(a)" (touchend)="setSliderVisibleCard(a)">
+      <div class="selector-dot-filling" [class.active]="selectedCard === a"></div>
+    </div>
+  </div>
+  <div class="control toLeft" (click)="clickToMoveSlider(true)" (touchend)="clickToMoveSlider(true)">
+    <mat-icon class="icon">chevron_left</mat-icon>
+  </div>
+  <div class="control toRight" (click)="clickToMoveSlider(false)" (touchend)="clickToMoveSlider(false)">
+    <mat-icon class="icon">chevron_right</mat-icon>
+  </div>
+
+
+</div>

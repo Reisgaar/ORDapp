@@ -1,0 +1,65 @@
+<div class="col-center">
+  <div class="mat-content">
+
+    <div class="close">
+      <p class="text">{{ 'defi.minus.title' | translate }}<span class="button" (click)="closePopUp()">X</span></p>
+    </div>
+
+
+    <div *ngIf="!this.isConnect; else connected">
+      <p><strong>{{ 'defi.minus.pleaseConnect' | translate }} </strong></p>
+      <app-connect></app-connect>
+    </div>
+
+    <ng-template #connected>
+      <div class="remove">
+        <p><strong>{{ 'defi.minus.LPBalance' | translate }}</strong></p>
+        <p><span class="tex-med">{{maxAmount | number:"1.0-5"}}</span> {{data.farm.subsidiaryTokenSymbol1}} +
+          {{data.farm.subsidiaryTokenSymbol2}}</p>
+
+        <p><strong>{{ 'defi.minus.selectAmountToRemove' | translate }}</strong></p>
+
+        <div class="form">
+          <input type="number" name="ammount" [(ngModel)]="amount" class="form-rmv"
+            (keyup)="$event ? maxBalance() : null" placeholder="0.0" [value]="amount" (keypress)="preventErase($event)"
+            max="{{maxAmount}}" required>
+          <button class="btn bmax pointer" (click)="setPercent(100)">MAX</button>
+        </div>
+
+
+        <mat-slider class="form-big-lm pointer" style="width: 100%;" [max]="max" [min]="min" [step]="step"
+          [thumbLabel]="false" (change)="$event?setPercent(ammountPercentaje): null">
+          <input matSliderThumb [(ngModel)]="ammountPercentaje">
+        </mat-slider>
+        <div class="center-chip">
+          <mat-chip-list class="mat-chip-list-minus" aria-label="selection" #slip>
+            <mat-chip *ngFor="let percent of percents" selected (click)="setPercent(percent)" class="chip pointer">
+              {{percent}} %
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+
+        <!--Resume-->
+        <div *ngIf="ammountPercentaje" class="result">
+          <p class="tex-med">{{ 'defi.minus.amountToReceive' | translate }}</p>
+          <div class="grid-token">
+            <div class="token-sub">
+              <img src="{{data.farm.subsidiaryTokenImg1}}" width="35px">
+              <span class="tex-med">{{data.farm.subsidiaryTokenSymbol1}}</span>&nbsp;
+              <span class="tex-green">{{ rewardTokenFirst | number:"1.0-5"}}</span>
+            </div>
+            <div class="token-sub"><fa-icon [icon]="faPlusCircle" class="fa-2x"></fa-icon></div>
+            <div class="token-sub">
+              <img src="{{data.farm.subsidiaryTokenImg2}}" width="35px">
+              <span class="tex-med"> {{data.farm.subsidiaryTokenSymbol2}}</span>&nbsp;
+              <span class="tex-green">{{ rewardTokenSecond | number:"1.0-5"}}</span>
+            </div>
+          </div>
+
+          <button (click)="remove()" class="btn-rmv">
+            {{ 'defi.minus.remove' | translate | uppercase }}
+          </button>
+
+        </div>
+      </div>
+    </ng-template>

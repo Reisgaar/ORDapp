@@ -1,0 +1,270 @@
+@import 'src/styleVariables.scss';
+
+.head {
+  max-width: 840px;
+}
+
+.form {
+  position: relative;
+  color: $white;
+  max-width: 800px;
+  margin: 30px auto 0;
+  padding: 20px;
+
+  .back,
+  .info {
+    cursor: pointer;
+
+    &-icon {
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+
+    &-text {
+      vertical-align: middle;
+    }
+  }
+
+  .back {
+    margin: -10px auto 15px;
+  }
+
+  .info {
+    text-align: center;
+  }
+
+  .input {
+    margin: 25px auto;
+    position: relative;
+
+    label {
+      display: block;
+      padding-left: 15px;
+
+      .label-tip {
+        font-size: 0.9em;
+        font-weight: 300;
+        font-style: italic;
+        white-space: nowrap;
+      }
+    }
+
+    &.date.hidden {
+      opacity: 0;
+      height: 0;
+      margin: 0;
+    }
+
+    .title,
+    .description,
+    .options,
+    .email,
+    .name {
+      font-family: 'Work Sans';
+      display: block;
+      width: calc(100% - 32px);
+      background-color: $blue-dark;
+      border: 1px solid $blue-medium;
+      border-radius: 15px;
+      color: $white;
+      padding: 10px 15px;
+    }
+
+    .description {
+      font-family: $workSans;
+      border-radius: 15px 15px 0 0 !important;
+      border-bottom: 1px solid $blue-extra-light;
+      resize: none;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+        margin: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        background: $white;
+      }
+    }
+
+    .file {
+      cursor: pointer;
+      position: relative;
+      border-radius: 0 0 15px 15px;
+      border: 1px solid #262EBF;
+      border-top: unset;
+      padding: 10px 15px;
+      width: calc(100% - 32px);
+      transition: padding 1s ease-in-out;
+
+      &.user {
+        cursor: default;
+
+        &:hover {
+          background-color: unset !important;
+        }
+      }
+
+      &.dropping {
+        background-color: #FFFFFF0F;
+        padding: 30px 15px;
+        transition: padding 1s ease-in-out;
+      }
+
+      &.dropped {
+        background-color: #FFFFFF0F;
+      }
+
+      &:hover{
+        background-color: #FFFFFF0F;
+      }
+
+      #file-upload {
+        cursor: pointer;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        right: 0;
+        height: 100%;
+        opacity: 0;
+      }
+
+      .remove-file {
+        cursor: pointer;
+        padding: 10px;
+        position: absolute;
+        z-index: 2;
+        right: 0;
+        top: 0;
+
+        .icon {
+          font-size: 20px;
+          height: max-content;
+          width: max-content;
+
+          &:hover {
+            color: $red;
+          }
+        }
+      }
+
+      .text,
+      .file-names {
+        margin: 0;
+        font-size: 0.9em;
+
+        span {
+          font-weight: 200;
+        }
+      }
+
+      .text .file-error {
+        display: block;
+        color: $red-error;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+    }
+
+    .description-length {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-weight: 200;
+      font-size: 0.9em;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: $blue-light;
+      margin: 10px;
+      padding: 3px 10px;
+      border-radius: 15px;
+
+      .remove {
+        cursor: pointer;
+      }
+    }
+
+    .date-picker {
+      background: none;
+      color: white;
+      border: 1px solid $blue-medium;
+      border-radius: 15px;
+      padding: 5px 15px;
+      margin: 5px 25px 5px 0;
+      font-family: $workSans;
+      font-size: 1em;
+
+      &::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+      }
+    }
+
+    &.user {
+      display: inline-block;
+
+      &-name {
+        width: 40%;
+      }
+
+      &-email {
+        width: calc(60% - 20px);
+        margin-left: 20px;
+      }
+    }
+
+    .submit {
+      cursor: pointer;
+      font-family: $workSans;
+      background-color: $blue-extra-light;
+      border: none;
+      padding: 8px 30px;
+      color: white;
+      border-radius: 50px;
+      font-size: 1.3em;
+
+      &:hover {
+        background-color: $blue-light;
+      }
+    }
+
+    .error-message {
+      color: $red-error;
+      padding-left: 15px;
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Small devices
+@media (max-width: 576px) {
+  .form {
+
+    .input {
+
+      &.user {
+        display: block;
+
+        &-name {
+          width: unset;
+        }
+
+        &-email {
+          width: unset;
+          margin-left: unset;
+        }
+      }
+    }
+  }
+}

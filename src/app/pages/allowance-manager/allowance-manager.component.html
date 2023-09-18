@@ -1,0 +1,39 @@
+<div class="content">
+  <h1>{{'allowance.allowanceManager' | translate}}</h1>
+  <div class="section" *ngFor="let section of allowances | keyvalue">
+    <p class="section-title">{{section.value.title}}</p>
+    <div class="contract" *ngFor="let contract of section.value.contracts | keyvalue">
+      <p class="contract-name">
+        <span>{{contract.value.name}} </span>
+        <span class="link"><a class="address" href="https://bscscan.com/address/{{contractAddresses[contract.value.addressConstant]}}" target="_blank">{{'allowance.contract' | translate}}</a></span>
+      </p>
+
+      <div class="tokens">
+        <div class="token" *ngFor="let token of contract.value.allowedTokens | keyvalue">
+          <div class="data">
+            <img class="image" src="assets/images/tokens/{{token.value.ticker.toLowerCase()}}.png">
+
+            <p class="info">
+              <span class="name">
+                {{token.value.ticker}}
+                <a href="https://bscscan.com/address/{{contractAddresses[token.value.constant]}}" target="_blank">{{'allowance.contract' | translate}}</a>
+              </span>
+              <span>{{'allowance.currentAllowance' | translate}}</span>
+              <span *ngIf="token.value.allowed === ''" class="value"><mat-progress-bar mode="indeterminate"></mat-progress-bar></span>
+              <ng-container *ngIf="token.value.allowed !== ''">
+                <span class="value" *ngIf="token.value.allowed !== 'max' && token.value.allowed !== '0.0'">{{token.value.allowed | number:'1.0-4'}}</span>
+                <span class="value" *ngIf="token.value.allowed === '0.0'">{{'allowance.notAllowed' | translate}}</span>
+                <span class="value" *ngIf="token.value.allowed === 'max'">{{token.value.allowed}}</span>
+              </ng-container>
+            </p>
+            <div class="buttons">
+              <p class="button" (click)="changeAllowance(contractAddresses[token.value.constant], contractAddresses[contract.value.addressConstant], '0')">{{'allowance.revoke' | translate}}</p>
+              <p class="button" (click)="customAllowance(contractAddresses[token.value.constant], contractAddresses[contract.value.addressConstant])">{{'allowance.custom' | translate}}</p>
+              <p class="button" (click)="changeAllowance(contractAddresses[token.value.constant], contractAddresses[contract.value.addressConstant])">{{'allowance.max' | translate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

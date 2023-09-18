@@ -1,0 +1,81 @@
+@import '/src/styleVariables.scss';
+
+.medal-progress {
+  padding: 60px 10px;
+  width: 150px;
+}
+
+.medals {
+  width: 100%;
+
+  .title {
+    font-family: $magistral !important;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .medal {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+
+    img {
+      height: 50px;
+    }
+
+    .tip {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 50%;
+      transform: translateX(50%);
+      text-align: center;
+      width: 80px;
+      color: $white;
+      background-color: $blue-dark;
+      border: 2px solid $blue-medium;
+      border-radius: 7px;
+      font-size: 0.8em;
+      padding: 5px 8px;
+      max-width: 150px;
+      line-height: 1em;
+      z-index: 1;
+    }
+
+    &:hover {
+
+      .tip {
+        display: block;
+      }
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Small devices
+@media (max-width: 576px) {
+  .medals {
+
+    .title {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .medal {
+      line-height: 0;
+
+      img {
+        height: 40px;
+      }
+
+      .tip {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,514 @@
+@import '/src/styleVariables.scss';
+
+.header {
+  height: 100px;
+  background: $blue-header;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  width: 100%;
+  min-width: 320px;
+
+  .logo {
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    padding: 0 5px 0 15px;
+
+    &-image {
+      height: 100%;
+      width: 60px;
+      object-fit: contain;
+    }
+  }
+
+  .navigation {
+
+    &.desktop {
+      display: inline-block;
+      vertical-align: top;
+
+      .navigation-tab {
+        cursor: pointer;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        color: $white;
+        font-family: $workSans;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        margin: 0;
+        padding: 0 8px;
+        line-height: 100px;
+        font-weight: 300;
+
+        &.active {
+          cursor: default;
+
+          .tab-name {
+            position: relative;
+
+            &::before {
+              content: "";
+              position: absolute;
+              width: 100%;
+              height: 1px;
+              background-color: $pink;
+              top: 100%;
+            }
+          }
+        }
+
+        a {
+          text-decoration: none;
+          color: $white;
+        }
+
+        p {
+          margin: 0;
+        }
+
+        .submenu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: $blue-header;
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);
+          width: max-content;
+
+          .subtab {
+            cursor: pointer;
+            line-height: 40px;
+            padding: 0px 10px;
+
+            &.active {
+              cursor: default;
+              background-color: unset;
+
+              &:hover {
+                background-color: unset !important;
+              }
+
+              span {
+                position: relative;
+
+                &::before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  top: 100%;
+                  width: 100%;
+                  height: 1px;
+                  background-color: $pink;
+                }
+              }
+            }
+          }
+        }
+
+        &:hover {
+
+          .submenu {
+            display: block;
+
+            .subtab {
+              display: block;
+
+              &:hover {
+                background: $blue-semi-dark;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.mobile {
+      display: none;
+    }
+  }
+
+  .rightside {
+      display: inline-block;
+      vertical-align: middle;
+      float: right;
+
+    .get-gq {
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      color: $white;
+
+      span {
+        width: max-content;
+        background-color: $blue-light;
+        margin-right: 10px;
+        border-radius: 8px;
+        padding: 5px 10px;
+        font-size: 0.8em;
+        font-weight: 300;
+      }
+    }
+
+    .language {
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+
+      &-text {
+        display: inline-block;
+        vertical-align: middle;
+        font-family: $workSans;
+        color: $white;
+        font-size: 1em;
+        margin: 0;
+        line-height: 100px;
+        font-weight: 300;
+      }
+
+      &-icon {
+        display: inline-block;
+        vertical-align: middle;
+        color: $white;
+        font-size: 25px;
+        padding: 5px;
+      }
+
+      &-selector {
+        cursor: pointer;
+        display: none;
+        position: absolute;
+        background-color: $blue-medium;
+        color: $white;
+        width: 100%;
+        text-align: center;
+        left: 0;
+        top: calc(100% - 30px);
+
+        p {
+          cursor: pointer;
+          margin: 0;
+          padding: 5px;
+
+          &:hover {
+            background-color: $blue-light;
+          }
+
+          &.active {
+            background-color: $blue-medium;
+            cursor: default;
+          }
+        }
+      }
+
+      &:hover {
+
+        .language-selector {
+          display: block;
+        }
+      }
+    }
+
+    .profile {
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      margin: 0 0 0 10px;
+
+      &-icon {
+        display: inline-block;
+        vertical-align: middle;
+        color: $white;
+        font-size: 25px;
+        padding: 5px;
+        border: 1px solid transparent;
+
+        &.active,
+        &:hover {
+          border-radius: 500px;
+          border: 1px solid white;
+        }
+      }
+    }
+
+    .wallet {
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 10px;
+
+      .logout {
+        display: inline-block;
+        vertical-align: middle;
+        color: white;
+        font-size: 1.2em;
+        padding: 30px 0px 30px 10px;
+
+        &:hover {
+          color: $blue-extra-light;
+        }
+      }
+
+      &-text {
+        display: inline-block;
+        vertical-align: middle;
+        font-family: $workSans;
+        color: $white;
+        font-size: 0.9em;
+        margin: 0;
+        line-height: 100px;
+        font-weight: 300;
+      }
+
+      &-icon {
+        display: inline-block;
+        vertical-align: middle;
+        color: $white;
+        font-size: 25px;
+        padding-left: 5px;
+      }
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 992px) {
+
+}
+
+// Medium devices
+@media (max-width: 850px) {
+  .header {
+
+    .logo {
+      cursor: pointer;
+      padding: 0;
+      width: 80px;
+      text-align: center;
+    }
+
+    .wallet {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: max-content;
+      padding: 0;
+    }
+
+    .navigation {
+
+      &.desktop {
+        display: none;
+      }
+
+      &.mobile {
+        cursor: pointer;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+
+        .icon {
+          color: $white;
+          height: unset;
+          width: unset;
+          border-radius: 5px;
+          padding: 5px;
+          font-size: 2.5em;
+        }
+      }
+    }
+
+    .rightside {
+
+      .get-gq,
+      .language,
+      .profile {
+        display: none;
+      }
+    }
+  }
+}
+
+.mobile-menu {
+  background-color: $blue-dark;
+  position: fixed;
+  z-index: 5;
+  height: 100vh;
+  width: 100vw;
+  min-width: 320px;
+  top: 0;
+  left: 0;
+  color: white;
+  overflow: scroll;
+
+  .top-side {
+    text-align: center;
+    height: 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    .logo-image {
+      grid-column: 1;
+      align-self: center;
+      height: 50px;
+      padding: 25px 15px;
+    }
+
+    .close {
+      grid-column: 3;
+      align-self: center;
+      text-align: right;
+      padding-right: 15px;
+      cursor: pointer;
+      font-size: 3em;
+      height: unset;
+      width: unset;
+    }
+
+    .language {
+      grid-column: 2;
+      align-self: center;
+      text-align: center;
+
+      &-icon {
+        font-size: 1.5em;
+        height: auto;
+        width: auto;
+        vertical-align: middle;
+      }
+
+      p {
+        cursor: pointer;
+        font-size: 1.3em;
+        margin: 0;
+        padding: 5px;
+        display: inline-block;
+        vertical-align: middle;
+
+        &.active {
+          color: $pink;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  .section {
+    border-top: 1px solid $blue-extra-light;
+    padding: 15px 20px;
+    position: relative;
+
+    .icon {
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 15px;
+    }
+
+    .navigation-tab {
+      cursor: pointer;
+      position: relative;
+      padding: 3px 0 0;
+      font-size: 1.3em;
+
+      &:hover {
+        color: $pink-light;
+      }
+
+      a {
+        text-decoration: none;
+        color: $white;
+      }
+
+      &.sub-tab {
+
+        .link {
+          color: $blue-extra-light;
+          font-size: 1em;
+          padding: 8px 0 0;
+          margin: 0 15px;
+        }
+
+        .description {
+          font-size: 0.65em;
+          margin: 0 15px;
+          line-height: 1em;
+        }
+
+        &:hover {
+          .link {
+            color: $pink-light;
+          }
+          .description {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+
+  .get-gq {
+    cursor: pointer;
+    background-color: $blue-medium;
+    padding: 10px 20px;
+
+    &:hover {
+      background-color: $blue-light;
+    }
+
+    p {
+      display: inline-block;
+      vertical-align: middle;
+      text-transform: uppercase;
+      margin: 0;
+      font-size: 1.2em;
+      font-weight: 500;
+    }
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      height: 20px;
+      margin-left: 10px;
+    }
+  }
+
+  .social {
+    padding: 20px 0;
+    text-align: center;
+
+    &-item {
+
+      &-icon {
+        cursor: pointer;
+        color: $blue-extra-light;
+        font-size: 1.5em;
+        padding: 10px;
+
+        &:hover {
+          color: $pink;
+        }
+      }
+    }
+  }
+}
+
+// Extra small devices
+@media (max-width: 320px) {
+
+}

@@ -1,0 +1,161 @@
+<div class="close">
+  <p class="text">
+    <span>{{'partner.burn.burnTitle' | translate}}</span>
+    <span class="button" (click)="closePopUp()">X</span>
+  </p>
+</div>
+
+<div class="content" *ngIf="!redeemProcessStarted">
+  <form class="form" [formGroup]="addressForm" (ngSubmit)="submitForm()" [class.hidden]="addressIsSent">
+    <p></p>
+    <div class="fields">
+      <div class="field firstName">
+        <label class="field-label" for="firstName">{{'partner.burn.firstName' | translate}}</label>
+        <input class="field-input" type="text" id="firstName" formControlName="firstName" />
+      </div>
+      <div class="field lastName">
+        <label class="field-label" for="lastName">{{'partner.burn.lastName' | translate}}</label>
+        <input class="field-input" type="text" id="lastName" formControlName="lastName" />
+      </div>
+      <div class="field onShop" (click)="setShopAddress()" *ngIf="data.partner.canReceiveOnStore">
+        <input class="field-input onshop" type="checkbox" id="onShop" [checked]="onShop" />
+        <label class="field-label onshop" for="onShop">{{'partner.burn.onShop' | translate}}{{data.partner.address.name}}</label>
+      </div>
+      <ng-container *ngIf="!onShop">
+        <div class="field street">
+          <label class="field-label" for="street">{{'partner.burn.address' | translate}}</label>
+          <input class="field-input" type="text" id="street" formControlName="street" />
+        </div>
+        <div class="field country">
+          <label class="field-label" for="country">{{'partner.burn.country' | translate}}</label>
+          <input class="field-input" type="text" id="country" formControlName="country" />
+        </div>
+        <div class="field zipcode">
+          <label class="field-label" for="zipcode">{{'partner.burn.zipCode' | translate}}</label>
+          <input class="field-input" type="text" id="zipcode" formControlName="zipcode" />
+        </div>
+        <div class="field city">
+          <label class="field-label" for="city">{{'partner.burn.city' | translate}}</label>
+          <input class="field-input" type="text" id="city" formControlName="city" />
+        </div>
+        <div class="field state">
+          <label class="field-label" for="state">{{'partner.burn.state' | translate}}</label>
+          <input class="field-input" type="text" id="state" formControlName="state" />
+        </div>
+      </ng-container>
+      <div class="field idNumber">
+        <label class="field-label" for="idNumber">{{'partner.burn.idNumber' | translate}}</label>
+        <input class="field-input" type="text" id="idNumber" formControlName="idNumber" />
+      </div>
+      <div class="field phone">
+        <label class="field-label" for="phone">{{'partner.burn.phoneNumber' | translate}}</label>
+        <input class="field-input" type="text" id="phone" formControlName="phone" placeholder="+34 111 222 333" />
+      </div>
+      <div class="field email">
+        <label class="field-label" for="email">{{'partner.burn.email' | translate}}</label>
+        <input class="field-input" type="text" id="email" formControlName="email" />
+      </div>
+    </div>
+    <p class="error" *ngIf="(addressForm.status | uppercase) === 'INVALID'">*{{'partner.burn.error' | translate}}</p>
+    <p class="advice" *ngIf="(addressForm.status | uppercase) === 'VALID'">*{{'partner.burn.advice' | translate}}</p>
+    <div class="buttons">
+      <button type="submit" class="button" [class.disabled]="!addressForm.valid" [disabled]="!addressForm.valid">{{'partner.button.submit' | translate}}</button>
+    </div>
+  </form>
+
+  <div class="confirmation" [class.hidden]="!addressIsSent" *ngIf="!this.showTerms">
+    <p>{{'partner.burn.sentTo' | translate}}</p>
+    <address class="address">
+      <span *ngIf="!onShop">{{this.addressForm.value.firstName + ' ' + this.addressForm.value.lastName}}<br></span>
+      <span *ngIf="onShop">
+        {{this.data.partner.address.name}}<br>
+        {{' (' + this.addressForm.value.firstName + ' ' + this.addressForm.value.lastName + ')'}}<br>
+      </span>
+      {{this.addressForm.value.idNumber}}<br>
+      {{this.addressForm.value.street}}<br>
+      {{this.addressForm.value.city + ' ' + this.addressForm.value.zipcode + ', ' + this.addressForm.value.state}}<br>
+      {{this.addressForm.value.country}}<br>
+    </address>
+    <p>{{'partner.burn.contact' | translate}}:</p>
+      <address class="address">
+        {{this.addressForm.value.email}}<br>
+        {{this.addressForm.value.phone}}
+      </address>
+    <p>{{'partner.burn.recheck' | translate}}</p>
+    <div class="accept-terms">
+      <input class="field-input terms" type="checkbox" id="terms" [(ngModel)]="termsAccepted" />
+      <label class="field-label terms" for="terms">
+        {{'partner.burn.terms1' | translate}}
+        <span class="terms-link" (click)="openTerms($event)">{{'partner.burn.terms2' | translate}}</span>
+      </label>
+    </div>
+    <div class="buttons">
+      <button class="button" (click)="backToForm()">{{'partner.button.back' | translate}}</button>
+      <button class="button" *ngIf="termsAccepted" (click)="startRedeemProcess()">{{'partner.button.confirm' | translate}}</button>
+      <button class="button disabled" *ngIf="!termsAccepted">{{'partner.button.confirm' | translate}}</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="content" *ngIf="redeemProcessStarted">
+  <div *ngIf="!transactionError">
+    <h3 class="step-title">{{'partner.burn.instructions' | translate}}</h3>
+    <p class="step" [class.active]="step >= 1" [class.actual]="step === 1">{{'partner.burn.step1' | translate}}</p>
+    <p class="step" [class.active]="step >= 2" [class.actual]="step === 2">{{'partner.burn.step2' | translate}}</p>
+    <p class="step" [class.active]="step >= 3" [class.actual]="step === 3">{{'partner.burn.step3' | translate}}</p>
+    <p class="step" [class.active]="step >= 4" [class.actual]="step === 4">{{'partner.burn.step4' | translate}}</p>
+    <p class="step done" [class.active]="step === 4">{{'partner.burn.checkEmail' | translate}}</p>
+    <div class="buttons">
+      <button class="button" *ngIf="step >= 4" (click)="closePopUp()">{{'partner.button.finish' | translate}}</button>
+      <button class="button" *ngIf="step < 4" [class.disabled]="step < 4">{{'partner.button.finish' | translate}}</button>
+    </div>
+  </div>
+  <div *ngIf="transactionError">
+    <p class="error-text">{{'partner.burn.errorOnTx' | translate}}</p>
+    <p class="error-text">{{errorMessage}}</p>
+    <div class="buttons">
+      <button class="button" (click)="backToForm()">{{'partner.button.back' | translate}}</button>
+    </div>
+  </div>
+</div>
+
+<div class="content" *ngIf="this.showTerms">
+  <div class="terms-text">
+      <h3>{{'partner.terms.title' | translate}}</h3>
+    <ul>
+      <li>
+        <b>{{'partner.terms.responsibleTitle' | translate}} </b>
+        {{'partner.terms.responsibleText' | translate}}
+      </li>
+      <li>
+        <b>{{'partner.terms.purposeTitle' | translate}} </b>
+        {{'partner.terms.purposeText' | translate}}
+      </li>
+      <li>
+        <b>{{'partner.terms.legitimationTitle' | translate}} </b>
+        {{'partner.terms.legitimationText' | translate}}
+      </li>
+      <li>
+        <b>{{'partner.terms.recipientsTitle' | translate}} </b>
+        {{'partner.terms.recipientsText' | translate}}
+      </li>
+      <li>
+        <b>{{'partner.terms.rightsTitle' | translate}} </b>
+        {{'partner.terms.rightsText' | translate}}
+      </li>
+      <li>
+        <b>{{'partner.terms.additionalInfoTitle' | translate}} </b>
+        <br>
+        <a href="https://dapp.outerringmmo.com/privacyPolicy" target="_blank">{{'partner.terms.additionalInfoPrivacy' | translate}}</a>
+        <span> | </span>
+        <a href="https://dapp.outerringmmo.com/legalNotice" target="_blank">{{'partner.terms.additionalInfoLegal' | translate}}</a>
+        <span> | </span>
+        <a href="https://dapp.outerringmmo.com/cookiePolicy" target="_blank">{{'partner.terms.additionalInfoCookies' | translate}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="buttons">
+    <button class="button" (click)="openTerms($event)">{{'partner.button.back' | translate}}</button>
+  </div>
+</div>

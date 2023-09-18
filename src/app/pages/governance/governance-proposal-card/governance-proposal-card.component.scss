@@ -1,0 +1,241 @@
+@import 'src/styleVariables.scss';
+
+.card {
+  cursor: pointer;
+  font-family: $workSans;
+  border: 2px solid $blue-medium;
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 10px;
+  color: $white;
+
+  &:hover {
+    border-color: $blue-light;
+  }
+
+  .block {
+
+    &-1 {
+      margin-bottom: 20px;
+
+      .posted-data {
+        display: inline-block;
+        width: 50%;
+
+        img {
+          display: inline-block;
+          vertical-align: middle;
+          height: 30px;
+          margin-right: 10px;
+        }
+
+        p {
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0
+        }
+      }
+
+      .status {
+        display: inline-block;
+        width: 50%;
+        text-align: -webkit-right;
+        text-align: -moz-right;
+
+        p {
+          width: min-content;
+          padding: 5px 20px;
+          border-radius: 50px;
+          margin: 0;
+        }
+
+        &.active p {
+          background-color: $green;
+        }
+
+        &.closed p {
+          background-color: $red;
+        }
+
+        &.coming p {
+          background-color: $purple;
+        }
+      }
+    }
+
+    &-2 {
+      display: inline-block;
+      vertical-align: top;
+      width: calc(100% - 380px);
+      padding-right: 30px;
+
+      .title {
+        font-weight: 600;
+        font-size: 1.2em;
+      }
+
+      .text {
+        font-size: 1em;
+      }
+    }
+
+    &-3 {
+      display: inline-block;
+      vertical-align: top;
+      width: 350px;
+
+      .image {
+        width: 100%;
+
+        img {
+          width: 100%;
+          height: 130px;
+          object-fit: cover;
+          border-radius: 15px;
+        }
+      }
+    }
+
+    &-4 {
+
+      .options {
+        width: 100%;
+        margin-top: 10px;
+
+
+        p.total {
+          background-color: transparent;
+          padding: 10px;
+        }
+
+        p {
+          cursor: default;
+          position: relative;
+          display: inline-block;
+          width: fit-content;
+          text-align: center;
+          margin: 10px 10px 15px 0;
+          padding: 10px 20px;
+          border-radius: 10px;
+
+          &.active {
+            background: $blue-medium;
+          }
+
+          &.coming {
+            background: $grey;
+          }
+
+          &.closed{
+            background: $red;
+          }
+
+          &.win {
+            background: $green;
+          }
+
+          &.noVotes {
+            background: $red;
+          }
+
+          .votes {
+            position: absolute;
+            z-index: -1;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: calc(100% - 3px);
+            font-size: 0.8em;
+            padding: 2px 8px 0px;
+            border-radius: 10px 10px 0 0;
+          }
+
+          &.active:hover {
+            cursor: pointer;
+            background-color: $blue-light;
+          }
+
+          &.total:hover {
+            background-color: transparent;
+          }
+        }
+      }
+
+      .ending {
+        text-align: right;
+        margin: -10px 0 0;
+      }
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 992px) {
+
+}
+
+// Medium devices
+@media (max-width: 768px) {
+  .card {
+
+    .block {
+
+      &-1 {
+
+        .posted-data {
+          width: unset;
+        }
+
+        .status {
+          width: unset;
+          float: right;
+        }
+      }
+
+      &-2 {
+        width: 100%;
+      }
+
+      &-3 {
+        width: 100%;
+
+        .image img {
+          height: unset;
+        }
+      }
+
+      &-4 {
+
+        .options {
+          display: block;
+          width: 100%;
+
+          p.total {
+            margin: 0px auto;
+          }
+
+          p {
+            display: block;
+            width: 70%;
+            margin: 25px auto;
+            padding: 5px;
+          }
+        }
+
+        .ending {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Small devices
+@media (max-width: 576px) {
+
+}

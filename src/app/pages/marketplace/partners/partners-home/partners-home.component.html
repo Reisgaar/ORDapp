@@ -1,0 +1,55 @@
+<div class="slider">
+  <div class="card">
+    <img src="assets/images/slider/card_governance.png" class="background" alt="Partner header image" />
+    <h1 class="title">{{ 'partner.head.title' | translate }}</h1>
+    <p class="text">{{ 'partner.head.text' | translate }}</p>
+  </div>
+</div>
+
+<div class="partnerships launched">
+  <div class="content">
+    <h2 class="title">{{ 'partner.collection' | translate }}</h2>
+    <div class="buttons">
+      <ng-container *ngFor="let p of partners | keyvalue">
+        <div
+          *ngIf="$any(p).value.show && $any(p).value.launched"
+          class="button {{$any(p).value.name}}"
+          [ngStyle]="{'background-image': 'url(/assets/images/partnership/' + $any(p).value.button + ')' }"
+          [routerLink]="['/marketplace/partner']"
+          [queryParams]="{partner: $any(p).value.name}"
+        >
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="newsletter">
+  <div class="container">
+    <h2 class="title">{{ 'home.newsletter.title1' | translate }}<span>{{ 'partner.join.partnerships' | translate }}</span></h2>
+    <div class="subtitle">
+      <p><b>{{ 'partner.join.contactUs' | translate }}</b>{{ 'partner.join.includeText' | translate }}</p>
+    </div>
+    <div class="subscriber">
+      <div class="input">
+        <a class="submit" href="https://forms.gle/sVN6KXSEWQPqhjWH8" target="_blank">{{ 'partner.join.joinUs' | translate }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="partnerships" *ngIf="arePartnersComing">
+  <div class="content">
+    <h2 class="title">{{ 'partner.upcoming' | translate }}</h2>
+    <div class="buttons">
+      <ng-container *ngFor="let p of partners | keyvalue">
+        <div
+          *ngIf="$any(p).value.show && !$any(p).value.launched"
+          class="button upcoming {{$any(p).value.name}}"
+          [ngStyle]="{'background-image': 'url(/assets/images/partnership/' + $any(p).value.button + ')' }"
+        >
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

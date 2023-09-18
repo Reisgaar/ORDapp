@@ -1,0 +1,33 @@
+<div class="close">
+  <p class="text">{{'governance.popUpGqSelector.' + (data.type | lowercase) + 'Title' | translate}} GQ<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="vote">
+  <div class="content">
+    <ng-container *ngIf="data.type === 'deposit'">
+      <p class="subtitle">{{"governance.popUpGqSelector.balance" | translate}}</p>
+      <p class="option">{{maxAmount | number:'1.0-4'}} GQ</p>
+    </ng-container>
+    <ng-container *ngIf="data.type === 'withdraw'">
+      <p class="subtitle">{{"governance.popUpGqSelector.staked" | translate}}</p>
+      <p class="option">{{maxAmount | number:'1.0-4'}} GQ</p>
+    </ng-container>
+
+    <form>
+      <div class="form">
+        <label name="amount">{{'governance.popUpGqSelector.' + (data.type | lowercase) + 'Text' | translate}}</label>
+        <input type="number" id="amount-range" name="amount" class="form-range" max="{{maxAmount}}" [(ngModel)]="amount" [value]="amount" (keypress)="preventErase($event)">
+      </div>
+
+      <p class="input-error" *ngIf="inputTooHigh">{{"governance.popUpGqSelector." + (data.type | lowercase) + "InputHighError" | translate}}</p>
+      <p class="input-error" *ngIf="inputNegative">{{"governance.popUpGqSelector." + (data.type | lowercase) + "InputNegativeError" | translate}}</p>
+
+      <div class="percentage-buttons">
+        <span (click)="setRange(25)" [class.active]="amount === maxAmountQuarter">25%</span>
+        <span (click)="setRange(50)" [class.active]="amount === maxAmountHalf">50%</span>
+        <span (click)="setRange(100)" [class.active]="amount === maxAmount">max</span>
+      </div>
+      <button type="submit" class="vote-button" (click)="confirmAction()">{{'governance.popUpGqSelector.' + (data.type | lowercase) + 'Button' | translate}}</button>
+    </form>
+  </div>
+</div>

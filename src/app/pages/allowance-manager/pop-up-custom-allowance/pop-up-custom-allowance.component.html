@@ -1,0 +1,41 @@
+<!-- CLOSE BUTTON -->
+<div class="close">
+  <p class="text">
+    <span>{{"popUp.customAllowance" | translate}}</span>
+    <span class="button" (click)="closePopUp()">X</span>
+  </p>
+</div>
+
+<div class="content">
+
+  <div class="total">
+
+  <div class="input">
+    <p class="allowance-label">{{'popUp.selectCustomAllowance' | translate}}</p>
+    <div class="input-field">
+      <input type="text"
+        class="allowance-amount"
+        id="gqAmount"
+        name="gqAmount"
+        autocomplete="off"
+        inputmode="decimal"
+        placeholder="0.0"
+        pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+        value="0"
+        [(ngModel)]="selectedAmount"
+        (keypress)="controlInput($event)"
+        (input)="validateForm()"
+      />
+    </div>
+
+    <p class="error" [class.active]="formError || emptyError">
+      <span *ngIf="formError">*{{'popUp.allowanceHigherThanUint256' | translate}}</span>
+      <span *ngIf="emptyError">*{{'popUp.pleaseAddAmount' | translate}}</span>
+    </p>
+  </div>
+
+  <div class="buttons">
+    <p *ngIf="!formError && !emptyError" class="button" (click)="confirmAmount()">{{ 'popUp.button.accept' | translate }}</p>
+    <p *ngIf="formError || emptyError" class="button disabled">{{ 'popUp.button.accept' | translate }}</p>
+  </div>
+</div>

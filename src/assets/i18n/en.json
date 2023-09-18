@@ -1,0 +1,2191 @@
+{
+  "advices": {
+    "lands": "Lands will only become tradable on the Markeplace after the second auctions round has been completed.",
+    "map1": "The Map and the Lands will evolve in accordance with the game's vision and development.",
+    "map2": "The images may vary, but ownership and location will remain registered in the blockchain."
+  },
+
+  "achievements": {
+    "title": "Achievements",
+    "clanBadge": "You are a Clan leader.",
+    "firstVoter": "First voter on Governance proposal.",
+    "EarthlingsBanner": "Earthling Banner-Bearer",
+    "ScavengonsBanner": "Scavengon Banner-Bearer"
+  },
+
+  "allowance": {
+    "allowanceManager": "Allowance Manager",
+    "contract": "contract",
+    "revoke": "revoke",
+    "custom": "custom",
+    "max": "max",
+    "currentAllowance": "Current Allowance",
+    "notAllowed": "Not allowed"
+  },
+
+  "bridge": {
+    "max": "max.",
+    "receiver": {
+      "tokensAvailable": "Tokens available",
+      "amountToReceive": "Amount to receive",
+      "amountError": "Amount to receive can't exceed the available"
+    },
+    "sender": {
+      "yourBalance": "Your balance",
+      "amountToTransfer": "Amount to transfer",
+      "balanceError": "Transfer amount can't exceed balance",
+      "sendToAnother": "Send to another wallet",
+      "sendToAnotherFee": "Sending to a different wallet carries a 4% fee.",
+      "addressError": "Please, enter a valid address.",
+      "sendingTo": "Sending *** to"
+    }
+  },
+
+  "categories": {
+    "all": "All",
+    "weapon": "Weapon",
+    "weapons": "Weapons",
+    "armor": "Armor",
+    "armors": "Armors",
+    "vehicle": "Vehicle",
+    "vehicles": "Vehicles",
+    "landVehicle": "Land vehicle",
+    "landVehicles": "Land vehicles",
+    "spaceVehicle": "Space vehicle",
+    "spaceVehicles": "Space vehicles",
+    "cosmetic": "Cosmetic",
+    "cosmetics": "Cosmetics",
+    "clan": "Clan",
+    "clanBadge": "Clan Badge",
+    "clanBadges": "Clan Badges",
+    "exocredit": "Exocredit",
+    "exocredits": "Exocredits",
+    "exo": "Exocredits",
+    "land": "Land",
+    "lands": "Lands",
+    "material": "Material",
+    "materials": "Materials",
+    "key": "Key",
+    "keys": "Keys",
+    "holdtelKey": "Holdtel Key",
+    "holdtelKeys": "Holdtel Keys"
+  },
+
+  "countdown": {
+    "dayLeft": " day left",
+    "daysLeft": " days left",
+    "ended": "Ended"
+  },
+
+  "crafting": {
+    "home": {
+      "tip": "Equip yourself for the battle",
+      "title_html": "USE MATERIALS TO <b>CRAFT AND BUILD</b> YOUR EQUIPMENT",
+      "subtitle1": "From all planets and corners of the Outer Ring Universe, an extraordinary group of crafters and engineers have come.",
+      "subtitle2": "Recognizing the players' passion and dedication, they extended a helping hand, imparting their unparalleled knowledge of weapon and armor crafting.",
+      "subtitle3": "Through their guidance, players will take the first steps to equip themselves as best as possible to become formidable warriors.",
+      "readCarefuly": "Read carefully the following lines to understand how the crafting process works.",
+      "firstStep": "First step:",
+      "firstStepText": " the creation of the base",
+      "selectCrafter": "Select the crafter, there is one for each tier.",
+      "selectType": "Then select the type of the item you want to create.",
+      "selectWeapon": "Select the weapon and element",
+      "selectArmor": "Just select the armor",
+      "materialCost": "After the selection you will see the cost in materials and your balance for each of the steps.",
+      "continueWithoutMaterials": "You will be able to continue the process just with the materials for the next step.",
+      "processDuration": "The duration of this process will be XX hours.",
+      "secondStep": "Second step:",
+      "secondStepText": " give it your style",
+      "sendToStyling": "When the first step is finished, you will transfer the NFT to one of the three design pools.",
+      "addExtras": "You can also add, for a small additional cost, different extras to your weapon (accessories, under barrels or sights).",
+      "of": "of",
+      "notEditable": "*In this step, the weapon or armor type and the element will not be editable.",
+      "thirdStep": "Third step:",
+      "thirdStepText": " assembly the pieces",
+      "chooseEngineer": "Finally, you have to select the engineer who will assemble your weapon.",
+      "betterEngineer": "The better engineer you choose, more probabilities to get a higher rarity.",
+      "rarityProbabilities": "Rarity probabilities",
+      "onlyWorksT3": "This engineer only works with tier 3 NFTs.",
+      "enjoyExperience": "Enjoy your experience",
+      "remember": "Remember explorers:",
+      "rememberTip1": "Look carefully at the cost of the materials for each step, you will need them to complete the crafting of the NFT.",
+      "rememberTip2": "The choices you make in each step cannot be changed in the following steps.",
+      "faqDoubts": "If you have any doubts, please read our ",
+      "startCrafting": "Start crafting!"
+    },
+    "discount": "You have ***% material cost and ###% time reductions",
+    "getDiscount1": "Stake a Land NFT",
+    "getDiscount2": "to get material cost discounts and time reductions",
+    "discountTip": "Using this benefits will block the land for a certain period.",
+    "craftingFactory": "Crafting factory",
+    "connectWallet": "Connect Wallet",
+    "connectWallet1": "Sorry, the crafting system is not available without a wallet connection.",
+    "connectWallet2": "Please, connect your wallet to the Dapp to use the crafting system.",
+    "creation": "Creation",
+    "styling": "Styling",
+    "assembly": "Assembly",
+    "step1tip1": "On this step you will start creating the base of your weapon.",
+    "step1tip2": "Choose the crafter depending on the tier you wish and look carefully to the materials needed.",
+    "step1tip3": "The duration of the crafting process is 12h.",
+    "step2tip1": "On this step you can customize the style of your weapon as you wish.",
+    "step2tip2": "Add-on pieces will have an extra cost.",
+    "step2tip3": "The duration of the styling process is 12h.",
+    "step3tip1": "On this step you have to select the best engineer to assembly your weapon.",
+    "step3tip2": "The better the engineer, the greater the probability of obtaining a higher rarity.",
+    "step3tip3": "The duration of the assembly process is 12h.",
+    "stageCompleted": "Stage completed!",
+    "emptyPool": "This pool is empty",
+    "priceStep1": "Crafter Salary: *** BUSD",
+    "priceFreeStep1": "Crafter Salary: Free",
+    "priceStep2": "Add-ons price: *** BUSD",
+    "priceFreeStep2": "No add-ons selected",
+    "priceStep3": "Engineer Salary: *** BUSD",
+    "priceFreeStep3": "Engineer Salary: Free",
+    "startStep1": "Start Creation",
+    "startStep2": "Start Styling",
+    "startStep3": "Start Assembly",
+    "endStep1": "Send to Design Pool",
+    "endStep2": "Send to Engineer Post",
+    "endStep3": "Withdraw",
+    "accelerateStep1": "Accelerate creation",
+    "accelerateStep2": "Accelerate styling",
+    "accelerateStep3": "Accelerate assembly",
+    "notAllowed":"Not allowed",
+    "customize": "Customize!",
+    "remaining": "Remaining",
+    "step1": {
+      "pool0": "Trainee Crafter",
+      "pool1": "Senior Crafter",
+      "pool2": "Expert Crafter"
+    },
+    "step2": {
+      "pool0": "Design Pool",
+      "pool1": "Design Pool",
+      "pool2": "Design Pool"
+    },
+    "step3": {
+      "pool0": "Engineer Post",
+      "pool1": "Engineer Post",
+      "pool2": "Engineer Post",
+      "trainee": "Trainee Engineer",
+      "junior": "Junior Engineer",
+      "senior": "Senior Engineer",
+      "expert": "Expert Engineer",
+      "master": "Master Engineer"
+    },
+    "weapons": {
+      "blade": "Blade",
+      "blunt": "Blunt",
+      "knife": "Knife",
+      "pistol": "Pistol",
+      "revolver": "Revolver",
+      "shotgun": "Shotgun",
+      "repeaterShotgun": "Repeater Shotgun",
+      "assaultSMG": "Assault SMG",
+      "assaultSmg": "Assault SMG",
+      "highRateSMG": "High Rate SMG",
+      "highRateSmg": "High Rate SMG",
+      "assaultRifle": "Assault Rifle",
+      "lightMachinegun": "Light Machinegun",
+      "sniperRifle": "Sniper Rifle",
+      "precisionRifle": "Precision Rifle"
+    },
+    "armors": {
+      "helmet": "Helmet",
+      "chest": "Chest",
+      "shoulders": "Shoulders",
+      "forearms": "Forearms",
+      "arms": "Arms",
+      "gloves": "Gloves",
+      "legs": "Legs",
+      "kneepads": "Kneepads",
+      "boots": "Boots"
+    },
+    "weaponParts": {
+      "mainParts": "Main parts",
+      "barrelAccessory": "Barrel Accessory",
+      "accessories": "Accessories",
+      "underBarrel": "Under Barrel",
+      "sight": "Sight",
+      "sights": "Sights",
+      "barrel": "Barrel",
+      "blade": "Blade",
+      "body": "Body",
+      "crossGuard": "Cross guard",
+      "grip": "Grip",
+      "head": "Head",
+      "hilt": "Hilt",
+      "magazine": "Magazine",
+      "striker": "Striker",
+      "stock": "Stock",
+      "attachedShotgun": "Attached shotgun",
+      "barrelBrake": "Barrel brake",
+      "bayonetta": "Bayonetta",
+      "bipod": "Bipod",
+      "grenadeLauncher": "Grenade launcher",
+      "holographicSight": "Holographic sight",
+      "laserPointer": "Laser pointer",
+      "reflexSight": "Reflex sight",
+      "silencer": "Silencer",
+      "sniperSight": "Sniper sight",
+      "x4Sight": "x4 Sight",
+      "laser": "Laser",
+      "nonLaser": "Non-laser",
+      "bullet": "Bullet",
+      "metal": "Metal",
+      "versatile": "Versatile"
+    },
+    "nftType0": {
+      "name": "Armor",
+      "item0": "Helmet",
+      "item1": "Chest",
+      "item2": "Shoulders",
+      "item3": "Forearms",
+      "item4": "Arms",
+      "item5": "Gloves",
+      "item6": "Legs",
+      "item7": "Kneepads",
+      "item8": "Boots"
+    },
+    "nftType1" : {
+      "name": "Weapon",
+      "item0": "knife",
+      "item1": "Blade",
+      "item2": "Blunt",
+      "item3": "Pistol",
+      "item4": "Revolver",
+      "item5": "Shotgun",
+      "item6": "Repeater Shotgun",
+      "item7": "Assault SMG",
+      "item8": "High Rate SMG",
+      "item9": "Light Machinegun",
+      "item10": "Assault Rifle",
+      "item11": "Sniper Rifle",
+      "item12": "Precision Rifle"
+    },
+    "element0": "Non-laser",
+    "element1": "Laser",
+    "element2": "Non-laser"
+  },
+
+  "date": {
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    }
+  },
+
+  "footer": {
+    "title": "The Outer Ring Dapp",
+    "text1": "Use this decentralized application to interact with Outer Ring's tokenized ecosystem",
+    "text2": "Connect your wallet to manage NFTs and participate in the governance platform",
+    "text3": "Get ready to battle, filling your inventory with deathly weapons, awesome gear, and fasts vehicles.",
+    "rights": "All rights reserved 2021-2022",
+    "legalNotice": "Legal Notice",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "telegramLink": "https://t.me/galactic_quadrant"
+  },
+
+  "governance": {
+    "getVP": {
+      "tip": "Gain influence inside the Outer Ring",
+      "title1": "Stake GQ",
+      "title2": " to ",
+      "title3": "win Voting Power Tokens",
+      "subtitle1": "Participate in the pools to generate votes and gain authority over Outer Ring's development decisions.",
+      "subtitle2": "This token is non-transferable and will be burned once you participate in a proposal.",
+      "totalStakedGQ": "Total Staked GQ",
+      "totalGeneratedVP": "Total Generated VP"
+    },
+    "stakeCard": {
+      "earnVP": "Earn VP",
+      "stakeGQ": "Stake GQ",
+      "noLock": "Without locking period",
+      "lockUntil": "Locked until:",
+      "lockPeriod": "Locking period:",
+      "lock30": "30 days",
+      "lock90": "90 days",
+      "earned": "Earned",
+      "harvest": "Harvest",
+      "staked": "Staked",
+      "withdraw": "Withdraw",
+      "details": "Details",
+      "hide": "Hide",
+      "totalStaked": "Total staked:",
+      "lockDuration": "Lock duration:",
+      "noLocking": "No locking",
+      "multiplier": "Multiplier",
+      "rewardPerBlock": "Reward per block",
+      "addGQMetamask": "Add GQ to Metamask",
+      "addVPMetamask": "Add VP to Metamask",
+      "seeVPInfo": "See VP Token Info",
+      "viewStakingContract": "View Staking Contract"
+    },
+    "home": {
+      "tip": "Create with us",
+      "governance": "Governance",
+      "title": " in the Outer Ring",
+      "subtitle": "Have you ever dreamed of building your own game? Outer Ring employs blockchain technology to involucrate the community in the creation of this universe. Giving all players the opportunity to express their ideas and get involved in the ecosystem that grows around this MMORPG.",
+      "step1Title": "Galactic Quadrant (GQ)",
+      "step1Text": "Galactic Quadrant (GQ) is the governance token of Outer Ring. It empowers players by granting them control over the different proposals shaping the game.",
+      "step2Title": "Voting Power",
+      "step2Text": "Stake GQ to generate Voting Power. The pools are designed to reward those most involved in the platform, thus gaining influence and authority within the ecosystem.",
+      "step3Title": "Proposals",
+      "step3Text": "Use your VP to vote on the proposals and help guide the course of the spacecraft traveling to the Outer Ring.",
+      "downTitle1": "Help us ",
+      "downTitle2": "design this universe",
+      "buyGQ": "Buy GQ",
+      "getVP": "Get Voting Power",
+      "participate": "Participate",
+      "leaveProposal": "Leave your proposal"
+    },
+    "addProposal": {
+      "tip": "Leave Proposal",
+      "title1": "Help the team",
+      "title2": " create new proposals. ",
+      "title3": "Let's build together",
+      "subtitle": "Voting Power holders can communicate directly to the team and leave proposals that might be integrated in the future.",
+      "back": "Back",
+      "advice1": "You can send us a proposal every two days, and you will need to ",
+      "advice2": "burn 200 Voting Power tokens.",
+      "formTitle": "Proposal title",
+      "formDescription": "Proposal description",
+      "formImage": "Attach your image or video, click or drag and drop here.",
+      "formOptions": "Options",
+      "formOptionsTip": " (press enter to submit an option)",
+      "formDate": "Choose a start and end date",
+      "formName": "Name or nickname",
+      "formEmail": "Email",
+      "buttonSend": "Send",
+      "connectWallet": "Please, connect your wallet",
+      "formFile": "File",
+      "formErrorFile": "*File size too large",
+      "errorTitle": "* Please, insert a title.",
+      "errorDescription": "* Please, insert a description.",
+      "errorOption": "* Please, insert a minimum of 2 options."
+    },
+    "proposals": {
+      "tip": "Governance",
+      "title1": "Shape",
+      "title2": " the future of ",
+      "title3": "the Outer Ring",
+      "subtitle": "Use GQ to obtain Voting Power and participate in the game's decision-making. Stake, vote, and have a voice in this new universe.",
+      "filterAll": "All",
+      "filterActive": "Active",
+      "filterComing": "Coming",
+      "filterClosed": "Closed"
+    },
+    "proposalDetail": {
+      "back": "Back",
+      "information": "Information",
+      "ipfsUri": "Proposal IPFS URI",
+      "proposal": "Proposal",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "currentResults": "Current Results",
+      "votes": "Votes",
+      "noVotes": "No votes on this proposal.",
+      "firstVote": "Be the first to vote.",
+      "yourVotes": "Your votes"
+    },
+    "popUpVote": {
+      "votingFor": "Voting for option:",
+      "yourVP": "Your VP:",
+      "selectVP": "Select voting power amount:",
+      "vote": "VOTE",
+      "inputHighError": "VP amount can't be higher than balance.",
+      "inputNegativeError": "VP amount can't be 0 or lower."
+    },
+    "popUpGqSelector": {
+      "balance": "Your GQ balance:",
+      "staked": "Your staked GQ:",
+      "depositTitle": "Deposit",
+      "depositText": "Select GQ amount to deposit:",
+      "depositButton": "DEPOSIT",
+      "withdrawTitle": "Withdraw",
+      "withdrawText": "Select GQ amount to withdraw:",
+      "withdrawButton": "WITHDRAW",
+      "depositInputHighError": "Deposit amount can't be higher than balance.",
+      "depositInputNegativeError": "Deposit amount can't be 0 or lower.",
+      "withdrawInputHighError": "Withdraw amount can't be higher than staked.",
+      "withdrawInputNegativeError": "Withdraw amount can't be 0 or lower."
+    },
+    "popUpBuyGq": {
+      "buyGq": "BUY GQ",
+      "selectExchange": "Select your preferred exchange to buy GQ.",
+      "buyGqOn": "Buy GQ on"
+    }
+  },
+
+  "holdtel": {
+    "claim": "Claim",
+    "toClaim": "You have a *** key to claim",
+    "ownedKey": "You have a *** in the GoldStar Holdtel",
+    "roomName": {
+      "junior": "Junior Room",
+      "standard": "Standard Room",
+      "executive": "Executive Room",
+      "deluxe": "Deluxe Suite",
+      "royal": "Royal Suite"
+    }
+  },
+
+  "home": {
+    "title": "WELCOME TO THE OUTER RING DAPP",
+    "subtitle": "The platform where you can manage all the tokenized ecosystem that grows around the videogame: NFT Lootboxes, Marketplace, Governance... and much more.",
+    "marketplace": {
+      "title": "Discover, buy and sell NFTs on our marketplace!",
+      "subtitle": "Gear up and explore the Outer Ring universe.",
+      "button": "Trade now"
+    },
+    "lootbox": {
+      "title": "Open your first NFT Lootbox",
+      "subtitle": "Unlock the treasures inside and fill your inventory with legendary gear: weapons, armors, vehicles, resources...",
+      "button": "Buy now"
+    },
+    "merchandising": {
+      "official": "Official merchandising",
+      "button": "Go to shop"
+    },
+    "governance": {
+      "title": "Governance in the Outer Ring Ecosystem",
+      "subtitle": "Use GQ to obtain Voting Power and participate in the creation of this videogame",
+      "button": "Vote now"
+    },
+    "defi": {
+      "title": "Earn tokens and resources",
+      "subtitle": "Participate in our staking and farmings pools in the DEX to generate ERC-20 tokens.",
+      "button": "Enter now"
+    },
+    "blog": {
+      "title": "Related last news"
+    },
+    "newsletter": {
+      "title1": "Outer Ring MMO",
+      "title2": "NEWSLETTER",
+      "subtitle1": "Sign up",
+      "subtitle2": " to receive",
+      "subtitle3": " the latest news and offers.",
+      "subscribe": "Subscribe",
+      "subscribed": "Email successfully subscribed!"
+    }
+  },
+
+  "itemViewer": {
+    "yourBids": "Bids",
+    "noResultBig": "Sorry, no results found.",
+    "noResults": "No results",
+    "result": "result",
+    "results": "results",
+    "sorting": "Sorting",
+    "sort": {
+      "price": "Price",
+      "tier": "Tier",
+      "name": "Name",
+      "newest": "Newest",
+      "oldest": "Oldest"
+    }
+  },
+
+  "keyring": {
+    "title": "Keyring",
+    "grantsAccess": "This key grants access to the pre-alpha"
+  },
+
+  "lands": {
+    "home": {
+      "head": {
+        "tip": "Join the expansion of Great Silver City",
+        "title1": "Explore the map, ",
+        "title2": "buy a land, and ",
+        "title3": "build your new home",
+        "text1B1": "Use your GQ to participate in the Public Auctions of Great Silver City Lands",
+        "text1R1": " and own virtual settlements inside the world of Outer Ring MMO.",
+        "text2R1": "This housing system will ",
+        "text2B1": "provide you with a boost in your gameplay experience. ",
+        "text2R2": "Exploit them to generate valuable materials and build crafting stations to manufacture weapons and armor pieces.",
+        "text3R1": "Become a pioneer settler and ",
+        "text3B1": "join Great Silver City's thriving community ",
+        "text3R2": "to interact with your neighbors and partners, ",
+        "text3B2": "working together to build and expand this virtual realm."
+      },
+      "firstRound": {
+        "title": "Enter the first round sale",
+        "subtitle": "Use the Early Explorer NFTs to enter the first Public Auction of Land in Great Silver City.",
+        "land1Name": "Nano Land",
+        "land1Nft": "Open Access",
+        "land2Name": "Micro Land",
+        "land2Nft": "Tier 1 and 2 weapons",
+        "land3Name": "Standard Land",
+        "land3Nft1": "Tier 2 armor",
+        "land3Nft2": "Land Vehicle",
+        "land4Name": "Macro Land",
+        "land4Nft": "Space Vehicle",
+        "land5Name": "Mega Land",
+        "land5Nft": "Clan Badge",
+        "missingNft1Text": "Don't have the required NFT? get it on the:",
+        "missingNft1Button": "Lootboxes",
+        "missingNft2Text": "Or buy it directly on the:",
+        "missingNft2Button": "Marketplace",
+        "auctionFrecuency": "New auctions open every 72 hours, starting bids at 1000 GQ."
+      },
+      "video": {
+        "text1": "The Lands inside Outer Ring work as a free and open economy, accessible to all the community. You can either participate in the Public Auctions or buy directly from other landlords in the secondary market.",
+        "text2": "Public Auctions will take place in four different sectors inside the three rings of Great Silver City, each divided into distinct districts. The buyout prices will increase in each round. Participate in the first rounds to get your land at a lower price.",
+        "text3": "Explore the utilities of the Nano, Micro, Standard, Macro, and Mega Lands to exploit them as much as possible.",
+        "button": "Know more about the lands"
+      },
+      "utilities": {
+        "title1": "The 5 types",
+        "title2": "of Land Plots",
+        "subtitle": "Experience the future of virtual worlds by owning a piece of Outer Ring settlement.",
+        "utilitiesOf": "Utilities of ",
+        "nano": {
+          "name": "Nano",
+          "ut1": "Extraction of Tier 1 Materials",
+          "ut2": "In-game extra storage",
+          "ut3": "Accelerate daily tasks"
+        },
+        "micro": {
+          "name": "Micro",
+          "ut1": "Extraction of Tier 1 Materials",
+          "ut2": "Crafting costs reductions",
+          "ut3": "In-game extra storage",
+          "ut4": "Accelerate daily tasks"
+        },
+        "standard": {
+          "name": "Standard",
+          "ut1": "Extraction of Tier 2 Materials ",
+          "ut2": "Crafting time acceleration",
+          "ut3": "Crafting costs reductions",
+          "ut4": "In-game extra storage",
+          "ut5": "Accelerate daily tasks",
+          "ut6": "Vehicle Parking"
+        },
+        "macro": {
+          "name": "Macro",
+          "ut1": "Extraction of Tier 2 Materials ",
+          "ut2": "Crafting time acceleration",
+          "ut3": "Crafting costs reductions",
+          "ut4": "In-game extra storage",
+          "ut5": "Accelerate daily tasks",
+          "ut6": "Large Vehicle Parking"
+        },
+        "mega": {
+          "name": "Mega",
+          "ut1": "Extraction of Tier 3 Materials ",
+          "ut2": "Crafting time acceleration",
+          "ut3": "Crafting costs reductions",
+          "ut4": "In-game extra storage",
+          "ut5": "Accelerate daily tasks",
+          "ut6": "Large Vehicle Parking",
+          "ut7": "Build a Guild Headquarters"
+        }
+      }
+    },
+    "selector": {
+      "title": "LANDS",
+      "auctions": "Auctions",
+      "neighbours": "Neighbours"
+    },
+    "buyoutDisabled": "Buyout is disabled until: ",
+    "whitelist": {
+      "sizeMicro": "You must have a tier 1 or tier 2 weapon to access the whitelist of Micro Lands",
+      "sizeStandard": "You must have a tier 2 armor or a land vehicle to access the whitelist of Standard Lands",
+      "sizeMacro": "You must have a space vehicle to access the whitelist of Macro Lands",
+      "sizeMega": "You must have a clan badge to access the whitelist of Mega Lands"
+    },
+    "card": {
+      "ring": "Ring",
+      "sector": "Sector",
+      "district": "District",
+      "lastBid": "Last bid",
+      "firstBid": "First bid",
+      "buyout": "Buyout",
+      "winner": "Winner",
+      "noBids": "No bids",
+      "noBidsYet": "No bids yet",
+      "highestBidder": "Highest bidder",
+      "notSold": "Land not sold",
+      "startsOn": "Starts on",
+      "endsOn": "Ends on",
+      "buttons": {
+        "buy": "Buy",
+        "bid": "Bid",
+        "withdraw": "Withdraw"
+      }
+    },
+    "popUp": {
+      "graphError": "Sorry this auction is over, queried graph may not be updated.",
+      "buyoutPrice": "Buyout price is:",
+      "cantBid": "You can't bid for another land until:",
+      "cantBuy": "You can't buy another land until:",
+      "txMayFailBid": "*Your bid may fail if any other bid or buy transaction enters earlier.",
+      "txMayFailBuyout": "*The buyout may fail if any other bid or buy transaction enters earlier."
+    },
+    "viewer": {
+      "filterTitle1": "Lands all over ",
+      "filterTitle2": "Great Silver City",
+      "landsIn": "Lands in:",
+      "ring": "Ring",
+      "sector": "Sector",
+      "district": "District",
+      "showEnded": "Show ended",
+      "showComming": "Show comming",
+      "showOnlyUserBids": "Only my bids",
+      "noResult": "Sorry, there is no auctioned land here or no result with this filtering.",
+      "pagination": {
+        "page": "page",
+        "pageOf": "of",
+        "pageSize": "Page size",
+        "all": "All"
+      }
+    },
+    "map": {
+      "selectPlace": "Select the place where you want your land",
+      "location": "Location",
+      "sizes": "Sizes"
+    },
+    "neighbours": {
+      "filterTitle1": "Neighbours all over ",
+      "neighboursOn": "Neighbours in",
+      "owner": "Owner",
+      "noNeighbours": "No neighbours here yet, be the first!"
+    },
+    "sizes": {
+      "size1": "Nano",
+      "size2": "Micro",
+      "size3": "Standard",
+      "size4": "Macro",
+      "size5": "Mega"
+    },
+    "sorting": {
+      "endTimeStamp": "Auction end",
+      "startTimeStamp": "Auction start",
+      "nftHighestBid": "Highest bid",
+      "ring": "Ring",
+      "sector": "Sector",
+      "district": "District",
+      "counter": "Auction id"
+    },
+    "data": {
+      "title1": "Land sales statistics",
+      "title2": "Sale phases statistics",
+      "total": "Total",
+      "volume": "Volume",
+      "owners": "Owners",
+      "sold": "Sold",
+      "averagePrice": "Average price",
+      "round": "Round",
+      "phase": "Phase",
+      "nftSold": "NFTs sold",
+      "bids": "Bids",
+      "buyouts": "Buyouts",
+      "highestSale": "Highest sale",
+      "newOwners": "New owners"
+    }
+  },
+
+  "lootbox": {
+    "closedTitle": "Lootboxes are closed!",
+    "closedSubtitle": "They are only available for whitelisted wallets.",
+    "tip": "Randomized NFT",
+    "title": "Lootboxes",
+    "subtitle": "Unlock the treasures inside and fill your inventory with legendary gear. Each Lootbox contains up to 13 different ERC-721 and ERC-20 tokens. Generative weapons, armors and vehicles are some of the NFTs you will find inside.",
+    "tier1": "Get off to a good start. Go into battle prepared for victory. Don't waste time searching for materials and crafting equipment. A Tier 1 Lootbox is all you need to begin the quest. Opening one of them will give you access to raffles and a whitelist spot to own Micro Lands inside the Outer Ring. The story has already started, be part of it.",
+    "tier2": "Become a fearsome warrior acquiring the finest gear. A Tier 2 weapon is hidden inside this chest, ready to be wielded. Are you prepared to use its power? This Lootbox will allow you to train for battle in the Tech Demos and walk the lands you may own in the future. Be part of Outer Ring, and join the community's online events.",
+    "tier3": "Being a trooper sometimes isn't enough. Wear a Tier 2 armor and arm yourself with courage. Everyone knows how to shoot, but only a few remain standing after the battle. These NFTs will allow you to participate in raffles and whitelist spots for Standard Lands. Level up and access to Tech Demos and online events. Join the conquest, in-game and off-game.",
+    "tier4": "The conflict is getting serious. You will use the land vehicle to travel through Fanet's desserts, mountains and dungeons. And dominate them using Tier 2 weapons. Make history and read about it in ebook version of the novel that inspires our universe, a universe in the making... Our New Home.",
+    "tier5": "Fly above the rest, literally. Soar through space thanks to the spaceship you'll find in this Lootbox. Don't fear heights, opening a Tier 5 Lootbox you will rise among gods. The digital invades the material, the universe becomes metaverse, and our story becomes everyone's story. Be the protagonist, be brave. We are waiting for you.",
+    "tierC": "Do you want glory, fame and make your mark in the Outer ring? Create a clan. Lead it to victory. Believe in your allies, and fight with and for them. You don't make an army alone. With the Clan Badge, you will have it all. Hold history in your own hands and write it along with your people.",
+    "tierM": "Fortune favors the brave. Will the keys open a treasure? This Lootbox contains all kinds of game assets, the smallest rocks, and the deadliest weapons. Try your luck. When magic and fiction meet, the unexpected becomes possible.",
+    "supply": "Supply",
+    "discount": "*50% discount with SCK",
+    "buttonSCK": "Buy with SCK",
+    "buttonBUSD": "Buy with BUSD",
+    "buttonFree": "Get your free Lootbox!",
+    "buttonDiscount1": "Buy with a ",
+    "buttonDiscount2": " discount!",
+    "utilities": {
+      "title": "Utilities associated with NFT:",
+      "tier1": "Tier 1 weapon",
+      "tier2": "Tier 2 weapon",
+      "tier3": "Tier 2 armor",
+      "tier4": "Land vehicle",
+      "tier5": "Space vehicle",
+      "tierC": "Clan badge",
+      "smallLands": "Whitelist Micro Lands",
+      "mediumLands": "Whitelist Standard Lands",
+      "bigLands": "Whitelist Macro Lands",
+      "hugeLands": "Whitelist Mega Lands",
+      "raffles": "Access to raffles",
+      "testTechDemos": "Access to testing tech demos",
+      "specialTechDemos": "Access to special tech demos",
+      "onlineEvents": "Online events",
+      "physicalEvents": "Physical events",
+      "merchDiscount5": "5% merch discount",
+      "merchDiscount10": "10% merch discount",
+      "merchDiscount15": "15% merch discount",
+      "merchDiscount20": "20% merch discount",
+      "ebook": "Ebook novel",
+      "physicalNovel": "Physical novel gift",
+      "discordClan": "Discord clan group"
+    },
+    "popUp": {
+      "priceMayVary": "The price is subject to change,",
+      "payMore": "choose a slippage percentage for this operation ",
+      "slippage": "Slippage",
+      "buy": "BUY",
+      "approveBusd": "Approve the interaction with BUSD contract.",
+      "approveSck": "Approve the interaction with SCK contract.",
+      "currentPrice": "The current price of the Tier *** lootbox is:",
+      "connectWallet": "Please, connect your wallet.",
+      "error": "ERROR:",
+      "startBuy": "Starting the buying process.",
+      "confirmTransaction": "Confirm the transaction on your wallet.",
+      "rewards": "Lootbox rewards",
+      "congratulations": "Congratulations!",
+      "lootboxUnlocked": "The Lootbox has been unlocked. These are your rewards:",
+      "name": "Name (value)",
+      "tier": "Tier",
+      "rarity": "Rarity",
+      "amount": "Amount",
+      "resource": "Resource",
+      "toInventory": "VIEW ITEMS IN INVENTORY",
+      "youCanPay": "With this slippage you can pay up to:",
+      "correctAllowance": "With a lower allowance, the transaction may fail."
+    }
+  },
+
+  "marketplace": {
+    "head": {
+      "title": "Find the most powerful items",
+      "text": "Equip yourself for combat with incredible weapons, gear and vehicles",
+      "button1": "Direct Sale",
+      "button2": "Auctions"
+    },
+
+    "home": {
+      "hotBids": "Hot bids",
+      "todays": "Latest NFTs",
+      "more": "Explore more",
+
+      "steps": {
+        "title1": "Connect your wallet",
+        "text1": "Connect the wallet of your choice by clicking the wallet icon in the top right corner.",
+        "title2": "Buy NFTs",
+        "text2": "Browse the collection and buy NFTs in a few clicks.",
+        "title3": "Sell NFTs",
+        "text3": "Easily sell the NFTs of the collections"
+      }
+    }
+  },
+
+  "materialExtraction": {
+    "tip": "Extract materials from your lands",
+    "title_html": "<b>STAKE</b> YOUR LAND NFTS AND <b>EARN RESOURCES</b>",
+    "subtitle1": "The S.T.A.R.S. (Spatial Terraformers And Resource Seekers) have arrived, extending to us the opportunity to earn rewards from our precious lands.",
+    "subtitle2": "For each land type, a dedicated team is available. Entrust your land into their capable hands, so the workers can initiate the extraction process to obtain valuable materials.",
+    "subtitle3": "Allow S.T.A.R.S. teams to labor on your lands, and in return, you'll be granted with reduced material costs and processing times within the crafting system.",
+    "poolsTitle": "S.T.A.R.S. Work Teams",
+    "card": {
+      "title": "*** Land Team",
+      "poolRewards": "Pool rewards",
+      "craftingReduction": "Crafting discounts:",
+      "craftingReductionData": "Material costs ***% and time ###%",
+      "addLand": "Add your land",
+      "stakeFee": "*Deposit action carries a ***$ fee in BNB",
+      "noLandToStake": "You have no *** lands to stake.",
+      "selectLand": "Select one of your lands",
+      "extracted": "Extracted",
+      "claim": "Collect Resources",
+      "withdraw": "Finish extraction",
+      "blocked": "Blocked until"
+    }
+  },
+
+  "navigation": {
+    "home": "Home",
+    "marketplace": "Marketplace",
+    "community": "Community",
+    "lootboxes": "Lootboxes",
+    "lands": "Lands",
+    "landsMap": "Buy lands",
+    "materialExtraction": "Material Extraction",
+    "governance": "Governance",
+    "proposals": "Proposals",
+    "getVP": "Get Voting Power",
+    "addProposal": "Leave Proposal",
+    "trade": "Trade",
+    "swap": "Swap",
+    "liquidity": "Liquidity",
+    "earn": "Earn",
+    "farms": "Farms",
+    "myAccount": "My account",
+    "connect": "Connect",
+    "defi": "DeFi",
+    "dex": "Dex",
+    "pools": "Pools",
+    "about": "About",
+    "aboutUs": "About us",
+    "team": "Team",
+    "help": "Help",
+    "faq": "FAQ",
+    "crafting": "Crafting",
+    "factory": "Factory",
+    "allowanceManager": "Allowance Manager",
+    "contactSupport": "Contact Support",
+    "directSells": "Direct sales",
+    "auctions": "Auctions",
+    "partners": "Partners",
+    "directSellsDescription": "Purchase NFTs at a fixed price",
+    "auctionsDescription": "Make a bid to get an NFT",
+    "partnersDescription": "Discover unique NFTs from our partners",
+    "proposalsDescription": "Use your VP to vote on proposals",
+    "getVPDescription": "Stake GQ to generate Voting Power",
+    "addProposalDescription": "Help the team design new proposals",
+    "farmsDescription": "Earn IRON and COP",
+    "poolsDescription": "Stake tokens to get rewards",
+    "swapDescription": "Exchange materials",
+    "liquidityDescription": "Add liquidity of the pairs",
+    "workshopDescription": "Use materials to create weapon parts and armor",
+    "factoryDescription": "Use parts to build weapons",
+    "landsDescription": "Bid on auctions to get your land",
+    "materialExtractionDescription": "Extract materials from your lands",
+    "getGq": "Get GQ",
+    "statistics": "Statistics",
+    "statisticsDescription": "View NFT sales statistics"
+  },
+
+  "nft": {
+    "notOrNft": "This is not an Outer Ring NFT",
+    "notWhitelisted": "This NFT is not whitelisted in OR Marketplace",
+    "priceHistory": "Price history",
+    "collection": "Collection",
+    "currentPrice": "Current price",
+    "sellPrice": "Selling price",
+    "nextBidPrice": "Next minimum bid",
+    "lastBidBy": "Last bid by:",
+    "lastBid": "Last bid",
+    "noBids": "No bids yet. Initial price: ",
+    "by": " by ",
+    "initialPrice": "Initial price",
+    "countdown": "Countdown",
+    "aboutItem": "About the item",
+    "owner": "Owner",
+    "createdBy": "Created by",
+    "noFirstOwner": "No data",
+    "attributes": "Attributes",
+    "abilities": "Abilities",
+    "history": "Transaction history",
+    "metadata": "Metadata",
+    "notSold": "Sorry, your NFT has not received any bids.",
+    "itemSold": "Congratulations, your NFT has been sold.",
+    "sold": "Congratulations, you are the highest bidder.",
+    "noWallet": "Don't have a wallet? Try getting started with",
+    "metamaskTutorial": "https://metamask.zendesk.com/hc/en-us/articles/360015489531-Getting-started-with-MetaMask",
+    "button": {
+      "putOnSale": "Put on sale",
+      "putOnAuction": "Put on auction",
+      "directTransfer": "Direct transfer",
+      "removeFromSale": "Remove from sale",
+      "setPrice": "Set price",
+      "bidAuto": "Automatic bid",
+      "bidCustom": "Custom bid",
+      "withdrawAuction": "Withdraw item",
+      "finishAuction": "Finish auction",
+      "buy": "Buy",
+      "buyAsGift": "Buy as gift",
+      "connectWallet": "Connect your wallet",
+      "isOnAuction": "NFT in auction"
+    },
+    "rarity": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "epic": "Epic",
+      "legendary": "Legendary"
+    },
+    "attributeChangeAdvice": "*The stats system and its metrics are subject to experience future buffs, nerfs and changes to preserve the power balance inside Outer Ring MMO.",
+    "attributeExternalAdvice": "*The stats shown above are taken directly from the attribute field of the NFT metadata, for further infromation see full metadata below.",
+    "attributeError": "Attributes may not be in accordance with ERC721 standard."
+  },
+
+  "partner": {
+    "head": {
+      "title": "Explore, buy and sell our partners NFTs",
+      "text": "OR universe is constantly expanding"
+    },
+    "join": {
+      "partnerships": "PARTNERSHIPS",
+      "contactUs": "Contact us",
+      "includeText": " if you want to include your NFT project in our marketplace",
+      "joinUs": "Join us!"
+    },
+    "collection": "Partnership collections",
+    "upcoming": "Upcoming partnerships",
+    "burn": {
+      "burnTitle": "Redeem NFT",
+      "shippingDetails": "Please enter your shipping details:",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "onShop": "Receive in ",
+      "address": "Street and number",
+      "country": "Country",
+      "zipCode": "ZIP/postal code",
+      "city": "City",
+      "state": "State",
+      "idNumber": "National Identification Number",
+      "phoneNumber": "Phone Number (with country code)",
+      "email": "Email",
+      "terms1": "I agree to the ",
+      "terms2": "terms and conditions and the privacy policy",
+      "error": "Please, fill in all the fields",
+      "advice": "Check before submiting",
+      "sentTo": "Package will be sent to:",
+      "contact": "Contact",
+      "recheck": "Is this correct?",
+      "instructions": "Please, wait and follow the instructions carefully",
+      "step1": "Sign transaction and send data",
+      "step2": "Confirm transaction on your wallet",
+      "step3": "Wait until transaction is done",
+      "step4": "NFT succesfully redeemed!",
+      "checkEmail": "In the next 24-48h you will receive a confirmation email.",
+      "errorOnTx": "Sorry, something went wrong."
+    },
+    "button": {
+      "burnToReceive": "Burn NFT for reward",
+      "redeemToReceive": "Redeem NFT for reward",
+      "submit": "Submit",
+      "back": "Back",
+      "confirm": "Confirm",
+      "finish": "Finish"
+    },
+    "terms": {
+      "title": "NFT Redemption - Clause text",
+      "responsibleTitle": "Responsible:",
+      "responsibleText": "ManiacPanda Games Legal. Property of Nexxyo Labs.",
+      "purposeTitle": "Purpose:",
+      "purposeText": "Redeeming an NFT for a physical good in the Marketplace. Shipment of that good to the address and person indicated on the form.",
+      "legitimationTitle": "Legitimation:",
+      "legitimationText": "Consent of the interested party.",
+      "recipientsTitle": "Recipients:",
+      "recipientsText": "The project of the NFT to be redeemed must receive the data for the shipment. No data will be transferred to other third parties, except legal obligation.",
+      "rightsTitle": "Rights:",
+      "rightsText": "Access, rectify, delete data and other rights, as explained in the additional information.",
+      "additionalInfoTitle": "Additional Information:",
+      "additionalInfoPrivacy": "Privacy policy",
+      "additionalInfoPrivacyLink": "https://outerringmmo.com/privacy-policy/",
+      "additionalInfoLegal": "Legal notice",
+      "additionalInfoLegalLink": "https://outerringmmo.com/legal-notice/",
+      "additionalInfoCookies": "Cookies policy",
+      "additionalInfoCookiesLink": "https://outerringmmo.com/cookies-policy/"
+    }
+  },
+
+  "popUp": {
+    "landStakingDeposit": "Staking Land",
+    "confirmLandStakingDeposit-nano": "Please, confirm the Nano Land deposit transaction in your wallet.",
+    "confirmLandStakingDeposit-micro": "Please, confirm the Micro Land deposit transaction in your wallet.",
+    "confirmLandStakingDeposit-standard": "Please, confirm the Standard Land deposit transaction in your wallet.",
+    "confirmLandStakingDeposit-macro": "Please, confirm the Macro Land deposit transaction in your wallet.",
+    "confirmLandStakingDeposit-mega": "Please, confirm the Mega Land deposit transaction in your wallet.",
+    "landStakingClaim": "Claiming Materials",
+    "landStakingWithdraw": "Withdrawing Land",
+    "confirmLandStakingWithdraw-nano": "Please, confirm the Nano Land withdraw transaction in your wallet.",
+    "confirmLandStakingWithdraw-micro": "Please, confirm the Micro Land withdraw transaction in your wallet.",
+    "confirmLandStakingWithdraw-standard": "Please, confirm the Standard Land withdraw transaction in your wallet.",
+    "confirmLandStakingWithdraw-macro": "Please, confirm the Macro Land withdraw transaction in your wallet.",
+    "confirmLandStakingWithdraw-mega": "Please, confirm the Mega Land withdraw transaction in your wallet.",
+    "craftingAssembly": "Crafting Assembly",
+    "craftingAssemblyEnd": "Confirm transaction to withdraw your NFT.",
+    "craftingAssemblySkip": "Confirm transaction to skip the crafting assembly time.",
+    "craftingAssemblyStart": "Confirm transaction to start the crafting assembly.",
+    "craftingStyling": "Crafting Styling",
+    "craftingStylingEnd": "Confirm transaction to send your NFT to a Engineer Post.",
+    "craftingStylingSkip": "Confirm transaction to skip the crafting styling time.",
+    "craftingStylingStart": "Confirm transaction to start the crafting styling.",
+    "craftingCreation": "Crafting Creation",
+    "craftingCreationEnd": "Confirm transaction to send your NFT to the Desing Pool.",
+    "craftingCreationSkip": "Confirm transaction to skip the crafting creation time.",
+    "craftingCreationStart": "Confirm transaction to start the crafting creation.",
+    "confirmationNeeded": "Confirmation needed",
+    "specieBurnConfirmation1": "Be careful, with this action your specie NFT will be burned.",
+    "specieBurnConfirmation2": "You will be able to buy a specie NFT again.",
+    "specieChangeConfirmation1": "The cost of the species NFT is 10 BUSD.",
+    "specieChangeConfirmation2": "If you already have an species NFT, it will be burned and you will receive a new one.",
+    "specieChangeConfirmation3": "Be careful, this change is irreversible. If you want to change species again, you will have to pay again.",
+    "burnSpecieNFT": "Burn Specie NFT",
+    "confirmSpecieBurnTransaction": "Please, confirm the transaction in your wallet to burn the Specie NFT.",
+    "claimSpecieNFT": "Claim Specie NFT",
+    "confirmSpecieClaimTransaction": "Please, confirm the transaction in your wallet to claim the Specie NFT.",
+    "changeSpecieNFT": "Change Specie NFT",
+    "confirmSpecieChangeTransaction": "Please, confirm the transaction in your wallet to change the Specie NFT.",
+    "claimHoldtelKey": "Claim Holdtel Key",
+    "confirmHoldtelClaimTransaction": "Please, confirm the transaction in your wallet to claim the Holdtel Key.",
+    "bridgeToBlink": "Bridge to Blink Galaxy",
+    "bridgeFromBlink": "Bridge from Blink Galaxy",
+    "checkingBlinkUser": "Checking if wallet is on Blink Galaxy database.",
+    "userNotInDb": "The wallet is not registered on the Blink Galaxy Database.",
+    "createBlinkAccount_html": "Please go to <a href=\"https://blinkgalaxy.com/\" target=\"_blank\">Blink Galaxy</a> and create an account or link the receiver wallet to an account.",
+    "signTx": "Please sign the transaction in your wallet.",
+    "transferTokens": "Please confirm the transaction in your wallet to send the tokens.",
+    "claimTokens": "Please confirm the transaction in your wallet to receive the tokens.",
+    "customAllowance": "Custom allowance",
+    "selectCustomAllowance": "Select custom allowance amount",
+    "allowanceHigherThanUint256": "Allowance amount can't exceed uint256 max. value",
+    "pleaseAddAmount": "Please add an amount",
+    "switchChainNotSupportedError": "Please change to the correct chain on your wallet.",
+    "allowanceText1": "To interact with the selected token type in the Outer Ring Dapp smart contract, you have three options:",
+    "allowanceText2_html": "<b>Default:</b> Grants maximum access, <b>eliminating the need to change spending limits in the future</b>.",
+    "allowanceText3_html": "<b>Max:</b> Sets the limit at the current maximum number of tokens in your wallet, requiring re-authorization for future transactions once it's reached.",
+    "allowanceText4_html": "<b>Manual Input:</b> Grants permission for a specific token amount, requiring re-authorization for future transactions once it's reached.",
+    "allowanceText5_html": "Note: <b>We recommend using \"Default\"</b> although it will show a warning sign. While <b>Outer Ring Dapp contracts are audited and safe</b>, exercise caution when using other decentralized applications.",
+    "mysteryReward": "Check your inventory to view your reward. Most probably they have been materials.",
+    "buyAsGift": "Buy as gift",
+    "bidOnAuction": "Bid on auction",
+    "bidLandAuction": "Bid for the land",
+    "buyoutLandAuction": "Buy the land",
+    "firstBidPrice": "First bid must be at least:",
+    "actualBidPrice": "Last bid price is:",
+    "minBidPrice": "Bid must be at least:",
+    "addBid": "Add your bid",
+    "sendNftTo": "Send NFT to",
+    "extraFeeAmount": "Extra fee amount",
+    "sendExtraFeeTo": "Send extra fee to",
+    "walletError": "Please, add a valid address",
+    "extraFeeError": "Extra fee must be between 0% and 96%",
+    "addAddress": "Add address",
+    "lowBidError": "Bid must be higher than indicated above.",
+    "highBidError": "Bid must be lower than buyout.",
+    "putOnSale": "Put on sale",
+    "putOnAuction": "Put on auction",
+    "bidForNft": "Bid for NFT",
+    "bidForLand": "Bid for Land",
+    "bidForLandText": "Confirm transaction on your wallet to bid for:",
+    "buyoutLand": "Buyout Land",
+    "buyoutLandText": "Confirm transaction on your wallet to buy:",
+    "followInstructions": "Starting transaction",
+    "followInstructionsText": "Please, follow the instructions carefully.",
+    "withdrawNft": "Withdraw NFT",
+    "withdrawLand": "Withdraw Land",
+    "price": "Price",
+    "auctionTime": "Auction duration",
+    "timeFee1": "This auction period carries 2.5 BUSD fee in BNB",
+    "timeFee2": "This auction period carries 5 BUSD fee in BNB",
+    "bidIncreasePercentage": "Bid increase percentage",
+    "customizeAuction": "Customize auction",
+    "customizeExtraFee": "Customize extra fee",
+    "currency": "Currency",
+    "changePrice": "Change price",
+    "valueCurrencyError": "Check that value is correct and you have selected a currency",
+    "valueError": "Check that value is correct",
+    "approvePutOnSale": "Please approve transaction to put on sale:",
+    "approvePutOnAuction": "Please approve transaction to put on auction:",
+    "approveBidForNft": "Please approve transaction to bid for:",
+    "approveToWithdraw": "Please approve transaction to get the NFT in your wallet.",
+    "approveToWithdrawLand": "Please approve transaction to get the Land NFT in your wallet.",
+    "waitTransaction": "Please wait until your transaction is done.",
+    "approveRemoveFromSale": "Please approve transaction on your wallet to remove frome sale the item:",
+    "approveSendNft": "Please approve transaction on your wallet to send:",
+    "approveChangePrice": "Please approve transaction on your wallet to change the price to:",
+    "approveBuy": "Please approve transaction on your wallet to buy:",
+    "approveContractInteraction": "Please, approve the interaction with the contract.",
+    "actionNeeded": "Action needed",
+    "allowance": "Allowance",
+    "error": "Error",
+    "successfulTransaction": "Transaction succesfully completed.",
+    "successfulTransactionLink_html": "See the <a href=\"https://bscscan.com/tx/***\" target=\"blank\">transaction on BscScan</a>.",
+    "removeItem": "Removing Item",
+    "directTransfer": "Direct Transfer",
+    "priceChange": "Price Change",
+    "confirmBuying": "Confirm buying",
+    "feeTransaction": "*Compleating this sale carries out a 4% service fee",
+    "feeFirstOwner": "*In OR NFT sales, first owner will receive 1% fee",
+    "confirmVotingTransaction": "Please, confirm the voting transaction in your wallet.",
+    "confirmProposalSendTransaction": "Please, confirm the proposal sending transaction in your wallet.",
+    "confirmDepositTransaction": "Please, confirm the deposit transaction in your wallet.",
+    "confirmHarvestTransaction": "Please, confirm the harvest transaction in your wallet.",
+    "confirmClaimTransaction": "Please, confirm the claim transaction in your wallet.",
+    "confirmWithdrawTransaction": "Please, confirm the withdraw transaction in your wallet.",
+    "waitDeposit": "Staking",
+    "waitHarvest": "Harvesting",
+    "waitWithdraw": "Withdrawing",
+    "waitVote": "Voting",
+    "voteAdded": "Your vote has been successfully added.",
+    "creatingDocument": "Creating Document",
+    "preparingDocument": "Please, wait until the proposal document is ready.",
+    "uploading": "Uploading",
+    "waitWhileUpload": "Please, wait until the document is uploaded to IPFS and Blockchain",
+    "proposalSentTitle": "Proposal sent",
+    "proposalSentText": "Your proposal has been succesfully sent to the team.",
+    "fileUploadedTitle": "File Uploaded",
+    "fileUploadedText": "Your proposal has been succesfully uploaded.",
+    "buyLootbox": "Buy lootbox",
+    "button": {
+      "back": "Back",
+      "cancel": "Cancel",
+      "accept": "Accept"
+    },
+    "settings": "Settings",
+    "waitSwap": "Swap",
+    "confirmSwap": "Please, confirm swap in your wallet",
+    "addLiquidity": "Please confirm add liquidity in your wallet",
+    "minusLiquidity": "Please confirm remove liquidity in your wallet"
+  },
+
+  "profile": {
+    "inventory": "Inventory",
+    "sales": "On sale",
+    "auctions": "On auction",
+    "nft": "NFTs",
+    "bridge": "Bridge",
+    "allowances": "Allowances"
+  },
+
+  "slider": {
+    "card1": {
+      "tip1": "Outer Ring ",
+      "tip2": "NFT marketplace",
+      "title": "Discover, buy and sell in-game items",
+      "text": "Fill your inventory",
+      "button1": "Sell",
+      "button2": "Explore"
+    },
+    "card2": {
+      "tip1": "Outer Ring ",
+      "tip2": "Lootboxes",
+      "title": "Open one to get Outer Ring NFTs and resources",
+      "text": "Unlock the treasures inside it",
+      "button1": "Buy Lootbox"
+    },
+    "card3": {
+      "tip1": "Outer Ring ",
+      "tip2": "Governance",
+      "title": "Let's create Outer Ring universe together",
+      "text": "Get VP and participate in the development proposals",
+      "button1": "Explore",
+      "button2": "Vote"
+    },
+    "card4": {
+      "tip1": "Outer Ring ",
+      "tip2": "DeFi",
+      "title": "Trade and earn Outer Ring resources",
+      "text": "Participate in our pools and farms to get different tokens and resources.",
+      "button1": "Explore"
+    },
+    "card5": {
+      "tip1": "GREAT SILVER CITY ",
+      "tip2": "Lands",
+      "title": "Obtain your first Land in Outer Ring",
+      "text": "Buy or bid for a Land in Great Silver City",
+      "button1": "Explore",
+      "button2": "Buy"
+    }
+  },
+
+  "statistics": {
+    "title": "Sale and auction Statistics",
+    "all": "All",
+    "totalSold": "Total sold",
+    "highestSale": "Highest sale",
+    "averageSale": "Average sale",
+    "movedAmount": "Moved amount",
+    "nftNameSales": "*** NFT sales",
+    "nftAmountSales": "*** NFT sales",
+    "tokenSales": "*** ### sales",
+    "transactions": "Transactions",
+    "tokenId": "Token Id",
+    "nftSeller": "Seller",
+    "buyPrice": "Buy Price",
+    "busdValue": "Value on BUSD",
+    "buyer": "Buyer",
+    "block": "Block",
+    "tokenConversionAdvice": "GQ or BNB values conversion to BUSD is done with the current token values."
+  },
+
+  "cookies": {
+    "c01": "Cookies policy",
+    "c02": "Definition and function of cookies",
+    "c03": "A cookie is a file that is downloaded to your computer when you access certain web pages. Cookies allow a web page, among other things, to store and retrieve information about the browsing habits of a user or their equipment and, depending on the information they contain and the way they use their equipment, they can be used to recognize to user.",
+    "c04": "Cookies can be:",
+    "c05": "Own cookies: ",
+    "c06": "Are those that are sent to the user's terminal equipment from a computer or domain managed by the editor itself and from which the service requested by the user is provided.",
+    "c07": "Third party cookies: ",
+    "c08": "These are those that are sent to the user's terminal equipment from a computer or domain that is not managed by the publisher, but by another entity that processes the data obtained through the cookies.",
+    "c09": "Session Cookies: ",
+    "c10": "These are a type of cookies designed to collect and store data while the user accesses a web page.",
+    "c11": "Technical cookies: ",
+    "c12": "Are those that allow the user to navigate through a web page, platform or application and the use of different options or services that exist in it, such as controlling traffic and data communication, identifying the session, access restricted access parts, remember the elements that make up an order, perform the purchase process of an order, make the request for registration or participation in an event, use security elements during navigation, store contents for dissemination of videos or sound or share content through social networks.",
+    "c13": "Analysis Cookies: ",
+    "c14": "These are those that allow the person responsible for them to monitor and analyze the behaviour of the users of the websites to which they are linked. The information collected through this type of cookies is used in the measurement of the activity of the websites, application or platform and for the elaboration of navigation profiles of the users of said sites, applications and platforms, in order to introduce improvements in function of the analysis of the data of use made by the users of the service.",
+    "c15": "What types of cookies does this website use?",
+    "c16": "Name",
+    "c17": "Category",
+    "c18": "Description",
+    "c19": "Property",
+    "c20": "Duration",
+    "c21": "_ga",
+    "c22": "Analysis",
+    "c23": "It is used to distinguish users.",
+    "c24": "Third party",
+    "c25": "2 years",
+    "c26": "_gat",
+    "c27": "Advertising",
+    "c28": "It is used to differentiate between the different tracking objects created in the session.",
+    "c29": "Third party",
+    "c31": "1 minute",
+    "c32": "_gid",
+    "c33": "Analysis",
+    "c34": "It is used to distinguish users.",
+    "c35": "Third party",
+    "c36": "24 hours",
+    "c37": "wfwaf-authcookie",
+    "c38": "Techniques",
+    "c39": "It serves to protect the User from the site.",
+    "c40": "The website",
+    "c41": "30 minutes",
+    "c42": "How to manage cookies in the browser?",
+    "c43": "The user expressly accepts, for the use of this Website, the treatment of the information collected in the manner and with the aforementioned purposes. And it also recognizes to know the possibility of rejecting the treatment of such data or information rejecting the use of Cookies by selecting the appropriate configuration for this purpose in your browser. Although this option to block cookies in your browser may not allow full use of all the functionality of the Website.",
+    "c44": "You can allow, block or delete the cookies installed on your computer by configuring the browser options installed on your computer:",
+    "c45": "Chrome: ",
+    "c46": "Firefox: ",
+    "c47": "Internet Explorer: ",
+    "c48": "Safari: ",
+    "c49": "Opera: "
+  },
+
+  "legalAdvice": {
+    "l01": "Legal notice",
+    "l02": "By accessing and using this service, you accept and agree to be bound by the terms and provisions of this agreement. Likewise, when using these particular services, you will be subject to any rule or guide of corresponding use that has been published for said services. All participation in this service will constitute acceptance of this agreement. If you do not agree to comply with the above, please do not use it. According to article 10 of the Law on Services of the Information Society and Electronic Commerce (hereinafter LSSI), in a mandatory, permanent, easy, direct and freeway.",
+    "l03": "Ownership of the website: ManiacPanda Games Legal. Property of Nexxyo Labs",
+    "l04": "CIF/NIF: B-71.379.507",
+    "l05": "Mailing address: Pol. Berroa, 4. Of. 215. 31192 Tajonar. Navarra. Spain",
+    "l06": "Email: info@outerringmmo.com",
+    "l07": "The company registered in the Mercantile Registry of Navarra (K8801323)"
+  },
+
+  "privacyPolicy": {
+    "p01": "Privacy policy",
+    "p02": "Responsible for the processing of your data:",
+    "p03": "Identity: ManiacPanda Games Legal. Property of Nexxyo Labs",
+    "p04": "CIF/NIF: B-71.379.507",
+    "p05": "Mailing address: Pol. Berroa, 4. Of. 215. 31192 Tajonar. Navarra. Spain",
+    "p06": "Email: info@outerringmmo.com",
+    "p07": "Delegate data protection: Daniel Valdes Araiz (72.817.870-P)",
+    "p08": "DPD contact: info@outerringmmo.com",
+    "p09": "The company registered in the Mercantile Registry of Navarra (K8801323)",
+    "p10": "What is the purpose of the processing of your personal data?",
+    "p11": "At OuterRingMMO.com we treat the information provided by interested persons with the following purposes:",
+    "p12": "In order to manage the delivery of the information requested, provide interested parties with offers of products and services of interest, to offer our products and services according to their interests, improve your user experience. To fulfil these purposes, we will elaborate a commercial profile based on the information provided. Automated decisions will not be made based on the profiles of the database. Yes, automated emails will be sent, previously programmed by the owner of the data or their service providers or employees, in order to send information on the news of the blog, and commercial products that will be offered through this website, whether they are hosted on it or on platforms from third-party service providers. We will also use all types of cookies that we consider appropriate to our personal brand.",
+    "p13": "How long will we keep your data?",
+    "p14": "The personal data provided on the OuterRingMMO.com website will be kept for a period of ten years from the last confirmation of your interest. They will also be maintained while the mercantile relationship is maintained. They will disappear when their deletion or portability is requested by the interested party.",
+    "p15": "Legitimation",
+    "p16": "The legal basis for the treatment of your data is the execution of the online subscription to the blog or the contact form of the website OuterRingMMO.com as well as access to all the products acquired on said website. The offer of products and services is based on the consent that is requested, without in any case the withdrawal of this consent conditions the execution of services or the delivery of pending products.",
+    "p17": "Recipients to whom your data will be communicated",
+    "p18": "The data collected through this website will be communicated to other companies of the business group for internal administrative purposes, including the processing of personal data of customers or employees. ManiacPanda Games Legal Property of Nexxyo Labs and to whom the data are communicated will have binding corporate rules approved by the European Committee for data protection and available in this document.",
+    "p19": "What are your rights when you provide us with your information?",
+    "p20": "Anyone has the right to obtain confirmation about whether ManiacPanda Games Legal Property of Nexxyo Labs is processing personal data that concerns them or not. Interested persons have the right to access their personal data, as well as to request the correction of inaccurate data or, where appropriate, request its deletion when, among other reasons, the data is no longer necessary for the purposes that were collected. In certain circumstances, the interested parties may request the limitation of the processing of their data, in which case we will only keep them for the exercise or defense of claims. In certain circumstances and for reasons related to their particular situation, the interested parties may object to the processing of their data. ManiacPanda Games Legal Property of Nexxyo Labs will stop processing the data, except for compelling legitimate reasons or the exercise or defense of possible claims.",
+    "p21": "How have we obtained your data?",
+    "p22": "The personal data we treat in OuterRingMMO.com come either from the web itself, email, instant messaging or postal mail of our company or group companies. The categories of data we deal with are: Identification data, codes or identification keys, postal or electronic addresses, commercial information, economic data. We also inform you that we do not obtain specially protected data on a regular basis. If specially protected data reaches our company, we will protect it in accordance with current regulations.",
+    "p23": "Cookies policy",
+    "p24": "All the information available in",
+    "p25": "Responsibilities",
+    "p26": "Waiver of any responsibility",
+    "p27": "This page and its components are offered for informational purposes only. The Workshop of the Silk SL, owner of this page is not responsible for the accuracy, usefulness or availability of any information that is transmitted or made available through it; will not be responsible for any error or omission in said information. The users of this page that give their personal data, with the acceptance of the informed consent renounce any compensation that for the legal use of such data could correspond to them, not being able to exercise any legal claim for it. If you want to hold it, you should not give your information on this website.",
+    "p28": "Minors",
+    "p29": "Our services and products are for over 18 years. Children under this age are not authorized to use our services and should not, therefore, send us their personal information.",
+    "p30": "Links policy of our website",
+    "p31": "Responsibility. The provider is exempt from any type of liability arising from the information published on its website, provided that this information has been manipulated or introduced by a third party outside it. The access service to the Portal includes links that may lead the user to other websites and web pages managed by third parties, over which ManiacPanda Games Legal Property of Nexxyo Labs does not exercise any type of control.",
+    "p32": "In these cases, ManiacPanda Games Legal Property of Nexxyo Labs acts as a provider of intermediation services in accordance with the provisions of article 17 of the LSSICE. ManiacPanda Games Legal Property of Nexxyo Labs does not respond neither to the contents nor to the status of said websites and web pages. The provider is not responsible for the information and stored content, by way of example, but not limited to forums, chat, blog generators, comments, social networks or any other means that allows third parties to publish content independently in the web page of the provider.",
+    "p33": "However, and in compliance with the provisions of art. 11 and 16 of the LSSICE, the provider is made available to all users, authorities and security forces, and actively collaborating in the withdrawal or blocking of any content that could affect or contravene national legislation, or international, rights of third parties or morality and public order. We do not want to link to other pages, being prohibited deep-links, IMG or image links, frames, which can make the user understand that they are on another website that is not ours. The user must be aware that our company is not responsible for the privacy practices of these other websites.",
+    "p34": "We recommend that users be aware that by using one of these links they are leaving our website and that they read the privacy policies of those other websites that collect personal data. This privacy policy only applies to personal data collected through this website.",
+    "p35": "Intellectual property",
+    "p36": "The User acknowledges and accepts that all intellectual and industrial property rights over the contents and any other elements inserted in the Website belong to ManiacPanda Games Legal Property of Nexxyo Labs.",
+    "p37": "The entire content of the website, including but not limited to its programming, editing, compilation and other elements necessary for its operation, the designs, logos, text and / or graphics, images, graphic or artistic material present in the website. web, are the property of the provider or, where appropriate, have a license or express authorization from the authors.",
+    "p38": "All the contents of the website are protected by industrial and intellectual property rights, registered in the corresponding public registers under the ownership of ManiacPanda Games Legal Property of Nexxyo Labs or by third parties, without which any of the exploitation rights of the user may be construed. the same beyond what is strictly necessary for the correct use of the Portal.",
+    "p39": "Any individual or legal entity is authorized to establish links or links to the website on its pages or web sites, both to its main page and to any of its pages. However, links to any of the pages of the website that imply viewing them in the browser through frames or frames are expressly prohibited.",
+    "p40": "All the contents shown on this website are subject to and protected by intellectual and industrial property rights. It is not allowed the alteration, exploitation, reproduction, distribution or public communication and made available on the contents of the course without the prior express authorization of the owner of the web.",
+    "p41": "The page and its original content, features and functionality are the property of ManiacPanda Games Legal Property of Nexxyo Labs and are protected by international copyright, trademarks, patents, trade secrets and other laws of intellectual property or property rights.",
+    "p42": "Rescissions and changes",
+    "p43": "Rescission",
+    "p44": "We may cancel your access to the site, without cause or notice, which may result in the seizure and destruction of all information that is associated with your account. All provisions of this agreement that, by their nature, must survive the cancellation will survive it, including without limitation, property dispositions, waivers of warranty, indemnification and limitations of liability.",
+    "p45": "Changes in conditions",
+    "p46": "The company reserves the right to modify these conditions when it deems appropriate; likewise, the permanent use of the page will signify your acceptance of any adjustment to such terms. If there is any change in our privacy policy, we will announce on our homepage and on other important pages of our site that such changes have been made. If there is any change to our page regarding the way we use our customers' personal identification information, we will send a notification via email or postal mail to those affected by the change. Any change in our privacy policy will be published on our page 30 days before such changes occur. Therefore, it is recommended that you reread this statement on a regular basis.",
+    "p47": "Regulation and conflict resolution",
+    "p48": "The present Conditions of Use of OuterRingMMO.com are governed in each and every one of its extremes by Spanish law. The language of drafting and interpretation of this legal notice is Spanish. This legal notice will not be filed individually for each user, but will remain accessible through the Internet on this Website.",
+    "p49": "Users who have the status of consumers or users as defined by Spanish regulations and reside in the European Union, if they have had a problem with an online purchase made to OuterRingMMO.com, to try to reach an out-of-court settlement can go to the Online Litigation Resolution Platform, created by the European Union and developed by the European Commission under the Regulation (EU) 524/2013.",
+    "p50": "Whenever the User is not a consumer or user, and when there is no rule that obliges otherwise, the parties agree to submit to the Courts and Tribunals of Pamplona, as this is the place where the contract is concluded, expressly waiving any another jurisdiction that could correspond to them."
+  },
+
+  "faqTexts": {
+    "title": "FAQ",
+    "subtitle": "What is your doubt about?"
+  },
+
+  "faqBaskonia": {
+    "tip": "Do you have doubts about the process?",
+    "tipButton": "Help",
+    "moreDoubts": "Any further questions?",
+    "checkFaq": "Check the FAQ",
+    "title": "How to buy and redeem an NFT MVP Signed Pack",
+    "whatIsMvpPack": {
+      "title": "What is an MVP Signed Pack?",
+      "answer": "The NFT allows you to redeem unique collectibles (signed jersey, ball, and postcard) and enjoy virtual experiences in the Outer Ring."
+    },
+    "bidOnMvpPack": {
+      "title": "How to participate in the auction of an MVP Signed Pack?",
+      "answer": "<ol><li>Connect your Metamask to the <a href=\"https://dapp.outerringmmo.com/\" target=\"_blank\">OR DAPP</a>.</li><li>Click on the \"Marketplace\" tab and look for the Partners section. There you will find the Baskonia Marketplace</li><li>Inside, you will be able to see the product auctions that are currently active. Select the one you want to participate in and enter a higher bid than the last one.</li><li>Once the auction is over, if you are the winner, you will be able to redeem your prize and the MVP Signed Pack will go to your inventory by clicking on the \"WITHDRAW OBJECT\" option.</li></ol>"
+    },
+    "redeemMvpPack": {
+      "title": "How to redeem an MVP Signed Pack?",
+      "answer": "<ol><li>If you have an MVP Signed Pack (which has not been redeemed) in your wallet, you can choose to redeem the associated physical items (signed jersey, ball and postcard).</li><li>To redeem the physical items click on \"REDEEM NFT FOR REWARDS\" and fill in the submission form.</li><li>Follow the steps indicated in the pop-up window, and if the process is successful, you will receive a confirmation email within the next 24/48h.</li><li>Once the properties of the digital collectible have been redeemed, they will be modified, so that you or the future holder will still have access to the \"VIP Metaverse Baskonia\".</li></ol>"
+    }
+  },
+
+  "faq": {
+    "block01": {
+      "title": "Outer Ring MMO",
+      "id": "outerRing",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What is Outer Ring?",
+              "answer": "Outer Ring MMO is a free-to-play 3rd person sci-fi action RPG spanning an entire universe. Players will enter a unique metaverse and embark on an epic journey across galaxies to discover new worlds, unravel ancient mysteries, and face the dangers of deep space."
+            },
+            "q02": {
+              "title": "Why does Outer Ring use blockchain technology?",
+              "answer": "Outer Ring uses blockchain to grant you ownership of your in-game assets, allowing them to participate in a Player Driven Economy and generate real value for your time exploring this universe."
+            },
+            "q03": {
+              "title": "What type of tokens are used inside Outer Ring?",
+              "answer": "All in-game items, such as swords, guns, armor, vehicles, ships, or lands, can be converted into non-fungible tokens (NFTs). On the other hand, the resources needed to craft them as iron or copper... work as Fungible Tokens."
+            },
+            "q04": {
+              "title": "What is the governance token of Outer Ring?",
+              "answer": "GQ (Galactic Quadrant) is the main token of Outer Ring. You can generate it by simply playing and then spend it in your daily activities inside the Outer Ring. Also, you can also use GQ to participate in the project's governance platform."
+            },
+            "q05": {
+              "title": "Where can I find more information about the project?",
+              "answer": "You can keep exploring the Outer Ring by reading our <a href=\"https://outerringmmo.gitbook.io/outer-ring-mmo/\" target=\"_blank\">whitepaper</a>."
+            }
+          }
+        }
+      }
+    },
+    "block02": {
+      "title": "DAPP",
+      "id": "dapp",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What is a DAPP?",
+              "answer": "A Dapp (Decentralised Application) is a software application that runs on a decentralized network and is connected to a blockchain."
+            },
+            "q02": {
+              "title": "What is the Outer Ring Dapp?",
+              "answer": "The Outer Ring Dapp (Decentralized Application) is a platform where you can manage all your tokenized items of the game thanks to blockchain technology."
+            },
+            "q03": {
+              "title": "How can I use the Dapp?",
+              "answer": "You can use the Dapp to craft, buy, or sell in-game NFT items such as weapons, armor, or lands. Inside the Dapp you can also harvest materials or participate in the game's decision-making using the governance platform. All of this in a completely decentralized way."
+            },
+            "q04": {
+              "title": "Is the Outer Ring Dapp safe?",
+              "answer": "Yes, all the smart contracts involved in the Dapp have been audited by companies such as Certik or Techrate. Check it out <a href=\"https://outerringmmo.gitbook.io/outer-ring-mmo/development/blockchain-technology/smart-contract-audits\" target=\"_blank\">here</a>."
+            }
+          }
+        }
+      }
+    },
+    "block03": {
+      "title": "Wallet & Connection",
+      "id": "walletConnection",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "How do I connect to the Dapp?",
+              "answer": "To log in inside the Dapp you will need to connect your Metamask wallet or any other wallet compatible with WalletConnect."
+            },
+            "q02": {
+              "title": "What is a wallet?",
+              "answer": "A wallet is a digital storage tool for your cryptocurrencies or other digital assets. Like a physical wallet, a digital wallet safely stores, receives and sends your Outer Ring digital items."
+            },
+            "q03": {
+              "title": "How do I create a Metamask Wallet?",
+              "answer": "<ol><li>Open your web browser and go to the <a href=\"https://metamask.io/\" target=\"_blank\">Metamask page</a>.</li><li>Click on the \"Get Chrome Extension\" or \"Get Firefox Extension\" button depending on your browser. This will download and install the MetaMask extension in your browser.</li><li>Once the extension is installed, you will see a MetaMask icon in the top right corner of your browser. Click on it to open the extension.</li><li>Read and accept the terms of use and privacy policy on the welcome screen. Then click on \"Create a new wallet\".</li><li>You will be asked to choose a strong password. Choose a password that is easy to remember but difficult for others to guess. Make sure you write it down in a safe place, and don't share it with anyone.</li><li>Once you have chosen a password, MetaMask will display your 12-word recovery phrase. This phrase is unique to your wallet and is the way to recover it if you lose or forget it. Make sure you write it down in a safe place and do not share it with anyone. You alone are responsible for these 12 words; if you lose them, there will be no way to retrieve the wallet, losing all associated funds.</li><li>Once you have entered the recovery phrase, click \"Continue\". MetaMask will ask you to confirm your recovery phrase by typing the words in the correct order. Once you have confirmed your recovery phrase, your wallet is ready to use.</li><li>You can now use MetaMask to send and receive cryptocurrencies, interact with smart contracts, and much more. Remember to keep your password and passphrase in the correct order.</li></ol>"
+            },
+            "q04": {
+              "title": "How to set up the BSC network?",
+              "answer": "<ol><li>Connect your wallet to the <a href=\"https://dapp.outerringmmo.com/\" target=\"_blank\">Outer Ring Dapp</a> to switch networks.</li><li>This will open Metamask asking you to switch to the Binance Smart Chain Mainnet.</li><li>When you accept, the network will be switched automatically.</li></ol>"
+            },
+            "q05": {
+              "title": "How do I buy and send funds to my MetaMask?",
+              "answer": "<ol><li>Choose a cryptocurrency exchange platform where you can buy BUSD or BNB. Popular options include Binance, Coinbase, and Kraken.</li><li>Register with your chosen exchange platform and follow the instructions to verify your identity and link a form of payment, such as a credit card or bank account.</li><li>Once you have verified your identity and linked a payment method, look for the option to buy BUSD. On some platforms, you can buy BUSD directly with your fiat currency (US dollars or euros); on others, you can buy another cryptocurrency, such as Bitcoin or Ethereum, and then exchange it for BUSD.</li><li>Enter the amount of BUSD you wish to buy and confirm the transaction. Note that you will have to pay a transaction fee for the purchase.</li><li>Once you have completed your purchase, look for the \"Withdraw\" or \"Send\" option on the exchange platform. Select this option and choose BUSD as the cryptocurrency you wish to send.</li><li>Enter your MetaMask wallet address as the destination address for the shipment. You must also enter the amount of BUSD you wish to send and confirm the transaction. Please note that you will be charged a transaction fee for the shipment.</li><li>Once you have confirmed the shipment, verify that the BUSD has been sent to your MetaMask wallet. To do this, click on the MetaMask icon in the top right corner of your browser and select your wallet. You will see your BUSD balance on the main screen of your wallet.</li></ol>"
+            },
+            "q06": {
+              "title": "Why does every transaction have a cost?",
+              "answer": "Every transaction requiring a write to the blockchain has a gas fee specified in the window where you accept the transaction."
+            },
+            "q07": {
+              "title": "What happens if I receive a warning about a possible transaction failure?",
+              "answer": "If a warning message appears before you accept the transaction saying the transaction will fail, do not accept it, as it will not go through. Our contracts are audited, so the most common failures usually relate to a lack of funds or permissions."
+            },
+            "q08": {
+              "title": "What happens if my transaction fails?",
+              "answer": "If the transaction fails, the purpose associated with the transaction will not be fulfilled. For example, if the transaction fails when trying to buy an NFT on our Marketplace, this NFT will still be for sale, and you will not have lost your money. However, please note that the cost of gas will have been irreversibly paid."
+            },
+            "q09": {
+              "title": "Why do I have to give contract access to my tokens or NFTs?",
+              "answer": "For a contract to interact with your tokens or NFTs, you need to grant it permission. For example, if you want to offer an NFT for sale, the contract needs to have this permission to \"access\" your wallet."
+            },
+            "q10": {
+              "title": "Is it safe to give a contract access to all my NFTs?",
+              "answer": "When requesting permission to access an NFT, we request permission to access all NFTs in a contract. This way, we avoid having to give permission every time a user wants to put a gun NFT for sale, for example."
+            }
+          }
+        }
+      }
+    },
+    "block04": {
+      "title": "Lootboxes",
+      "id": "lootboxes",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What is an NFT Lootbox?",
+              "answer": "A Lootbox contains a set of in-game items such as weapons, armor pieces, vehicles, or materials. <a href=\"https://dapp.outerringmmo.com/lootboxes\" target=\"_blank\">There are 7 types of Lootboxes</a>, each having different rewards. The NFTs inside them unlock utilities and experiences inside the Outer Ring ecosystem."
+            },
+            "q02": {
+              "title": "What utilities can I unlock?",
+              "answer": "Some of the NFTs you will find inside the Lootboxes have associated utilities that will allow you, for example, to get discounts in the merchandising store, read the Outer Ring Saga novel, gain whitelist spots to other sales, or enter special discord groups. Click on the top of each Lootbox to find the specific details."
+            },
+            "q03": {
+              "title": "What is the Early Explorer collection?",
+              "answer": "The NFTs extracted from the Lootboxes are marked as Early Explorer collection, being the first NFT collection ever released by Outer Ring."
+            },
+            "q04": {
+              "title": "How can I buy a Lootbox?",
+              "answer": "You can purchase Lootboxes with BUSD or at half price with SCK tokens."
+            },
+            "q05": {
+              "title": "What are SCKs?",
+              "answer": "SCK or Space Corsair Keys is a utility token that opens Lootboxes at half price. You can get them as a reward in the Staking Pools or buy them with other coins <a href=\"https://pancakeswap.finance/swap?outputCurrency=0x227a3EF4d41d0215123f3197Faa087Bf71d2236a&inputCurrency=0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56\" target=\"_blank\">in a DEX like PancakeSwap</a>."
+            },
+            "q06": {
+              "title": "Why does the price change with every purchase?",
+              "answer": "To avoid the massive purchase of Lootboxes, the price increases by a small percentage with each purchase. This increase will gradually decrease until it returns to its original price."
+            },
+            "q07": {
+              "title": "How do I know that the prizes in my Lootbox have been randomized?",
+              "answer": "The Lootboxes smart contract <a href=\"https://docs.chain.link/vrf/v2/introduction/\" target=\"_blank\">integrates Chainlink's oracles</a> tools to verify its randomness in the blockchain. This way, you know every weapon you receive is a random reward."
+            },
+            "q08": {
+              "title": "Where can I visualize my items?",
+              "answer": "Once you connect your wallet, you can click your profile and visualize all the NFTs, materials, and achievements you own. You can select any items to transfer, sell or auction from there."
+            }
+          }
+        }
+      }
+    },
+    "block05": {
+      "title": "Marketplace",
+      "id": "marketplace",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What is an NFT Marketplace?",
+              "answer": "A Marketplace is a decentralized platform that allows the exchange of NFTs between individuals without the need to interact with an intermediary."
+            },
+            "q02": {
+              "title": "What items can be traded in the Marketplace?",
+              "answer": "All the NFT in-game assets can be traded in the Marketplace: Weapons, armor, vehicles, lands..."
+            },
+            "q03": {
+              "title": "Can cryptocurrencies be used in the Marketplace?",
+              "answer": "The tokens enabled in our Marketplace are GQ, BUSD, and BNB."
+            },
+            "q04": {
+              "title": "What fees are involved in each trade?",
+              "answer": "Each transaction contains a gas fee used to validate it in the blockchain, a 4% fee for Outer Ring development, and a 1% royalty fee to the first owner of an NFT."
+            },
+            "q05": {
+              "title": "Can I transfer my NFTs to a friend from the Marketplace?",
+              "answer": "Yes, select the transfer option and send NFTs just paying the gas fee."
+            }
+          }
+        },
+        "subsection02": {
+          "title": "Sales",
+          "questions": {
+            "q01": {
+              "title": "How do I list an NFT for sale?",
+              "answer": "Entering your inventory and selecting the NFT you want to sell will take you to the detail page of this NFT. On this page, click the \"put for sale\" button, and in the pop-up window, select the price and currency you want to sell it."
+            },
+            "q02": {
+              "title": "What happens if my NFT is not sold?",
+              "answer": "Your NFT will remain for sale until it is purchased or until you withdraw it."
+            },
+            "q03": {
+              "title": "Can I withdraw my NFT at any time?",
+              "answer": "Yes. You can withdraw your NFT for sale at any time, at no cost other than the transaction fee."
+            },
+            "q04": {
+              "title": "Can I change the price of my NFT for sale?",
+              "answer": "Yes. The price of an NFT you have for sale can be changed anytime."
+            },
+            "q05": {
+              "title": "Why are there Partners in the Marketplace?",
+              "answer": "Outer Ring has multiple partners looking to join its universe and build this exciting project together. In the Marketplace, they can list special collections of NFTs with utilities in both ecosystems."
+            },
+            "q06": {
+              "title": "I have a project, and I want to collaborate. How can I do it?",
+              "answer": "Fill in the form that you will find in the Partners section of the Marketplace."
+            }
+          }
+        },
+        "subsection03": {
+          "title": "Auctions",
+          "questions": {
+            "q01": {
+              "title": "How do I put an NFT up for auction?",
+              "answer": "Going into your inventory and clicking on the NFT you want to sell will take you to the detail page of this NFT. On this page, click on the \"put up for auction\" button, and in the pop-up window, select the price and currency in which you want to sell it. In addition, the auction can be customized with two parameters: the duration (2, 4, or 6 days), which carries an extra cost indicated in the window, and the percentage increase over the previous bid."
+            },
+            "q02": {
+              "title": "What auction times can be applied?",
+              "answer": "The auction can be set to three different durations: 2 days (default duration), 4 days (at the cost of 2.5$ in BNB), or 6 days (at the cost of 5$ in BNB)."
+            },
+            "q03": {
+              "title": "What happens if my NFT has no bids?",
+              "answer": "When the auction ends, if the NFT has not received any bids, you can withdraw it to return it to your wallet."
+            },
+            "q04": {
+              "title": "Can I withdraw my NFT if I no longer want to auction it?",
+              "answer": "Once an NFT has been put up for auction it cannot be withdrawn until the auction's time ends."
+            },
+            "q05": {
+              "title": "Can I change the price of my NFT at auction?",
+              "answer": "No. Once the NFT is put up for auction, the price will only change as bids are placed."
+            },
+            "q06": {
+              "title": "Where is my NFT when the auction ends?",
+              "answer": "Once the NFT has been withdrawn from the auction, it will go into the wallet of the highest bidder (if there have been bids) or the seller (if there have been no bids)."
+            }
+          }
+        }
+      }
+    },
+    "block06": {
+      "title": "Governance",
+      "id": "governance",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What is the Governance Platform in Outer Ring MMO?",
+              "answer": "The Governance Platform in Outer Ring MMO is a tool that allows you to participate in the decision-making of certain aspects of the videogame and blockchain ecosystem."
+            },
+            "q02": {
+              "title": "Who creates proposals in the Governance Platform?",
+              "answer": "The Outer Ring Team creates its own proposals and evaluates those the community sends."
+            },
+            "q03": {
+              "title": "How can I send a proposal?",
+              "answer": "In the \"Leave your proposal\" section, you have a form to add your proposal. To avoid mass mailing, each proposal sent will cost 200 VP."
+            },
+            "q04": {
+              "title": "How do I vote on a proposal? ",
+              "answer": "If the proposal is active, click on the option you want to vote for and add the amount of VP you want to vote with."
+            },
+            "q05": {
+              "title": "How do I get Voting Power? ",
+              "answer": "To gain Voting Power token (ORVP), you must stake GQ (Galactic Quadrant) on the platform. The amount of voting tokens you receive depends on the amount of GQ you deposit and the length of the blocking time you choose."
+            },
+            "q06": {
+              "title": "What are the three types of staking pools available on the platform?",
+              "answer": "There are three types of staking pools available: \"No blocking\", \"30-day blocking with an x2 rewards multiplier\", and \"90-day blocking with an x4 rewards multiplier\"."
+            },
+            "q07": {
+              "title": "Can the VP token be transferred to another user?",
+              "answer": "No, the VP token is non-transferable."
+            },
+            "q08": {
+              "title": "Can I vote several times on the same proposal?",
+              "answer": "You can spend Voting Power multiple times on the same proposal."
+            },
+            "q09": {
+              "title": "Can I withdraw my vote on a proposal?",
+              "answer": "Once a vote has been cast, it cannot be withdrawn. If you change your mind, you can add more votes to one of the other options."
+            },
+            "q10": {
+              "title": "What happens when a proposal ends?",
+              "answer": "The outcome of the vote will decide the future of the Outer Ring."
+            }
+          }
+        }
+      }
+    },
+    "block07": {
+      "title": "DeFi",
+      "id": "defi",
+      "subsections": {
+        "subsection01": {
+          "title": "Pools",
+          "questions": {
+            "q01": {
+              "title": "What are the staking pools?",
+              "answer": "The staking pools are a platform where you can lock your tokens, such as GQ, to receive other tokens as a reward for participating in the Outer Ring ecosystem."
+            },
+            "q02": {
+              "title": "How can I stake tokens?",
+              "answer": "To participate in the staking pools, you must connect your wallet. Once done, you must select a pool and deposit your tokens by approving the contract and transferring the desired amount."
+            },
+            "q03": {
+              "title": "What tokens can I stake?",
+              "answer": "You can stake GQ, GQ LPs, and governance tokens from some members of the Galactic Alliance."
+            },
+            "q04": {
+              "title": "Why should I earn materials?",
+              "answer": "Tokenized materials such as PLU or ACE are the main rewards in the staking pools. Stake your GQ to generate as much as you can and use them to craft NFT Weapons."
+            },
+            "q05": {
+              "title": "What is the Galactic Alliance?",
+              "answer": "The Galactic Alliance is a partnership agreement that Outer Ring established with other projects to impulse blockchain adoption. In its first phase, we create cross-staking campaigns allowing users from one ecosystem to obtain tokens from the other."
+            },
+            "q06": {
+              "title": "How can I withdraw my tokens from the staking?",
+              "answer": "You can withdraw your tokens at any time. However, some pools have locking periods, so redeeming or withdrawing them before they expire may involve paying a fee."
+            },
+            "q07": {
+              "title": "What happens when a pool ends?",
+              "answer": "When a pool ends, the tokens and rewards remain in the smart contract until its owner claims them back."
+            }
+          }
+        },
+        "subsection02": {
+          "title": "Swap",
+          "questions": {
+            "q01": {
+              "title": "What tokens can I swap?",
+              "answer": "You can swap any of the tokenized materials: gasses and minerals."
+            },
+            "q02": {
+              "title": "How do I swap two materials?",
+              "answer": "Select the materials you want to trade, introduce the amount you want to swap, approve the transaction and receive the resulting tokens in your wallet."
+            },
+            "q03": {
+              "title": "How is the swap ratio determined?",
+              "answer": "The value is defined by supply and demand. The number of tokens inside the pool will define the pairs' exchange value."
+            },
+            "q04": {
+              "title": "Is there a cost for swapping materials?",
+              "answer": "You must approve the contract and pay the transaction gas fee to swap materials. Also, from each transaction, a 0.3% fee is taken to provide liquidity into the Liquidity Pools."
+            }
+          }
+        },
+        "subsection03": {
+          "title": "Liquidity",
+          "questions": {
+            "q01": {
+              "title": "How do the Liquidity Pools work?",
+              "answer": "A Liquidity Pool is a collection of two different materials, locked together by the users to allow the decentralized exchange of these tokens. When you provide liquidity to a pool, you deposit an equal value of two different tokens into the pool."
+            },
+            "q02": {
+              "title": "What is the benefit of providing liquidity into a Liquidity Pool?",
+              "answer": "By providing liquidity into a Liquidity Pool, you participate in the decentralized exchange of the two tokens, allowing others to trade them and receive rewards for your participation in the form of LP tokens."
+            },
+            "q03": {
+              "title": "What is an LP token?",
+              "answer": "The LP token represents your percentage of participation in a Liquidity Pool, which you receive after providing liquidity into the pool."
+            },
+            "q04": {
+              "title": "How do I use my LP tokens?",
+              "answer": "You can use LP tokens in the Farms to receive COP and IRON as rewards."
+            },
+            "q05": {
+              "title": "Can I withdraw your tokens from the Liquidity Pool once you provide liquidity?",
+              "answer": "Yes, you can withdraw your tokens from the Liquidity Pool anytime."
+            }
+          }
+        },
+        "subsection04": {
+          "title": "Farms",
+          "questions": {
+            "q01": {
+              "title": "How do the Farms work?",
+              "answer": "In the Farms, you can stake your LP tokens to generate IRON  and COP materials as rewards. These materials are essential for NFT Crafting."
+            },
+            "q02": {
+              "title": "How can I claim my rewards?",
+              "answer": "After depositing the LP token, you can claim your rewards or withdraw the LP at any time."
+            }
+          }
+        }
+      }
+    },
+    "block08": {
+      "title": "Lands",
+      "id": "lands",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What are the Lands?",
+              "answer": "Lands are a Non-Fungible Token (NFT) type that allows players to own and interact with virtual lands inside the Outer Ring universe. Each Land is unique and verified on the blockchain, meaning it is a one-of-a-kind item that can never be duplicated or destroyed."
+            },
+            "q02": {
+              "title": "Where will the Lands be located?",
+              "answer": "The Lands are located in four different sectors inside the three rings of Great Silver City, each divided into distinct districts."
+            },
+            "q03": {
+              "title": "How can I buy a Land?",
+              "answer": "You can  get a Land participating in the public auctions or buy it directly from other players or users in the marketplace."
+            },
+            "q04": {
+              "title": "How will the public auctions work?",
+              "answer": "Outer Ring will hold a total of four public auctions. Two of them will be opened before the Lands are integrated into the game, while the last two will be made public afterward. If you want to own the Land in Outer ring, we encourage you to bid through one of these auctions."
+            },
+            "q05": {
+              "title": "What types of Lands are available?",
+              "answer": "In Outer Ring there are the following types of Lands: Nano, Micro, Standard, Macro and Mega Lands, each with unique utilities both inside and outside the game."
+            },
+            "q06": {
+              "title": "How can I enter the first public auction?",
+              "answer": "To participate in the first public auction of Micro, Standard, Macro and Mega Lands, you will need to be in possession of an NFT from the Early Explorer collection, available by opening Lootboxes or in the Marketplace. Nano Lands are open to everyone. In addition, you will need at least 1,000 GQ to make the initial bid."
+            },
+            "q07": {
+              "title": "When can I start using my Lands?",
+              "answer": "You can use your Lands inside the Dapp to mine materials and improve your crafting before the Early Access Pre-Alpha. In-game Land utilities will arrive in future updates."
+            },
+            "q08": {
+              "title": "What happens to the GQ used to purchase a Land?",
+              "answer": "All the GQ raised from the public auctions will be used to strengthen the game's economy, burning it and using it to provide liquidity and give rewards."
+            },
+            "q09": {
+              "title": "Can I sell my Land to another player?",
+              "answer": "Yes, you can sell your Land to another player. You can do this by putting your Land up for auction or selling it directly to another player."
+            },
+            "q10": {
+              "title": "Will the map change in the future?",
+              "answer": "Yes, the map and the city will evolve as the game progresses."
+            }
+          }
+        }
+      }
+    },
+    "block09": {
+      "title": "Holdtel",
+      "id": "holdtel",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "Where is GoldStar Holdtel located?",
+              "answer": "The GoldStar Holdtel is located in one of the most central bubbles of Great Silver City, near the most exclusive Outer Ring partners buildings."
+            },
+            "q02": {
+              "title": "How do you access the Holdtel?",
+              "answer": "You will need a NFT key assigned to one of the rooms in this building."
+            },
+            "q03": {
+              "title": "How many NFT keys are going to be distributed?",
+              "answer": "A total of 5,000 NFT keys."
+            },
+            "q04": {
+              "title": "What requirements must I meet to get a NFT key?",
+              "answer": "You will only be eligible to receive an NFT key if you held at least 42,450 GQ in your wallet or in the stake and liquidity pools between 11:59 am on May 21st and 11:59 am on May 24th (CEST) of the year 2022."
+            },
+            "q05": {
+              "title": "Why those dates?",
+              "answer": "These are the 72 hours following the announcement of the Outer Ring launch delay last year. This way, the project aims to reward its most loyal followers."
+            },
+            "q06": {
+              "title": "Is there any other way to acquire a NFT Key?",
+              "answer": "You can buy or bid up for a Key if an owner decides to list his NFT on the Outer Ring Marketplace on our Dapp."
+            },
+            "q07": {
+              "title": "Which wallet should I use to claim the NFT Key if elegible?",
+              "answer": "The one that you used to hold your GQ tokens during this period of time."
+            },
+            "q08": {
+              "title": "How does Outer Ring know how many GQ I held back then?",
+              "answer": "The team has conducted an audited snapshot using the BACS system."
+            },
+            "q09": {
+              "title": "How and when will the Outer Ring team distribute the keys?",
+              "answer": "On June 20th, a \"Claim\" option will be available in the Outer Ring Dapp."
+            },
+            "q10": {
+              "title": "How do I claim my key?",
+              "answer": "If you are eligible, you will need to access the Outer Ring Dapp, connect your wallet, enter your user profile and click on the key-shaped icon in the upper-right corner."
+            },
+            "q11": {
+              "title": "What types of room are available in the Holdtel?",
+              "answer": "There are 5 types of rooms: Junior Room, Standard Room, Executive Room, Deluxe Room and Royal Suite."
+            },
+            "q12": {
+              "title": "What functionalities do they have?",
+              "answer": "All rooms have metaverse and in-game benefits."
+            },
+            "q13": {
+              "title": "What specific advantages do they offer?",
+              "answer": "All rooms have a metaverse component: in all of them, it will be possible to invite any player and enjoy an exclusive space in the heart of Great Silver City. Additionally, all rooms have a spawn point functionality and direct access to the player's inventory. Furthermore, the room size determines the progressive capacity to decorate it with a certain number of cosmetics. Finally, holders of the highest-level room in the Holdtel can access exclusive information about the game and the partners of the Outer Ring universe."
+            },
+            "q14": {
+              "title": "Can I invite other users to my room?",
+              "answer": "Yes, you can do so when the Holdtel is integrated into the game."
+            },
+            "q15": {
+              "title": "Is there a limit to the cosmetics I can use to decorate my room?",
+              "answer": "Yes, the limit expands progressively as you upgrade your room category."
+            },
+            "q16": {
+              "title": "Will the number of rooms be expanded in the future?",
+              "answer": "It is highly unlikely but it will depend on the development and evolution of the video game."
+            },
+            "q17": {
+              "title": "When will it be operational in the game?",
+              "answer": "There is no specific date yet but the team is working hard to make it operational as soon as possible."
+            },
+            "q18": {
+              "title": "Will more Holdtels be built in the future?",
+              "answer": "It will depend on the development and evolution of the game."
+            },
+            "q19": {
+              "title": "Can I own more than one NFT key?",
+              "answer": "Yes, you can."
+            },
+            "q20": {
+              "title": "Can I sell my keys?",
+              "answer": "Yes, you can either sell or auction your NFT keys on the Outer Ring Marketplace on the Dapp."
+            },
+            "q21": {
+              "title": "Can I sell my room with cosmetics inside?",
+              "answer": "Yes, you can sell your room, including the cosmetics you have used to decorate it."
+            },
+            "q22": {
+              "title": "Can I upgrade my room and obtain a higher category?",
+              "answer": "No, rooms and their types are predetermined and immovable concepts."
+            },
+            "q23": {
+              "title": "Are the NFT keys transferable?",
+              "answer": "Yes, the NFT keys are fully transferable and can be sold or traded on the Outer Ring Dapp marketplace."
+            }
+          }
+        }
+      }
+    },
+    "block10": {
+      "title": "Pre-Alpha",
+      "id": "preAlpha",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What dates is the Early Access Pre-Alpha available?",
+              "answer": "During 3 gameplay windows: June 28th to July 11th, July 12th to July 25th, and July 26th onwards."
+            },
+            "q02": {
+              "title": "What timeline?",
+              "answer": "Between June 28th and July 11th, the game will be open from 10:00 a.m. to 6:00 p.m. (CEST); between July 12th and July 27th, it will be open from 10:00 a.m. to 8:00 p.m. (CEST), and starting from July 26th, it will be open 24/7. Only during the first two gameplay windows, the game will not be available on weekends."
+            },
+            "q03": {
+              "title": "Is the game operational on weekends?",
+              "answer": "During the first two gameplay windows, the game will not be operational, but it will be available after the third window, starting from July 26th."
+            },
+            "q04": {
+              "title": "What requirements must I meet to play?",
+              "answer": "You must have a wallet and meet one of the following two requirements:</p><ol><li>Possess at least one Outer Ring NFT obtained through Lootboxes or in the in-game Marketplace.</li><li>If you do not have an NFT, you must possess at least 100,000 Galactic Quadrant tokens in your wallet or in the project's liquidity pools or stake.</li></ol><p>If you meet these requirements, you will be included in a whitelist that identifies you as an eligible player.</p>"
+            },
+            "q05": {
+              "title": "What are the technical requirements to play?",
+              "answer": "<p>The minimum requirements are:</p><ul><li>CPU 4 Core / 4 threads</li><li>RAM 8 GB</li><li>HDD 5 GB</li><li>OS Windows 10 (64 bit required)</li><li>Video card: 1060 or AMD equivalent</li><li>NET Broadband Internet connection </li><li><a href=\"https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170\" target=\"_blank\">Component C++</a></li><li><a href=\"https://www.microsoft.com/en-us/download/details.aspx?id=35\" target=\"_blank\">DirectX</a></li></ul><p>The recommended requirements:</p><ul><li>CPU 8 Core / 16 threads</li><li>RAM 16 GB</li><li>HDD 5 GB</li><li>OS: Windows 10 (64 bit) / Windows 11 (64 bit)</li><li>Minimum Windows version 21H2</li><li>Video card: 1060 or AMD equivalent</li><li>NET Broadband Internet connection</li><li><a href=\"https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170\" target=\"_blank\">Component C++</a></li><li><a href=\"https://www.microsoft.com/en-us/download/details.aspx?id=35\" target=\"_blank\">DirectX</a></li></ul>"
+            },
+            "q06": {
+              "title": "How frequently is the whitelist updated?",
+              "answer": "The first whitelist will close on Monday, June 26th, at 23:59 h (CEST). After that, the whitelist will be updated on a weekly basis."
+            },
+            "q07": {
+              "title": "When do the whitelists close?",
+              "answer": "Every week, starting from June 26th, at 23:59 h (CEST). "
+            },
+            "q08": {
+              "title": "How can I acquire GQ?",
+              "answer": "You can get GQ on any of the following centralized exchanges (Gate, Huobi, Mexc, Bitbase, Tokpie, Bitmart) or decentralized exchanges (Pancakeswap, Biswap, Apeswap, Babyswap)."
+            },
+            "q09": {
+              "title": "How can I acquire an NFT of Outer Ring?",
+              "answer": "You can acquire an NFT of Outer Ring in the game's Dapp Marketplace or by purchasing a Lootbox."
+            },
+            "q10": {
+              "title": "Can I access with a species NFT or with materials?",
+              "answer": "All Outer Ring NFTs will be valid for access, except for materials and species NFTs."
+            },
+            "q11": {
+              "title": "Can I access with a Land NFT?",
+              "answer": "Yes, you can."
+            },
+            "q12": {
+              "title": "Can I access with a GoldStar Holdtel NFT Key?",
+              "answer": "Yes, you can."
+            },
+            "q13": {
+              "title": "How is the game download process?",
+              "answer": "Users who wish to play must visit the Blink Galaxy platform, register, and then download the Outer Ring executable file."
+            },
+            "q14": {
+              "title": "How is the game access process?",
+              "answer": "After downloading the executable, the user needs to fill in the mandatory fields on a login screen and then access the game if they meet the requirements mentioned earlier."
+            },
+            "q15": {
+              "title": "What is Blink Galaxy?",
+              "answer": "It is the digital distribution platform created by Nexxyo Labs, which aims to gather the video games developed by Maniac Panda Games, as well as other in-house and third-party projects.</p><p>Blink Galaxy will act as a link between the video games and web3 technology, if necessary.</p>"
+            },
+            "q16": {
+              "title": "When will Blink Galaxy be released?",
+              "answer": "Before the Pre-Alpha launch, scheduled between June 26th and 27th, 2023."
+            },
+            "q17": {
+              "title": "Will I be able to modify the username I register in Blink Galaxy in the future?",
+              "answer": "It will not be possible to modify the username."
+            },
+            "q18": {
+              "title": "Will I be able to modify my alias in Outer Ring in the future?",
+              "answer": "Yes, you will be able to modify your alias."
+            },
+            "q19": {
+              "title": "What gaming experience does the Pre-Alpha offer?",
+              "answer": "The three pillars of the Pre-Alpha are exploration, combat, and interaction with the videogame's metaverse."
+            },
+            "q20": {
+              "title": "What purpose does GQ serve in the Pre-Alpha?",
+              "answer": "Starting from the second launch window on July 12th, you will be able to use GQ in thrilling PvE battles. It will not be possible to use or obtain the token in any other way."
+            },
+            "q21": {
+              "title": "Are there battles?",
+              "answer": "Yes, PVP and PVE."
+            },
+            "q22": {
+              "title": "How many players can I engage in PvP battles with?",
+              "answer": "It will depend on the scenario in which you play, there would be between 6 and 30 players."
+            },
+            "q23": {
+              "title": "Can I team up in PvE battles?",
+              "answer": "You can fight alongside other players in these battles, but you won't be able to team up with them."
+            },
+            "q24": {
+              "title": "How many weapons can I use?",
+              "answer": "A total of 2 weapons: the assault rifle and the pistol."
+            },
+            "q25": {
+              "title": "How many players can access the Early Access Pre-Alpha?",
+              "answer": "As many as are included in the whitelist. This means as many as meet the entry requirements. "
+            },
+            "q26": {
+              "title": "Will the Lands be available?",
+              "answer": "No, Lands will not be available in the Outer Ring Pre-Alpha."
+            },
+            "q27": {
+              "title": "Can I generate NFTs?",
+              "answer": "No, you can not."
+            },
+            "q28": {
+              "title": "Can I introduce NFTs?",
+              "answer": "No, you can not."
+            },
+            "q29": {
+              "title": "Can I play with all the species in the videogame?",
+              "answer": "Yes, you will be able to choose from all the playable species in the videogame."
+            },
+            "q30": {
+              "title": "Is my avatar customizable?",
+              "answer": "Yes."
+            },
+            "q31": {
+              "title": "Can I make purchases with GQ in Great Silver City?",
+              "answer": "You won't be able to use GQ to make purchases, but you will be able to interact with the websites of your partners and make purchases in a traditional way."
+            },
+            "q32": {
+              "title": "Can I interact with Outer Ring partners in Great Silver City?",
+              "answer": "Yes, you can interact with all the partners that already have infrastructure built in Great Silver City."
+            },
+            "q33": {
+              "title": "Can I make use of the SCK token in the Pre-Alpha?",
+              "answer": "You will not be able to use SCK in the Pre-Alpha; the only token in use in this preliminary version will be GQ, in arena battles starting from the second game window."
+            },
+            "q34": {
+              "title": "What will happen in the future with the in-game progress I make in the pre-alpha?",
+              "answer": "You will be able to store and retrieve the GQ (in-game currency) you obtain in the Pre-Alpha. You will also retain your user and alias generated in Blink Galaxy and Outer Ring."
+            },
+            "q35": {
+              "title": "Is there a date for the Beta version of the video game?",
+              "answer": "The team will provide details about the future of the video game in the coming months."
+            }
+          }
+        }
+      }
+    }
+  },
+  "defi": {
+    "home": {
+      "manage": "Total trade volume",
+      "phase":"burned",
+      "somePools": "In some pools",
+      "partner": "Partnership colaborations",
+      "pasive": "Provide liquidity, swap seamlessly.",
+      "swap": "Swap",
+      "add": "Add liquidity"
+    },
+    "select": {
+      "pools": "Pools",
+      "farms": "Farms"
+    },
+    "header": {
+      "earn": "Earn",
+      "pools": "Pools",
+      "poolsExplain":"STAKE GQ OR LPs TO PARTICIPATE IN POOLS AND EARN MORE GQ OR MATERIALS AS REWARDS.",
+      "learn":"Learn how it works",
+      "farms":"Farms",
+      "farmsExplain": "BECOME A LIQUIDITY PROVIDER AND GET REWARDED.",
+      "swap": "Swap",
+      "add": "Add"
+    },
+    "head": {
+      "title1": "SWAP, STAKE, EARN ",
+      "title2": "ON THE MOST PROGRESSIVE DEX",
+      "tip": "Galactic DEX",
+      "text1": "Swap and earn cryptocurrencies on the most popular decentralized platform in the Galaxy. Become a staker or a liquidity provider and get rewarded.",
+      "text2": "Deposit GQ or LPs and start earning",
+      "button1": "Pools",
+      "button2": "Farms"
+    },
+    "common":{
+      "staked-only": "Staked only",
+      "All": "All",
+      "Select": "Select",
+      "Copper": "Copper",
+      "Iron": "Iron"
+    },
+    "apr":{
+      "title": "Estimated reward",
+      "Reward with": "Reward with",
+      "staked": "staked",
+      "Daily": "Daily",
+      "Weekly": "Weekly",
+      "Monthly": "Monthly",
+      "busdreward": "Reward staked per 1000$"
+    },
+    "pool": {
+      "details": "Details",
+      "Ends": "Ends",
+      "fee": "Performance Fee",
+      "get": "Get",
+      "add": "Add to Wallet",
+      "Connect Wallet": "Connect Wallet",
+      "Deposit": "Deposit",
+      "Withdraw": "Withdraw",
+      "Enable": "Enable",
+      "harvest": "Harvest",
+      "noReward": "No reward",
+      "pairInfo": "Pair info",
+      "view": "View contract",
+      "earn": "Earn",
+      "earned": "earned",
+      "APR": "APR",
+      "stakeLP": "Stake LP",
+      "totalStaked":"Total staked",
+      "stake": "stake",
+      "staked": "stake",
+      "timeWithdraw": "Time to withdraw"
+    },
+    "pairs": {
+      "title": "Select Pair",
+      "filter": "Filter",
+      "search": "Search"
+    },
+    "liquidity": {
+      "title": "Liquidity",
+      "subTitle": "Receive materials and earn",
+      "select": "Select",
+      "insufficientBalance": "Insufficient Balance",
+      "balance": "Balance",
+      "max": "Max",
+      "shareOfPool": "Share of Pool",
+      "approve": "Approve",
+      "connectWallet": "Connect wallet",
+      "doYouLikeToAdd": "Become a liquidity provider.",
+      "addliquidity": "Add liquidity",
+      "selectPool": "Select the pool you wish to view or withdraw liquidity from."
+    },
+    "minus": {
+      "title": "Minus Liquidity",
+      "pleaseConnect": "Please, connect your wallet",
+      "LPBalance": "LP Token Balance:",
+      "selectAmountToRemove": "Select amount to remove",
+      "amountToReceive": "Amount to receive",
+      "remove": "remove"
+    },
+    "settings": {
+      "slippageTolerance": "Slippage Tolerance",
+      "transactionDeadline": "Transaction Deadline",
+      "minutes": "Minutes",
+      "approve": "Approve"
+    },
+    "swap": {
+      "title": "Swap",
+      "subTitle": "Exchange materials easily.",
+      "From": "From",
+      "insufficientBalance": "Insufficient Balance",
+      "balance": "Balance",
+      "to": "To",
+      "max": "Max",
+      "shareOfPool": "Share of Pool",
+      "approve": "Approve",
+      "connectWallet": "Connect wallet",
+      "doYouLikeToAdd": "Become a liquidity provider.",
+      "addliquidity": "Add liquidity",
+      "inimumReceived": "Minimum received",
+      "priceImpact": "Price Impact",
+      "sendToOther": "Send to other wallet",
+      "SendTo": "Send to wallet"
+    },
+    "deposit": {
+      "balance": "Balance",
+      "yourStaked": "Your staked",
+      "selectYour": "Select your",
+      "to": "to"
+    },
+    "popUpGeneral": {
+      "swap": "Swap",
+      "liquidity": "Liquidity"
+
+    }
+
+  }
+
+}

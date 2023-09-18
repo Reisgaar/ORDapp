@@ -1,0 +1,73 @@
+<div class="close">
+  <p class="text">
+    Lootbox
+    <span *ngIf="data.id !== '6' && data.id !== '0'"> tier {{data.id}}</span>
+    <span *ngIf="data.id === '6'">clan</span>
+    <span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="utilities-container" *ngIf="data.id === '1'">
+  <img class="weapon" src="assets/images/lootbox/utilities/tier1.png" alt="OR Weapon" />
+  <h2>{{ 'lootbox.utilities.title' | translate }}</h2>
+  <h2>{{ 'lootbox.utilities.tier1' | translate }}</h2>
+  <p>{{ 'lootbox.utilities.smallLands' | translate }}</p>
+  <p>{{ 'lootbox.utilities.raffles' | translate }}</p>
+</div>
+
+<div class="utilities-container" *ngIf="data.id === '2'">
+  <img class="weapon" src="assets/images/lootbox/utilities/tier2.png" alt="OR Weapon" />
+  <h2>{{ 'lootbox.utilities.title' | translate }}</h2>
+  <h2>{{ 'lootbox.utilities.tier2' | translate }}</h2>
+  <p>{{ 'lootbox.utilities.smallLands' | translate }}</p>
+  <p>{{ 'lootbox.utilities.testTechDemos' | translate }}</p>
+  <p>{{ 'lootbox.utilities.onlineEvents' | translate }}</p>
+  <p>{{ 'lootbox.utilities.raffles' | translate }}</p>
+</div>
+
+<div class="utilities-container" *ngIf="data.id === '3'">
+  <img class="squared" src="assets/images/lootbox/utilities/tier3.png" alt="OR Armor" />
+  <h2>{{ 'lootbox.utilities.title' | translate }}</h2>
+  <h2>{{ 'lootbox.utilities.tier3' | translate }}</h2>
+  <p>{{ 'lootbox.utilities.mediumLands' | translate }}</p>
+  <p>{{ 'lootbox.utilities.testTechDemos' | translate }}</p>
+  <p>{{ 'lootbox.utilities.onlineEvents' | translate }}</p>
+  <p>{{ 'lootbox.utilities.merchDiscount5' | translate }}</p>
+  <p>{{ 'lootbox.utilities.raffles' | translate }}</p>
+</div>
+
+<div class="utilities-container" *ngIf="data.id === '4'">
+  <img class="vehicle" src="assets/images/lootbox/utilities/vehicle-land.png" alt="OR Land Vehicle" />
+  <h2>{{ 'lootbox.utilities.title' | translate }}</h2>
+  <h2>{{ 'lootbox.utilities.tier4' | translate }}</h2>
+  <p>{{ 'lootbox.utilities.mediumLands' | translate }}</p>
+  <p>{{ 'lootbox.utilities.specialTechDemos' | translate }}</p>
+  <p>{{ 'lootbox.utilities.onlineEvents' | translate }}</p>
+  <p>{{ 'lootbox.utilities.merchDiscount10' | translate }}</p>
+  <p>{{ 'lootbox.utilities.ebook' | translate }}</p>
+  <p>{{ 'lootbox.utilities.raffles' | translate }}</p>
+</div>
+
+<div class="utilities-container" *ngIf="data.id === '5'">
+  <img class="vehicle" src="assets/images/lootbox/utilities/vehicle-space.png" alt="OR Space Vehicle" />
+  <h2>{{ 'lootbox.utilities.title' | translate }}</h2>
+  <h2>{{ 'lootbox.utilities.tier5' | translate }}</h2>
+  <p>{{ 'lootbox.utilities.bigLands' | translate }}</p>
+  <p>{{ 'lootbox.utilities.specialTechDemos' | translate }}</p>
+  <p>{{ 'lootbox.utilities.physicalEvents' | translate }}</p>
+  <p>{{ 'lootbox.utilities.merchDiscount15' | translate }}</p>
+  <p>{{ 'lootbox.utilities.ebook' | translate }}</p>
+  <p>{{ 'lootbox.utilities.raffles' | translate }}</p>
+</div>
+
+<div class="utilities-container" *ngIf="data.id === '6'">
+  <img class="squared" src="assets/images/lootbox/utilities/clanStone.png" alt="OR Clan Badge" />
+  <h2>{{ 'lootbox.utilities.title' | translate }}</h2>
+  <h2>{{ 'lootbox.utilities.tierC' | translate }}</h2>
+  <p>{{ 'lootbox.utilities.hugeLands' | translate }}</p>
+  <p>{{ 'lootbox.utilities.discordClan' | translate }}</p>
+  <p>{{ 'lootbox.utilities.specialTechDemos' | translate }}</p>
+  <p>{{ 'lootbox.utilities.physicalEvents' | translate }}</p>
+  <p>{{ 'lootbox.utilities.merchDiscount20' | translate }}</p>
+  <p>{{ 'lootbox.utilities.physicalNovel' | translate }}</p>
+  <p>{{ 'lootbox.utilities.raffles' | translate }}</p>
+</div>

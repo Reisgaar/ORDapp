@@ -1,0 +1,64 @@
+<div class="lootbox-card" (mousemove)="followCursorSpot($event)" (mouseout)="clearCursorSpot($event)" id="{{'lootbox-main-' + category}}">
+  <div id="{{'spotlight-wrapper-' + category}}" class="spotlight-wrapper">
+    <div id="{{'spotlight-' + category}}" class="spotlight"></div>
+  </div>
+  <mat-icon class="details"(click)="openUtilitiesPopUp(itemList[category].id)">search</mat-icon>
+
+  <div class="image" [class.mystery]="itemList[category].id === '0'" (click)="itemList[category].id !== '0' && openUtilitiesPopUp(itemList[category].id)">
+    <img src="{{itemList[category].image_url}}" alt="Lootbox image">
+    <div class="background"></div>
+    <div class="price">
+      <span class="loader" *ngIf="actualPrice === 0 || actualPrice === '0'"></span>
+      <h1 *ngIf="actualPrice !== 0">{{ (actualPrice | number: '1.0-4')?.toLocaleString() }}</h1>
+      <span>BUSD</span>
+    </div>
+  </div>
+
+  <div class="description">
+    <div class="title">
+      <h1 class="tier" [class.mystery]="itemList[category].id === '0'">{{itemList[category].name}}</h1>
+      <!-- <h2 class="supply">{{ 'lootbox.supply' | translate }}: {{actualSupply}}</h2> -->
+    </div>
+
+    <p class="text">{{itemList[category].text | translate}}</p>
+  </div>
+
+  <div class="buttons">
+    <!-- Buttons for lootboxes (not mystery) -->
+    <!-- <div class="buy-button" *ngIf="itemList[category].name !== 'Mystery'">
+      <p class="discount">{{ 'lootbox.discount' | translate }}</p>
+      <button class="button" (click)="buyLootbox(itemList[category].id, 1)">{{ 'lootbox.buttonSCK' | translate }}</button>
+      <button class="button" (click)="buyLootbox(itemList[category].id, 0)">{{ 'lootbox.buttonBUSD' | translate }}</button>
+    </div> -->
+    <!-- Buttons for Mystery box -->
+    <!-- <div class="buy-button" *ngIf="itemList[category].name === 'Mystery'">
+      <button class="button" (click)="buyMystery()">{{ 'lootbox.buttonSCK' | translate }}</button>
+    </div> -->
+    <!-- Buttons whitelisted -->
+    <div class="buy-button" *ngIf="free || disc">
+      <button *ngIf="free" class="button" (click)="buyFreeWhiteList()">{{ 'lootbox.buttonFree' | translate }}</button>
+      <button *ngIf="disc" class="button" (click)="buyDiscountWhiteList()">{{ 'lootbox.buttonDiscount1' | translate }}{{discount}}%{{ 'lootbox.buttonDiscount2' | translate }}</button>
+    </div>
+  </div>
+
+  <!-- Rewards slider -->
+  <div class="rewards">
+    <div class="slider">
+      <div *ngIf="itemList[category].rewards.length > 4">
+        <mat-icon class="arrow arrow_left" (click)="moveSlider(false)">keyboard_arrow_left</mat-icon>
+        <mat-icon class="arrow arrow_right" (click)="moveSlider(true)">keyboard_arrow_right</mat-icon>
+      </div>
+      <div class="slider_wrapper">
+        <div class="items" id="items{{category}}">
+          <div *ngFor="let item of itemList[category].rewards" class="item" (mouseenter)="setShownReward(item.data)" (mouseleave)="setShownReward('')">
+            <div class="background"></div>
+            <img class="item_image" src="{{item.image}}" alt="Reward icon" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item_data">
+      <p>{{shownReward}}</p>
+    </div>
+  </div>
+</div>

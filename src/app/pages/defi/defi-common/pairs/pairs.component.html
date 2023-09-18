@@ -1,0 +1,24 @@
+<div class="close">
+  <p class="text">{{ 'defi.pairs.title'| translate }}<span class="button" (click)="closePopUp()"><mat-icon
+        class="close-icon">close</mat-icon></span></p>
+</div>
+<div class="filter">
+  {{ 'defi.pairs.filter' | translate }}
+  <input (keyup)="applyFilter($event)" placeholder="{{'defi.pairs.search' | translate}}" #input class="form-container">
+</div>
+<div>
+  <mat-table mat-table [dataSource]="dataSource" class="table-pools">
+
+    <!-- Pool Column -->
+    <ng-container matColumnDef="farm">
+      <mat-cell mat-cell *matCellDef="let farm" (click)="selectFarm(farm)">
+        <div class="pair">
+          {{farm.subsidiaryTokenSymbol1}}&nbsp;<img class="pair-img" [src]="farm.subsidiaryTokenImg1">
+          <img class="pair-img" [src]="farm.subsidiaryTokenImg2">&nbsp;
+          {{farm.subsidiaryTokenSymbol2}}
+        </div>
+      </mat-cell>
+    </ng-container>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></mat-row>
+  </mat-table>
+</div>

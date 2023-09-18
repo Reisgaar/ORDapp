@@ -1,0 +1,20 @@
+.health {
+    padding: 80px 20px;
+
+    .title {
+        color: white;
+        font-size: 2.5rem;
+        line-height: 1em;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 32px auto;
+    }
+
+    pre {
+        color: white;
+        font-size: 1.5rem;
+        width: max-content;
+        margin: 30px auto;
+        line-height: 2em;
+    }
+}

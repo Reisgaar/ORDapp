@@ -1,0 +1,239 @@
+<!-- <div class="top-image">
+  <img src="assets/images/item_background.png">
+</div> -->
+
+<div class="logo-background">
+  <img *ngIf="partner.logo !== ''" src="assets/images/partnership/{{partner.logo}}" alt="Partner logo">
+</div>
+
+<div class="data-loading" *ngIf="loadingData">
+  <div class="spinner">
+    <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+  </div>
+</div>
+
+<div class="nav-controls">
+  <div class="back" [routerLink]="['/marketplace/partner']" [queryParams]="{partner: category}">
+    <mat-icon class="icon">keyboard_backspace</mat-icon>
+    <span class="text">{{'partner.button.back' | translate}}</span>
+  </div>
+</div>
+
+<div class="nft-detail" *ngIf="!loadingData">
+
+  <h1 class="not-whitelisted-nft nft-detail-block" *ngIf="!allowedNFTs.includes(nftContractAddress | lowercase)">*{{'nft.notWhitelisted' | translate}}</h1>
+
+  <div class="logo-detail">
+    <img *ngIf="partner.logo !== ''" src="assets/images/partnership/{{partner.logo}}" alt="Partner logo">
+  </div>
+
+  <div class="leftside">
+    <div class="logo-detail">
+      <img *ngIf="partner.logo !== ''" src="assets/images/partnership/{{partner.logo}}" alt="Partner logo">
+    </div>
+
+    <div class="image" *ngIf="!nftData.animation_url || nftData.animation_url === ''">
+      <img src="{{nftData.image}}" alt="NFT image" />
+    </div>
+
+    <div class="image" *ngIf="nftData.animation_url && nftData.animation_url !== ''">
+      <video style="width: 100%; border-radius: 10px;" playsinline autoplay="true" muted="true" loop="true" id="autoplay">
+        <source src="{{nftData.animation_url}}" type="video/mp4">
+      </video>
+    </div>
+
+    <div *ngIf="partner.redeemable && activeUser[0] === nftData.owner && nftIsRedeemable">
+      <div class="redeem-buttons" *ngIf="partner.redeemable.includes(nftContractAddress | lowercase)">
+        <button (click)="redeemToReceive()" class="button">{{'partner.button.redeemToReceive' | translate}}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="rightside">
+
+    <div class="nft-title nft-detail-block">
+      <p class="name">
+        {{nftData.name}}
+      <p class="collection" *ngIf="nftData.collection">{{'nft.collection' | translate}}: {{nftData.collection}}</p>
+    </div>
+
+    <div class="responsive-image nft-detail-block">
+      <div class="image">
+        <img src="{{nftData.image}}" alt="NFT image" />
+      </div>
+
+      <div *ngIf="partner.redeemable && activeUser[0] === nftData.owner">
+        <div class="redeem-buttons" *ngIf="partner.redeemable.includes(nftContractAddress | lowercase)">
+          <button (click)="redeemToReceive()" class="button">{{'partner.button.redeemToReceive' | translate}}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="variable nft-detail-block" *ngIf="buyPrice !== '0'" [ngStyle]=" { 'background-color': partner.color }">
+      <!-- Price showing for regular sale -->
+      <div class="price" *ngIf="saleType === 'sell'">
+        <p class="tip">{{'nft.sellPrice' | translate}}</p>
+        <div class="price-data">
+          <mat-icon class="icon">local_offer</mat-icon>
+          <p class="value">{{buyPrice | number: '1.2-4'}} {{buyCoin}} <span class="conversion" *ngIf="buyCoin !== 'BUSD'">= {{priceInBUSD | number: '1.0-2'}} BUSD</span></p>
+        </div>
+        <p class="last-bid" *ngIf="nftSaleData.nftHighestBidder">*{{ 'nft.lastBidBy' | translate }} {{nftSaleData.nftHighestBidder | shortWallet}}</p>
+      </div>
+      <!-- Price showing for auction -->
+      <div class="price" *ngIf="saleType === 'english'">
+        <p class="tip">{{'nft.nextBidPrice' | translate}}</p>
+        <div class="price-data">
+          <mat-icon class="icon">local_offer</mat-icon>
+          <p class="value">{{nextBidPrice | number: '1.2-4'}} {{buyCoin}} <span class="conversion" *ngIf="buyCoin !== 'BUSD'">= {{priceInBUSD | number: '1.0-2'}} BUSD</span></p>
+        </div>
+        <p class="last-bid">*{{ 'nft.initialPrice' | translate }} {{initialPrice | number: '1.0-4'}} {{buyCoin}}</p>
+      </div>
+    </div>
+
+
+    <ng-container *ngIf="allowedNFTs.includes(nftContractAddress | lowercase)">
+      <div class="actions" *ngIf="activeUser[0] === nftData.owner || activeUser[0] === nftSaleData.nftSeller">
+        <div class="action seller" *ngIf="activeUser[0] && activeUser[0] !== ''">
+          <!-- Buttons when NFT not in sale/auction -->
+          <p class="button" (click)="putOnSale()" *ngIf="buyPrice === '0' && saleType === 'none'">{{'nft.button.putOnSale' | translate}}</p>
+          <p class="button" (click)="putOnAuction()" *ngIf="buyPrice === '0' && saleType === 'none'">{{'nft.button.putOnAuction' | translate}}</p>
+          <p class="button" (click)="directTransfer()" *ngIf="buyPrice === '0' && saleType === 'none'">{{'nft.button.directTransfer' | translate}}</p>
+          <!-- Buttons when user NFT in sale -->
+          <p class="button" (click)="removeFromSale()" *ngIf="buyPrice !== '0' && saleType === 'sell'">{{'nft.button.removeFromSale' | translate}}</p>
+          <p class="button" (click)="setPrice()" *ngIf="buyPrice !== '0' && saleType === 'sell'">{{'nft.button.setPrice' | translate}}</p>
+          <!-- Buttons when user NFT auction ended -->
+          <p class="not-sold" *ngIf="saleType === 'english' && auctionEnded && nftSaleData.nftHighestBidder === zeroAddress">*{{ 'nft.notSold' | translate }}</p>
+          <p class="button" (click)="withdrawAuction()" *ngIf="saleType === 'english' && auctionEnded && nftSaleData.nftHighestBidder === zeroAddress">{{'nft.button.withdrawAuction' | translate}}</p>
+          <p class="not-sold" *ngIf="saleType === 'english' && auctionEnded && nftSaleData.nftHighestBidder !== zeroAddress">*{{ 'nft.itemSold' | translate }}</p>
+          <p class="button" (click)="withdrawAuction()" *ngIf="saleType === 'english' && auctionEnded && nftSaleData.nftHighestBidder !== zeroAddress">{{'nft.button.finishAuction' | translate}}</p>
+          <!-- Buttons when user NFT in auction -->
+          <p class="button disabled" *ngIf="saleType === 'english' && !auctionEnded">{{'nft.button.isOnAuction' | translate}}</p>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="actions" *ngIf="activeUser[0] !== nftData.owner">
+      <div class="action seller" *ngIf="activeUser[0] === '' || !activeUser[0]">
+        <p class="button" (click)="connectWallet()">{{'nft.button.connectWallet' | translate}}</p>
+        <p class="no-wallet">
+          {{'nft.noWallet' | translate}}
+          <a href="{{'nft.metamaskTutorial' | translate}}" target="_blank"> Metamask</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="bid nft-detail-block" *ngIf="saleType === 'english'">
+      <div class="current" *ngIf="nftSaleData.nftHighestBidder !== zeroAddress" [ngStyle]=" { 'background-color': partner.color }">
+        <p class="tip">{{'nft.lastBid' | translate}}</p>
+        <p class="value">{{buyPrice | number: '1.0-4'}} {{buyCoin}}</p>
+        <p class="bidder" *ngIf="nftSaleData.nftHighestBidder" [routerLink]="['/profile']" [queryParams]="{wallet: nftSaleData.nftHighestBidder}">{{'nft.by' | translate}} {{nftSaleData.nftHighestBidder | shortWallet}}</p>
+      </div>
+      <div class="current" *ngIf="nftSaleData.nftHighestBidder === zeroAddress" [ngStyle]=" { 'background-color': partner.color }">
+        <p class="tip">{{'nft.noBids' | translate}}</p>
+        <p class="value">{{initialPrice | number: '1.0-4'}} {{buyCoin}}</p>
+      </div>
+      <div class="countdown" [ngStyle]=" { 'background-color': partner.color }">
+        <p class="tip">{{'nft.countdown' | translate}}</p>
+        <p class="value"><app-countdown [end]="nftSaleData.auctionEnd" (countdownEndedEvent)="receiveData($event)"></app-countdown></p>
+      </div>
+    </div>
+
+
+    <ng-container *ngIf="allowedNFTs.includes(nftContractAddress | lowercase)">
+      <div class="actions" *ngIf="activeUser[0] && activeUser[0] !== nftData.owner && activeUser[0] !== '' && activeUser[0] !== nftSaleData.nftSeller && nftSaleData.nftSeller != zeroAddress">
+        <div class="action buyer">
+          <p class="button" *ngIf="saleType === 'english' && !auctionEnded" (click)="bidOnAuctionAuto()">{{'nft.button.bidAuto' | translate}}</p>
+          <p class="button" *ngIf="saleType === 'english' && !auctionEnded" (click)="bidOnAuctionCustom()">{{'nft.button.bidCustom' | translate}}</p>
+          <p class="button" *ngIf="saleType === 'sell'" (click)="buyNft('')">{{'nft.button.buy' | translate}}</p>
+          <p class="button" *ngIf="saleType === 'sell'" (click)="buyAsGift()">{{'nft.button.buyAsGift' | translate}}</p>
+
+          <p class="sold" *ngIf="saleType === 'english' && auctionEnded && nftSaleData.nftHighestBidder === activeUser[0]">*{{ 'nft.sold' | translate }}</p>
+          <p class="button" (click)="withdrawAuction()" *ngIf="saleType === 'english' && auctionEnded && nftSaleData.nftHighestBidder === activeUser[0]">{{'nft.button.withdrawAuction' | translate}}</p>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="about nft-detail-block" [class.hidden]="!showAbout" [ngStyle]=" { 'background-color': partner.color }">
+      <h2 class="title">
+        <mat-icon class="icon">list</mat-icon>
+        {{'nft.aboutItem' | translate}}
+        <mat-icon class="switcher" (click)="toggleData(1)">keyboard_arrow_down</mat-icon>
+      </h2>
+      <p>{{nftData.description}}</p>
+    </div>
+
+    <div class="property nft-detail-block">
+      <div *ngIf="saleType === 'none'" class="owner" [routerLink]="['/profile']" [queryParams]="{wallet: nftData.owner}" [ngStyle]=" { 'background-color': partner.color }">
+        <img src="assets/images/species/portrait_{{(nftData.owner | walletSpecie) | async}}.png" alt="Profile icon" />
+        <div class="owner-data">
+          <p>{{'nft.owner' | translate}}</p>
+          <p>{{nftData.owner | shortWallet}}</p>
+        </div>
+      </div>
+      <div *ngIf="saleType !== 'none'" class="owner" [routerLink]="['/profile']" [queryParams]="{wallet: nftSaleData.nftSeller}" [ngStyle]=" { 'background-color': partner.color }">
+        <img src="assets/images/species/portrait_{{(nftSaleData.nftSeller | walletSpecie) | async}}.png" alt="Profile icon" />
+        <div class="owner-data">
+          <p>{{'nft.owner' | translate}}</p>
+          <p>{{nftSaleData.nftSeller | shortWallet}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="attributes nft-detail-block" [class.hidden]="!showAttributes" [ngStyle]=" { 'background-color': partner.color }">
+      <h2 class="title">
+        <mat-icon class="icon">security</mat-icon>
+        {{'nft.attributes' | translate}}
+        <mat-icon class="switcher" (click)="toggleData(2)">keyboard_arrow_down</mat-icon>
+      </h2>
+      <div class="attributes-list" *ngIf="nftData.attributes.length">
+        <div *ngFor="let att of nftData.attributes" class="attribute">
+          <p class="trait">{{att.trait_type + ':'}}</p>
+          <p class="value">
+            <span *ngIf="!att.display_type">{{att.value}}</span>
+            <span *ngIf="att.display_type">
+              <span *ngIf="att.display_type === 'date'">{{(att.value * 1000) | date: 'MMM d, y, h:mm a'}}</span>
+              <span *ngIf="att.display_type !== 'date'">{{att.value}}</span>
+            </span>
+          </p>
+        </div>
+      </div>
+      <h3 class="attributes-error" *ngIf="!nftData.attributes.length">{{'nft.attributeError' | translate}}</h3>
+      <p class="advice" *ngIf="showAttributes">{{'nft.attributeExternalAdvice' | translate}}</p>
+    </div>
+
+  <div *ngIf="allowedNFTs.includes(nftContractAddress | lowercase)" class="history nft-detail-block" [class.hidden]="!showHistory" [ngStyle]=" { 'background-color': partner.color }">
+    <h2 class="title">
+      <mat-icon class="icon">security</mat-icon>
+      {{'nft.history' | translate}}
+      <mat-icon class="switcher" (click)="toggleData(3)">keyboard_arrow_down</mat-icon>
+    </h2>
+    <div class="history-list">
+      <div class="transfers">
+        <a *ngFor="let tr of nftTransfers" href="https://bscscan.com/tx/{{tr.id}}" target="_blank">
+          <p>{{tr.type}}</p>
+          <p>{{tr.from | shortWallet}}</p>
+          <p>-></p>
+          <p>{{tr.to | shortWallet}}</p>
+          <p>{{tr.timestamp | date: 'MMM d'}}</p>
+          <p class="price" *ngIf="tr.buyPrice">
+            {{tr.buyPrice | fromWei}}
+            <img src="assets/images/tokens/{{tr.token | toTicker | lowercase}}_mini.png" />
+            <span class="tooltip">{{tr.token | toTicker}}</span>
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="metadata nft-detail-block" [class.hidden]="!showMetadata" [ngStyle]=" { 'background-color': partner.color }">
+  <h2 class="title">
+    <mat-icon class="icon">security</mat-icon>
+    {{'nft.metadata' | translate}}
+    <mat-icon class="switcher" (click)="toggleData(4)">keyboard_arrow_down</mat-icon>
+  </h2>
+  <div class="raw-metadata">
+    <pre style="text-align: left; white-space: break-spaces; word-break: break-all;">{{nftData | json}}</pre>
+  </div>
+</div>

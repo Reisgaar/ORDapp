@@ -1,0 +1,336 @@
+@import '/src/styleVariables.scss';
+
+.faqs {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  color: $white;
+  text-align: justify;
+
+  h1.content-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: $magistral !important;
+    font-size: 3rem;
+    margin-bottom: 50px;
+  }
+
+  .pre-Faq {
+    text-align: center;
+  }
+
+  .categories {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
+
+    .button {
+      cursor: pointer;
+      position: relative;
+      width: 250px;
+      height: 50px;
+      margin: 30px;
+
+      & span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        overflow: hidden;
+        z-index: 1;
+        transition: 0.5s;
+        backdrop-filter: blur(15px);
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+          transform: skewX(45deg) translate(0);
+          transition: 0.5s;
+          filter: blur(0px);
+        }
+      }
+
+      &:hover {
+
+        span {
+          letter-spacing: 1px;
+
+          &::before {
+            transform: skewX(45deg) translate(200px);
+          }
+        }
+
+        &::before,
+        &::after {
+          height: 50%;
+          width: 80%;
+          border-radius: 30px;
+          opacity: 0.5;
+          background: $pink;
+          box-shadow: 0 0 5px $pink, 0 0 15px $pink, 0 0 30px $pink, 0 0 60px $pink;
+        }
+
+        &::before {
+          bottom: 0;
+        }
+        &::after {
+          top: 0;
+        }
+      }
+
+      &.active-tab {
+
+        span {
+          letter-spacing: 1px;
+        }
+
+        &::before,
+        &::after {
+          background: $pink;
+          box-shadow: 0 0 5px $pink, 0 0 15px $pink, 0 0 30px $pink, 0 0 60px $pink;
+        }
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+        width: 30px;
+        height: 10px;
+        border-radius: 10px;
+        transition: 0.5s;
+        transition-delay: 0.5;
+        background: $blue-extra-light;
+        box-shadow: 0 0 5px $blue-extra-light, 0 0 15px $blue-extra-light, 0 0 30px $blue-extra-light, 0 0 60px $blue-extra-light;
+      }
+
+      &::before {
+        bottom: -5px;
+      }
+
+      &::after {
+        top: -5px;
+      }
+    }
+
+    &.mini {
+
+      .button {
+        width: 200px;
+        height: 40px;
+        margin: 20px;
+      }
+    }
+  }
+
+  .section {
+    position: relative;
+    width: 80%;
+    margin: 100px auto;
+    background: $white-transparent-10;
+    padding: 15px 30px;
+    border-radius: 8px;
+    animation: appear-faq-section 0.3s ease-in-out;
+
+    @keyframes appear-faq-section {
+      from {transform: scaleX(0);}
+      to {transform: scaleX(1);}
+    }
+
+    &-title {
+      position: absolute;
+      bottom: calc(100% + 5px);
+      left: 5px;
+      margin: 0;
+      font-size: 1.8em;
+      text-transform: uppercase;
+      font-family: $magistral !important;
+    }
+
+    .subsection {
+
+      &-title {
+        font-size: 1.7em;
+        font-family: $magistral !important;
+
+        &.filled {
+          border-bottom: 1px solid $white;
+          margin-top: 50px;
+        }
+      }
+
+      .point {
+        cursor: pointer;
+        margin-bottom: 20px;
+        padding: 0;
+        border-radius: 8px;
+        background-color: #2c2f40;
+        transition: box-shadow 0.3s ease-in-out;
+        box-shadow: #363c6c99 0px 0px,
+                    #363c6c55 0px 0px,
+                    #363c6c11 0px 0px;
+
+        &-title {
+          pointer-events: none;
+          position: relative;
+          margin: 0;
+          border-radius: 7px;
+          transition: border-radius 0.3s ease-in-out;
+          padding: 10px 50px 10px 10px;
+          background-color: #414697;
+          padding-right: 50px;
+          line-height: 1em;
+
+          .icon-wrapper {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            .icon {
+              rotate: -225deg;
+              transition: rotate 0.3s ease-in-out;
+            }
+          }
+        }
+
+        .steps {
+          cursor: default;
+          margin: 0;
+          border-radius: 0 0 7px 7px;
+          background-color: #2c2f40;
+          overflow: hidden;
+          height: 0;
+          transition: height 0.3s ease-in-out;
+
+          .step, ol li {
+            padding: 10px 15px;
+            margin: 0;
+
+            a {
+              pointer-events: all;
+              color: $blue-extra-light;
+              padding: 10px 0px;
+
+              &:hover {
+                color: $pink-light;
+              }
+            }
+          }
+        }
+
+        &.active {
+          transition: box-shadow 0.3s ease-in-out;
+          box-shadow: #363c6c99 5px 5px,
+                      #363c6c55 10px 10px,
+                      #363c6c11 15px 15px;
+
+          .point-title {
+            border-radius: 7px 7px 0 0;
+
+            .icon-wrapper {
+
+              .icon {
+                rotate: 0deg;
+                transition: rotate 0.3s ease-in-out;
+              }
+            }
+          }
+
+          .steps {
+            transition: height 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+/*
+ * Responsive
+ */
+
+// Small devices
+@media (max-width: 576px) {
+  .content {
+
+    .categories {
+      display: block;
+
+      &.mini .button {
+        font-size: 0.8rem;
+        height: 20px;
+        margin: 10px auto;
+      }
+
+      .button {
+        font-size: 0.8rem;
+        height: 20px;
+        margin: 10px auto;
+
+        &:hover {
+
+          &::before,
+          &::after {
+            right: 0;
+            left: 50%;
+            bottom: unset;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        &::before,
+        &::after {
+          width: 10px;
+          height: 12px;
+        }
+
+        &::before {
+          top: 50%;
+          left: -3px;
+          transform: translate(0px, -50%);
+        }
+
+        &::after {
+          top: 50%;
+          right: -3px;
+          transform: translate(0px, -50%);
+          left: unset;
+        }
+      }
+    }
+
+    .section .subsection .point {
+
+      &-title {
+        text-align: left;
+        font-size: 0.8rem;
+      }
+
+      .steps .step {
+        font-size: 0.8em;
+        line-height: 1em;
+        text-align: left;
+      }
+    }
+  }
+}

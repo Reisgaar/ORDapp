@@ -1,0 +1,14 @@
+<div class="content">
+  <h1>Send to Blink Galaxy</h1>
+
+  <div class="tokens">
+    <h2>Tokens</h2>
+    <div class="token-card" *ngFor="let token of tokensForBridge">
+      <app-bridge-erc20-sender [token]="token"></app-bridge-erc20-sender>
+    </div>
+  </div>
+
+  <!-- <div class="nfts">
+    <h2>NFTs</h2>
+  </div> -->
+</div>

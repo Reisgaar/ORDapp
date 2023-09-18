@@ -1,0 +1,29 @@
+<div class="close">
+  <p class="text">{{data.proposal.title}}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="vote">
+  <div class="content">
+    <p class="subtitle">{{"governance.popUpVote.votingFor" | translate}}</p>
+    <p class="option">{{data.proposal.votingOptions[data.vote]}}</p>
+    <p class="subtitle">{{"governance.popUpVote.yourVP" | translate}}</p>
+    <p class="option">{{maxAmount | number: '1.0-4'}}</p>
+
+    <form>
+      <div class="form">
+        <label name="amount">{{"governance.popUpVote.selectVP" | translate}}</label>
+        <input type="number" id="amount-range" name="amount" class="form-range" max="{{maxAmount}}" [(ngModel)]="amount" [value]="amount" (keypress)="preventErase($event)">
+      </div>
+
+      <p class="input-error" *ngIf="inputTooHigh">{{"governance.popUpVote.inputHighError" | translate}}</p>
+      <p class="input-error" *ngIf="inputNegative">{{"governance.popUpVote.inputNegativeError" | translate}}</p>
+
+      <div class="percentage-buttons">
+        <span (click)="setRange(25)" [class.active]="amount === (maxAmount * 0.25)">25%</span>
+        <span (click)="setRange(50)" [class.active]="amount === (maxAmount * 0.50)">50%</span>
+        <span (click)="setRange(100)" [class.active]="amount === maxAmount">max</span>
+      </div>
+      <button type="submit" class="vote-button" (click)="confirmVote()">{{"governance.popUpVote.vote" | translate}}</button>
+    </form>
+  </div>
+</div>

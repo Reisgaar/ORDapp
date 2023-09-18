@@ -1,0 +1,84 @@
+<div class="nft-viewer">
+
+  <div class="menu">
+    <h2 class="tab" [class.active]="activeTab === 'inventory'" (click)="setActiveTabTo('inventory')">{{'profile.inventory' | translate}}</h2>
+    <h2 class="tab" [class.active]="activeTab === 'selling'" (click)="setActiveTabTo('selling')">{{'profile.sales' | translate}}</h2>
+    <h2 class="tab" [class.active]="activeTab === 'bids'" (click)="setActiveTabTo('bids')">{{'profile.auctions' | translate}}</h2>
+  </div>
+
+  <div class="item-list">
+
+    <!-- DOWHEN: New OR NFT added, add new span with the new nft category -->
+    <div class="inventory" *ngIf="activeTab === 'inventory'">
+      <div class="categories">
+        <span class="category" [class.active]="selectedCategory === 'Weapons'" (click)="changeSelectedCategory(5, 'Weapons')">{{'categories.weapons' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Armors'" (click)="changeSelectedCategory(0, 'Armors')">{{'categories.armors' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Vehicles'" (click)="changeSelectedCategory(4, 'Vehicles')">{{'categories.vehicles' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Cosmetics'" (click)="changeSelectedCategory(3, 'Cosmetics')">{{'categories.cosmetics' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Clan'" (click)="changeSelectedCategory(1, 'Clan')">{{'categories.clan' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Exo'" (click)="changeSelectedCategory(2, 'Exo')">{{'categories.exocredits' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Lands'" (click)="changeSelectedCategory(6, 'Lands')">{{'categories.lands' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Keys'" (click)="changeSelectedCategory(7, 'Keys')">{{'categories.keys' | translate}}</span>
+      </div>
+      <ng-container *ngIf="!loadingInventoryData">
+        <app-item-viewer-big [category]="selectedCategory" [items]="nftInventory" [type]="'inventory'" [fullSorting]="false" [showMainCategory]="false"></app-item-viewer-big>
+      </ng-container>
+      <div *ngIf="loadingInventoryData" class="spinner">
+        <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+      </div>
+    </div>
+
+    <!-- DOWHEN: New OR NFT added, add new span with the new nft category -->
+    <div class="selling" *ngIf="activeTab === 'selling'">
+      <div class="categories">
+        <span class="category" [class.active]="selectedCategory === 'Weapons'" (click)="changeSelectedCategory(5, 'Weapons')">{{'categories.weapons' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Armors'" (click)="changeSelectedCategory(0, 'Armors')">{{'categories.armors' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Vehicles'" (click)="changeSelectedCategory(4, 'Vehicles')">{{'categories.vehicles' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Cosmetics'" (click)="changeSelectedCategory(3, 'Cosmetics')">{{'categories.cosmetics' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Clan'" (click)="changeSelectedCategory(1, 'Clan')">{{'categories.clan' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Exo'" (click)="changeSelectedCategory(2, 'Exo')">{{'categories.exocredits' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Lands'" (click)="changeSelectedCategory(6, 'Lands')">{{'categories.lands' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Keys'" (click)="changeSelectedCategory(7, 'Keys')">{{'categories.keys' | translate}}</span>
+      </div>
+      <ng-container *ngIf="!loadingSalesData">
+        <app-item-viewer-big [category]="selectedCategory" [items]="nftOnSale" [type]="'sale'" [fullSorting]="true" [showMainCategory]="false"></app-item-viewer-big>
+      </ng-container>
+      <div *ngIf="loadingSalesData" class="spinner">
+        <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+      </div>
+    </div>
+
+    <!-- DOWHEN: New OR NFT added, add new span with the new nft category -->
+    <div class="bids" *ngIf="activeTab === 'bids'">
+      <div class="categories">
+        <span class="category" [class.active]="selectedCategory === 'Weapons'" (click)="changeSelectedCategory(5, 'Weapons')">{{'categories.weapons' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Armors'" (click)="changeSelectedCategory(0, 'Armors')">{{'categories.armors' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Vehicles'" (click)="changeSelectedCategory(4, 'Vehicles')">{{'categories.vehicles' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Cosmetics'" (click)="changeSelectedCategory(3, 'Cosmetics')">{{'categories.cosmetics' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Clan'" (click)="changeSelectedCategory(1, 'Clan')">{{'categories.clan' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Exo'" (click)="changeSelectedCategory(2, 'Exo')">{{'categories.exocredits' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Lands'" (click)="changeSelectedCategory(6, 'Lands')">{{'categories.lands' | translate}}</span>
+        <span class="category" [class.active]="selectedCategory === 'Keys'" (click)="changeSelectedCategory(7, 'Keys')">{{'categories.keys' | translate}}</span>
+      </div>
+      <ng-container *ngIf="!loadingAuctionsData">
+        <app-item-viewer-big [category]="selectedCategory" [items]="nftOnBid" [type]="'auction'" [fullSorting]="true" [showMainCategory]="false"></app-item-viewer-big>
+        <div *ngIf="loadingBidsData" class="progress">
+          <mat-progress-bar mode="indeterminate" class="progress-bar"></mat-progress-bar>
+        </div>
+        <div style="margin-top: 100px;" *ngIf="!loadingBidsData && allDoneBids.length > 0">
+          <app-item-viewer-small [category]="'yourBids'" [items]="allDoneBids" [switcherActive]="true"></app-item-viewer-small>
+        </div>
+      </ng-container>
+      <div *ngIf="loadingAuctionsData" class="spinner">
+        <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'inventory'">
+    <div class="head">
+      <h3>{{'categories.materials' | translate}}</h3>
+    </div>
+    <app-material-viewer></app-material-viewer>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="img img-pools">
+  <p class="tip" [innerHTML]="tipEarn | translate | uppercase"></p>
+  <h2 class="head-title" [innerHTML]="title | translate | uppercase"></h2>
+  <p class="subtitle" [innerHTML]="subtitle | translate | uppercase"></p>
+  <p class="tip" [innerHTML]="tip | translate | uppercase"></p>
+  <div class="btns">
+    <div class="absa">
+      <button (click)="buyGqPopUp()" class="btn-header">{{ 'navigation.getGq' | translate }}</button>
+      <button *ngFor="let item of list" (click)="selectPoolType(item.link)" class="btn-header">{{ item.type }}</button>
+  </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,85 @@
+@import 'src/styleVariables.scss';
+
+.close {
+  font-family: 'magistral', sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+
+.buy-pop-up {
+
+  .exchanges {
+    padding: 15px 0 0;
+    color: $white;
+
+    .subtitle {
+      font-size: 0.9rem;
+      text-align: center;
+      margin: 0 10px 25px;
+    }
+
+    .exchange {
+      cursor: pointer;
+      text-decoration: none;
+      color: $white;
+      display: block;
+      background-color: $blue-medium;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 1rem auto;
+      text-transform: uppercase;
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      width: 200px;
+
+      img, .icon {
+        align-self: center;
+        justify-self: center;
+        grid-column: 1;
+        width: 30px;
+        height: 30px;
+        font-size: 30px;
+        margin: 0 1rem;
+      }
+
+      .text {
+        align-self: center;
+        justify-self: center;
+        grid-column: 2;
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      &:hover {
+        background-color: $blue-light;
+      }
+    }
+  }
+}

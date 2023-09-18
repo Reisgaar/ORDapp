@@ -1,0 +1,502 @@
+@import "/src/styleVariables.scss";
+
+.showPool {
+  display: block;
+}
+.noShowPool {
+  display: none;
+}
+.farm-card {
+  margin: 0.6rem;
+  border-radius: 1rem;
+
+  .parent {
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background: $blue-stake-card-background;
+    padding: 1rem 0.8rem 1rem 0.8rem;
+    border: 2px solid $blue-extra-light;
+    border-radius: 1rem;
+    color: $white;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    max-width: 390px;
+
+    .div1 {
+      grid-area: 1 / 1 / 2 / 2;
+      font-weight: 200;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 1px;
+      .s-title {
+        font-weight: 500;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+      }
+    }
+    .div2 {
+      grid-area: 2 / 1 / 3 / 2;
+      font-weight: 200;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 1px;
+      .s-title {
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1.4rem;
+      }
+    }
+    .div3 {
+      grid-area: 1 / 2 / 3 / 3;
+      position: relative;
+      margin-bottom: 1.5rem;
+      .img-icon {
+        position: absolute;
+        width: 1.8rem;
+        // right: -2rem;
+        background: $blue-light;
+        border: 3px solid $white;
+        border-radius: 5rem;
+        padding: 0.2rem;
+        &-1 {
+          right: 2.4rem;
+        }
+        &-2 {
+          right: 0rem;
+        }
+      }
+      .img-icon-sub {
+        width: 3rem;
+        position: absolute;
+        right: 0rem;
+        top: 2rem;
+        background: $white;
+        border: 3px solid $blue-light;
+        border-radius: 5rem;
+        padding: 0.2rem;
+      }
+    }
+    .div4 {
+      grid-area: 3 / 1 / 4 / 2;
+      margin-top: 0.5rem;
+      .accent {
+        color: $pink;
+        font-weight: 600;
+      }
+    }
+    .div5 {
+      grid-area: 4 / 1 / 5 / 2;
+      .tex-green {
+        color: $green;
+        font-weight: 600;
+        font-size: 1.4rem;
+      }
+      .no-reward {
+        font-size: 1rem;
+      }
+    }
+    .div6 {
+      grid-area: 3 / 2 / 5 / 3;
+      display: grid;
+      justify-items: end;
+      align-items: center;
+    }
+    .div7 {
+      grid-area: 5 / 1 / 6 / 2;
+      margin-top: 0.5rem;
+      .accent {
+        color: $pink;
+        &-max {
+          font-weight: 600;
+        }
+      }
+    }
+    .div8 {
+      grid-area: 6 / 1 / 7 / 2;
+      font-size: 1.4rem;
+    }
+    .div9 {
+      grid-area: 5 / 2 / 7 / 3;
+      display: grid;
+      justify-items: end;
+      align-items: center;
+      span {
+        display: flex;
+      }
+    }
+    .div10 {
+      grid-area: 7 / 1 / 8 / 3;
+      border-top: 1px solid $blue-extra-light;
+      padding: 0.5rem;
+      margin: 1.5rem -0.8rem 0.5rem;
+      font-size: 1.1rem;
+      color: $blue-extra-light;
+      text-align: end;
+      display: inline-flex;
+      justify-content: flex-end;
+      .hide-arrow {
+        display: inherit;
+        text-align: end;
+        &:hover {
+          .icon {
+            animation: move-arrow 1s ease-in-out infinite;
+          }
+        }
+      }
+    }
+    .div11 {
+      grid-area: 8 / 1 / 15 / 3;
+      display: grid;
+      margin-bottom: 1rem;
+    }
+    .div12 {
+      grid-area: 8 / 1 / 9 / 2;
+      .hide-arrow {
+        font-size: 0.8rem;
+      }
+    }
+    .div13 {
+      grid-area: 8 / 2 / 9 / 3;
+    }
+    .div14 {
+      grid-area: 9 / 1 / 10 / 2;
+    }
+    .div15 {
+      grid-area: 9 / 2 / 10 / 3;
+    }
+    .div16 {
+      grid-area: 10 / 1 / 11 / 2;
+    }
+    .div17 {
+      grid-area: 10 / 2 / 11 / 3;
+    }
+    .div18 {
+      grid-area: 11 / 1 / 12 / 2;
+    }
+    .div19 {
+      grid-area: 11 / 2 / 12 / 3;
+    }
+    .div20 {
+      grid-area: 12 / 1 / 13 / 3;
+    }
+    .div21 {
+      grid-area: 13 / 1 / 14 / 3;
+      a {
+        color: $green;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+          color: $green-light;
+        }
+      }
+    }
+    .div22 {
+      grid-area: 14 / 1 / 15 / 3;
+      a,
+      span {
+        color: $green;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+          color: $green-light;
+        }
+      }
+    }
+    .div23 {
+      grid-area: 15 / 1 / 16 / 3;
+      text-align: center;
+      .buttons {
+        margin-top: 0.4rem;
+      }
+    }
+    .button-allow {
+      margin: 0.2rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.4rem;
+      background-color: #262ebf;
+    }
+    .div24 {
+      text-align: left;
+      color: $green;
+      :hover {
+        color: $green-light;
+      }
+    }
+  }
+
+  .container {
+    overflow: hidden;
+    height: 0px;
+    transition: height 1s ease-in-out;
+
+    &-noShow {
+      overflow: hidden;
+      height: 180px;
+      transition: height 1s ease-in-out;
+    }
+  }
+  .right {
+    text-align: right;
+  }
+
+  .btn {
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    width: 7rem;
+    &-accent {
+      color: $white;
+      background: $blue-dex-accent;
+      &:hover {
+        transition: all 300ms;
+        background: $blue-light;
+      }
+    }
+    &-secondary {
+      color: $white;
+      background: $blue-dex-secondary;
+
+      &:hover {
+        transition: all 300ms;
+        color: $white;
+        background: $blue-medium;
+      }
+    }
+    &-withdraw {
+      background-color: #d2196f;
+      color: $white;
+      width: calc(100% - 7rem);
+      &:hover {
+        background-color: $blue-medium;
+      }
+    }
+  }
+}
+
+.inline-grid {
+  // margin: 0rem 0.6rem;
+  .farm-list {
+    .parent-file {
+      display: grid;
+      grid-template-columns: 6rem 9rem 9rem 14rem 12rem 3rem 6rem;
+      grid-template-rows: 1fr 1fr;
+      color: $white;
+      font-size: 0.9rem;
+      line-height: 1.5rem;
+      gap: 0.4rem;
+    }
+    .div1 {
+      grid-area: 1 / 2 / 2 / 3;
+      align-self: end;
+    }
+    .div2 {
+      grid-area: 2 / 2 / 3 / 3;
+    }
+    .div3 {
+      grid-area: 1 / 1 / 3 / 2;
+      position: relative;
+      margin-bottom: 1.5rem;
+      .img-icon {
+        width: 1.5rem;
+        background: $blue-light;
+        border: 3px solid $white;
+        border-radius: 5rem;
+        padding: 0.2rem;
+        position: absolute;
+        top: 1.9rem;
+        z-index: 2;
+        &-1 {
+          left: 1rem;
+        }
+        &-2 {
+          left: 3rem;
+        }
+      }
+      .img-icon-sub {
+        width: 2.5rem;
+        position: absolute;
+        right: 2.3rem;
+        top: 0rem;
+        background: $white;
+        border: 3px solid $blue-light;
+        border-radius: 5rem;
+        padding: 0.2rem;
+      }
+    }
+    .div4 {
+      display: none;
+    }
+    .div5 {
+      display: none;
+    }
+    .div6 {
+      grid-area: 1 / 4 / 2 / 5;
+      align-self: end;
+    }
+    .div7 {
+      grid-area: 2 / 4 / 3 / 5;
+    }
+    .div8 {
+      grid-area: 1 / 5 / 2 / 6;
+      align-self: end;
+    }
+    .div9 {
+      grid-area: 2 / 5 / 3 / 6;
+    }
+    .div10 {
+      grid-area: 1 / 6 / 2 / 7;
+      align-self: end;
+    }
+    .div11 {
+      grid-area: 2 / 6 / 3 / 7;
+    }
+    .div12 {
+      grid-area: 1 / 7 / 2 / 8;
+      align-self: end;
+      span {
+        display: flex;
+      }
+    }
+    .div13 {
+      grid-area: 3 / 1 / 5 / 8;
+      grid-template-columns: 8rem repeat(3, 1fr);
+      display: grid;
+      background: $blue-dex-accent-trans;
+      margin: 0rem -0.8rem;
+      padding: 0rem 1rem;
+
+      .div14 {
+        color: $white;
+        padding: 0.3rem;
+      }
+      .div18 {
+        margin: 0.3rem;
+        padding: 0.3rem;
+        color: $white;
+        border: 1px solid $blue-light;
+        border-radius: 0.5rem;
+        .div19 {
+          padding: 0.3rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+      .div24 {
+        margin: 0.6rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        .buttons {
+          .button-allow {
+            margin: 0.2rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 0.4rem;
+            background-color: #262ebf;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+  .cart {
+    grid-area: 3/2/5/4;
+    border: 1px solid $blue-extra-light;
+    margin: 0.4rem;
+    border-radius: 0.6rem;
+  }
+  .container {
+    overflow: hidden;
+    height: 0px;
+    transition: height 0.5s ease-in-out;
+
+    &-noShow {
+      overflow: hidden;
+      height: 90px;
+      transition: height 0.5s ease-in-out;
+    }
+  }
+  .accent {
+    color: $pink;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .tex-green {
+    color: $green;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .link-st {
+    text-decoration: none;
+    color: $green;
+    &:hover {
+      cursor: pointer;
+      color: $green-light;
+    }
+  }
+  .btn {
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    width: 7rem;
+    &-accent {
+      color: $white;
+      background: $blue-dex-accent;
+      &:hover {
+        transition: all 300ms;
+        background: $blue-light;
+      }
+    }
+    &-secondary {
+      color: $white;
+      background: $blue-dex-secondary;
+
+      &:hover {
+        transition: all 300ms;
+        color: $white;
+        background: $blue-medium;
+      }
+    }
+    &-withdraw {
+      background-color: #d2196f;
+      color: $white;
+      width: calc(100% - 7rem);
+      &:hover {
+        background-color: $blue-medium;
+      }
+    }
+  }
+}
+
+@media (min-width: 675px) {
+  .inline-grid {
+    .farm-list {
+      .parent-file {
+        display: grid;
+        grid-template-columns: 6rem 9rem 9rem 14rem 12rem 3rem 6rem;
+        grid-template-rows: 1fr 1fr;
+        color: $white;
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+        gap: 0.4rem;
+      }
+      .div4 {
+        display: block;
+        grid-area: 1 / 3 / 2 / 4;
+        align-self: end;
+      }
+      .div5 {
+        display: block;
+        grid-area: 2 / 3 / 3 / 4;
+      }
+    }
+  }
+}

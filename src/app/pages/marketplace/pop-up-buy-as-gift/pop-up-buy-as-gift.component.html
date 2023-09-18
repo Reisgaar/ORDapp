@@ -1,0 +1,17 @@
+<div class="close">
+  <p class="text">
+    <span>{{ 'popUp.directTransfer' | translate }}</span>
+    <span class="button" (click)="closePopUp()">X</span>
+  </p>
+</div>
+
+<div class="content">
+  <form>
+    <p class="price-label">{{ 'popUp.sendNftTo' | translate }}</p>
+    <input type="text" class="send-to" id="sendTo" name="sendTo" placeholder="{{ 'popUp.addAddress' | translate}}" [(ngModel)]="sendTo" />
+    <p class="error" [class.active]="formError">*{{ 'popUp.walletError' | translate }}</p>
+    <div class="buttons">
+      <button type="reset" class="button" (click)="closePopUp()">{{ 'popUp.button.cancel' | translate }}</button>
+      <button type="submit" class="button" (click)="confirmBuyAsGift()">{{ 'popUp.button.accept' | translate }}</button>
+    </div>
+  </form>

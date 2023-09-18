@@ -1,0 +1,100 @@
+<!-- TITLE -->
+<div class="selected-land">
+  <ng-container *ngIf="landFilters['zone'].ring === ''">
+    <p class="all">{{"lands.viewer.filterTitle1" | translate}} <b>{{"lands.viewer.filterTitle2" | translate}}</b></p>
+  </ng-container>
+
+  <ng-container *ngIf="landFilters['zone'].ring !== ''">
+    <p class="main">{{"lands.viewer.landsIn" | translate}}</p>
+    <p class="ring">{{landFilters['zone'].ring}}</p>
+    <p class="sector" *ngIf="landFilters['zone'].sector !== ''">{{"lands.viewer.sector" | translate}} {{landFilters['zone'].sector}}</p>
+    <p class="zone" *ngIf="landFilters['zone'].district !== ''">{{landFilters['zone'].district}}</p>
+  </ng-container>
+</div>
+
+<!-- VIEWER TOP MENU -->
+<div class="top-menu">
+  <!-- SWITCHERS -->
+  <div class="visibility-switchers">
+    <div class="switcher" (click)="switchEndedVisibility()">
+      <div class="checkbox" [class.active]="showEnded"><div class="checkbox-fill"></div></div>
+      <p>{{'lands.viewer.showEnded' | translate}}</p>
+    </div>
+    <div class="switcher" (click)="switchCommingVisibility()">
+      <div class="checkbox" [class.active]="showComming"><div class="checkbox-fill"></div></div>
+      <p>{{'lands.viewer.showComming' | translate}}</p>
+    </div>
+    <div class="switcher" (click)="switchMyBidsVisibility()">
+      <div class="checkbox" [class.active]="showOnlyUserBids"><div class="checkbox-fill"></div></div>
+      <p>{{'lands.viewer.showOnlyUserBids' | translate}}</p>
+    </div>
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination" *ngIf="maxPage > 0">
+    <p class="pagination-item first" *ngIf="actualPage > 1" (click)="goToPage(1)"><mat-icon>first_page</mat-icon></p>
+    <p class="pagination-item prev" *ngIf="actualPage > 1" (click)="changePage(false)"><mat-icon>chevron_left</mat-icon></p>
+    <p class="pagination-item first disabled" *ngIf="actualPage === 1"><mat-icon>first_page</mat-icon></p>
+    <p class="pagination-item prev disabled" *ngIf="actualPage === 1"><mat-icon>chevron_left</mat-icon></p>
+
+    <p class="pagination-item actual">{{'lands.viewer.pagination.page' | translate}} {{actualPage}} {{'lands.viewer.pagination.pageOf' | translate}} {{maxPage}}</p>
+
+    <p class="pagination-item next" *ngIf="actualPage < maxPage" (click)="changePage(true)"><mat-icon>chevron_right</mat-icon></p>
+    <p class="pagination-item last" *ngIf="actualPage < maxPage" (click)="goToPage(maxPage)"><mat-icon>last_page</mat-icon></p>
+    <p class="pagination-item next disabled" *ngIf="actualPage === maxPage"><mat-icon>chevron_right</mat-icon></p>
+    <p class="pagination-item last disabled" *ngIf="actualPage === maxPage"><mat-icon>last_page</mat-icon></p>
+  </div>
+</div>
+
+<div *ngIf="!landsLoaded" class="spinner">
+  <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+</div>
+<ng-container *ngIf="landsLoaded">
+  <!-- CARD LIST -->
+  <div *ngIf="shownNfts">
+    <div class="cards {{display}}" *ngIf="shownNfts.length > 0">
+      <ng-container *ngFor="let card of shownNfts">
+        <div class="land" *ngIf="((card.endTimeStamp | timeStampIsPast) || showEnded) && (!(card.startTimeStamp | timeStampIsPast) || showComming)">
+          <app-lands-card [display]="display" [nft]="card" [whitelist]="userWhitelist[card.size | lowercase]"></app-lands-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- NO RESULT -->
+  <div class="no-lands" *ngIf="nfts.length === 0 || maxPage === 0">
+    <h2>{{'lands.viewer.noResult' | translate}}</h2>
+  </div>
+</ng-container>
+
+<!-- VIEWER BOTTOM MENU -->
+<div class="bottom-menu" *ngIf="maxPage > 0">
+  <!-- PAGINATION -->
+  <div class="pagination bottom">
+    <p class="pagination-item first" *ngIf="actualPage > 1" (click)="goToPage(1)"><mat-icon>first_page</mat-icon></p>
+    <p class="pagination-item prev" *ngIf="actualPage > 1" (click)="changePage(false)"><mat-icon>chevron_left</mat-icon></p>
+    <p class="pagination-item first disabled" *ngIf="actualPage === 1"><mat-icon>first_page</mat-icon></p>
+    <p class="pagination-item prev disabled" *ngIf="actualPage === 1"><mat-icon>chevron_left</mat-icon></p>
+
+    <p class="pagination-item actual">{{'lands.viewer.pagination.page' | translate}} {{actualPage}} {{'lands.viewer.pagination.pageOf' | translate}} {{maxPage}}</p>
+
+    <p class="pagination-item next" *ngIf="actualPage < maxPage" (click)="changePage(true)"><mat-icon>chevron_right</mat-icon></p>
+    <p class="pagination-item last" *ngIf="actualPage < maxPage" (click)="goToPage(maxPage)"><mat-icon>last_page</mat-icon></p>
+    <p class="pagination-item next disabled" *ngIf="actualPage === maxPage"><mat-icon>chevron_right</mat-icon></p>
+    <p class="pagination-item last disabled" *ngIf="actualPage === maxPage"><mat-icon>last_page</mat-icon></p>
+  </div>
+  <div class="page-size">
+    <p class="label">{{'lands.viewer.pagination.pageSize' | translate}}:</p>
+    <div class="selector">
+      <span class="actual" *ngIf="pageSize >= nfts.length">{{'lands.viewer.pagination.all' | translate}}</span>
+      <span class="actual" *ngIf="pageSize < nfts.length">{{pageSize}}</span>
+      <mat-icon class="icon">arrow_drop_down</mat-icon>
+      <div class="options">
+        <span class="option" *ngIf="nfts.length > 8" [class.selected]="pageSize === 8" (click)="changePageSize(8)">8</span>
+        <span class="option" *ngIf="nfts.length > 12" [class.selected]="pageSize === 12" (click)="changePageSize(12)">12</span>
+        <span class="option" *ngIf="nfts.length > 24" [class.selected]="pageSize === 24" (click)="changePageSize(24)">24</span>
+        <span class="option" [class.selected]="pageSize >= nfts.length" (click)="changePageSize(nfts.length)">{{'lands.viewer.pagination.all' | translate}}</span>
+      </div>
+    </div>
+  </div>
+</div>

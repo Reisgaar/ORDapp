@@ -1,0 +1,113 @@
+@import '/src/styleVariables.scss';
+
+.content {
+  color: $white;
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 20px 150px;
+
+  &.connect {
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 30px auto 100px;
+
+    .tabs {
+      margin-bottom: 100px;
+    }
+
+    p {
+      margin: 40px 0;
+    }
+
+    .button {
+      cursor: pointer;
+      display: inline-block;
+      background: linear-gradient(to right, $blue-medium, $blue-semi-dark);
+      margin: 40px 10px;
+      width: max-content;
+      padding: 7px 40px;
+      border-radius: 15px;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.2em;
+
+      &:hover {
+        background: linear-gradient(to right, $pink, #520066);
+      }
+    }
+  }
+
+  h2 {
+    font-family: $magistral !important;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 40px 0 20px;
+
+    .tab {
+      cursor: pointer;
+      align-self: center;
+      text-align: center;
+      margin: 0;
+      color: $grey;
+      border-bottom: 2px solid $grey;
+      font-size: 1.2rem;
+
+      &.active {
+        cursor: default;
+        color: $white;
+        border-bottom: 2px solid $pink;
+      }
+    }
+  }
+
+  .step {
+
+    .info {
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 50px 30px;
+    }
+  }
+}
+
+.discount {
+  background-color: $blue-medium;
+  color: $white;
+  text-align: center;
+  padding: 15px;
+
+  p {
+    max-width: 1200px;
+    margin: auto;
+    font-size: 1rem;
+    line-height: 1em;
+
+    &.link span {
+      cursor: pointer;
+      text-decoration: underline;
+      color: $pink-light;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    &.tip {
+      font-size: 0.8rem;
+      margin: 10px auto 0;
+      font-style: italic;
+      font-weight: 300;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="marketplace">
+  <h1>{{'navigation.directSells' | translate | uppercase}}</h1>
+
+  <!-- DOWHEN: New OR NFT added, add new span with the new nft category -->
+  <div class="categories">
+    <span class="category" [class.active]="selectedCategory === 'All'" (click)="changeCategory('All')">{{'categories.all' | translate}}</span>
+    <span class="category" [class.active]="selectedCategory === 'Weapons'" (click)="changeCategory('Weapons')">{{'categories.weapons' | translate}}</span>
+    <span class="category" [class.active]="selectedCategory === 'Armors'" (click)="changeCategory('Armors')">{{'categories.armors' | translate}}</span>
+    <span class="category" [class.active]="selectedCategory === 'Vehicles'" (click)="changeCategory('Vehicles')">{{'categories.vehicles' | translate}}</span>
+    <span class="category" [class.active]="selectedCategory === 'Cosmetics'" (click)="changeCategory('Cosmetics')">{{'categories.cosmetics' | translate}}</span>
+    <span class="category" [class.active]="selectedCategory === 'Clan'" (click)="changeCategory('Clan')">{{'categories.clan' | translate}}</span>
+    <span class="category" [class.active]="selectedCategory === 'Exo'" (click)="changeCategory('Exo')">{{'categories.exocredits' | translate}}</span>
+    <span class="category" [class.active]="selectedCategory === 'Lands'" (click)="changeCategory('Lands')">{{'categories.lands' | translate}}</span>
+    <span class="category" [class.active]="selectedCategory === 'Keys'" (click)="changeCategory('Keys')">{{'categories.keys' | translate}}</span>
+  </div>
+  <div *ngIf="loadingData" class="spinner">
+    <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+  </div>
+  <ng-container *ngIf="!loadingData">
+    <app-item-viewer-big [category]="selectedCategory" [items]="nftOnSale" [type]="'sale'" [fullSorting]="true" [showMainCategory]="true"></app-item-viewer-big>
+  </ng-container>
+</div>

@@ -1,0 +1,184 @@
+@import '/src/styleVariables.scss';
+
+.card {
+  position: relative;
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: $white;
+  width: max-content;
+  min-width: 250px;
+  min-height: 350px;
+  border: 2px solid $blue-medium;
+  height: 100%;
+  display: grid;
+  grid-template-rows: max-content max-content 1fr max-content max-content;
+
+  &.no-border {
+    border: unset;
+  }
+
+  .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .empty {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 1.2rem;
+    width: 90%;
+    text-align: center;
+  }
+
+  .title {
+    background-color: $white-transparent-60;
+    border: 1px solid $blue-medium;
+    border-radius: 0 10px 0 10px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 3px 5px;
+  }
+
+  .materials {
+    padding: 5px 0;
+    margin: 5px 0;
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(90deg, transparent, $white, transparent) 100 1;
+    display: grid;
+
+    .step {
+      display: grid;
+
+      .name {
+        margin: 5px 0 0;
+        font-size: 0.8rem;
+      }
+
+      .material {
+        display: grid;
+        grid-template-columns: max-content 1fr 1fr;
+        gap: 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 300;
+        height: 20px;
+
+        &.finished {
+          background-color: $blue-medium;
+
+          &.processing {
+            background-color: $red;
+          }
+
+          p {
+            justify-self: center;
+            align-self: center;
+            grid-column: 1/4;
+            margin: 0;
+          }
+        }
+
+        .remaining {
+          display: grid;
+          grid-template-columns: max-content 1fr;
+          gap: 0 5px;
+        }
+
+        .icon {
+          height: 25px;
+          width: 25px;
+          object-fit: contain;
+        }
+
+        .value {
+          justify-self: start;
+          align-self: center;
+          margin: 0;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 100%;
+
+          &.three-cols {
+            grid-template-columns: 1fr 1fr 1fr;
+          }
+
+          .reduced {
+            text-decoration: line-through;
+            color: $grey;
+          }
+        }
+
+        .available {
+          justify-self: end;
+          align-self: center;
+          margin: 0;
+          color: $red-error;
+          font-weight: bold;
+
+          &.enough {
+            color: $green-light;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+
+  .extra {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 1rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .buttons {
+    width: 100%;
+
+    .button {
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      background-color: $green;
+      border-radius: 8px;
+      font-size: 1rem;
+      padding: 5px 0;
+
+      &.disabled {
+        cursor: default;
+        background-color: $grey-semi-light;
+      }
+    }
+  }
+
+  &.accelerate {
+    background-color: #33333399;
+    border-color: $red;
+
+    .buttons .button {
+      background-color: $blue-light;
+    }
+
+    .title {
+      border-color: $red;
+    }
+  }
+
+  &.end {
+    background-color: #33333399;
+    border-color: $green;
+
+    .title {
+      border-color: $green;
+    }
+  }
+}

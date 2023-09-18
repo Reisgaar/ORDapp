@@ -1,0 +1,55 @@
+<!-- LANDS SALES DATA (fixed to bottom) -->
+<app-lands-data></app-lands-data>
+
+<!-- HEAD -->
+<div class="slider">
+  <img src="assets/images/lands/lands_home.png" class="background" alt="Lands background image" />
+  <div class="wrapper">
+    <h1 class="title">{{"lands.selector.title" | translate}}</h1>
+  </div>
+</div>
+
+<div class="submenu-wrapper">
+  <div class="submenu">
+    <!-- DISPLAY CARD/LIST -->
+    <div class="display">
+      <div class="button cards" [class.active]="display === 'card'" (click)="setDisplayTo('card')">
+        <img src="assets/images/lands/icon/card.svg" class="icon" alt="Card display icon">
+      </div>
+      <div class="button list" [class.active]="display === 'list'" (click)="setDisplayTo('list')" >
+        <img src="assets/images/lands/icon/list.svg" class="icon" alt="List display icon">
+      </div>
+    </div>
+    <!-- SORTING -->
+    <div class="button sorting">
+      <span *ngIf="sortingName !== ''" class="sorting-name">
+        <span>{{'lands.sorting.' + sortingName | translate}}</span>
+        <mat-icon *ngIf="sortingDirection === 'asc'" class="icon icon-up">trending_flat</mat-icon>
+        <mat-icon *ngIf="sortingDirection === 'desc'" class="icon icon-down">trending_flat</mat-icon>
+      </span>
+      <div class="button" (click)="notifyClickFilter()">
+        <img src="assets/images/lands/icon/sort.svg" class="icon" alt="Sorting icon">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <!-- MAP -->
+  <div class="block map">
+    <app-lands-map></app-lands-map>
+  </div>
+  <!-- SWITCHER BETWEEN AUCTIONS AND NEIGHBOURS -->
+  <div class="switcher">
+    <p class="button" [class.active]="showAuctions" (click)="switchViewer(true)">{{'lands.selector.auctions' | translate}}</p>
+    <p class="button" [class.active]="!showAuctions" (click)="switchViewer(false)">{{'lands.selector.neighbours' | translate}}</p>
+  </div>
+  <!-- AUCTIONS -->
+  <div class="block" *ngIf="showAuctions">
+    <app-lands-item-viewer [display]="display" [clickFilter]="clickFilter" (newFilterEvent)="receiveSortingData($event)"></app-lands-item-viewer>
+  </div>
+  <!-- NEIGHBOURS -->
+  <div class="block" *ngIf="!showAuctions">
+    <app-lands-neighbours></app-lands-neighbours>
+  </div>
+</div>

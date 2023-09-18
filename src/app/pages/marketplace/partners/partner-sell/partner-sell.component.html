@@ -1,0 +1,44 @@
+<div class="head-image">
+  <div class="card">
+    <img src="assets/images/partnership/{{partner.header}}" class="background" alt="Partner header background" />
+    <h1 class="title">{{ partner.nameToShow + ' Marketplace' | uppercase }}</h1>
+    <div class="buttons">
+      <a class="button" href="{{partner.website}}" target="_blank">Website</a>
+    </div>
+  </div>
+</div>
+
+<div class="partner-menu">
+  <div class="buttons">
+    <p class="button" (click)="chageSelectedTab('sales')" [ngStyle]="selectedTab === 'sales' && {'background-color': partner.color} || {}">Direct Sales</p>
+    <p class="button" (click)="chageSelectedTab('auctions')" [ngStyle]="selectedTab === 'auctions' && {'background-color': partner.color} || {}">Auctions</p>
+    <p class="button" (click)="chageSelectedTab('wallet')" [ngStyle]="selectedTab === 'wallet' && {'background-color': partner.color} || {}">Wallet</p>
+  </div>
+</div>
+
+<div class="partner-market">
+
+  <div class="data-loading" *ngIf="loadingData.wallet && loadingData.sale && loadingData.auction">
+    <div class="spinner">
+      <mat-spinner [diameter]="300" [strokeWidth]="10"></mat-spinner>
+    </div>
+  </div>
+
+  <div class="back-logo">
+    <img src="assets/images/partnership/{{partner.logo}}" alt="Partner logo" />
+  </div>
+  <div class="content">
+    <div class="logo">
+      <img src="assets/images/partnership/{{partner.logo}}" alt="Partner logo" />
+    </div>
+
+    <div class="help" *ngIf="(partner.name | lowercase) === 'baskonia' || (partner.name | lowercase) === 'alaves'">
+      <h2 class="title">{{'faqBaskonia.tip' | translate}}</h2>
+      <p class="button" (click)="showBaskoniaFAQ()">{{'faqBaskonia.tipButton' | translate}}</p>
+    </div>
+
+    <app-partner-item-viewer *ngIf="selectedTab === 'wallet'" [category]="partnerInput" [title]="'wallet'" [items]="userNfts.wallet"></app-partner-item-viewer>
+    <app-partner-item-viewer *ngIf="selectedTab === 'sales'" [category]="partnerInput" [title]="'sales'" [items]="userNfts.sale"></app-partner-item-viewer>
+    <app-partner-item-viewer *ngIf="selectedTab === 'auctions'" [category]="partnerInput" [title]="'auctions'" [items]="userNfts.auction"></app-partner-item-viewer>
+  </div>
+</div>

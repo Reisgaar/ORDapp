@@ -1,0 +1,36 @@
+<div class="engineer">
+  <div class="weapon-name">
+    <p *ngIf="poolData.nftType === 0">{{'crafting.armors.' + weapon | translate | uppercase}}</p>
+    <p *ngIf="poolData.nftType === 1">{{'crafting.weapons.' + weapon | translate | uppercase}}</p>
+    <p class="weapon-data">{{'crafting.element' + poolData.element | translate}} - Tier {{poolData.tier}}</p>
+  </div>
+
+    <div class="image">
+      <img src="assets/images/crafting/card/engineer{{selectedEngineer + 1}}.png">
+      <p class="selector">
+        {{'crafting.step3.' + engineers[selectedEngineer] | translate | uppercase}}
+      </p>
+      <ng-container *ngIf="poolData.started === false">
+        <mat-icon class="icon prev" (click)="changeSelectedEngineer(-1)" *ngIf="poolData.started === false">arrow_left</mat-icon>
+        <mat-icon class="icon next" (click)="changeSelectedEngineer(1)" *ngIf="poolData.started === false">arrow_right</mat-icon>
+      </ng-container>
+    </div>
+    <div class="booster not-available" *ngIf="poolData.tier !== 3 && selectedEngineer === engineers.length - 1; else showBooster">
+      <span>{{'crafting.home.onlyWorksT3' | translate}}</span>
+    </div>
+    <ng-template #showBooster>
+      <div class="booster" [class.started]="poolData.started === true">
+        <ng-container *ngFor="let rar of ['common', 'uncommon', 'rare', 'epic', 'legendary']; let i = index">
+          <span class="name"
+            [class.final-rarity]="i === poolData.rarity && poolData.rarity < 5"
+            [ngClass]="poolData.rarity === 5 && poolData.started ? 'waiting-' + i : ''"
+          >{{'nft.rarity.' + rar | translate}}:</span>
+          <span class="value"
+            [class.final-rarity]="i === poolData.rarity && poolData.rarity < 5"
+            [ngClass]="poolData.rarity === 5 && poolData.started ? 'waiting-' + i : ''"
+          >{{boosters['t' + poolData.tier][selectedEngineer][rar]}}%</span>
+        </ng-container>
+      </div>
+    </ng-template>
+
+</div>

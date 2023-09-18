@@ -1,0 +1,98 @@
+<div class="pool">
+
+  <div class="data">
+
+    <div class="data-loading" *ngIf="stakeDataLoading">
+      <div class="spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+
+    <div class="multiplier">
+      <span *ngIf="pool === 0">x1</span>
+      <span *ngIf="pool === 1">x2</span>
+      <span *ngIf="pool === 2">x4</span>
+    </div>
+
+    <div class="resume">
+      <h1>
+        {{'governance.stakeCard.earnVP' | translate}}
+        <img src="assets/images/tokens/gqvp.png" alt="GQ and VP coins" />
+      </h1>
+      <h2>{{'governance.stakeCard.stakeGQ' | translate}}</h2>
+      <p *ngIf="pool !== 0" class="locking">
+        <span *ngIf="lockedUntil > 8000000 && pendingVote !== '0'">{{'governance.stakeCard.lockUntil' | translate}} {{(lockedUntil * 1000) | date: 'MMM d, y - hh:mm a'}}</span>
+        <span *ngIf="lockedUntil < 8000000 || pendingVote === '0'">
+          {{'governance.stakeCard.lockPeriod' | translate}}
+          <span *ngIf="pool === 1">{{'governance.stakeCard.lock30' | translate}}</span>
+          <span *ngIf="pool === 2">{{'governance.stakeCard.lock90' | translate}}</span>
+        </span>
+      </p>
+      <p *ngIf="pool === 0" class="locking">{{'governance.stakeCard.noLock' | translate}}</p>
+    </div>
+
+    <div class="harvest">
+      <div class="numbers">
+        <p><span>VP</span> {{'governance.stakeCard.earned' | translate}}</p>
+        <p class="amount">{{earned | number: '1.0-4'}}</p>
+      </div>
+      <div class="button" *ngIf="pendingVote !== '0'" (click)="claimReward()">{{'governance.stakeCard.harvest' | translate}}</div>
+      <div class="button disabled" *ngIf="pendingVote === '0'">{{'governance.stakeCard.harvest' | translate}}</div>
+    </div>
+
+    <div class="stakelp">
+      <div class="numbers">
+        <p><span>GQ {{'governance.stakeCard.staked' | translate}}</span></p>
+        <p class="amount">{{stakedGQ | number: '1.0-4'}}</p>
+      </div>
+      <div class="button" (click)="deposit()">{{'governance.stakeCard.stakeGQ' | translate}}</div>
+    </div>
+
+    <div class="withdraw">
+      <div class="button" (click)="withdraw()" *ngIf="!withdrawIsBlocked">{{'governance.stakeCard.withdraw' | translate}}</div>
+      <div class="button disabled" *ngIf="withdrawIsBlocked">{{'governance.stakeCard.withdraw' | translate}}</div>
+    </div>
+
+  </div>
+
+  <div class="details">
+    <div class="details-data">
+      <p class="switcher" *ngIf="!detailsShown" (click)="showDetails()">
+        {{'governance.stakeCard.details' | translate}}
+        <mat-icon class="icon">keyboard_arrow_down</mat-icon>
+      </p>
+      <p class="switcher" *ngIf="detailsShown" (click)="showDetails()">
+        {{'governance.stakeCard.hide' | translate}}
+        <mat-icon class="icon">keyboard_arrow_up</mat-icon>
+      </p>
+
+      <div class="info" [class.shown]="detailsShown">
+        <p>
+          <span>{{'governance.stakeCard.totalStaked' | translate}}</span>
+          <span class="right">{{totalStaked | number: '1.0-4'}} GQ</span>
+        </p>
+        <p>
+          <span>{{'governance.stakeCard.lockDuration' | translate}}</span>
+          <span *ngIf="pool === 0" class="right">{{'governance.stakeCard.noLocking' | translate}}</span>
+          <span *ngIf="pool === 1" class="right">{{'governance.stakeCard.lock30' | translate}}</span>
+          <span *ngIf="pool === 2" class="right">{{'governance.stakeCard.lock90' | translate}}</span>
+        </p>
+        <p>
+          <span>{{'governance.stakeCard.multiplier' | translate}}</span>
+          <span class="right">x{{poolInfo.multiplier}}</span>
+        </p>
+        <p>
+          <span>{{'governance.stakeCard.rewardPerBlock' | translate}}</span>
+          <span class="right">{{rewardPerBlock | number: '1.0-4'}} VP</span>
+        </p>
+        <div class="links">
+          <a (click)="setGqOnMetamask()">{{'governance.stakeCard.addGQMetamask' | translate}}</a>
+          <a (click)="setVpOnMetamask()">{{'governance.stakeCard.addVPMetamask' | translate}}</a>
+          <a href="https://bscscan.com/address/0x479F056d7BB6ecFcbAaE6049548f565C201bd7B4" target="_blank">{{'governance.stakeCard.seeVPInfo' | translate}}</a>
+          <a href="https://bscscan.com/address/0x98F66C1b103E46f855f1Ad17C5C52286D5Fb7CDF" target="_blank">{{'governance.stakeCard.viewStakingContract' | translate}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

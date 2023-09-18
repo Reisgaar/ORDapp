@@ -1,0 +1,24 @@
+@import '/src/styleVariables.scss';
+
+.content {
+  font-family: $workSans !important;
+  padding: 50px 20px;
+  margin: auto;
+  max-width: 1200px;
+  color: $white;
+
+  h1 {
+    font-family: $magistral !important;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 50px;
+  }
+
+  ul {
+
+    li{
+      margin-bottom: 10px;
+    }
+  }
+}

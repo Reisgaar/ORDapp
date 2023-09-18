@@ -1,0 +1,119 @@
+@import '/src/styleVariables.scss';
+
+.engineer {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+
+  .weapon-name {
+    grid-column: 1/3;
+    font-size: 0.8rem;
+    text-align: center;
+    padding-bottom: 10px;
+
+    p {
+      margin: 0;
+      font-weight: 300;
+      line-height: 1em;
+
+      &:first-child {
+        font-size: 1rem;
+        font-family: $magistral !important;
+      }
+    }
+  }
+
+  .image {
+    position: relative;
+
+    img {
+      width: 120px;
+      margin: 0 -10px;
+    }
+
+    &.started .selector {
+      background-color: $grey-dark;
+    }
+
+    .selector {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0 0 5px;
+      padding: 3px 8px;
+      border: 1px solid $blue-light;
+      background-color: $blue-dark;
+      border-radius: 8px;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 1em;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    .icon {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &.next {
+        right: -10px;
+        padding: 50% 0 50% 5px;
+      }
+
+      &.prev {
+        left: -10px;
+        padding: 50% 5px 50% 0;
+      }
+    }
+  }
+
+  .booster {
+    display: grid;
+    grid-template-columns: max-content 40px;
+    gap: 0 5px;
+    font-size: 0.7rem;
+    height: 90%;
+    margin: 5% auto;
+
+    &.not-available {
+      grid-template-columns: 1fr;
+
+      span {
+        padding: 10px;
+        text-align: center;
+      }
+    }
+
+    span {
+      align-self: center;
+      justify-self: center;
+
+      &.waiting {
+        &-0 { animation: rarityBoosterWaiting-0 0.8s linear infinite; }
+        &-1 { animation: rarityBoosterWaiting-1 0.8s linear infinite; }
+        &-2 { animation: rarityBoosterWaiting-2 0.8s linear infinite; }
+        &-3 { animation: rarityBoosterWaiting-3 0.8s linear infinite; }
+        &-4 { animation: rarityBoosterWaiting-4 0.8s linear infinite; }
+      }
+
+      &.name {
+        justify-self: end;
+      }
+
+      &.value {
+        justify-self: start;
+      }
+    }
+
+    &.started {
+      color: $white-transparent-60;
+
+      .final-rarity {
+        color: $white;
+      }
+    }
+  }
+
+}

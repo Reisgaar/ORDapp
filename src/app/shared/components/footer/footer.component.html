@@ -1,0 +1,105 @@
+<div class="footer">
+  <div class="content">
+
+    <div class="info">
+      <!-- LOGO AND TEXT -->
+      <img src="assets/images/logo.png" alt="Outer Ring logo" />
+      <h2>{{ 'footer.title' | translate | uppercase }}</h2>
+      <p>{{ 'footer.text1' | translate }}</p>
+      <p>{{ 'footer.text2' | translate }}</p>
+      <p>{{ 'footer.text3' | translate }}</p>
+      <!-- SOCIAL MEDIA -->
+      <div class="social">
+        <span class="social-item">
+          <a class="social-item-icon icon-twitter" href="https://twitter.com/OuterRingMMO" target="_blank" rel="nofollow">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </span>
+        <span class="social-item">
+          <a class="social-item-icon icon-instagram" href="https://www.instagram.com/outerringmmo/" target="_blank" rel="nofollow">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </span>
+        <span class="social-item">
+          <a class="social-item-icon icon-telegram" href="{{'footer.telegramLink' | translate}}" target="_blank">
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+        </span>
+        <span class="social-item">
+          <a class="social-item-icon icon-facebook" href="https://www.facebook.com/Outer-Ring-MMO-111124460754710" target="_blank" rel="nofollow">
+            <i class="fab fa-facebook-square"></i>
+          </a>
+        </span>
+        <span class="social-item">
+          <a class="social-item-icon icon-youtube" href="https://www.youtube.com/c/OuterRingMMO" target="_blank" rel="nofollow">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </span>
+        <span class="social-item">
+          <a class="social-item-icon icon-twitch" href="https://www.twitch.tv/outerringmmo" target="_blank" rel="nofollow">
+            <i class="fab fa-twitch"></i>
+          </a>
+        </span>
+        <span class="social-item">
+          <a class="social-item-icon icon-discord" href="https://discord.gg/outerringmmo" target="_blank">
+            <i class="fab fa-discord"></i>
+          </a>
+        </span>
+      </div>
+    </div>
+    <!-- NAVIGATION MENU -->
+    <div class="navigation">
+      <div class="tab">
+        <h2 class="title" [routerLink]="['/home']">{{ 'navigation.home' | translate }}</h2>
+        <h2 class="title" [routerLink]="['/profile']">{{ 'navigation.myAccount' | translate }}</h2>
+        <p class="item" [routerLink]="['/allowanceManager']">{{ 'navigation.allowanceManager' | translate }}</p>
+      </div>
+      <div class="tab">
+        <h2 class="title" [routerLink]="['/crafting']">{{ 'navigation.crafting' | translate }}</h2>
+        <p class="item" [routerLink]="['/factory']">{{ 'navigation.factory' | translate }}</p>
+      </div>
+      <div class="tab">
+        <h2 class="title" [routerLink]="['/lootboxes']">{{ 'navigation.lootboxes' | translate }}</h2>
+      </div>
+      <div class="tab">
+        <h2 class="title" [routerLink]="['/lands']">{{ 'navigation.lands' | translate }}</h2>
+        <p class="item" [routerLink]="['/lands/map']">{{ 'navigation.landsMap' | translate }}</p>
+        <p class="item" [routerLink]="['/lands/materialExtraction']">{{ 'navigation.materialExtraction' | translate }}</p>
+      </div>
+      <div class="tab">
+        <h2 class="title" [routerLink]="['/governance']">{{ 'navigation.governance' | translate }}</h2>
+        <p class="item" [routerLink]="['/governance/proposals']">{{ 'navigation.proposals' | translate }}</p>
+        <p class="item" [routerLink]="['/governance/getVotingPower']">{{ 'navigation.getVP' | translate }}</p>
+        <p class="item" [routerLink]="['/governance/leaveProposal']">{{ 'navigation.addProposal' | translate }}</p>
+      </div>
+      <div class="tab">
+        <h2 class="title" [routerLink]="['/marketplace']">{{ 'navigation.marketplace' | translate }}</h2>
+        <p class="item" [routerLink]="['/marketplace/directSales']">{{ 'navigation.directSells' | translate }}</p>
+        <p class="item" [routerLink]="['/marketplace/auctions']">{{ 'navigation.auctions' | translate }}</p>
+        <p class="item" [routerLink]="['/marketplace/partners']">{{ 'navigation.partners' | translate }}</p>
+        <p class="item" [routerLink]="['/marketplace/statistics']">{{ 'navigation.statistics' | translate }}</p>
+      </div>
+      <div class="tab">
+        <h2 class="title" [routerLink]="['/defi']">{{ 'navigation.defi' | translate }}</h2>
+        <p class="item" [routerLink]="['/defi/farms']">{{ 'navigation.farms' | translate }}</p>
+        <p class="item" [routerLink]="['/defi/pools']">{{ 'navigation.pools' | translate }}</p>
+      </div>
+      <div class="tab">
+        <h2 class="title"><a href="https://outerringmmo.com" target="_blank">{{ 'navigation.about' | translate }}</a></h2>
+        <p class="item"><a href="https://outerringmmo.com" target="_blank">{{ 'navigation.aboutUs' | translate }}</a></p>
+        <p class="item"><a href="https://outerringmmo.com/outerteam" target="_blank">{{ 'navigation.team' | translate }}</a></p>
+        <p class="item" [routerLink]="['/faq']">{{ 'navigation.faq' | translate }}</p>
+        <p class="item"><a href="https://outerringmmo.com/contact" target="_blank">{{ 'navigation.contactSupport' | translate }}</a></p>
+      </div>
+    </div>
+  </div>
+  <!-- RIGHTS AND POLICIES -->
+  <div class="rights">
+    <p class="copyright">{{ 'footer.rights' | translate }}</p>
+    <div class="links">
+      <p [routerLink]="['/legalNotice']">{{ 'footer.legalNotice' | translate }}</p>
+      <p [routerLink]="['/privacyPolicy']">{{ 'footer.privacy' | translate }}</p>
+      <p [routerLink]="['/cookiePolicy']">{{ 'footer.cookies' | translate }}</p>
+    </div>
+  </div>
+</div>

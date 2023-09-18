@@ -1,0 +1,94 @@
+@import '/src/styleVariables.scss';
+
+.head {
+  padding: 50px 0;
+  max-width: 1200px;
+  margin: auto;
+  color: white;
+  font-family: $workSans;
+
+  .tip {
+    padding: 0 30px;
+    font-size: 1em;
+    font-weight: 300;
+  }
+
+  .title {
+    padding: 0 30px;
+    font-family: $workSans;
+    text-transform: uppercase;
+    font-size: 3em;
+    font-weight: 600;
+  }
+
+  .subtitle {
+    padding: 0 30px;
+    font-size: 1.2em;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+}
+
+.advice {
+  background-color: $blue-medium;
+  color: $white;
+  text-align: center;
+  margin: 0 0 50px;
+  padding: 10px 0;
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5em;
+    font-weight: 300;
+
+    &:first-child {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+  }
+}
+
+.lootboxes {
+  padding: 0px 0 50px;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+
+  .card {
+    vertical-align: top;
+    width: max-content;
+    margin: 20px auto;
+  }
+}
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 1135px) {
+  .lootboxes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Medium devices
+@media (max-width: 768px) {
+  .lootboxes {
+      grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+// Small devices
+@media (max-width: 576px) {
+
+}
+
+// Extra small devices
+@media (max-width: 320px) {
+
+}

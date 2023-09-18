@@ -1,0 +1,64 @@
+<div class="nft-card" (mousedown)="preventScroll($event)" (click)="clickToDetail()" (auxclick)="wheelToDetail($event)">
+  <div class="image">
+    <!-- Any NFT except land -->
+    <img class="background" src="assets/images/nft/nft_background.jpg" *ngIf="(nft.nftContractAddress | lowercase) !== (landAddress | lowercase) && (nft.nftContractAddress | lowercase) !== (holdtelKeyAddress | lowercase)" alt="NFT background image" />
+    <!-- Exo -->
+    <img class="nft small" src="assets/images/lootbox/rewards/exocredit.png" *ngIf="(nft.nftContractAddress | lowercase) === (exocreditAddress | lowercase)" alt="Exocredit NFT image" />
+    <span class="exo-amount" *ngIf="(nft.nftContractAddress | lowercase) === (exocreditAddress | lowercase)">{{'Amount: ' + exoAmount}}</span>
+    <!-- Clan badge -->
+    <img class="nft small" src="{{nft.image320}}" *ngIf="(nft.nftContractAddress | lowercase) === (clanBadgeAddress | lowercase)" alt="NFT image" />
+    <!-- Lands -->
+    <img class="nft land" src="{{nft.image}}" *ngIf="(nft.nftContractAddress | lowercase) === (landAddress | lowercase)" alt="Land NFT image" />
+    <div class="land-details">
+      <span class="land-details-sector" *ngIf="nft.sector">{{nft.sector}}</span>
+      <span class="land-details-district" *ngIf="nft.district">{{nft.district}}</span>
+    </div>
+    <!-- Holdtel Key -->
+    <img class="nft land" src="{{nft.image}}" *ngIf="(nft.nftContractAddress | lowercase) === (holdtelKeyAddress | lowercase)" alt="Holdtel NFT image" />
+    <!-- Other NFTs-->
+    <img class="nft" src="{{nft.image320}}" *ngIf="(nft.nftContractAddress | lowercase) !== (clanBadgeAddress | lowercase) && (nft.nftContractAddress | lowercase) !== (exocreditAddress | lowercase) && (nft.nftContractAddress | lowercase) !== (landAddress | lowercase) && (nft.nftContractAddress | lowercase) !== (holdtelKeyAddress | lowercase)" alt="NFT image" />
+    <span class="rarity" *ngIf="nft.rarity">
+      <span>{{'nft.rarity.' + nft.rarity | lowercase | translate}}</span>
+      <img class="rarity-circle" src="assets/images/nft/circle_{{nft.rarity | lowercase}}.png" alt="Rarity icon">
+    </span>
+    <span class="tier" *ngIf="nft.tier && nft.tier !== 'NoTier' && nft.tier.length > 4">{{(nft.tier | slice:0:4) + ' ' + (nft.tier | slice:4)}}</span>
+    <div *ngIf="nft.endTimeStamp" class="countdown" [class.ended]="auctionEnded">
+      <app-countdown [end]="nft.endTimeStamp" (countdownEndedEvent)="receiveData($event)"></app-countdown>
+    </div>
+  </div>
+  <div class="data">
+    <div class="name">
+      <h2>{{nft.name}}</h2>
+    </div>
+
+    <div class="ownership" *ngIf="nft.nftSeller" [routerLink]="['/profile']" [queryParams]="{wallet: nft.nftSeller}">
+      <div class="image">
+        <img src="assets/images/species/portrait_{{(nft.nftSeller | walletSpecie) | async}}.png" class="custom" alt="Profile icon" />
+      </div>
+      <div class="data">
+        <p class="title">{{'nft.owner' | translate}}:</p>
+        <p class="owner">{{nft.nftSeller | shortWallet}}</p>
+      </div>
+    </div>
+    <!-- Price if it's a sale -->
+    <div class="price" *ngIf="nft.buyPrice && nft.nftOn === 'BuySell'">
+      <p class="title">{{'nft.currentPrice' | translate}}</p>
+      <p class="value">
+        {{(nft.buyPrice | fromWei | number: '1.0-4')?.toLocaleString()}} {{nft.erc20Token | toTicker}}
+        <span class="conversion" *ngIf="(nft.erc20Token | toTicker) !== 'BUSD' && priceOnBusd !== 0">{{' = ' + (priceOnBusd | number: '1.0-4') + ' BUSD'}}</span>
+      </p>
+    </div>
+    <!-- Price if it's a bid -->
+    <div class="price" *ngIf="nft.minPrice && nft.nftOn === 'EnglishAuction'">
+      <p class="title">{{'nft.lastBid' | translate}}</p>
+      <p class="value" *ngIf="nft.bidsMade === '0'">
+        {{(nft.minPrice | fromWei | number: '1.0-4')?.toLocaleString()}} {{nft.erc20Token | toTicker}}
+        <span class="conversion" *ngIf="(nft.erc20Token | toTicker) !== 'BUSD' && priceOnBusd !== 0">{{' = ' + (priceOnBusd | number: '1.0-4') + ' BUSD'}}</span>
+      </p>
+      <p class="value" *ngIf="nft.bidsMade !== '0'">
+        {{(nft.nftHighestBid | fromWei | number: '1.0-4')?.toLocaleString()}} {{nft.erc20Token | toTicker}}
+        <span class="conversion" *ngIf="(nft.erc20Token | toTicker) !== 'BUSD' && priceOnBusd !== 0">{{' = ' + (priceOnBusd | number: '1.0-4') + ' BUSD'}}</span>
+      </p>
+    </div>
+  </div>
+</div>

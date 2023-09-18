@@ -1,0 +1,125 @@
+
+<div class="big-list">
+  <div class="head" *ngIf="showMainCategory">
+    <h3>{{'categories.' + (category | lowercase) | translate}}</h3>
+  </div>
+
+  <div class="content">
+
+    <div class="sorting">
+      <div class="filter-switch">
+        <p [class.active]="filterIsShowing" (click)="switchFilterVisibility()">Filter</p>
+      </div>
+      <div class="results" *ngIf="showEndedAuctions">
+        <p *ngIf="totalItems === 0" class="result">{{'itemViewer.noResults' | translate}}</p>
+        <p *ngIf="totalItems === 1" class="result">{{totalItems}} {{'itemViewer.result' | translate}}</p>
+        <p *ngIf="totalItems > 1" class="result">{{totalItems}} {{'itemViewer.results' | translate}}</p>
+      </div>
+      <div class="results" *ngIf="!showEndedAuctions">
+        <p *ngIf="totalItems - hiddenItems === 0" class="result">{{'itemViewer.noResults' | translate}}</p>
+        <p *ngIf="totalItems - hiddenItems === 1" class="result">{{totalItems - hiddenItems}} {{'itemViewer.result' | translate}}</p>
+        <p *ngIf="totalItems - hiddenItems > 1" class="result">{{totalItems - hiddenItems}} {{'itemViewer.results' | translate}}</p>
+      </div>
+      <div class="sorting-selector">
+        <div class="options">
+            <p class="default">
+              <span class="selected-sort" *ngIf="selectedSorting === 'Sorting'">{{'itemViewer.sorting' | translate}}</span>
+
+              <span class="selected-sort" *ngIf="selectedSorting === 'Price Up'">{{'itemViewer.sort.price' | translate}}<mat-icon class="icon up">arrow_right_alt</mat-icon></span>
+              <span class="selected-sort" *ngIf="selectedSorting === 'Price Down'">{{'itemViewer.sort.price' | translate}}<mat-icon class="icon down">arrow_right_alt</mat-icon></span>
+              <span class="selected-sort" *ngIf="selectedSorting === 'Tier Up'">{{'itemViewer.sort.tier' | translate}}<mat-icon class="icon up">arrow_right_alt</mat-icon></span>
+              <span class="selected-sort" *ngIf="selectedSorting === 'Tier Down'">{{'itemViewer.sort.tier' | translate}}<mat-icon class="icon down">arrow_right_alt</mat-icon></span>
+              <span class="selected-sort" *ngIf="selectedSorting === 'Name A-Z'">{{'itemViewer.sort.name' | translate}} A-Z</span>
+              <span class="selected-sort" *ngIf="selectedSorting === 'Name Z-A'">{{'itemViewer.sort.name' | translate}} Z-A</span>
+              <span class="selected-sort" *ngIf="selectedSorting === 'Newest'">{{'itemViewer.sort.newest' | translate}}</span>
+              <span class="selected-sort" *ngIf="selectedSorting === 'Oldest'">{{'itemViewer.sort.oldest' | translate}}</span>
+              <mat-icon class="dropper">arrow_drop_down</mat-icon>
+            </p>
+
+            <span class="option"
+              *ngIf="selectedSorting !== 'Price Up' && fullSorting"
+              (click)="sortArrayByPrice(true, 'Price Up')"
+            >{{'itemViewer.sort.price' | translate}} <mat-icon class="icon up">arrow_right_alt</mat-icon></span>
+            <span class="option"
+              *ngIf="selectedSorting === 'Price Up' && fullSorting"
+              (click)="sortArrayByPrice(false, 'Price Down')"
+            >{{'itemViewer.sort.price' | translate}} <mat-icon class="icon down">arrow_right_alt</mat-icon></span>
+
+            <span class="option"
+              *ngIf="selectedSorting !== 'Tier Up'"
+              (click)="sortArrayByTier(true, 'Tier Up')"
+            >{{'itemViewer.sort.tier' | translate}} <mat-icon class="icon up">arrow_right_alt</mat-icon></span>
+            <span class="option"
+              *ngIf="selectedSorting === 'Tier Up'"
+              (click)="sortArrayByTier(false, 'Tier Down')"
+            >{{'itemViewer.sort.tier' | translate}} <mat-icon class="icon down">arrow_right_alt</mat-icon></span>
+
+            <span class="option"
+              *ngIf="selectedSorting !== 'Name A-Z'"
+              (click)="sortArrayByName(true, 'Name A-Z')"
+            >{{'itemViewer.sort.name' | translate}} A-Z</span>
+            <span class="option"
+              *ngIf="selectedSorting === 'Name A-Z'"
+              (click)="sortArrayByName(false, 'Name Z-A')"
+            >{{'itemViewer.sort.name' | translate}} Z-A</span>
+
+            <span class="option"
+              *ngIf="selectedSorting !== 'Newest' && fullSorting"
+              (click)="sortArrayByTime(true, 'Newest')"
+            >{{'itemViewer.sort.newest' | translate}}</span>
+            <span class="option"
+              *ngIf="selectedSorting === 'Newest' && fullSorting"
+              (click)="sortArrayByTime(false, 'Oldest')"
+            >{{'itemViewer.sort.oldest' | translate}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter" *ngIf="filter" [class.active]="filterIsShowing">
+      <div class="selector" (click)="switchAuctions(true)" *ngIf="type === 'auction'">
+        <div class="checkbox" [class.active]="!showEndedAuctions"></div>
+        <span>Hide ended</span>
+      </div>
+      <div class="category hidden" *ngFor="let i of filter | keyvalue; let index=index" id="{{i.key + '_filter_' + index}}">
+        <h2 (click)="filterSwitcher(i.key + '_filter_' + index)">
+          {{i.key}}
+          <mat-icon class="icon">keyboard_arrow_up</mat-icon>
+        </h2>
+        <div class="filter-wrapper" [ngStyle]="{'height': (($any(i).value.length * 30) + 10) + 'px'}">
+          <div class="selector" *ngFor="let j of $any(i).value">
+            <div class="checkbox" id="{{j}}" (click)="filterData($event, index)"></div>
+            <span> {{j}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table" *ngIf="totalItems > 0">
+      <ng-container *ngIf="showEndedAuctions">
+        <div class="item" *ngFor="let item of filteredItems | slice:(pagActualPage*pagItemPerPage):((pagActualPage*pagItemPerPage) + pagItemPerPage)">
+          <app-nft-card [nft]="item"></app-nft-card>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!showEndedAuctions">
+        <div class="item" *ngFor="let item of filteredAuctionItems | slice:(pagActualPage*pagItemPerPage):((pagActualPage*pagItemPerPage) + pagItemPerPage)">
+          <app-nft-card [nft]="item"></app-nft-card>
+        </div>
+      </ng-container>
+    </div>
+    <div class="pagination" *ngIf="pagTotalPages > 0">
+      <mat-icon *ngIf="pagActualPage === 0" class="arrow disabled">first_page</mat-icon>
+      <mat-icon *ngIf="pagActualPage > 0" (click)="goToFirstOrLastPage(true)" class="arrow">first_page</mat-icon>
+      <mat-icon *ngIf="pagActualPage === 0" class="arrow disabled">chevron_left</mat-icon>
+      <mat-icon *ngIf="pagActualPage > 0" (click)="changePage(false)" class="arrow">chevron_left</mat-icon>
+      <span>Page {{pagActualPage + 1}} of {{pagTotalPages + 1}}</span>
+      <mat-icon *ngIf="pagActualPage < pagTotalPages" (click)="changePage(true)" class="arrow">chevron_right</mat-icon>
+      <mat-icon *ngIf="pagActualPage >= pagTotalPages" class="arrow disabled">chevron_right</mat-icon>
+      <mat-icon *ngIf="pagActualPage < pagTotalPages" (click)="goToFirstOrLastPage(false)" class="arrow">last_page</mat-icon>
+      <mat-icon *ngIf="pagActualPage >= pagTotalPages" class="arrow disabled">last_page</mat-icon>
+    </div>
+
+    <div class="no-result" *ngIf="totalItems === 0">
+      <p class="text">{{'itemViewer.noResultBig' | translate}}</p>
+    </div>
+  </div>
+</div>

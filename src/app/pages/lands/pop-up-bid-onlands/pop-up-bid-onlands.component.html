@@ -1,0 +1,91 @@
+<!-- CLOSE BUTTON -->
+<div class="close">
+  <p class="text">
+    <span>{{ 'popUp.' + data.type + 'LandAuction' | translate }}</span>
+    <span class="button" (click)="closePopUp()">X</span>
+  </p>
+</div>
+
+<div class="content">
+  <!-- LOADING SPINNER -->
+  <div *ngIf="loadingData" class="spinner">
+    <mat-spinner [diameter]="150" [strokeWidth]="10"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loadingData">
+    <!-- ERROR IF AUCTION ENDED AND GRAPH IS NOT UPDATED -->
+    <div *ngIf="auctionData.endTime === '0'">
+      <p>{{"lands.popUp.graphError" | translate}}</p>
+    </div>
+
+    <div *ngIf="auctionData.endTime !== '0'">
+      <form>
+        <!-- IF ACTION IS BID -->
+        <div *ngIf="(data.type | lowercase) === 'bid'" class="advice">
+          <div *ngIf="!actionIsAvailable">
+            <p>{{"lands.popUp.cantBid" | translate}}</p>
+            <p>{{auctionData.nextBidStartTimeStamp + '000' | date:'MMM d, y, h:mm:ss a zzzz'}}</p>
+          </div>
+          <div *ngIf="actionIsAvailable">
+            <!-- LAST BID -->
+            <div *ngIf="auctionData.highestBid === '0'">
+              <p class="actual-bid">{{ 'popUp.firstBidPrice' | translate }}</p>
+              <p class="actual-bid-data">{{(auctionData.startPrice | fromWei) | number: '1.0-4'}} {{auctionData.erc20Token | toTicker}}</p>
+            </div>
+            <!-- MINIMUM NEXT BID -->
+            <div *ngIf="auctionData.highestBid !== '0'">
+              <p class="actual-bid">{{ 'popUp.actualBidPrice' | translate }}</p>
+              <p class="actual-bid-data">{{(auctionData.highestBid | fromWei) | number: '1.0-4'}} {{auctionData.erc20Token | toTicker}}</p>
+              <p class="actual-bid">{{ 'popUp.minBidPrice' | translate }}</p>
+              <p class="actual-bid-data">{{minimumBid | number: '1.0-4'}} {{auctionData.erc20Token | toTicker}}</p>
+            </div>
+            <!-- BID INPUT -->
+            <p class="bid-label">
+              {{ 'popUp.addBid' | translate }}
+              <span class="conversion" *ngIf="bidAmount !== '0' && bidAmount !== ''">(aprox. {{(bidAmount * gqPriceOnBusd) | number: '1.0-4'}} BUSD)</span>
+            </p>
+            <input type="text"
+              class="bid-amount"
+              id="bidAmount"
+              name="bidAmount"
+              autocomplete="off"
+              inputmode="decimal"
+              placeholder="0.0"
+              pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+              value="{{minimumBid}}"
+              [(ngModel)]="bidAmount"
+              (keypress)="controlInput($event)"
+              (input)="validateForm()"
+            />
+            <p class="error" [class.active]="formError">
+              <span *ngIf="lowBidError">*{{ 'popUp.lowBidError' | translate }}</span>
+              <span *ngIf="!lowBidError">*{{ 'popUp.highBidError' | translate }}</span>
+            </p>
+            <p class="actual-buyout">{{"lands.popUp.txMayFailBid" | translate}}</p>
+          </div>
+        </div>
+
+        <!-- IF ACTION IS BUYOUT -->
+        <div *ngIf="(data.type | lowercase) === 'buyout'">
+          <div *ngIf="!actionIsAvailable" class="advice">
+            <p>{{"lands.popUp.cantBuy" | translate}}</p>
+            <p>{{auctionData.buyoutStartTimeStamp + '000' | date:'MMM d, y, h:mm:ss a zzzz'}}</p>
+          </div>
+          <div *ngIf="actionIsAvailable">
+            <p class="actual-bid">{{"lands.popUp.buyoutPrice" | translate}}</p>
+            <p class="actual-bid-data">{{(auctionData.actualBuyout | fromWei) | number: '1.0-4'}} {{auctionData.erc20Token | toTicker}}</p>
+            <p class="conversion" *ngIf="auctionData.actualBuyout !== '0' && auctionData.actualBuyout !== ''">aprox. {{((auctionData.actualBuyout | fromWei) * gqPriceOnBusd) | number: '1.0-4'}} BUSD</p>
+            <p class="actual-buyout">{{"lands.popUp.txMayFailBuyout" | translate}}</p>
+          </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="buttons" *ngIf="actionIsAvailable">
+          <button type="reset" class="button" (click)="closePopUp()">{{ 'popUp.button.cancel' | translate }}</button>
+          <button type="submit" *ngIf="(!formError && bidAmount !== '0') || data.type === 'buyout'" class="button" (click)="confirmBid()">{{ 'popUp.button.accept' | translate }}</button>
+          <button type="submit" *ngIf="(formError || bidAmount === '0') && data.type === 'bid'" class="button disabled">{{ 'popUp.button.accept' | translate }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

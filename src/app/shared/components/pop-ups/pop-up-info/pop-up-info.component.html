@@ -1,0 +1,39 @@
+<div class="close">
+  <p class="text">{{ 'popUp.' + data.title | translate }}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="message" *ngIf="data.detail !== 'allowance'">
+  <!-- Normal message -->
+  <p *ngIf="data.title !== 'error'">{{ 'popUp.' + data.text | translate }}</p>
+
+  <!-- Viem simulation error -->
+  <div *ngIf="data.title === 'error' && viemSimulationError === true" class="viem-error">
+    <p>{{viemSimulationData.title}}</p>
+    <p>{{viemSimulationData.reason}}</p>
+    <div class="tx-detail">
+      <span class="detail-switcher" (click)="switchViemErrorDetails()">
+        Details
+        <mat-icon class="icon" *ngIf="!showViemErrorDetails">arrow_drop_down</mat-icon>
+        <mat-icon class="icon" *ngIf="showViemErrorDetails">arrow_drop_up</mat-icon>
+      </span>
+      <div [innerHTML]="viemSimulationData.list" [class.active]="showViemErrorDetails" class="detail-list" id="viem-error-list"></div>
+    </div>
+  </div>
+
+  <!-- Regular error -->
+  <p *ngIf="data.title === 'error' && viemSimulationError === false">{{data.text}}</p>
+  <p *ngIf="data.detail !== ''">{{data.detail}}</p>
+  <div *ngIf="data.link">
+    <p [innerHTML]="('popUp.' + data.link | translate).replace('***', data.tx)" class="link"></p>
+  </div>
+</div>
+
+<div class="message allowance" *ngIf="data.detail === 'allowance'">
+  <p>{{'popUp.allowanceText1' | translate}}</p>
+  <ul>
+    <li [innerHTML]="'popUp.allowanceText2_html' | translate"></li>
+    <li [innerHTML]="'popUp.allowanceText3_html' | translate"></li>
+    <li [innerHTML]="'popUp.allowanceText4_html' | translate"></li>
+  </ul>
+  <p [innerHTML]="'popUp.allowanceText5_html' | translate"></p>
+</div>

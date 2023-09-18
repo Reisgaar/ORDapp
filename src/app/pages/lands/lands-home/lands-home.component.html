@@ -1,0 +1,183 @@
+<!-- LANDS SALES DATA (fixed to bottom) -->
+<app-lands-data></app-lands-data>
+
+<!-- HEAD BLOCK -->
+<div class="slider">
+  <img src="assets/images/lands/lands_home.png" class="background" alt="Lands background header" />
+  <div class="card">
+    <h1 class="tip">{{ 'lands.home.head.tip' | translate }}</h1>
+    <h1 class="title">
+      <b>{{ 'lands.home.head.title1' | translate }}</b>
+      {{ 'lands.home.head.title2' | translate }}
+      <b>{{ 'lands.home.head.title3' | translate }}</b>
+    </h1>
+    <div class="description">
+      <div class="image">
+        <img class="image-card1" src="assets/images/lands/homeHeadCard3.png" alt="Land card" />
+        <img class="image-card2" src="assets/images/lands/homeHeadCard2.png" alt="Land card" />
+        <img class="image-card3" src="assets/images/lands/homeHeadCard1.png" alt="Land card" />
+      </div>
+      <div class="data">
+        <p class="text">
+          <b>{{ 'lands.home.head.text1B1' | translate }}</b>
+          {{ 'lands.home.head.text1R1' | translate }}
+        </p>
+        <p class="text">
+          {{ 'lands.home.head.text2R1' | translate }}
+          <b>{{ 'lands.home.head.text2B1' | translate }}</b>
+          {{ 'lands.home.head.text2R2' | translate }}
+        </p>
+        <p class="text">
+          {{ 'lands.home.head.text3R1' | translate }}
+          <b>{{ 'lands.home.head.text3B1' | translate }}</b>
+          {{ 'lands.home.head.text3R2' | translate }}
+          <b>{{ 'lands.home.head.text3B2' | translate }}</b>
+        </p>
+      </div>
+    </div>
+  </div>
+  <img class="rings rings-back" src="assets/images/lands/home_rings_back.svg" alt="Orbit circle back" />
+  <img class="rings rings-front" src="assets/images/lands/home_rings_front.svg" alt="Orbit circle front" />
+</div>
+
+<!-- SEPARATOR -->
+<div class="separator"></div>
+
+<!-- TO MAP BUTTON -->
+<div class="explore">
+  <div class="gradient"></div>
+  <img src="assets/images/lands/buttonExplore.svg" class="button" [routerLink]="['/lands/map']" alt="Explore button" />
+  <img src="assets/images/lands/homePanoramic.png" class="image" alt="Background image"/>
+</div>
+
+<!-- REQUIRED NFT DATA -->
+<!-- <div class="content">
+  <div class="first-round">
+    <h2 class="title">{{ 'lands.home.firstRound.title' | translate }}</h2>
+    <p class="tip">{{ 'lands.home.firstRound.subtitle' | translate }}</p>
+    <div class="requirements">
+      <div class="nft">
+        <p class="type">{{ 'lands.home.firstRound.land1Name' | translate }}</p>
+        <img src="assets/images/logo.png" class="image" alt="Outer Ring logo"/>
+        <div class="text">
+          <p>{{ 'lands.home.firstRound.land1Nft' | translate }}</p>
+        </div>
+      </div>
+      <div class="nft">
+        <p class="type">{{ 'lands.home.firstRound.land2Name' | translate }}</p>
+        <img src="assets/images/lootbox/utilities/tier2.png" class="image" alt="OR Weapon" />
+        <div class="text">
+          <p>{{ 'lands.home.firstRound.land2Nft' | translate }}</p>
+        </div>
+      </div>
+      <div class="nft">
+        <p class="type">{{ 'lands.home.firstRound.land3Name' | translate }}</p>
+        <img src="assets/images/lootbox/utilities/tier3.png" class="image" alt="OR Armor" />
+        <div class="text">
+          <p>{{ 'lands.home.firstRound.land3Nft1' | translate }}</p>
+          <p>{{ 'lands.home.firstRound.land3Nft2' | translate }}</p>
+        </div>
+      </div>
+      <div class="nft">
+        <p class="type">{{ 'lands.home.firstRound.land4Name' | translate }}</p>
+        <img src="assets/images/lootbox/utilities/vehicle-space.png" class="image" alt="OR Space Vehicle" />
+        <div class="text">
+          <p>{{ 'lands.home.firstRound.land4Nft' | translate }}</p>
+        </div>
+      </div>
+      <div class="nft">
+        <p class="type">{{ 'lands.home.firstRound.land5Name' | translate }}</p>
+        <img src="assets/images/lootbox/utilities/clanStone.png" class="image" alt="OR Clan Badge" />
+        <div class="text">
+          <p>{{ 'lands.home.firstRound.land5Nft' | translate }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="advice">
+      <p>{{ 'lands.home.firstRound.missingNft1Text' | translate }}<span [routerLink]="['/lootboxes']" class="link">{{ 'lands.home.firstRound.missingNft1Button' | translate }}</span></p>
+      <p>{{ 'lands.home.firstRound.missingNft2Text' | translate }}<span [routerLink]="['/marketplace']" class="link">{{ 'lands.home.firstRound.missingNft2Button' | translate }}</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="frecuency">
+  <h3>{{ 'lands.home.firstRound.auctionFrecuency' | translate }}</h3>
+</div> -->
+
+<div class="content">
+<!-- LANDS VIDEO -->
+  <div class="video-block">
+    <div class="video">
+      <div class="video-container">
+        <iframe
+          *ngIf="selectedLang === 'en'"
+          src="https://www.youtube.com/embed/Kvy_ep8giBc"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        <iframe
+          *ngIf="selectedLang === 'es'"
+          src="https://www.youtube.com/embed/GkCh2b7Exrg"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    <div class="text">
+      <p>{{'lands.home.video.text1' | translate }}</p>
+      <p>{{'lands.home.video.text2' | translate }}</p>
+      <p>{{'lands.home.video.text3' | translate }}</p>
+    </div>
+    <!-- <button class="button">{{'lands.home.video.button' | translate }}</button> -->
+  </div>
+</div>
+
+<!-- PARTNERS ZONE -->
+<!-- <div class="partners">
+  <div class="limiter">
+    <h2 class="title">Built along our partners</h2>
+    <div class="logos">
+      <img class="logo" src="assets/images/partnership/baskonia_logo.png">
+      <img class="logo" src="assets/images/partnership/baskonia_logo.png">
+      <img class="logo" src="assets/images/partnership/baskonia_logo.png">
+      <img class="logo" src="assets/images/partnership/baskonia_logo.png">
+      <img class="logo" src="assets/images/partnership/baskonia_logo.png">
+    </div>
+  </div>
+</div> -->
+
+<!-- RINGS AND LANDS DESCRIPTION -->
+<div class="content">
+
+  <div class="utilities">
+    <h1 class="title">
+      <span>{{'lands.home.utilities.title1' | translate }}</span>
+      <span>{{'lands.home.utilities.title2' | translate }}</span>
+    </h1>
+
+    <p class="subtitle">{{'lands.home.utilities.subtitle' | translate }}</p>
+
+    <div class="cards">
+      <div *ngFor="let land of ['Nano', 'Micro', 'Standard', 'Macro', 'Mega']" class="card-wrapper card-{{land | lowercase}}">
+        <div class="card" [class.card-up]="land === 'Nano' || land === 'Standard' || land === 'Mega'" [class.card-down]="land === 'Micro' || land === 'Macro'">
+          <div class="image">
+            <img src="assets/images/lands/land_{{land | lowercase}}.png" alt="Land NFT image">
+            <div class="data-wrapper">
+              <div class="data">
+                <p>{{'lands.home.utilities.' + (land | lowercase) + '.ut1' | translate }}</p>
+                <p>{{'lands.home.utilities.' + (land | lowercase) + '.ut2' | translate }}</p>
+                <p>{{'lands.home.utilities.' + (land | lowercase) + '.ut3' | translate }}</p>
+                <p *ngIf="land === 'Micro' || land === 'Standard' || land === 'Macro' || land === 'Mega'">{{'lands.home.utilities.' + (land | lowercase) + '.ut4' | translate }}</p>
+                <p *ngIf="land === 'Standard' || land === 'Macro' || land === 'Mega'">{{'lands.home.utilities.' + (land | lowercase) + '.ut5' | translate }}</p>
+                <p *ngIf="land === 'Standard' || land === 'Macro' || land === 'Mega'">{{'lands.home.utilities.' + (land | lowercase) + '.ut6' | translate }}</p>
+                <p *ngIf="land === 'Mega'">{{'lands.home.utilities.' + (land | lowercase) + '.ut7' | translate }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

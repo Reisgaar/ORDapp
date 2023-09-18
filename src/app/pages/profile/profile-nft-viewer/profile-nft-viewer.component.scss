@@ -1,0 +1,134 @@
+@import '/src/styleVariables.scss';
+
+.nft-viewer {
+
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 20px 0;
+
+    .tab {
+      cursor: pointer;
+      align-self: center;
+      text-align: center;
+      margin: 0;
+      color: $grey;
+      border-bottom: 2px solid $grey;
+
+      &.active {
+        color: $white;
+        border-bottom: 2px solid $pink;
+      }
+    }
+  }
+
+  .item-list {
+    min-height: 200px;
+
+    .progress {
+      margin: 50px 10px;
+
+      &-bar {
+        height: 6px;
+        border-radius: 100px;
+      }
+    }
+
+    .selling,
+    .inventory,
+    .bids {
+
+      .spinner {
+        width: 300px;
+        margin: 100px auto;
+      }
+
+      .categories {
+        text-align: center;
+
+        .category {
+          cursor: pointer;
+          display: inline-block;
+          color: $white;
+          margin: 10px 30px;
+          font-family: 'magistral' !important;
+          text-transform: uppercase;
+          font-size: 1.2em;
+
+          &.active {
+            color: $pink-light;
+          }
+        }
+      }
+    }
+  }
+
+  .head {
+    margin: 50px 0 0;
+
+    h3 {
+      font-family: "magistral", sans-serif !important;
+      text-transform: uppercase;
+      grid-column: 1;
+      align-self: center;
+      text-align: left;
+      font-size: 2em;
+      border-bottom: 1px solid $blue-light;
+      padding: 5px;
+      margin: 0;
+    }
+  }
+
+  .land-viewer {
+    margin: 5rem 0;
+    text-align: center;
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 992px) {
+
+}
+
+// Medium devices
+@media (max-width: 768px) {
+}
+
+// Small devices
+@media (max-width: 576px) {
+  .nft-viewer {
+
+    .item-list {
+
+      .selling, .inventory, .bids {
+
+        .categories {
+
+          .category {
+            font-size: 0.8rem;
+            margin: 0px;
+            padding: 5px;
+            width: calc((100% / 3) - 10px);
+          }
+        }
+      }
+    }
+
+    .menu {
+
+      .tab {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// Extra small devices
+@media (max-width: 320px) {
+
+}

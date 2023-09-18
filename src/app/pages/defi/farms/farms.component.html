@@ -1,0 +1,12 @@
+<div class="pool-container">
+  <mat-table mat-table [dataSource]="dataSource" class="table-pools table-farms" [ngClass]="file ? 'table-pools-row':'table-pools-grid'">
+
+    <!-- Pool Column -->
+    <ng-container matColumnDef="pool">
+      <mat-cell mat-cell *matCellDef="let pool">
+        <app-farm-card [pool]="pool"></app-farm-card>
+      </mat-cell>
+    </ng-container>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></mat-row>
+  </mat-table>
+  </div>

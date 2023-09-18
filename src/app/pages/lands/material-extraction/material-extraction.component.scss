@@ -1,0 +1,23 @@
+@import 'src/styleVariables.scss';
+
+.content {
+  max-width: 1200px;
+  margin: 50px auto 100px;
+  color: $white;
+  text-align: center;
+
+  .pools-title {
+    width: 100%;
+    border-bottom: 1px solid $white;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    line-height: 1em;
+    font-family: $magistral !important;
+  }
+
+  .pools {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+  }
+}

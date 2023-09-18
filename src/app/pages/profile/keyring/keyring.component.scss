@@ -1,0 +1,111 @@
+@import '/src/styleVariables.scss';
+
+.key-progress {
+  padding: 60px 10px;
+  width: 150px;
+}
+
+.keys {
+  width: 100%;
+
+  .title {
+    font-family: $magistral !important;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .key {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+
+    img {
+      height: 50px;
+    }
+
+    .tip {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 50%;
+      transform: translateX(50%);
+      text-align: center;
+      width: 80px;
+      color: $white;
+      background-color: $blue-dark;
+      border: 2px solid $blue-medium;
+      border-radius: 7px;
+      font-size: 0.8em;
+      padding: 5px 8px;
+      max-width: 150px;
+      line-height: 1em;
+      z-index: 1;
+    }
+
+    &:hover {
+
+      .tip {
+        display: block;
+      }
+    }
+
+    &.buttons {
+
+      img {
+        filter: blur(2px) drop-shadow(0px 0px 5px #ffffff55);
+      }
+
+      .button {
+        cursor: pointer;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $white;
+        background: $blue-light;
+        border: none;
+        border-radius: 8px;
+        width: max-content;
+        padding: 5px 8px;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        line-height: 1em;
+        vertical-align: text-bottom;
+
+        &:hover {
+          background: $blue-medium;
+        }
+      }
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Small devices
+@media (max-width: 576px) {
+  .keys {
+
+    .title {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .key {
+      line-height: 0;
+
+      img {
+        height: 40px;
+      }
+
+      .tip {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

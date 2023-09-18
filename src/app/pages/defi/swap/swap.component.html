@@ -1,0 +1,64 @@
+<div class="parent">
+  <div class="div1">{{ 'defi.swap.title' | translate}} </div>
+  <div class="div2">{{ 'defi.swap.subTitle' | translate}} </div>
+  <div class="div3"><app-settings-button></app-settings-button></div>
+  <div class="div4">
+    <button *ngIf="!farm.subsidiaryTokenImg1" (click)="setPair()" class="btn sel-btn">{{ 'defi.swap.From' | translate }}
+    </button>
+    <button *ngIf="farm.subsidiaryTokenImg1" (click)="setPair()" class="btn pair-btn">
+      <img [src]="farm.subsidiaryTokenImg1" class="img">&nbsp;{{farm.subsidiaryTokenSymbol1}}
+    </button>
+  </div>
+  <div class="div5">
+    <span *ngIf="tokenFirstBalance == ''"></span>&nbsp;
+    <span *ngIf="tokenFirstBalance == '0'; else balanceFirst">{{'defi.swap.insufficientBalance' | translate }}</span>
+    <ng-template #balanceFirst>{{ 'defi.swap.balance' | translate }}&nbsp;{{tokenFirstBalance | fromWei | number:
+      '1.0-3'}}</ng-template>
+  </div>
+  <div class="div6">
+    <input class="input" type='text' placeholder="0" [(ngModel)]="amount1" (ngModelChange)="setValues('1')">
+    <button class="btn btn-max" (click)="max('1')">{{ 'defi.swap.max' | translate | uppercase }}</button>
+  </div>
+  <div class="div7"><span (click)="changeDirection()"><mat-icon>expand_more</mat-icon></span> </div>
+  <div class="div8">
+    <button *ngIf="!farm.subsidiaryTokenImg2" (click)="setPair()" class="btn sel-btn">{{ 'defi.swap.to' | translate }}
+    </button>
+    <button *ngIf="farm.subsidiaryTokenImg2" (click)="setPair()" class="btn pair-btn">
+      <img [src]="farm.subsidiaryTokenImg2" class="img">&nbsp;{{farm.subsidiaryTokenSymbol2}}
+    </button>
+
+  </div>
+  <div class="div9">
+    <span *ngIf="tokenSecondBalance == ''"></span>&nbsp;
+    <span *ngIf="tokenSecondBalance == '0'; else balanceSecond">{{'defi.swap.balance'  | translate }}: 0</span>
+    <ng-template #balanceSecond>{{ 'defi.swap.balance' | translate }}&nbsp;{{tokenSecondBalance | fromWei | number:
+      '1.0-3'}}</ng-template>
+  </div>
+  <div class="div10">
+    <input class="input" type='text' placeholder="0" [(ngModel)]="amount2" (ngModelChange)="setValues('2')"><button
+      class="btn btn-max" (click)="max('2')">{{ 'defi.swap.max' | translate | uppercase }}</button>
+  </div>
+  <div class="div13">
+    <button class="btn btn-add" *ngIf="connected && tokenFirstBalance != '0' && tokenFirstBalance != '' && !error && amount1 != '' && amount1 != '0'"
+      (click)="approve()">{{'defi.swap.approve' | translate | uppercase}}</button>
+
+    <button class="btn btn-add"
+      *ngIf="connected && (tokenFirstBalance == '0' && error)">
+      {{'defi.swap.insufficientBalance' |  translate | uppercase}}</button>
+    <button *ngIf="!connected" class="btn btn-connect" (click)="connectWallet()">{{'defi.swap.connectWallet' | translate |
+      uppercase}}</button>
+  </div>
+
+</div>
+<div *ngIf="error" class="error">{{errorText}}</div>
+
+<div *ngIf="minimunReceived" class="minimun">
+  <p>{{ 'defi.swap.inimumReceived' | translate }}&nbsp;{{minimunReceived}} {{farm.subsidiaryTokenSymbol2}}</p>
+  <p>{{ 'defi.swap.priceImpact' | translate }}&nbsp;{{priceImpact}}%</p>
+</div>
+<div class="send">
+  <p>{{ 'defi.swap.sendToOther' | translate }}</p>
+  <div class="wallet">
+    <input class="input" type='text' placeholder="{{ 'defi.swap.SendTo' | translate }}" [(ngModel)]="walletTo">
+  </div>
+</div>

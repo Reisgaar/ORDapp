@@ -1,0 +1,12 @@
+<div class="medium-list">
+
+  <div class="content">
+
+    <div class="items">
+      <div class="item" *ngFor="let item of items | slice:(pagActualPage*pagItemPerPage):((pagActualPage*pagItemPerPage) + pagItemPerPage)">
+        <app-nft-card [nft]="item"></app-nft-card>
+      </div>
+    </div>
+
+  </div>
+</div>

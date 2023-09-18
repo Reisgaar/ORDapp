@@ -1,0 +1,596 @@
+@import 'src/styleVariables.scss';
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 10px;
+  width: 300px;
+  height: calc(100% - 100px);
+  color: $white;
+  background-color: $white-transparent-10;
+  border: 1px solid $blue-medium;
+  border-radius: 10px;
+  margin: 50px 15px;
+  padding: 20px 10px;
+
+  .spinner-wrapper {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .title {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    border-radius: 10px 10px 0 0;
+    background-color: $white-transparent-10;
+    border: 1px solid $blue-medium;
+    text-transform: uppercase;
+    width: max-content;
+    padding: 3px 10px;
+  }
+
+  .row-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    &.no-stake {
+      grid-template-columns: 1fr;
+    }
+
+    .team {
+      position: relative;
+
+      .image {
+        height: 100px;
+        object-fit: contain;
+      }
+
+      .withdraw {
+        cursor: pointer;
+        width: max-content;
+        margin: auto;
+        background-color: $pink;
+        border-radius: 8px;
+        padding: 2px 5px;
+        font-size: 0.7rem;
+        white-space: nowrap;
+
+        &:hover {
+          background-color: $pink-light;
+        }
+      }
+    }
+
+    .land {
+      position: relative;
+
+      .image {
+        position: relative;
+        line-height: 0;
+        margin: 0 0 5px;
+
+        .land-image {
+          height: 100px;
+          object-fit: contain;
+          border-radius: 8px;
+          animation: land-mining 5s ease-in-out infinite;
+        }
+
+        .material {
+          position: absolute;
+          height: 50px;
+          width: 50px;
+          object-fit: contain;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          &.animation0 { animation: mat-mining-0 5s cubic-bezier(0.3, 1, 0.3, 1) infinite; }
+          &.animation1 { animation: mat-mining-1 5s cubic-bezier(0.3, 1, 0.3, 1) infinite; }
+          &.animation2 { animation: mat-mining-2 5s cubic-bezier(0.3, 1, 0.3, 1) infinite; }
+          &.animation3 { animation: mat-mining-3 5s cubic-bezier(0.3, 1, 0.3, 1) infinite; }
+          &.animation4 { animation: mat-mining-4 5s cubic-bezier(0.3, 1, 0.3, 1) infinite; }
+          &.animation5 { animation: mat-mining-5 5s cubic-bezier(0.3, 1, 0.3, 1) infinite; }
+        }
+      }
+
+      .blocked {
+        font-size: 0.7rem;
+        font-weight: 300;
+        line-height: 1em;
+
+        span {
+          display: block;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  .row-2 {
+    position: relative;
+    align-self: center;
+
+    .land-info {
+
+      .add-land {
+        transition: opacity 0.5s ease-in-out;
+        transition-delay: 0.1s;
+        height: 120px;
+
+        .fee-advice {
+          font-style: italic;
+          font-size: 0.6rem;
+          margin: 10px auto;
+        }
+
+        p {
+          font-size: 0.8rem;
+          font-weight: 300;
+          width: max-content;
+          margin: 0 auto 10px;
+        }
+
+        .square {
+          transition: width 0.5s ease-in-out, height 0.5s ease-in-out, rotate 0.5s ease-in-out;
+          transition-delay: 0.1s;
+          cursor: pointer;
+          position: relative;
+          border: 1px dashed $grey;
+          border-radius: 15px;
+          width: 90px;
+          height: 90px;
+          margin: 0 auto;
+
+          &.blocked {
+            cursor: not-allowed;
+            background: #ff000024;
+
+            &::after,
+            &::before {
+              transform: translate(-50%, -50%) rotate(45deg);
+              background: $red-error;
+            }
+
+            &:hover {
+              background-color: #ff000024;
+            }
+          }
+
+          &:hover {
+            background-color: $white-transparent-25;
+          }
+
+          &::after {
+            transition: width 0.5s ease-in-out;
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: $grey;
+            height: 1px;
+            width: 50%;
+          }
+
+          &::before {
+            transition: height 0.5s ease-in-out;
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: $grey;
+            height: 50%;
+            width: 1px;
+          }
+        }
+      }
+
+      .details {
+        border-width: 1px 0 0 0;
+        border-style: solid;
+        border-image: linear-gradient(to left, transparent, white, transparent) 100% 1%;
+        padding-top: 10px;
+        margin-top: -10px;
+
+        .extracted {
+          margin: 0 0 10px 0;
+          text-transform: uppercase;
+        }
+
+        .materials {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 7px;
+          margin: 0 0 15px;
+
+          .material {
+            margin: 0;
+            font-size: 0.8rem;
+            font-weight: 300;
+            display: grid;
+            grid-template-columns: 15px 1fr;
+            background: linear-gradient(45deg, $white-transparent-25, transparent);
+            overflow: hidden;
+            border-radius: 8px;
+
+            img {
+              width: 25px;
+              height: 25px;
+              object-fit: contain;
+              align-self: center;
+              transform: translate(-45%, 30%) scale(4) rotate(-20deg);
+            }
+
+            span {
+              align-self: center;
+              width: max-content;
+              text-shadow: 0px 0px 1px $black;
+              filter: drop-shadow(0px 0px 1px $black);
+            }
+          }
+        }
+
+        .claim {
+          cursor: pointer;
+          width: max-content;
+          margin: 30px auto -10px;
+          background-color: $blue-light;
+          border-radius: 8px;
+          padding: 3px 10px;
+          font-size: 0.9rem;
+          white-space: nowrap;
+
+          &:hover {
+            background-color: $blue-medium;
+          }
+        }
+      }
+
+      &.hide-button {
+
+        .add-land {
+          transition: opacity 0.5s ease-in-out;
+          opacity: 0;
+
+          .square {
+            transition: width 0.5s ease-in-out, height 0.5s ease-in-out, rotate 0.5s ease-in-out;
+            width: 0px;
+            height: 0px;
+            rotate: 90deg;
+
+            &::after {
+              transition: width 0.5s ease-in-out;
+              width: 0%;
+            }
+
+            &::before {
+              transition: height 0.5s ease-in-out;
+              height: 0%;
+            }
+          }
+        }
+      }
+    }
+
+    .land-selector {
+      transition: width 0.5s ease-in-out, height 0.5s ease-in-out, padding 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out, border 0.5s ease-in-out;
+      position: absolute;
+      overflow: auto;
+      direction:rtl;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      opacity: 0;
+      width: 0%;
+      height: 0%;
+      display: flex;
+      flex-flow: wrap;
+      justify-content: space-around;
+      gap: 10px;
+      border: 0px dashed $grey;
+      border-radius: 15px;
+      padding: 0;
+
+      .tip {
+        transition: opacity 0.5s ease-in-out;
+        opacity: 0;
+        position: sticky;
+        z-index: 1;
+        top: 0;
+        width: 100%;
+        font-weight: 300;
+        backdrop-filter: blur(5px);
+        padding-bottom: 4px;
+
+        p {
+          margin: 0;
+          text-align: center;
+        }
+
+        .close {
+          position: absolute;
+          cursor: pointer;
+          left: unset;
+          top: -2px;
+          right: -10px;
+          transform: unset;
+          font-size: 18px;
+          width: 20px;
+          height: 20px;
+          padding: 5px 5px 0 0;
+          background: $grey;
+          border-radius: 0 0 0 5px;
+          text-align: right;
+
+          &:hover {
+            background-color: $grey-semi-light;
+          }
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $grey-semi-light;
+        margin: 15px auto;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: $grey-extra-light;
+      }
+
+      &.opened {
+        transition: width 0.5s ease-in-out, height 0.5s ease-in-out, padding 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        transition-delay: 0.1s;
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 1;
+        width: calc(100% - 20px);
+        height: calc(100% + 30px);
+        border: 1px dashed $grey;
+        padding: 0px 10px 5px;
+
+        .tip {
+          transition: opacity 0.5s ease-in-out;
+          opacity: 1;
+        }
+
+        .land .image {
+          transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+          transition-delay: 0.1s;
+          height: 50px;
+          width: 50px;
+        }
+      }
+
+      .land {
+        cursor: pointer;
+        position: relative;
+        width: max-content;
+        height: max-content;
+        align-self: center;
+        padding: 5px;
+        border-radius: 5px;
+
+        .image {
+          transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+          border-radius: 100%;
+          height: 0;
+          width: 0;
+        }
+
+        p {
+          margin: 0;
+          font-weight: 300;
+        }
+
+        &:hover {
+          background-color: $white-transparent-25;
+        }
+      }
+    }
+
+    .connect {
+      cursor: pointer;
+      text-transform: uppercase;
+      background-color: $blue-medium;
+      padding: 3px 10px;
+      border-radius: 10px;
+      width: max-content;
+      margin: 20px auto;
+
+      &:hover {
+        background-color: $blue-light;
+      }
+    }
+  }
+
+  .info-switch{
+    cursor: help;
+    position: absolute;
+    padding: 5px;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    line-height: 0;
+    transition: transform 0.5s ease-in-out;
+    transform: scale(1);
+
+    .icon {
+      font-size: 12px;
+      padding: 9px 5px;
+      border: 1px solid white;
+      border-radius: 100%;
+      font-family: monospace !important;
+      margin: 0;
+
+      &:hover {
+        background-color: $white-transparent-25;
+      }
+    }
+
+    &.close {
+      cursor: pointer;
+      border: unset;
+    }
+
+    &.hidden {
+      transition: transform 0.5s ease-in-out;
+      transform: scale(0);
+    }
+  }
+
+  .reward-info {
+    transition: height 0.5s ease-in-out;
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(55deg, #00000060 10%, #0023754a, #00000060 90%);
+    border-radius: 10px;
+
+    &.dissapear {
+      transition: height 0.5s ease-in-out;
+      height: 0%;
+
+      .reward-wrapper {
+        transition: opacity 0.5s ease-in-out;
+        opacity: 0;
+
+        .text {
+          transition: font-size 0.5s ease-in-out;
+          font-size: 0rem;
+        }
+
+        .reward-materials {
+          transition: gap 0.5s ease-in-out;
+          gap: 5px 50px;
+
+          .material {
+            transition: padding-left 0.5s ease-in-out, margin 0.5s ease-in-out;
+            margin: 0px;
+            padding-left: 0px;
+
+            .image {
+              transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+              width: 0;
+              height: 0;
+
+              img {
+                transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+                width: 0px;
+                height: 0px;
+              }
+            }
+
+            p {
+              transition: font-size 0.5s ease-in-out;
+              font-size: 0rem;
+            }
+          }
+        }
+      }
+    }
+
+    .reward-wrapper {
+      transition: opacity 0.5s ease-in-out;
+      opacity: 1;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      width: 80%;
+
+      .text {
+        transition: font-size 0.5s ease-in-out;
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+
+      .crafting-benefit {
+        font-size: 0.7rem;
+        margin: 20px auto 0;
+        line-height: 1em;
+
+        span {
+          display: block;
+        }
+      }
+
+      .reward-materials {
+        transition: gap 0.5s ease-in-out;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 50px;
+
+        .material {
+          transition: padding-left 0.5s ease-in-out, margin 0.5s ease-in-out;
+          position: relative;
+          padding-left: 20px;
+          background: linear-gradient(45deg, $white-transparent-25, transparent);
+
+          .image {
+            transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+            position: absolute;
+            left: 20%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            height: 100%;
+            overflow: hidden;
+            width: 50%;
+            border-radius: 8px 0 0 8px;
+
+            img {
+              transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+              width: 120px;
+              height: 120px;
+              position: absolute;
+              left: 10%;
+              top: 75%;
+              transform: translate(-50%, -50%) rotate(-15deg);
+              z-index: -1;
+              opacity: 0.8;
+            }
+          }
+
+          p {
+            align-self: center;
+            transition: font-size 0.5s ease-in-out;
+            margin: 0;
+            text-align: left;
+            padding-left: 20px;
+            font-size: 0.8rem;
+            line-height: 1.2em;
+          }
+        }
+      }
+    }
+  }
+}

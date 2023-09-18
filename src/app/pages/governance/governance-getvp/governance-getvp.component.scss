@@ -1,0 +1,67 @@
+@import 'src/styleVariables.scss';
+
+.stake {
+  text-align: center;
+
+  &-card {
+    display: inline-block;
+    vertical-align: top;
+    width: 300px;
+    margin: 20px;
+    background-color: $blue-stake-card-background;
+    border: 2px solid $blue-extra-light;
+    border-radius: 15px;
+  }
+}
+
+.details {
+  border-top: 1px solid $blue-extra-light;
+  border-bottom: 1px solid $blue-extra-light;
+  padding: 25px;
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px;
+
+  .data {
+    color: white;
+    text-align: center;
+
+    .text {
+      font-size: 1.3em;
+      margin: 10px;
+    }
+
+    img {
+      height: 50px;
+      vertical-align: text-bottom;
+    }
+
+    .total-number {
+      font-size: 1.5em;
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Medium devices
+@media (max-width: 576px) {
+  .details {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+// Small devices
+@media (max-width: 390px) {
+  .stake {
+
+    &-card {
+      width: 280px;
+      margin: 5px 0 20px;
+    }
+  }
+}

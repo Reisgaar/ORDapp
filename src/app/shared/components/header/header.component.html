@@ -1,0 +1,278 @@
+<div class="header">
+  <!-- TOP LOGO -->
+  <div class="logo">
+    <img class="logo-image" src="assets/images/logo.png" [routerLink]="['/home']" alt="Outer Ring logo" >
+  </div>
+  <!-- NAV MENU ON DESKTOP -->
+  <div class="navigation desktop">
+    <!-- MARKETPLACE -->
+    <div class="navigation-tab" [class.active]="actualRoute.includes('/marketplace')">
+      <p [routerLink]="['/marketplace']">
+        <span class="tab-name">{{ 'navigation.marketplace' | translate }}</span>
+      </p>
+      <div class="submenu">
+        <p class="subtab" [routerLink]="['/marketplace/directSales']" [class.active]="actualRoute.includes('/marketplace/directSales')"><span>{{ 'navigation.directSells' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/marketplace/auctions']" [class.active]="actualRoute.includes('/marketplace/auctions')"><span>{{ 'navigation.auctions' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/marketplace/partners']" [class.active]="actualRoute.includes('/marketplace/partners')"><span>{{ 'navigation.partners' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/marketplace/statistics']" [class.active]="actualRoute.includes('/marketplace/statistics')"><span>{{ 'navigation.statistics' | translate }}</span></p>
+      </div>
+    </div>
+    <!-- COMMUNITY -->
+    <!--
+    <div class="navigation-tab" [routerLink]="['/community']" [class.active]="actualRoute.includes('/community')">
+      <span>{{ 'navigation.community' | translate }}</span>
+    </div>
+    -->
+    <!-- LOOTBOXES -->
+    <div class="navigation-tab" [routerLink]="['/lootboxes']" [class.active]="actualRoute.includes('/lootboxes')">
+      <span class="tab-name">{{ 'navigation.lootboxes' | translate }}</span>
+    </div>
+    <!-- GOVERNANCE -->
+    <div class="navigation-tab" [class.active]="actualRoute.includes('/governance')">
+      <p [routerLink]="['/governance']">
+        <span class="tab-name">{{ 'navigation.governance' | translate }}</span>
+      </p>
+      <div class="submenu">
+        <p class="subtab" [routerLink]="['/governance/proposals']" [class.active]="actualRoute.includes('/governance/proposals')"><span>{{ 'navigation.proposals' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/governance/getVotingPower']" [class.active]="actualRoute.includes('/governance/getVotingPower')"><span>{{ 'navigation.getVP' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/governance/leaveProposal']" [class.active]="actualRoute.includes('/governance/leaveProposal')"><span>{{ 'navigation.addProposal' | translate }}</span></p>
+      </div>
+    </div>
+    <!-- LANDS -->
+    <div class="navigation-tab" [class.active]="actualRoute.includes('/lands')">
+      <p [routerLink]="['/lands']">
+        <span class="tab-name">{{ 'navigation.lands' | translate }}</span>
+      </p>
+      <div class="submenu">
+        <p class="subtab" [routerLink]="['/lands/map']" [class.active]="actualRoute.includes('/lands/map')"><span>{{ 'navigation.landsMap' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/lands/materialExtraction']" [class.active]="actualRoute.includes('/lands/materialExtraction')"><span>{{ 'navigation.materialExtraction' | translate }}</span></p>
+      </div>
+    </div>
+    <!-- DEFI -->
+    <div class="navigation-tab">
+        <p [routerLink]="['/defi']">
+          <span class="tab-name">{{ 'navigation.defi' | translate }}</span>
+        </p>
+      <div class="submenu">
+        <p class="subtab"  [routerLink]="['/defi/farms']">{{ 'navigation.farms' | translate }}</p>
+        <p class="subtab" [routerLink]="['/defi/pools']">{{ 'navigation.pools' | translate }}</p>
+        <p class="subtab" [routerLink]="['/defi/farms']" (click)="openDefiPopUp('liquidity')">{{ 'navigation.liquidity' | translate }}</p>
+        <p class="subtab" [routerLink]="['/defi/farms']" (click)="openDefiPopUp('swap')">{{ 'navigation.swap' | translate }}</p>
+      </div>
+    </div>
+    <!-- CRAFTING -->
+    <div class="navigation-tab" [class.active]="actualRoute.includes('/crafting')">
+      <p [routerLink]="['/crafting']">
+        <span class="tab-name">{{ 'navigation.crafting' | translate }}</span>
+      </p>
+      <div class="submenu">
+        <p class="subtab" [routerLink]="['/crafting/factory']" [class.active]="actualRoute.includes('/crafting/factory')"><span>{{ 'navigation.factory' | translate }}</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHTSIDE MENU (LANGUAGE, PROFILE and CONNECTION) -->
+  <div class="rightside">
+    <div class="get-gq" (click)="buyGqPopUp()">
+      <span class="tab-name">{{ 'navigation.getGq' | translate }}</span>
+    </div>
+    <!-- LANGUAGE -->
+    <div class="language">
+      <mat-icon class="language-icon">language</mat-icon>
+      <p class="language-text">{{ actualLanguage | uppercase }}</p>
+      <div class="language-selector">
+        <p (click)="actualLanguage !== 'en' && setLanguage($event, 'en')" [class.active]="actualLanguage === 'en'">EN</p>
+        <p (click)="actualLanguage !== 'es' && setLanguage($event, 'es')" [class.active]="actualLanguage === 'es'">ES</p>
+      </div>
+    </div>
+    <!-- PROFILE -->
+    <div class="profile" [routerLink]="['/profile']" *ngIf="account">
+      <mat-icon class="profile-icon" [class.active]="actualRoute.includes('/profile') && !actualRoute.includes('/profile?wallet=')">person</mat-icon>
+    </div>
+    <!-- WALLET CONNECTION -->
+    <div *ngIf="!walletIsConnected" class="wallet" id="connect-wallet" (click)="openModal()">
+      <p class="wallet-text" *ngIf="!account">{{ 'navigation.connect' | translate }}</p>
+      <mat-icon class="wallet-icon">account_balance_wallet</mat-icon>
+    </div>
+    <div *ngIf="walletIsConnected" class="wallet" style="cursor: default;">
+      <p class="wallet-text" *ngIf="account" style="cursor: pointer;" [routerLink]="['/profile']">{{account | shortWallet}}</p>
+      <i class="fas fa-sign-out-alt logout" style="cursor: pointer;" (click)="openModal()"></i>
+    </div>
+  </div>
+  <!-- FOR MOBILE -->
+  <div class="navigation mobile">
+    <mat-icon class="icon" [routerLink]="['/profile']" *ngIf="account">person</mat-icon>
+    <mat-icon class="icon" (click)="toggleResponsiveMenu()">menu</mat-icon>
+  </div>
+</div>
+
+<!-- MOBILE VERSION MENU -->
+<div class="mobile-menu" *ngIf="responsiveMenuVisible">
+  <!-- LOGO, LANGUAGE and CLOSE -->
+  <div class="top-side">
+    <img class="logo-image" src="assets/images/logo.png" [routerLink]="['/home']" (click)="toggleResponsiveMenu()" alt="Outer Ring logo"/>
+    <div class="language">
+      <mat-icon class="language-icon">language</mat-icon>
+      <p (click)="actualLanguage !== 'en' && setLanguage($event, 'en')" [class.active]="actualLanguage === 'en'">EN</p>
+      <p (click)="actualLanguage !== 'es' && setLanguage($event, 'es')" [class.active]="actualLanguage === 'es'">ES</p>
+    </div>
+    <mat-icon class="close" (click)="toggleResponsiveMenu()">close</mat-icon>
+  </div>
+  <!-- HOME -->
+  <div class="section">
+    <div class="navigation-tab" [routerLink]="['/home']" (click)="toggleResponsiveMenu()">{{ 'navigation.home' | translate }}</div>
+  </div>
+  <!-- MARKETPLACE -->
+  <div class="section">
+    <div class="navigation-tab" [routerLink]="['/marketplace']" (click)="toggleResponsiveMenu()">{{ 'navigation.marketplace' | translate }}</div>
+    <mat-icon *ngIf="!navigationMarketplaceIsOpen" class="icon" (click)="switchResponsiveMenuSection('marketplace')">add</mat-icon>
+    <mat-icon *ngIf="navigationMarketplaceIsOpen" class="icon" (click)="switchResponsiveMenuSection('marketplace')">remove</mat-icon>
+    <div *ngIf="navigationMarketplaceIsOpen">
+      <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/directSales']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.directSells' | translate }}</p>
+        <p class="description">{{ 'navigation.directSellsDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/auctions']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.auctions' | translate }}</p>
+        <p class="description">{{ 'navigation.auctionsDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/partners']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.partners' | translate }}</p>
+        <p class="description">{{ 'navigation.partnersDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/statistics']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.statistics' | translate }}</p>
+        <p class="description">{{ 'navigation.statisticsDescription' | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- COMMUNITY -->
+  <!-- <div class="navigation-tab" [routerLink]="['/community']">{{ 'navigation.community' | translate }}</div> -->
+  <!-- LOOTBOXES -->
+  <div class="section">
+    <div class="navigation-tab" [routerLink]="['/lootboxes']" (click)="toggleResponsiveMenu()">{{ 'navigation.lootboxes' | translate }}</div>
+  </div>
+  <!-- GOVERNANCE -->
+  <div class="section">
+    <div class="navigation-tab" [routerLink]="['/governance']" (click)="toggleResponsiveMenu()">{{ 'navigation.governance' | translate }}</div>
+    <mat-icon *ngIf="!navigationGovernanceIsOpen" class="icon" (click)="switchResponsiveMenuSection('governance')">add</mat-icon>
+    <mat-icon *ngIf="navigationGovernanceIsOpen" class="icon" (click)="switchResponsiveMenuSection('governance')">remove</mat-icon>
+    <div *ngIf="navigationGovernanceIsOpen">
+      <div class="navigation-tab sub-tab" [routerLink]="['/governance/proposals']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.proposals' | translate }}</p>
+        <p class="description">{{ 'navigation.proposalsDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/governance/getVotingPower']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.getVP' | translate }}</p>
+        <p class="description">{{ 'navigation.getVPDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/governance/leaveProposal']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.addProposal' | translate }}</p>
+        <p class="description">{{ 'navigation.addProposalDescription' | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- LANDS -->
+  <div class="section">
+    <div class="navigation-tab" [routerLink]="['/lands']" (click)="toggleResponsiveMenu()">{{ 'navigation.lands' | translate }}</div>
+    <mat-icon *ngIf="!navigationLandsIsOpen" class="icon" (click)="switchResponsiveMenuSection('lands')">add</mat-icon>
+    <mat-icon *ngIf="navigationLandsIsOpen" class="icon" (click)="switchResponsiveMenuSection('lands')">remove</mat-icon>
+    <div *ngIf="navigationLandsIsOpen">
+      <div class="navigation-tab sub-tab" [routerLink]="['/lands/map']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.landsMap' | translate }}</p>
+        <p class="description">{{ 'navigation.landsDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/lands/materialExtraction']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.materialExtraction' | translate }}</p>
+        <p class="description">{{ 'navigation.materialExtractionDescription' | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- DEFI -->
+  <div class="section">
+    <div class="navigation-tab">{{ 'navigation.defi' | translate }}</div>
+    <mat-icon *ngIf="!navigationDefiIsOpen" class="icon" (click)="switchResponsiveMenuSection('defi')">add</mat-icon>
+    <mat-icon *ngIf="navigationDefiIsOpen" class="icon" (click)="switchResponsiveMenuSection('defi')">remove</mat-icon>
+    <div *ngIf="navigationDefiIsOpen">
+      <div class="navigation-tab sub-tab">
+        <a [routerLink]="['/defi/farms']" (click)="toggleResponsiveMenu()">
+          <p class="link">{{ 'navigation.farms' | translate }}</p>
+          <p class="description">{{ 'navigation.farmsDescription' | translate }}</p>
+        </a>
+      </div>
+      <div class="navigation-tab sub-tab">
+        <a [routerLink]="['/defi/pools']" (click)="toggleResponsiveMenu()">
+          <p class="link">{{ 'navigation.pools' | translate }}</p>
+          <p class="description">{{ 'navigation.poolsDescription' | translate }}</p>
+        </a>
+      </div>
+      <div class="navigation-tab sub-tab">
+        <a (click)="openDefiPopUp('swap'); toggleResponsiveMenu()">
+          <p class="link">{{ 'navigation.swap' | translate }}</p>
+          <p class="description">{{ 'navigation.swapDescription' | translate }}</p>
+        </a>
+      </div>
+      <div class="navigation-tab sub-tab">
+        <a (click)="openDefiPopUp('liquidity'); toggleResponsiveMenu()">
+          <p class="link">{{ 'navigation.liquidity' | translate }}</p>
+          <p class="description">{{ 'navigation.liquidityDescription' | translate }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- CRAFTING -->
+  <div class="section">
+    <div class="navigation-tab" [routerLink]="['/crafting']" (click)="toggleResponsiveMenu()">{{ 'navigation.crafting' | translate }}</div>
+    <mat-icon *ngIf="!navigationCraftingIsOpen" class="icon" (click)="switchResponsiveMenuSection('crafting')">add</mat-icon>
+    <mat-icon *ngIf="navigationCraftingIsOpen" class="icon" (click)="switchResponsiveMenuSection('crafting')">remove</mat-icon>
+    <div *ngIf="navigationCraftingIsOpen">
+      <div class="navigation-tab sub-tab" [routerLink]="['/crafting/factory']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.factory' | translate }}</p>
+        <p class="description">{{ 'navigation.factoryDescription' | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- GET GQ BUTTON -->
+  <div class="get-gq" (click)="buyGqPopUp()">
+    <p>{{ 'navigation.getGq' | translate }}</p>
+    <img src="assets/images/tokens/gq_mini.png" alt="GQ icon" />
+  </div>
+  <!-- SOCIAL -->
+  <div class="social">
+    <span class="social-item">
+      <a class="social-item-icon icon-twitter" href="https://twitter.com/OuterRingMMO" target="_blank" rel="nofollow">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </span>
+    <span class="social-item">
+      <a class="social-item-icon icon-instagram" href="https://www.instagram.com/outerringmmo/" target="_blank" rel="nofollow">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </span>
+    <span class="social-item">
+      <a class="social-item-icon icon-telegram" href="https://t.me/outerringofficialeng" target="_blank">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+    </span>
+    <span class="social-item">
+      <a class="social-item-icon icon-facebook" href="https://www.facebook.com/Outer-Ring-MMO-111124460754710" target="_blank" rel="nofollow">
+        <i class="fab fa-facebook-square"></i>
+      </a>
+    </span>
+    <span class="social-item">
+      <a class="social-item-icon icon-youtube" href="https://www.youtube.com/c/OuterRingMMO" target="_blank" rel="nofollow">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </span>
+    <span class="social-item">
+      <a class="social-item-icon icon-twitch" href="https://www.twitch.tv/outerringmmo" target="_blank" rel="nofollow">
+        <i class="fab fa-twitch"></i>
+      </a>
+    </span>
+    <span class="social-item">
+      <a class="social-item-icon icon-discord" href="https://discord.gg/outerringmmo" target="_blank">
+        <i class="fab fa-discord"></i>
+      </a>
+    </span>
+  </div>
+</div>

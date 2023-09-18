@@ -1,0 +1,60 @@
+<div class="data-wrapper" *ngIf="dataLoaded">
+  <div *ngFor="let i of [1, 2]" class="data data-{{i}}" id="lands-statistics-{{i}}">
+    <span class="title main">{{'lands.data.title1' | translate}}</span>
+
+    <span class="main">{{'lands.data.total' | translate}}:</span>
+    <span>{{'lands.data.volume' | translate}}: {{allSaleVolume.toLocaleString()}} GQ</span>
+    <span>{{'lands.data.owners' | translate}}: {{totalHolders}}</span>
+
+    <div class="separator"></div>
+
+    <span class="main">Nano lands:</span>
+    <span>{{'lands.data.sold' | translate}}: {{nanoLands.length}}</span>
+    <span>{{'lands.data.highestSale' | translate}}: {{nanoHighSale.toLocaleString()}} GQ</span>
+    <span>{{'lands.data.averagePrice' | translate}}: {{nanoSaleAverage.toLocaleString()}} GQ</span>
+
+    <div class="separator"></div>
+
+    <span class="main">Micro lands:</span>
+    <span>{{'lands.data.sold' | translate}}: {{microLands.length}}</span>
+    <span>{{'lands.data.highestSale' | translate}}: {{microHighSale.toLocaleString()}} GQ</span>
+    <span>{{'lands.data.averagePrice' | translate}}: {{microSaleAverage.toLocaleString()}} GQ</span>
+
+    <div class="separator"></div>
+
+    <span class="main">Standard lands:</span>
+    <span>{{'lands.data.sold' | translate}}: {{standardLands.length}}</span>
+    <span>{{'lands.data.highestSale' | translate}}: {{standardHighSale.toLocaleString()}} GQ</span>
+    <span>{{'lands.data.averagePrice' | translate}}: {{standardSaleAverage.toLocaleString()}} GQ</span>
+
+    <div class="separator"></div>
+
+    <span class="main">Macro lands:</span>
+    <span>{{'lands.data.sold' | translate}}: {{macroLands.length}}</span>
+    <span>{{'lands.data.highestSale' | translate}}: {{macroHighSale.toLocaleString()}} GQ</span>
+    <span>{{'lands.data.averagePrice' | translate}}: {{macroSaleAverage.toLocaleString()}} GQ</span>
+
+    <div class="separator"></div>
+
+    <span class="main">Mega lands:</span>
+    <span>{{'lands.data.sold' | translate}}: {{megaLands.length}}</span>
+    <span>{{'lands.data.highestSale' | translate}}: {{megaHighSale.toLocaleString()}} GQ</span>
+    <span>{{'lands.data.averagePrice' | translate}}: {{megaSaleAverage.toLocaleString()}} GQ</span>
+
+
+    <span class="title main">{{'lands.data.title2' | translate}}</span>
+    <ng-container *ngFor="let phase of roundPhaseData | keyvalue">
+      <span class="main">{{'lands.data.round' | translate}} {{$any(phase).value.round}} - {{'lands.data.phase' | translate}} {{$any(phase).value.phase}}:</span>
+      <span>{{'date.months.' + (phase.key + '000' | date:'MMMM' | lowercase) | translate}} {{phase.key + '000' | date:'d, y'}}</span>
+      <span>{{$any(phase).value.nftSold}} {{'lands.data.nftSold' | translate}}</span>
+      <span>{{$any(phase).value.totalBids}} {{'lands.data.bids' | translate}}</span>
+      <span>{{$any(phase).value.totalBuyouts}} {{'lands.data.buyouts' | translate}}</span>
+      <span>{{'lands.data.highestSale' | translate}}: {{$any(phase).value.highestSale.toLocaleString()}} GQ</span>
+      <span>{{'lands.data.volume' | translate}}: {{$any(phase).value.volume.toLocaleString()}} GQ</span>
+      <span>{{'lands.data.newOwners' | translate}}: {{$any(phase).value.newOwners.length}}</span>
+
+      <div class="separator"></div>
+    </ng-container>
+
+  </div>
+</div>

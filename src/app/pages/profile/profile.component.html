@@ -1,0 +1,57 @@
+<div class="profile">
+
+  <div class="user">
+    <div class="image">
+      <img class="override" *ngIf="changingSpecie === true" src="assets/images/species/portrait_or.png" alt="Profile image">
+      <img class="override" *ngIf="changingSpecie === false" src="assets/images/species/portrait_{{(wallet | walletSpecie) | async}}.png" alt="Profile image">
+      <div *ngIf="claimData.isInWhitelist === true && claimData.specieClaimed === false && (wallet | lowercase) === (userWallet | lowercase); else showMenu" class="claim-button" (click)="claimSpecie()">
+        <span>Claim specie</span>
+      </div>
+      <ng-template #showMenu>
+        <div class="specie-menu" *ngIf="(wallet | lowercase) === (userWallet | lowercase)">
+          <mat-icon class="icon change" (click)="changeSpecie()">loop</mat-icon>
+          <mat-icon class="icon delete" (click)="deleteSpecie()">delete_forever</mat-icon>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="data" *ngIf="changingSpecie === true" style="background-image: url('/assets/images/species/profile_background_or.png');">
+      <h1 class="wallet" *ngIf="wallet && wallet !== ''">{{wallet | shortWallet}}</h1>
+    </div>
+    <div class="data" *ngIf="changingSpecie === false" style="background-image: url('/assets/images/species/profile_background_{{(wallet | walletSpecie) | async}}.png');">
+      <h1 class="wallet" *ngIf="wallet && wallet !== ''">{{wallet | shortWallet}}</h1>
+    </div>
+
+    <div class="menu">
+      <ng-container *ngIf="(wallet | lowercase) === (userWallet | lowercase)">
+        <h2 class="tab" [class.active]="activeTab === 'nft'" (click)="setActiveTabTo('nft')">{{'profile.nft' | translate}}</h2>
+        <h2 class="tab" [class.active]="activeTab === 'bridge'" (click)="setActiveTabTo('bridge')">{{'profile.bridge' | translate}}</h2>
+        <h2 class="tab" [class.active]="activeTab === 'allowances'" (click)="setActiveTabTo('allowances')">{{'profile.allowances' | translate}}</h2>
+      </ng-container>
+      <ng-container *ngIf="(wallet | lowercase) !== (userWallet | lowercase)">
+        <h2 class="tab" [class.active]="activeTab === 'nft'" style="width: 100%;">{{'profile.nft' | translate}}</h2>
+      </ng-container>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'nft'">
+    <div class="top-side">
+      <div class="medals">
+        <app-achievements [wallet]="wallet"></app-achievements>
+      </div>
+      <div class="keys">
+        <app-keyring [wallet]="wallet"></app-keyring>
+      </div>
+    </div>
+    <app-profile-nft-viewer [wallet]="wallet"></app-profile-nft-viewer>
+  </div>
+
+  <div class="balance" *ngIf="activeTab === 'bridge'">
+    <app-bridge-home></app-bridge-home>
+  </div>
+
+  <div *ngIf="activeTab === 'allowances'">
+    <app-allowance-manager></app-allowance-manager>
+  </div>
+
+</div>

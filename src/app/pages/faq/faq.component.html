@@ -1,0 +1,36 @@
+<!-- DYNAMIC FAQ GENERATION WITH TRANSLATION FILE -->
+<div class="faqs">
+  <h1 class="content-title">{{'faqTexts.title' | translate}}</h1>
+
+  <h2 class="pre-Faq" *ngIf="selectedTab === ''">{{'faqTexts.subtitle' | translate}}</h2>
+  <div class="categories" [class.mini]="selectedTab !== ''">
+    <h3 class="button"
+      *ngFor="let block of faqJson | keyvalue"
+      [class.active-tab]="selectedTab === block.value.id"
+      (click)="setSelectedTab(block.value.id)"
+    >
+      <span>{{'faq.' + block.key + '.title' | translate}}</span>
+    </h3>
+  </div>
+
+  <!-- LOOP FOR ALL BLOCKS -->
+  <ng-container *ngFor="let block of faqJson | keyvalue">
+    <div class="section" *ngIf="selectedTab === block.value.id">
+      <h2 class="section-title">{{'faq.' + block.key + '.title' | translate}}</h2>
+      <!-- LOOP FOR EACH SECTION -->
+      <div class="subsection" *ngFor="let subsection of $any(block).value.subsections | keyvalue">
+        <h3 class="subsection-title" [class.filled]="$any(subsection).value.title !== ''">{{'faq.' + block.key + '.subsections.' + subsection.key + '.title' | translate}}</h3>
+        <!-- LOOP FOR EACH QUESTION -->
+        <div class="point" (click)="showPoint($event)" *ngFor="let question of $any(subsection).value.questions | keyvalue">
+          <h4 class="point-title">
+            {{'faq.' + block.key + '.subsections.' + subsection.key + '.questions.' + question.key + '.title' | translate}}
+            <span class="icon-wrapper"><mat-icon class="icon close">close</mat-icon></span>
+          </h4>
+          <div class="steps" *ngIf="$any(question).value.answer">
+            <p class="step" [innerHTML]="'faq.' + block.key + '.subsections.' + subsection.key + '.questions.' + question.key + '.answer' | translate"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,94 @@
+<div class="card">
+  <div class="spinner-wrapper" *ngIf="loadingData">
+    <div class="spinner">
+      <mat-spinner [diameter]="150" [strokeWidth]="10"></mat-spinner>
+    </div>
+  </div>
+
+  <p class="title">{{('materialExtraction.card.title' | translate).replace('***', (landSizes[size] | lowercase))}}</p>
+
+  <div class="row-1" [class.no-stake]="!hasLandStaked || !walletIsConnected">
+    <div class="team">
+      <img src="assets/images/lands/materialExtraction/teams/team{{size}}.png" class="image" alt="{{landSizes[size]}} land extraction team header image">
+      <p *ngIf="hasLandStaked && walletIsConnected" class="withdraw" (click)="withdrawLand()">{{'materialExtraction.card.withdraw' | translate}}</p>
+    </div>
+    <div class="land" *ngIf="hasLandStaked && walletIsConnected">
+      <div class="image">
+        <img src="assets/images/lands/land_{{landSizes[size] | lowercase}}.png" class="land-image" alt="{{landSizes[size]}} land NFT image">
+        <img class="material animation{{i}}" *ngFor="let reward of poolRewards; let i = index" src="assets/images/crafting/materials/{{reward.resource | materialFromAddress}}.png">
+      </div>
+      <p class="blocked" *ngIf="poolData.endTime | timeStampIsPast">
+        <span>{{'materialExtraction.card.blocked' | translate}}:</span>
+        <span>{{poolData.endTime + '000' | date:'MMM d, y, h:mm a'}}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="row-2">
+    <ng-container *ngIf="walletIsConnected">
+      <div class="land-info" [class.hide-button]="selectingLand === true">
+        <div class="add-land" *ngIf="!hasLandStaked">
+          <ng-container *ngIf="lands.length > 0">
+            <p>{{'materialExtraction.card.addLand' | translate}}</p>
+            <div class="square" (click)="switchLandSelection()"></div>
+          </ng-container>
+          <ng-container *ngIf="lands.length === 0">
+            <p>{{('materialExtraction.card.noLandToStake' | translate).replace('***', (landSizes[size] | lowercase))}}</p>
+            <div class="square blocked"></div>
+          </ng-container>
+          <p *ngIf="poolDepositFee !== '' && lands.length > 0" class="fee-advice">{{('materialExtraction.card.stakeFee' | translate).replace('***', (poolDepositFee | fromWei | number:'1.0-4'))}}</p>
+        </div>
+        <div class="details" *ngIf="hasLandStaked">
+          <p class="extracted">{{'materialExtraction.card.extracted' | translate}}</p>
+          <div class="materials" *ngIf="pendingRewards">
+            <p class="material" *ngFor="let reward of pendingRewards">
+              <img src="assets/images/crafting/materials/{{reward.resource | materialFromAddress}}.png" alt="Resource image">
+              <span>{{reward.resource | materialToTicker}}: {{reward.amount | fromWei | number:'1.0-4'}}</span>
+            </p>
+          </div>
+          <p class="claim" (click)="claimMaterials()">{{'materialExtraction.card.claim' | translate}}</p>
+        </div>
+      </div>
+
+      <div class="land-selector" [class.opened]="selectingLand === true">
+        <div class="tip">
+          <p>{{'materialExtraction.card.selectLand' | translate}}</p>
+          <mat-icon class="tip close" (click)="switchLandSelection()">close</mat-icon>
+        </div>
+        <div *ngFor="let land of lands" class="land" (click)="depositLand(land.tokenId)">
+          <img class="image" src="assets/images/lands/land_{{landSizes[size] | lowercase}}.png" alt="Land size NFT image">
+          <p>{{land.tokenId}}</p>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!walletIsConnected">
+      <p (click)="openModal()" class="connect">{{'marketplace.home.steps.title1' | translate}}</p>
+    </ng-container>
+  </div>
+
+  <div class="reward-info" [class.dissapear]="!showInfo">
+    <div class="reward-wrapper">
+      <p class="text">{{'materialExtraction.card.poolRewards' | translate}}</p>
+      <div class="reward-materials">
+        <div *ngFor="let reward of poolRewards" class="material">
+          <div class="image">
+            <img src="assets/images/crafting/materials/{{reward.resource | materialFromAddress}}.png" alt="{{reward.resource | materialFromAddress}} icon">
+          </div>
+          <p>{{reward.resource | materialToTicker}}</p>
+          <p>{{reward.amount | fromWei | number:'1.0-4'}}</p>
+        </div>
+      </div>
+      <p class="crafting-benefit" *ngIf="size > 0">
+        <span>{{('materialExtraction.card.craftingReduction' | translate)}}</span>
+        <span>{{('materialExtraction.card.craftingReductionData' | translate).replace('***', discounts.cost).replace('###', discounts.time)}}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="info-switch" [class.hidden]="showInfo">
+    <p class="icon" (click)="switchPoolInfo()">i</p>
+  </div>
+  <div class="info-switch close" [class.hidden]="!showInfo">
+    <p class="icon" (click)="switchPoolInfo()">X</p>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="top-image">
+  <img src="assets/images/governance/header_make_proposal.png" alt="Governance header image">
+</div>
+
+<div class="page">
+  <div class="head governance">
+    <p class="tip">{{"governance.addProposal.tip" | translate}}</p>
+    <h1 class="title"><b>{{"governance.addProposal.title1" | translate}}</b>{{"governance.addProposal.title2" | translate}}<b>{{"governance.addProposal.title3" | translate}}</b></h1>
+    <p class="subtitle">{{"governance.addProposal.subtitle" | translate}}</p>
+  </div>
+
+  <div class="form">
+
+    <div class="back" [routerLink]="['/proposals']">
+      <mat-icon class="back-icon">arrow_back</mat-icon>
+      <span class="back-text">{{"governance.addProposal.back" | translate}}</span>
+    </div>
+
+    <div class="info">
+      <mat-icon class="info-icon">error</mat-icon>
+      <span class="info-text">{{"governance.addProposal.advice1" | translate}}<b>{{"governance.addProposal.advice2" | translate}}</b></span>
+    </div>
+
+    <form>
+      <!-- Title -->
+      <div class="input">
+        <label for="title">{{"governance.addProposal.formTitle" | translate}}</label>
+        <input type="text" class="title" name="title" [(ngModel)]="title">
+        <span *ngIf="errorTitle !== ''" class="error-message">{{"governance.addProposal.errorTitle" | translate}}</span>
+      </div>
+      <!-- Description and File input -->
+      <div class="input">
+        <span class="description-length">{{description.length + '/' + descriptionLimit.toLocaleString()}}</span>
+        <label for="description">{{"governance.addProposal.formDescription" | translate}}</label>
+        <textarea name="description" class="description" maxlength="{{descriptionLimit}}" rows="8" [(ngModel)]="description"></textarea>
+
+        <div class="file user"
+          *ngIf="wallet !== '0xE130f543Bb1c4F0802d511486eAFEc467E9DeCBf'
+                && wallet !== '0x2aBcbdF5a10082F311D666EC58aD1C90948a2F4a'
+                && wallet !=='0x58d36262f91e1ABFE565922C953BBa05FEd8F1b3'">
+        </div>
+        <div class="file" [class.dropping]="isDroppingFile === true" [class.dropped]="fileNames.length > 0"
+          *ngIf="wallet === '0xE130f543Bb1c4F0802d511486eAFEc467E9DeCBf'
+                || wallet === '0x2aBcbdF5a10082F311D666EC58aD1C90948a2F4a'
+                || wallet ==='0x58d36262f91e1ABFE565922C953BBa05FEd8F1b3'"
+        >
+          <input
+            type="file"
+            id="file-upload"
+            name="files"
+            accept="image/*, video/*"
+            [(ngModel)]="files"
+            (change)="setFileNames($event)"
+            (dragenter)="droppingFile(true)"
+            (dragleave)="droppingFile(false)"
+            (mouseup)="droppingFile(false)"
+            (mouseleave)="droppingFile(false)"
+          />
+          <span *ngIf="fileNames.length > 0" class="remove-file" (click)="removeFile($event)"><mat-icon class="icon">clear</mat-icon></span>
+          <p class="text">
+            {{"governance.addProposal.formImage" | translate}}
+            <span *ngIf="fileSizeError" class="file-error">{{"governance.addProposal.formErrorFile" | translate}}</span>
+          </p>
+          <p class="file-names" *ngIf="fileNames.length > 0">{{"governance.addProposal.formFile" | translate}}: <span>{{fileNames.join(', ')}}</span></p>
+        </div>
+        <span *ngIf="errorDescription !== ''" class="error-message">{{"governance.addProposal.errorDescription" | translate}}</span>
+      </div>
+      <!-- Options -->
+      <div class="input">
+        <label for="options">{{"governance.addProposal.formOptions" | translate}}<span class="label-tip">{{"governance.addProposal.formOptionsTip" | translate}}</span></label>
+        <input type="text" class="options" name="options" (keypress)="setTag($event)" [(ngModel)]="optionTag">
+        <span *ngIf="errorOption !== ''" class="error-message">{{"governance.addProposal.errorOption" | translate}}</span>
+        <div>
+          <p *ngFor="let tag of optionsList" class="tag"><span class="remove" (click)="removeTag(tag)">X</span> {{tag}}</p>
+        </div>
+      </div>
+      <!-- Date and Time -->
+      <div class="input date"
+        [class.hidden]="wallet !== '0xE130f543Bb1c4F0802d511486eAFEc467E9DeCBf'
+                     && wallet !== '0x2aBcbdF5a10082F311D666EC58aD1C90948a2F4a'
+                     && wallet !=='0x58d36262f91e1ABFE565922C953BBa05FEd8F1b3'"
+      >
+        <label for="datetime-local">{{"governance.addProposal.formDate" | translate}}</label>
+        <input class="date-picker" type="datetime-local" id="start-time" name="start-time" min="{{dateStart}}" [(ngModel)]="dateStart" (change)="setEndDateOnStartDateChange()">
+        <input class="date-picker" type="datetime-local" id="end-time" name="end-time" min="{{dateStartPlusOne}}" [(ngModel)]="dateEnd">
+      </div>
+      <div class="input user user-name">
+        <label for="name">{{"governance.addProposal.formName" | translate}}</label>
+        <input class="name" type="name" id="name" name="name" [(ngModel)]="name">
+      </div>
+      <div class="input user user-email">
+        <label for="email">{{"governance.addProposal.formEmail" | translate}}</label>
+        <input class="email" type="email" id="email" name="email" [(ngModel)]="email">
+      </div>
+      <!-- Submit -->
+      <div class="input" style="text-align: center;">
+        <input *ngIf="wallet" type="button" class="submit" value="{{'governance.addProposal.buttonSend' | translate}}" (click)="submitForm()">
+        <input *ngIf="!wallet" type="button" class="submit" value="{{'governance.addProposal.connectWallet' | translate}}" (click)="connectWallet()">
+      </div>
+    </form>
+  </div>
+</div>

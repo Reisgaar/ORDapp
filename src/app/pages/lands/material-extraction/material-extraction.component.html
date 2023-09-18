@@ -1,0 +1,24 @@
+<div class="top-image">
+  <img src="assets/images/lands/materialExtraction/header_home.png" alt="Material extraction header image">
+</div>
+
+<div class="page">
+  <div class="head materialExtraction">
+    <p class="tip">{{'materialExtraction.tip' | translate}}</p>
+    <h1 class="title" [innerHTML]="'materialExtraction.title_html' | translate"></h1>
+    <p class="subtitle">{{'materialExtraction.subtitle1' | translate}}</p>
+    <p class="subtitle">{{'materialExtraction.subtitle2' | translate}}</p>
+    <p class="subtitle">{{'materialExtraction.subtitle3' | translate}}</p>
+  </div>
+</div>
+
+<div class="content">
+  <h1 class="pools-title">{{'materialExtraction.poolsTitle' | translate}}</h1>
+  <div class="pools">
+    <app-material-extraction-card [size]="0" [lands]="userLands.nano"></app-material-extraction-card>
+    <app-material-extraction-card [size]="1" [lands]="userLands.micro"></app-material-extraction-card>
+    <app-material-extraction-card [size]="2" [lands]="userLands.standard"></app-material-extraction-card>
+    <app-material-extraction-card [size]="3" [lands]="userLands.macro"></app-material-extraction-card>
+    <app-material-extraction-card [size]="4" [lands]="userLands.mega"></app-material-extraction-card>
+  </div>
+</div>

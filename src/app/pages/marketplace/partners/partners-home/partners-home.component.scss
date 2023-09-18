@@ -1,0 +1,250 @@
+@import '/src/styleVariables.scss';
+
+.slider {
+  background-color: $blue-dark;
+
+  .card {
+    z-index: 1;
+    position: relative;
+    padding: 50px 20px;
+    text-align: center;
+
+    .background {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+    }
+
+    .tip {
+      font-family: $magistral !important;
+      color: $pink;
+      text-transform: uppercase;
+      font-weight: 400;
+      line-height: 1em;
+
+      span {
+        font-family: $magistral !important;
+        display: block;
+        font-weight: 600;
+      }
+    }
+
+    .title {
+      font-family: $workSans;
+      color: $white;
+      font-size: 3em;
+      max-width: 450px;
+      margin: 0px auto 25px;
+      line-height: 1em;
+      font-weight: 500;
+    }
+
+    .text {
+      color: $white;
+      font-size: 1.2em;
+    }
+  }
+}
+
+.partnerships {
+
+  &.launched {
+    background-color: #13219d5c;
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: $white;
+    padding: 30px 10px 50px;
+
+    .title {
+      font-family: $magistral !important;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 2em;
+      margin: 0px 0 25px;
+    }
+
+    .buttons {
+      text-align: center;
+
+      .button {
+        cursor: pointer;
+        display: inline-block;
+        border-radius: 10px;
+        width: 250px;
+        height: 70px;
+        margin: 20px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        align-items: center;
+        color: #36395A;
+        justify-content: center;
+        border-bottom: 4px solid white;
+        box-shadow: 2px 4px 8px 2px black;
+        transition: border-bottom 0.13s, box-shadow 0.15s;
+
+        &.upcoming {
+          cursor: default;
+          filter: saturate(0);
+
+          &.button:hover {
+            border-bottom: 4px solid white;
+            box-shadow: 2px 4px 8px 2px black;
+          }
+        }
+
+        &.button:hover {
+          border-bottom: 0px solid white;
+          box-shadow: 0px 2px 5px 0px black;
+        }
+      }
+    }
+  }
+}
+
+.newsletter {
+  background: $white;
+
+  .container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 15px 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+
+    .title {
+      grid-column: 1;
+      vertical-align: middle;
+      padding: 5px 10px;
+      margin: 5px 0;
+      color: $blue-medium;
+
+      span {
+        display: block;
+        font-weight: 800;
+      }
+    }
+
+    .subtitle {
+      grid-column: 2;
+      vertical-align: middle;
+      padding: 5px 10px 5px 30px;
+      margin: 5px 0;
+      color: $grey-semi-dark;
+
+      p {
+        margin: 0;
+        text-align: center;
+      }
+    }
+
+    .subscriber {
+      grid-column: 3;
+      vertical-align: middle;
+      padding: 5px 10px;
+      margin: 5px 0;
+      text-align: right;
+
+      .input {
+        position: relative;
+        border: 2px solid $green-light;
+        width: max-content;
+        border-radius: 7px;
+
+        .email {
+          display: inline-block;
+          border: unset;
+
+          &:focus,
+          &:focus-visible,
+          &:focus-within,
+          &:active {
+            border: unset;
+            outline: unset;
+          }
+        }
+
+        .submit {
+          cursor: pointer;
+          display: inline-block;
+          text-decoration: none;
+          background-color: $green-light;
+          color: $white;
+          margin: 0;
+          padding: 5px 15px;
+          font-size: 1.2em;
+
+          &:hover {
+            background: #50d976;
+            border-radius: 0 5px 5px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 992px) {
+
+}
+
+// Medium devices
+@media (max-width: 850px) {
+
+}
+
+// Medium devices
+@media (max-width: 768px) {
+
+}
+
+// Small devices
+@media (max-width: 576px) {
+
+  .newsletter .container {
+    text-align: center;
+    display: block;
+    grid-template-columns: unset;
+
+    .title {
+      grid-row: unset;
+      grid-column: unset;
+      border-right: unset;
+
+      span {
+        display: unset;
+        margin-left: 10px;
+      }
+    }
+
+    .subtitle {
+      grid-row: unset;
+      grid-column: unset;
+    }
+
+    .subscriber {
+      grid-row: unset;
+      grid-column: unset;
+
+      .input {
+        margin: auto;
+      }
+    }
+  }
+}

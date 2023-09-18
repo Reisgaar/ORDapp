@@ -1,0 +1,40 @@
+<div class="close">
+  <p class="text">Select Specie<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+<div class="selector">
+  <div class="specie" (click)="selectSpecie('Earthling')" *ngIf="(actualSpecie | lowercase) !== 'earthling'">
+    <img src="assets/images/species/portrait_earthling.png" class="portrait">
+    <div class="name">
+      <img src="assets/images/species/icon_earthling.svg" class="icon">
+      <span class="text">Earthling</span>
+    </div>
+  </div>
+  <div class="specie" (click)="selectSpecie('Mech')" *ngIf="(actualSpecie | lowercase) !== 'mech'">
+    <img src="assets/images/species/portrait_mech.png" class="portrait">
+    <div class="name">
+      <img src="assets/images/species/icon_mech.svg" class="icon">
+      <span class="text">Mech</span>
+    </div>
+  </div>
+  <div class="specie" (click)="selectSpecie('Oracle')" *ngIf="(actualSpecie | lowercase) !== 'oracle'">
+    <img src="assets/images/species/portrait_oracle.png" class="portrait">
+    <div class="name">
+      <img src="assets/images/species/icon_oracle.svg" class="icon">
+      <span class="text">Oracle</span>
+    </div>
+  </div>
+  <div class="specie" (click)="selectSpecie('Scavengon')" *ngIf="(actualSpecie | lowercase) !== 'scavengon'">
+    <img src="assets/images/species/portrait_scavengon.png" class="portrait">
+    <div class="name">
+      <img src="assets/images/species/icon_scavengon.svg" class="icon">
+      <span class="text">Scavengon</span>
+    </div>
+  </div>
+  <div class="specie" (click)="selectSpecie('Vaans')" *ngIf="(actualSpecie | lowercase) !== 'vaans'">
+    <img src="assets/images/species/portrait_vaans.png" class="portrait">
+    <div class="name">
+      <img src="assets/images/species/icon_vaans.svg" class="icon">
+      <span class="text">Va'an</span>
+    </div>
+  </div>
+</div>
