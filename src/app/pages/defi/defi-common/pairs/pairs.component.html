@@ -11,9 +11,10 @@
 
     <!-- Pool Column -->
     <ng-container matColumnDef="farm">
-      <mat-cell mat-cell *matCellDef="let farm" (click)="selectFarm(farm)">
-        <div class="pair">
-          {{farm.subsidiaryTokenSymbol1}}&nbsp;<img class="pair-img" [src]="farm.subsidiaryTokenImg1">
+      <mat-cell mat-cell *matCellDef="let farm" >
+        <div class="pair" (click)="selectFarm(farm)">
+          {{farm.subsidiaryTokenSymbol1}}&nbsp;
+          <img class="pair-img" [src]="farm.subsidiaryTokenImg1">
           <img class="pair-img" [src]="farm.subsidiaryTokenImg2">&nbsp;
           {{farm.subsidiaryTokenSymbol2}}
         </div>

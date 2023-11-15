@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { default as langFile } from 'src/assets/i18n/en.json';
 
@@ -16,7 +17,18 @@ export class FaqComponent implements OnInit {
   // Get faq from lang file to set on html view
   faqJson: any = langFile.faq;
 
-  constructor(private translate: TranslateService) {}
+  constructor(
+    private translate: TranslateService,
+    private activatedRoute: ActivatedRoute
+    ) {
+    this.activatedRoute.queryParams.subscribe( (params: any) => {
+      Object.values(this.faqJson).map( (section: any) => {
+        if (params.section === section.id) {
+          this.selectedTab = params.section;
+        }
+      });
+    });
+  }
 
   // Change slider on resize
   @HostListener('window:resize', ['$event'])

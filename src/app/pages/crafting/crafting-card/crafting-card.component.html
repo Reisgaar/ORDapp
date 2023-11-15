@@ -12,8 +12,21 @@
   <p class="title">{{'crafting.step' + step + '.pool' + pool | translate}}</p>
 
   <ng-template #emptyPool>
-    <p class="empty">{{'crafting.emptyPool' | translate}}</p>
+    <p class="empty" *ngIf="step !== 1; else emptyPoolStep1">
+      <span style="display: block; margin: 15px;">{{'crafting.emptyPool1' | translate}}</span>
+      <span style="display: block; margin: 15px; font-size: 0.8rem; line-height: 1em;">{{'crafting.emptyPool2' | translate}}</span>
+    </p>
   </ng-template>
+
+  <div class="disabled-pool" *ngIf="step === 1 && poolData.isLocked === true && userCraftedAmounts && userCraftedAmounts['tier' + pool] < poolData.requiredCrafts">
+    <div class="text">
+      <p class="info">{{'crafting.lockedCrafter' | translate}}</p>
+      <p>{{('crafting.minimumCrafts' | translate).replace('***', tier - 1) }}</p>
+      <p class="value">{{ poolData.requiredCrafts }}</p>
+      <p>{{'crafting.craftsDone' | translate}}</p>
+      <p class="value" *ngIf="userCraftedAmounts">{{ userCraftedAmounts['tier' + pool] }}</p>
+    </div>
+  </div>
 
   <ng-container *ngIf="step === 1 || poolData.exists === true; else emptyPool">
     <div class="settings">
@@ -21,7 +34,7 @@
         <app-crafting-step1-creation [pool]="pool" [poolData]="poolData" (dataEvent)="receiveDataStep1($event)"></app-crafting-step1-creation>
       </div>
       <div *ngIf="step === 2">
-        <app-crafting-step2-styling [pool]="pool" [poolData]="poolData" (dataEvent)="receiveDataStep2($event)"></app-crafting-step2-styling>
+        <app-crafting-step2-styling [pool]="pool" [poolData]="poolData" [poolPrice]="poolPrice" [poolPriceInGQ]="poolPriceInGQ" (dataEvent)="receiveDataStep2($event)"></app-crafting-step2-styling>
       </div>
       <div *ngIf="step === 3">
         <app-crafting-step3-assembly [pool]="pool" [poolData]="poolData" (dataEvent)="receiveDataStep3($event)"></app-crafting-step3-assembly>
@@ -50,7 +63,7 @@
                 <span [class.reduced]="discounts.cost > 0">{{mat.value}}</span>
                 <span *ngIf="discounts.cost > 0"> {{mat.value - (mat.value * (discounts.cost / 100))}}</span>
               </p>
-              <p class="available" [class.enough]="checkIfMaterialIsEnough((userMaterials[mat.key].amount | fromWei), mat.value)">{{userMaterials[mat.key].amount | fromWei | number:'1.0-4'}}</p>
+              <p class="available" [class.enough]="checkIfMaterialIsEnough((userMaterials[mat.key].amount | fromWei), (mat.value - (mat.value * (discounts.cost / 100))))">{{userMaterials[mat.key].amount | fromWei | number:'1.0-4'}}</p>
             </div>
           </ng-container>
         </ng-template>
@@ -68,8 +81,10 @@
         <p style="color: transparent;">.</p>
       </ng-container>
       <ng-template #prices>
-        <p *ngIf="poolPrice !== '' && poolPrice !== '0' && poolData.started === false">{{('crafting.priceStep' + step | translate).replace('***', poolPrice)}}</p>
+        <p *ngIf="poolPrice !== '' && poolPrice !== '0' && poolData.started === false">{{('crafting.priceStep' + step | translate).replace('***', (poolPrice | number:'1.0-4'))}}</p>
+        <p *ngIf="poolPriceInGQ !== '' && poolPriceInGQ !== '0' && poolData.started === false" class="approx">{{'(' + ('crafting.approxInGQ' | translate).replace('***', (poolPriceInGQ | number:'1.0-4') ) + ')'}}</p>
         <p *ngIf="(poolPrice === '' || poolPrice === '0') && poolData.started === false">{{('crafting.priceFreeStep' + step | translate)}}</p>
+        <p *ngIf=" craftingStartFee !== '' && poolData.started === false && step === 1" style="font-size: 0.7rem; font-weight: 300;"><i>{{("crafting.craftingStartFee" | translate).replace('***', (craftingStartFee | number:'1.0-4'))}}</i></p>
       </ng-template>
     </div>
 
@@ -79,7 +94,7 @@
         <div class="button" *ngIf="nextStepAllowed && step === 2" (click)="startStyling()">{{'crafting.startStep' + step | translate}}</div>
         <div class="button" *ngIf="nextStepAllowed && step === 3 && !(poolData.tier !== 3 && step3Booster === 5)" (click)="startAssembly()">{{'crafting.startStep' + step | translate}}</div>
 
-        <div class="button disabled" *ngIf="!nextStepAllowed || (poolData.tier !== 3 && step3Booster === 5)">{{'crafting.notAllowed' | translate}}</div>
+        <div class="button get-resources" *ngIf="!nextStepAllowed || (poolData.tier !== 3 && step3Booster === 5)" (click)="openGetMaterialsDialog()">{{'crafting.missingMaterials' | translate}}</div>
       </ng-container>
       <ng-container *ngIf="poolData.started === true">
         <div class="button" *ngIf="poolData.endTime | timeStampIsPast" (click)="accelerateProcess()">{{'crafting.accelerateStep' + step | translate}}</div>

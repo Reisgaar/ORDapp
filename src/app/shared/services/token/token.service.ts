@@ -7,6 +7,7 @@ import { NftService } from '../nft/nft.service';
 import { waitForTransaction } from '@wagmi/core';
 // Abi
 import {default as BEP20} from 'src/app/shared/contracts/token/BEP20.json';
+import {default as pairLp} from 'src/app/shared/contracts/dex/pairLp.json';
 import {default as ERC721} from 'src/app/shared/contracts/nft/ERC721.json';
 
 /**
@@ -49,6 +50,21 @@ export class TokenService {
     try {
       const userAddr = this.connectionService.getWalletAddress();
       return await this.connectionService.readContract(tokenAddress, BEP20.abi, 'allowance', [userAddr, spenderAddress]);
+    } catch (error: any) {
+      console.log(error);
+    }
+  }
+
+  /**
+   * Gets balance of the given token
+   * @param tokenAddress the address of the token to read
+   * @param spenderAddress the address of the token to read
+   * @returns : amount of balance
+   */
+  async getNFTAllowanceOnSpender(tokenAddress: string, spenderAddress: string): Promise<any> {
+    try {
+      const userAddr = this.connectionService.getWalletAddress();
+      return await this.connectionService.readContract(tokenAddress, ERC721.abi, 'isApprovedForAll', [userAddr, spenderAddress]);
     } catch (error: any) {
       console.log(error);
     }
@@ -116,6 +132,36 @@ export class TokenService {
     }
   }
 
+    /**
+   * Check if spender is approved
+   * @param spender : the contrat is going to spend tokens
+   * @param userAddr : user address
+   * @param tokenToSpend : token is goint to be spent
+   * @returns : true if is approved
+   */
+    async checkPairApproved(spender: string, userAddr: string, tokenToSpend: number | string, amountOnWei: string): Promise<any> {
+      try {
+        console.log('Amount on wei:');
+        console.log(amountOnWei);
+        const allowance = await this.connectionService.readContract(this.getTokenContractAddress(tokenToSpend), pairLp.abi, 'allowance', [userAddr, spender]);
+        const pay = this.connectionService.fromWei(amountOnWei);
+        const allowed = this.connectionService.fromWei(allowance);
+        console.log(parseFloat(pay));
+        console.log(parseFloat(allowed));
+        if (parseFloat(pay) > parseFloat(allowed)) {
+          console.log('not allowed!');
+          return false;
+        } else {
+          console.log('allowed!');
+          return true;
+        }
+      } catch (error: any) {
+        console.log(error);
+        this.dialogService.openRegularInfoDialog('error', error.message, '');
+      }
+    }
+
+
   /**
    * Makes the approvement of the spender
    * @param spender : the contrat is going to spend tokens
@@ -144,6 +190,35 @@ export class TokenService {
     }
     return isApproved;
   }
+
+    /**
+   * Makes the approvement of the spender
+   * @param spender : the contrat is going to spend tokens
+   * @param userAddr : user address
+   * @param tokenToSpend : token is goint to be spent
+   * @returns : true if is approved
+   */
+    async pairApprove(spender: string, tokenToSpend: number | string, amount?: string): Promise<any> {
+      console.log('token: ', tokenToSpend);
+      console.log('spender:', spender);
+      let dialogRef = this.dialogService.openRegularInfoDialog('actionNeeded', 'approveContractInteraction', 'allowance');
+      let isApproved = false;
+      try {
+        let stringAmount = MaxUint256.toString();
+        if (amount) { stringAmount = amount; }
+        const contractAddress = this.getTokenContractAddress(tokenToSpend);
+        const tx = await this.connectionService.writeContract(contractAddress, pairLp.abi, 'approve', [spender, stringAmount]);
+        dialogRef.close();
+        dialogRef = this.dialogService.openRegularInfoDialog('allowance', 'waitTransaction', '');
+        await waitForTransaction({hash: tx.hash});
+        dialogRef.close();
+        isApproved = true;
+      } catch (error: any) {
+        dialogRef.close();
+        this.dialogService.openRegularInfoDialog('error', error.message, '');
+      }
+      return isApproved;
+    }
 
   /**
    * Manage the approvement of an ERC721 token, check and if not done, do the approvement

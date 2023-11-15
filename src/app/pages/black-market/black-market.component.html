@@ -1,0 +1,100 @@
+<div class="black-market">
+  <div class="top-image">
+    <img src="assets/images/blackMarket/header_home.png" alt="Black Market header image">
+  </div>
+
+  <div class="page">
+    <div class="head bmarket">
+      <p class="tip">{{'blackMarket.home.tip' | translate}}</p>
+      <h1 class="title" [innerHTML]="'blackMarket.home.title_html' | translate"></h1>
+      <p class="subtitle">{{'blackMarket.home.subtitle1' | translate}}</p>
+      <p class="subtitle">{{'blackMarket.home.subtitle2' | translate}}</p>
+      <p class="subtitle">{{'blackMarket.home.subtitle3' | translate}}</p>
+    </div>
+  </div>
+
+  <div class="market">
+    <h2 class="title">{{'blackMarket.name' | translate}}</h2>
+    <app-black-market-sale-creator [walletIsConnected]="walletIsConnected"></app-black-market-sale-creator>
+    <div class="sales">
+      <div class="tabs">
+        <p class="tab" [class.active]="selectedTab === 0" (click)="setSelectedTab(0)">{{'blackMarket.sales.allSales' | translate}}</p>
+        <p class="tab" [class.active]="selectedTab === 1" *ngIf="walletIsConnected" (click)="setSelectedTab(1)">{{'blackMarket.sales.mySales' | translate}}</p>
+        <p class="tab" [class.active]="selectedTab === 1" *ngIf="!walletIsConnected" (click)="connectionService.openModal()">{{'blackMarket.sales.mySales' | translate}}</p>
+      </div>
+      <div class="sales-head">
+        <div class="order">
+          <span class="label">{{'blackMarket.order.orderBy' | translate}}</span>
+          <span class="selector" (click)="changeQueryOrder()">{{('blackMarket.order.' + possibleOrders[selectedOrder]) + '-' + orderDirection | translate}}</span>
+        </div>
+        <div class="filter">
+          <span class="label">{{'blackMarket.filter.name' | translate}}: </span>
+          <div class="material selected">
+            <span>
+              <img *ngIf="selectedFilter !== ''" src="assets/images/crafting/materials/{{selectedFilter | lowercase}}.png" alt="{{selectedFilter}} material image" />
+              {{selectedFilter !== '' ? selectedFilter : ('blackMarket.filter.showAll' | translate)}}
+            </span>
+          </div>
+          <div class="select-panel">
+            <div class="material" *ngIf="selectedFilter !== ''" (click)="setSelectedFilter('')">
+              <span>{{'blackMarket.filter.showAll' | translate}}</span>
+            </div>
+            <ng-container *ngFor="let mat of materials">
+              <div class="material" *ngIf="mat.name !== selectedFilter" (click)="setSelectedFilter(mat.name)">
+                <span>
+                  <img src="assets/images/crafting/materials/{{mat.image}}" alt="{{mat.name}} material image" />
+                  {{'materials.' + (mat.name | lowercase) | translate}}
+                </span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!salesAreLoaded; else saleListBlock" class="spinner">
+        <mat-spinner [diameter]="200" [strokeWidth]="10"></mat-spinner>
+      </div>
+      <ng-template #saleListBlock>
+        <div class="items" *ngIf="materialSales.length > 0; else noResults">
+          <app-black-market-material-card
+            *ngFor="let sale of materialSales | slice:(paginationPage*matsPerPage):((paginationPage*matsPerPage) + matsPerPage)"
+            [sale]="sale"
+            [owner]="userAddress"
+          ></app-black-market-material-card>
+        </div>
+      </ng-template>
+      <ng-template #noResults>
+        <p class="no-results">{{'blackMarket.sales.noResults' | translate}}</p>
+      </ng-template>
+
+      <div class="pagination">
+        <span>Items: </span>
+        <div class="page-amount">
+          <span>{{matsPerPage < materialSales.length ? matsPerPage : 'all'}}</span>
+          <div class="page-amount-selector">
+            <div class="amount" (click)="setItemsPerPage(6)" *ngIf="materialSales.length > 6 && matsPerPage !== 6">
+              <span>6</span>
+            </div>
+            <div class="amount" (click)="setItemsPerPage(12)" *ngIf="materialSales.length > 12 && matsPerPage !== 12">
+              <span>12</span>
+            </div>
+            <div class="amount" (click)="setItemsPerPage(24)" *ngIf="materialSales.length > 24 && matsPerPage !== 24">
+              <span>24</span>
+            </div>
+            <div class="amount" (click)="setItemsPerPage(48)" *ngIf="materialSales.length > 48 && matsPerPage !== 48">
+              <span>48</span>
+            </div>
+            <div class="amount" (click)="setItemsPerPage(materialSales.length)">
+              <span>All</span>
+            </div>
+          </div>
+        </div>
+        <mat-icon *ngIf="paginationPage === 0" class="arrow disabled">chevron_left</mat-icon>
+        <mat-icon *ngIf="paginationPage > 0" (click)="changePage(false)" class="arrow">chevron_left</mat-icon>
+        <span>{{'blackMarket.pagination.page' | translate}} {{paginationPage + 1}} {{'blackMarket.pagination.of' | translate}} {{totalPages + 1}}</span>
+        <mat-icon *ngIf="paginationPage < totalPages" (click)="changePage(true)" class="arrow">chevron_right</mat-icon>
+        <mat-icon *ngIf="paginationPage >= totalPages" class="arrow disabled">chevron_right</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

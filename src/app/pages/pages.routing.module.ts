@@ -29,6 +29,8 @@ import { CraftingHomeComponent } from './crafting/crafting-home/crafting-home.co
 import { CraftingFactoryComponent } from './crafting/crafting-factory/crafting-factory.component';
 import { HealthComponent } from './health/health.component';
 import { MaterialExtractionComponent } from './lands/material-extraction/material-extraction.component';
+import { CraftingFoundryComponent } from './crafting/crafting-foundry/crafting-foundry.component';
+import { BlackMarketComponent } from './black-market/black-market.component';
 
 const routes: Routes = [
   {
@@ -69,18 +71,18 @@ const routes: Routes = [
         path: 'marketplace/nft',
         component: NftComponent
       },
-      {
-        path: 'marketplace/partners',
-        component: PartnersHomeComponent
-      },
-      {
-        path: 'marketplace/partner',
-        component: PartnerSellComponent
-      },
-      {
-        path: 'marketplace/partner/nft',
-        component: PartnerNftComponent
-      },
+      // {
+      //   path: 'marketplace/partners',
+      //   component: PartnersHomeComponent
+      // },
+      // {
+      //   path: 'marketplace/partner',
+      //   component: PartnerSellComponent
+      // },
+      // {
+      //   path: 'marketplace/partner/nft',
+      //   component: PartnerNftComponent
+      // },
       // GOVERNACE
       {
         path: 'governance',
@@ -129,6 +131,22 @@ const routes: Routes = [
         path: 'crafting/factory',
         component: CraftingFactoryComponent
       },
+      // },
+      // FOUNDRY
+      {
+        path: 'crafting/foundry',
+        component: CraftingFoundryComponent
+      },
+      // BLACK MARKET
+      {
+        path: 'undergroundMarket',
+        component: BlackMarketComponent
+      },
+      // TODO: Uncomment for foundry
+      // {
+      //   path: 'crafting/foundry',
+      //   component: CraftingFoundryComponent
+      // },
       // OTHERS
       {
         path: 'allowanceManager',

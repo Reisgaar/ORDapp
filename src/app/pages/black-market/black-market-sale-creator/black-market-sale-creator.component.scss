@@ -1,0 +1,289 @@
+@import 'src/styleVariables.scss';
+
+.creator {
+  position: relative;
+  width: calc(100% - 20px);
+  border: 1px solid $blue-medium;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 10px;
+  padding: 10px;
+  background: #00000099;
+  animation: neon-pulsate 1.5s infinite alternate;
+  border: 1px solid $white;
+
+  .title {
+    position: absolute;
+    text-transform: uppercase;
+    left: 50%;
+    bottom: calc(100% - 2px);
+    transform: translateX(-50%);
+    width: max-content;
+    border-radius: 15px 15px 0 0;
+    margin: 0;
+    padding: 8px 20px;
+    animation: neon-pulsate 1.5s infinite alternate;
+    border: 1px solid $white;
+    border-bottom-width: 0px;
+    clip-path: polygon(-100% -100%, 100% -100%, 200% 95%, -100% 95%);
+    background: #020207;
+  }
+
+  .seller {
+    grid-column: 1;
+    grid-row: 1/4;
+    align-self: center;
+    justify-self: center;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+  }
+
+  .conditions {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    width: 100%;
+    padding-top: 10px;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, transparent -10%, #262EBF, transparent 110%) 100% 1;
+  }
+
+  .connect {
+    grid-column: 2;
+    grid-row: 2/4;
+    align-self: center;
+    justify-self: center;
+
+    p {
+      cursor: pointer;
+      display: inline-block;
+      background: linear-gradient(to right, $blue-medium, $blue-semi-dark);
+      width: max-content;
+      padding: 7px 20px;
+      border-radius: 15px;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.2em;
+
+      &:hover {
+        background: linear-gradient(to right, $pink, $purple-dark);
+      }
+    }
+  }
+
+  .sale {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+
+    .progress-bar {
+      padding: 30px 50px;
+    }
+
+    .inputs {
+      display: flex;
+      flex-flow: wrap;
+      gap: 5px;
+      justify-content: space-around;
+      margin-top: 20px;
+
+      .input {
+        position: relative;
+        margin-bottom: 20px;
+
+        .tip {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 0.7rem;
+          font-weight: 300;
+          text-wrap: nowrap;
+        }
+
+        .label {
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateY(-100%);
+          font-size: 0.7rem;
+          font-weight: 300;
+          text-transform: uppercase;
+          padding: 0 0 2px 7px;
+          line-height: 1em;
+        }
+
+        &-field {
+          border: 1px solid $blue-medium;
+          background-color: $grey-extra-dark;
+          color: $white;
+          border-radius: 7px;
+          padding: 7px 15px;
+          width: 120px;
+          font-size: 1rem;
+
+          &:disabled {
+            opacity: 0.5;
+            border-color: grey;
+          }
+
+          &:focus { outline: none; }
+
+          &.error {
+            border-color: $red-error;
+          }
+
+          &.select {
+            position: relative;
+
+            .select-panel {
+              display: none;
+              position: absolute;
+              z-index: 1;
+              border: 1px solid $blue-medium;
+              background-color: $grey-extra-dark;
+              width: 100%;
+              top: 100%;
+              left: -1px;
+              border-radius: 0 0 7px 7px;
+            }
+
+            &:hover {
+              border-radius: 7px 7px 0 0;
+
+              .select-panel {
+                display: block;
+              }
+            }
+
+            .material {
+              padding: 5px 10px;
+              cursor: pointer;
+
+              &.selected {
+                background-color: transparent !important;
+                cursor: default !important;
+                padding: 0;
+              }
+
+              span {
+                position: relative;
+                margin-left: 25px;
+
+                img {
+                  position: absolute;
+                  height: 35px;
+                  width: 35px;
+                  right: 100%;
+                  top: 50%;
+                  transform: translateY(-50%);
+                }
+              }
+
+              &:hover {
+                background-color: $white-transparent-10;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .button {
+    cursor: not-allowed;
+    grid-column: 2;
+    grid-row: 3;
+    width: max-content;
+    margin: auto;
+    text-align: center;
+
+    span {
+      cursor: default;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+
+    p {
+      background-color: $grey;
+      border-radius: 7px;
+      padding: 5px 20px;
+      min-width: 200px;
+      text-align: center;
+
+      &.active {
+        cursor: pointer;
+        background-color: $blue-medium;
+
+        &:hover {
+          background-color: $blue-light;
+        }
+      }
+    }
+  }
+}
+
+@keyframes neon-pulsate {
+  from { box-shadow: 0 0 0.1rem $white, 0 0 0.1rem $white, 0 0 1.8rem $blue-medium, 0 0 0.6rem $blue-medium, 0 0 2.6rem $blue-medium, inset 0 0 1.5rem $blue-medium; }
+  to   { box-shadow: 0 0 0.2rem $white, 0 0 0.2rem $white, 0 0 2.5rem $blue-medium, 0 0 1.5rem $blue-medium, 0 0 3.5rem $blue-medium, inset 0 0 2.5rem $blue-medium; }
+}
+
+
+/*
+ * Responsive breakpoints
+ */
+
+// Small devices
+@media (max-width: 576px) {
+  .creator {
+    grid-template-columns: 1fr;
+    font-size: 0.7rem;
+    line-height: 1em;
+
+    .seller {
+      grid-column: 1;
+      grid-row: 1;
+      width: 120px;
+      height: 120px;
+    }
+
+    .conditions {
+      grid-column: 1;
+      grid-row: 2;
+      padding: 0;
+
+      ul li:first-child {
+        margin-bottom: 5px;
+      }
+    }
+
+    .sale {
+      grid-column: 1;
+      grid-row: 3;
+
+      .inputs .input .input-field {
+        font-size: 0.8rem;
+      }
+    }
+
+    .button {
+      grid-column: 1;
+      grid-row: 4;
+      font-size: 0.8rem;
+      line-height: 1em;
+    }
+  }
+}
+
+// Extra small devices
+@media (max-width: 320px) {
+
+}
+

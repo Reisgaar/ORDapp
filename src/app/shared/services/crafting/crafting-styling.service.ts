@@ -28,7 +28,24 @@ export class CraftingStylingService {
    */
   async getPoolAddOnPrice(tier: number, addOnAmount: number): Promise<any> {
     if (addOnAmount > 0) {
-      const price = await this.connectionService.readContract(contractAddresses.craftingStyling, Styling.abi, 'optionalWeaponPiecePrices', [tier]);
+      let price = await this.connectionService.readContract(contractAddresses.craftingStyling, Styling.abi, 'optionalWeaponPiecePrices', [tier]);
+      price = this.connectionService.fromWei(price);
+      return (parseFloat(price) * addOnAmount).toString();
+    } else {
+      return '';
+    }
+  }
+
+  /**
+   * Get price of the given pool in GQ
+   * @param tier tier of the item
+   * @param addOnAmount amount of add-on pieces
+   * @returns price of the addOns
+   */
+  async getPoolAddOnPriceInGQ(tier: number, addOnAmount: number): Promise<any> {
+    if (addOnAmount > 0) {
+      let price = await this.connectionService.readContract(contractAddresses.craftingStyling, Styling.abi, 'getOptionalWeaponPiecePriceInGQ', [tier]);
+      price = this.connectionService.fromWei(price);
       return (parseFloat(price) * addOnAmount).toString();
     } else {
       return '';
@@ -41,12 +58,17 @@ export class CraftingStylingService {
    * @param poolId id of the pool
    * @param aesthetics user aesthetic selection
    */
-  async startStyling(materials: any, poolId: number, aesthetics: any[]): Promise<any> {
+  async startStyling(materials: any, poolId: number, aesthetics: any[], tier: number, addOnAmount: number): Promise<any> {
     const walletIsConnected = await this.connectionService.syncAccount();
     if (walletIsConnected) {
       const userAddr = this.connectionService.getWalletAddress();
       const materialsAllowed = await this.craftingUtilsService.checkAllowanceOfRequiredMaterials(materials, contractAddresses.craftingResourcesController, userAddr);
-      if (materialsAllowed) {
+      let gqAllowed: boolean = true;
+      if (addOnAmount > 0) {
+        const gqPrice = this.connectionService.toWei(await this.getPoolAddOnPriceInGQ(tier, addOnAmount));
+        gqAllowed = await this.tokenService.tokenApprovement(contractAddresses.craftingStyling, userAddr, 'GQ', gqPrice);
+      }
+      if (materialsAllowed && gqAllowed) {
         let dialog = this.dialogService.openRegularInfoDialog('actionNeeded', 'craftingStylingStart', '');
         try {
           const tx = await this.connectionService.writeContract(contractAddresses.craftingStyling, Styling.abi, 'startItemStyling', [poolId, aesthetics]);
@@ -71,9 +93,10 @@ export class CraftingStylingService {
     const walletIsConnected = await this.connectionService.syncAccount();
     if (walletIsConnected) {
       const userAddr = this.connectionService.getWalletAddress();
-      // TODO: Set price to acceleration process
-      const allowed = await this.tokenService.tokenApprovement(contractAddresses.craftingStyling, userAddr, 'GQ', '10000000000000000000000000000000000000000000000000');
-      let dialog = this.dialogService.openRegularInfoDialog('actionNeeded', 'craftingStylingSkip', '');
+      const acceleratePrice = await this.getAccelerationPrice(userAddr, poolId);
+      const allowed = await this.tokenService.tokenApprovement(contractAddresses.craftingStyling, userAddr, 'GQ', acceleratePrice);
+      const formattedValue = parseFloat(parseFloat(this.connectionService.fromWei(acceleratePrice)).toFixed(4)).toLocaleString('en-GB');
+      let dialog = this.dialogService.openRegularInfoDialog('actionNeeded', 'craftingStylingSkip', formattedValue + ' GQ');
       if (allowed === true) {
         try {
           const tx = await this.connectionService.writeContract(contractAddresses.craftingStyling, Styling.abi, 'skipCraftingTime', [poolId]);
@@ -88,6 +111,10 @@ export class CraftingStylingService {
         }
       }
     }
+  }
+
+  async getAccelerationPrice(userAddr: string, poolId: number): Promise<string> {
+    return await this.connectionService.readContract(contractAddresses.craftingStyling, Styling.abi, 'getSkipCraftingTimePriceInGQ', [userAddr, poolId]);
   }
 
   /**

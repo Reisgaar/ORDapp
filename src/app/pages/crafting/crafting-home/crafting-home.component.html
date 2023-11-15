@@ -21,7 +21,7 @@
   <div class="step">
     <h2 class="title"><span>{{'crafting.home.firstStep' | translate}}</span>{{'crafting.home.firstStepText' | translate}}</h2>
     <p>{{'crafting.home.selectCrafter' | translate}}</p>
-    <div class="crafters">
+    <div class="crafters step-block">
       <div class="crafter">
         <p class="name">{{'crafting.step1.pool0' | translate}}</p>
         <img src="assets/images/crafting/card/crafter0.png" alt="Trainee crafter image">
@@ -39,7 +39,7 @@
       </div>
     </div>
     <p>{{'crafting.home.selectType' | translate}}</p>
-    <div class="type-selector">
+    <div class="type-selector step-block">
       <div class="weapon">
         <p class="name">{{'categories.weapon' | translate}}</p>
         <p class="description">{{'crafting.home.selectWeapon' | translate}}</p>
@@ -71,17 +71,17 @@
       </div>
     </div>
     <p>{{'crafting.home.materialCost' | translate}}</p>
-    <div class="materials">
+    <div class="materials step-block m-top">
       <div class="stage">
         <p class="name">{{'crafting.creation' | translate}}</p>
         <div class="material">
-          <img src="assets/images/crafting/materials/carbon.png" class="icon">
-          <p class="value">CAR: 500</p>
+          <img src="assets/images/crafting/materials/iron.png" class="icon">
+          <p class="value">IRO: 500</p>
           <p class="available valid">1700</p>
         </div>
         <div class="material">
           <img src="assets/images/crafting/materials/hydrogen.png" class="icon">
-          <p class="value">HYD: 1000</p>
+          <p class="value">COP: 1000</p>
           <p class="available valid">3700</p>
         </div>
       </div>
@@ -103,12 +103,12 @@
         <div class="material">
           <img src="assets/images/crafting/materials/aluminium.png" class="icon">
           <p class="value">ALU: 1500</p>
-          <p class="available valid">1743</p>
+          <p class="available not-valid">10</p>
         </div>
         <div class="material">
           <img src="assets/images/crafting/materials/acetylene.png" class="icon">
           <p class="value">ACE: 1200</p>
-          <p class="available not-valid">639</p>
+          <p class="available not-valid">0</p>
         </div>
       </div>
         <ng-template #completedStep>
@@ -118,12 +118,15 @@
         </ng-template>
     </div>
     <p>{{'crafting.home.continueWithoutMaterials' | translate}}</p>
+    <p>{{'crafting.home.lookingForMaterials' | translate}}</p>
+    <p class="material-button" (click)="openGetMaterialsDialog()">{{'crafting.home.getMaterials' | translate}}</p>
     <p>{{'crafting.home.processDuration' | translate}}</p>
   </div>
 
   <div class="step">
     <h2 class="title"><span>{{'crafting.home.secondStep' | translate}}</span>{{'crafting.home.secondStepText' | translate}}</h2>
     <p>{{'crafting.home.sendToStyling' | translate}}</p>
+    <p>{{'crafting.home.stylingPools' | translate}}</p>
     <p>{{'crafting.home.addExtras' | translate}}</p>
     <div class="preview">
       <div class="category">
@@ -233,11 +236,11 @@
       </div>
       <ng-template #probabilities>
         <div class="probabilities">
-          <p>{{'nft.rarity.common' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].common}}%</span></p>
-          <p>{{'nft.rarity.uncommon' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].uncommon}}%</span></p>
-          <p>{{'nft.rarity.rare' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].rare}}%</span></p>
-          <p>{{'nft.rarity.epic' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].epic}}%</span></p>
-          <p>{{'nft.rarity.legendary' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].legendary}}%</span></p>
+          <p [class.disabled]="boosters['t'+tier][selectedEngineer].common === 0">{{'nft.rarity.common' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].common}}%</span></p>
+          <p [class.disabled]="boosters['t'+tier][selectedEngineer].uncommon === 0">{{'nft.rarity.uncommon' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].uncommon}}%</span></p>
+          <p [class.disabled]="boosters['t'+tier][selectedEngineer].rare === 0">{{'nft.rarity.rare' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].rare}}%</span></p>
+          <p [class.disabled]="boosters['t'+tier][selectedEngineer].epic === 0">{{'nft.rarity.epic' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].epic}}%</span></p>
+          <p [class.disabled]="boosters['t'+tier][selectedEngineer].legendary === 0">{{'nft.rarity.legendary' | translate}}:<span>{{boosters['t'+tier][selectedEngineer].legendary}}%</span></p>
         </div>
       </ng-template>
     </div>

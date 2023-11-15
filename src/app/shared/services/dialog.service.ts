@@ -7,6 +7,8 @@ import { PartnerPopUpBaskoniaFaqComponent } from 'src/app/pages/marketplace/part
 import { PopUpSpecieSelectorComponent } from '../components/pop-ups/pop-up-specie-selector/pop-up-specie-selector.component';
 import { PopUpConfirmationComponent } from '../components/pop-ups/pop-up-confirmation/pop-up-confirmation.component';
 import { PopUpGeneralComponent } from 'src/app/pages/defi/defi-common/pop-up-general/pop-up-general.component';
+import { PopUpGetMaterialsComponent } from '../components/pop-ups/pop-up-get-materials/pop-up-get-materials.component';
+import { PopUpNumberInputComponent } from '../components/pop-ups/pop-up-number-input/pop-up-number-input.component';
 
 /**
  * Service to manage some dialogs (Not added all pop ups to avoid circular dependencies)
@@ -74,12 +76,34 @@ export class DialogService {
   }
 
   /**
+   * Opens a dialog with a number input
+   * @returns
+   */
+  openNumberInputDialog(titleRoute: string, messageRoute: string, popUpLabelRoute: string): any {
+      return this.dialog.open(PopUpNumberInputComponent, {
+      panelClass: 'lootbox-dialog-container',
+      data: { titleRoute, messageRoute, popUpLabelRoute }
+    });
+  }
+
+  /**
    * Opens a dialog to select an specie
    * @returns
    */
   openSpecieSelectorDialog(): any {
       return this.dialog.open(PopUpSpecieSelectorComponent, {
       panelClass: 'lootbox-dialog-container'
+    });
+  }
+
+  /**
+   * Opens a dialog to select an specie
+   * @returns
+   */
+  openGetMaterialsDialog(): any {
+      return this.dialog.open(PopUpGetMaterialsComponent, {
+      panelClass: 'lootbox-dialog-container',
+      autoFocus: false
     });
   }
 

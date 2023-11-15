@@ -1,0 +1,80 @@
+<div *ngIf="!walletIsConnected; else loadingBar">
+  <div class="item connect" *ngIf="pool === 0" (click)="connectWallet()">
+    <p>{{'foundry.card.connectWallet' | translate}}</p>
+  </div>
+</div>
+
+<ng-template #loadingBar>
+  <div class="item loading" *ngIf="!poolDataIsLoaded; else poolCard">
+    <p>{{'foundry.card.loadingPool' | translate}} {{pool + 1}}</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-template>
+
+<ng-template #poolCard>
+  <ng-container *ngIf="poolIsAvailable; else buyPool;">
+    <div class="item item-grid" *ngIf="poolData && poolData.items.exists; else emptyPool;">
+      <div class="nft-image">
+        <img *ngIf="poolData.items.nftType === 0" class="image" src="assets/images/crafting/foundry/founderA.png" alt="Armor founder image" />
+        <img *ngIf="poolData.items.nftType === 1" class="image" src="assets/images/crafting/foundry/founderW.png" alt="Weapon founder image" />
+      </div>
+      <div class="info">
+        <p>{{'foundry.card.dismounting' | translate}}</p>
+        <p>{{poolData.items.numItems}} {{'categories.' + (poolData.items.nftType === 0 ? 'armor' : 'weapon') | translate}}{{poolData.items.numItems > 1 ? 's' : ''}}</p>
+      </div>
+      <div class="materials">
+        <div class="material" *ngFor="let mat of poolData.rewards | keyvalue">
+          <div class="mat">
+            <img class="image"
+            [class.t2-ore]="['VAN', 'SIL', 'CHR'].includes(mat.key | materialFromAddress | materialToTicker)"
+            [class.t2-gas]="['HEL', 'MET', 'OXY', 'HYD'].includes(mat.key | materialFromAddress | materialToTicker)"
+            [class.t3-gas]="['ACE', 'ARG'].includes(mat.key | materialFromAddress | materialToTicker)"
+            alt="{{mat.key | materialFromAddress}} material image"
+            src="assets/images/crafting/materials/{{mat.key | materialFromAddress}}.png"
+            />
+            <span>{{(mat.key | materialFromAddress | materialToTicker) + ': ' + (mat.value.availableRewards | fromWei | number:'1.0-4')}}</span>
+          </div>
+          <div class="remaining">
+            <p class="text">{{'foundry.card.remaining' | translate}}: </p>
+            <p class="value">
+              <span>{{((mat.value.totalRewards | fromWei) - (mat.value.availableRewards | fromWei) - (mat.value.claimedRewards | fromWei) | number:'1.0-4')}}</span>
+              <span> / {{(mat.value.totalRewards | fromWei | number:'1.0-4')}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="interaction">
+        <div class="countdown">
+          <app-countdown [end]="poolData.items.endTime" (countdownEndedEvent)="receiveCountdownData($event)"></app-countdown>
+        </div>
+        <p class="button accelerate" *ngIf="poolData.items.endTime| timeStampIsPast" (click)="accelerateAndClaim()">{{'foundry.card.accelerate' | translate}}</p>
+        <p class="button claim" *ngIf="poolData.items.endTime | timeStampIsPast" (click)="claimRewards()">{{'foundry.card.claimMaterials' | translate}}</p>
+        <p class="button claim" *ngIf="!(poolData.items.endTime | timeStampIsPast)" (click)="claimRewards()">{{'foundry.card.endPool' | translate}}</p>
+      </div>
+    </div>
+
+  </ng-container>
+</ng-template>
+
+<ng-template #emptyPool>
+  <div class="item empty">
+    <p class="title">{{'foundry.card.poolEmpty' | translate}}</p>
+    <div class="capacity">
+      <p>{{'foundry.card.capacity' | translate}}: {{poolData.isUpgraded === true ? 3 : 1}}</p>
+      <p *ngIf="poolData.isUpgraded === false" class="button" (click)="upgradePool(pool)">{{'foundry.card.upgrade' | translate}}</p>
+    </div>
+    <p class="text">{{'foundry.card.selectNftToDissasemble' | translate}}</p>
+  </div>
+</ng-template>
+
+<ng-template #buyPool>
+  <div class="item unlock">
+    <p class="title">{{'foundry.card.poolLocked' | translate}}</p>
+    <p class="capacity">{{'foundry.card.capacity' | translate}}: 3</p>
+    <p class="button" (click)="unlockPool()">
+      <span class="price price-main">{{'foundry.card.unlockFor' | translate}} {{poolPrices.usd | fromWei | number:'1.0-4'}}$</span>
+      <span class="price price-secondary">({{'foundry.card.approx' | translate}} {{poolPrices.gq | fromWei | number:'1.0-4'}} GQ)</span>
+    </p>
+  </div>
+</ng-template>
+

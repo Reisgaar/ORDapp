@@ -53,11 +53,21 @@
             <div>
               <div> <span class="accent">{{pool.rewardToken[0].symbol}}&nbsp;</span>&nbsp;{{ 'defi.pool.earned' | translate }}</div>
               <div class="tex-med-bold tex-green">{{ pendingRewards1 | number: "1.0-3" }}</div>
-              <div class="tex-ligth"><app-price [pool]="pool" [token]="pool.rewardToken[0].address" [staked]="pendingRewards1"></app-price></div>
+              <div class="tex-ligth">
+                <span *ngIf="tokenHasPrice(pool.rewardToken[0].address)">
+                  <app-price  [pool]="pool" [token]="pool.rewardToken[0].address" [staked]="pendingRewards1" [type]="earnGQ1"></app-price>
+                </span>
+
+              </div>
               <div *ngIf="pool.rewardToken.length == 2">
                 <span class="accent">{{pool.rewardToken[1].symbol}}&nbsp;</span>&nbsp;{{ 'defi.pool.earned' | translate }}
                 <div class="tex-med-bold tex-green">{{ pendingRewards2 | number: "1.0-3" }}</div>
-                <div class="tex-ligth"><app-price [pool]="pool" [token]="pool.rewardToken[1].address" [staked]="pendingRewards2"></app-price></div>
+                <div class="tex-ligth">
+                  <span *ngIf="tokenHasPrice(pool.rewardToken[1].address)">{{pool.rewardToken[1].address}}
+                  <app-price [pool]="pool" [token]="pool.rewardToken[1].address" [staked]="pendingRewards2"  [type]="earnGQ2"></app-price>
+                  </span>
+                </div>
+
               </div>
             </div>
             <div>
@@ -171,7 +181,8 @@
               <button *ngIf="!isConnected" class="btn btn-withdraw" (click)="connectWallet()">{{ 'defi.pool.Connect Wallet' | translate }}</button>
               <button *ngIf="isConnected && stakedOwn == 0 && isApproved" class="btn btn-withdraw" (click)="deposit()">{{ 'defi.pool.Deposit' | translate }}</button>
               <button *ngIf="isConnected && stakedOwn != 0 && isApproved" class="btn btn-withdraw" (click)="withdraw()">{{ 'defi.pool.Withdraw' | translate }}</button>
-              <button *ngIf="isConnected && stakedOwn == 0 && !isApproved" class="btn btn-withdraw" (click)="customAllowance()">{{ 'defi.pool.Enable' | translate }}</button>
+              <button *ngIf="isConnected && stakedOwn != 0 && !isApproved" class="btn btn-withdraw" (click)="withdraw()">{{ 'defi.pool.Withdraw' | translate }}</button>
+              <button *ngIf="isConnected && stakedOwn == 0 && !isApproved" class="btn btn-withdraw" (click)="changeAllowance()">{{ 'defi.pool.Enable' | translate }}</button>
             </div>
             <div *ngIf="!isConnected" class="buttons">
               <p class="btn-allow" (click)="changeAllowance('0')">{{'allowance.revoke' | translate}}</p>
@@ -225,10 +236,18 @@
         <div>
           <div> &nbsp;{{ 'defi.pool.earned' | translate }}</div>
           <div class="tex-med-bold tex-green">{{ pendingRewards1 | number: "1.0-3" }} <span class="accent">{{pool.rewardToken[0].symbol}}</span></div>
-          <div class="tex-ligth" *ngIf="pendingRewards1 != 0"><app-price [pool]="pool" [token]="pool.rewardToken[0].address" [staked]="pendingRewards1"></app-price></div>
+          <div class="tex-ligth" *ngIf="pendingRewards1 != 0">
+            <span *ngIf="tokenHasPrice(pool.rewardToken[0].address)" >
+              <app-price [pool]="pool" [token]="pool.rewardToken[0].address" [staked]="pendingRewards1"  [type]="earnGQ1"></app-price>
+            </span>
+          </div>
           <div *ngIf="pool.rewardToken.length == 2">
             <div class="tex-med-bold tex-green">{{ pendingRewards2 | number: "1.0-3" }} <span class="accent">{{pool.rewardToken[1].symbol}}</span></div>
-            <div class="tex-ligth" *ngIf="pendingRewards2 != 0"><app-price [pool]="pool" [token]="pool.rewardToken[1].address" [staked]="pendingRewards2"></app-price></div>
+            <div class="tex-ligth" *ngIf="pendingRewards2 != 0">
+              <span *ngIf="tokenHasPrice(pool.rewardToken[1].address)" >
+                <app-price [pool]="pool" [token]="pool.rewardToken[1].address" [staked]="pendingRewards2"  [type]="earnGQ2"></app-price>
+              </span>
+            </div>
           </div>
         </div>
 
@@ -330,12 +349,16 @@
           <div>
             <span class="accent">{{pool.rewardToken[0].symbol}}</span>&nbsp;{{ 'earned' | translate }}
             <div class="tex-med-bold tex-green">{{ pendingRewards1 | number: "1.0-3" }}</div>
-            <app-price [pool]="pool" [token]="pool.rewardToken[0].address" [staked]="pendingRewards1"></app-price>
+            <span *ngIf="tokenHasPrice(pool.rewardToken[0].address)">
+              <app-price [pool]="pool" [token]="pool.rewardToken[0].address" [staked]="pendingRewards1"  [type]="earnGQ1"></app-price>
+            </span>
           </div>
           <div *ngIf="pool.rewardToken.length == 2 && pool.stakedToken.LPToken" >
             <span class="accent">{{pool.rewardToken[1].symbol}}</span>&nbsp;{{ 'earned' | translate }}
             <div class="tex-med-bold tex-green">{{ pendingRewards2 | number: "1.0-3" }}</div>
-            <app-price [pool]="pool" [token]="pool.rewardToken[0].address" [staked]="pendingRewards1"></app-price>
+            <span *ngIf="tokenHasPrice(pool.rewardToken[1].address)">
+              <app-price [pool]="pool" [token]="pool.rewardToken[1].address" [staked]="pendingRewards2"  [type]="earnGQ2"></app-price>
+            </span>
           </div>
         </div>
         <div class="div20"><button class="btn btn-secondary" (click)="claimReward()">{{ 'Harvest' | translate }}</button> </div>
@@ -361,7 +384,8 @@
           <button *ngIf="!isConnected" class="btn btn-withd-row" (click)="connectWallet()">{{ 'Connect Wallet' | translate }}</button>
           <button *ngIf="isConnected && stakedOwn == 0 && isApproved" class="btn btn-withdraw" (click)="deposit()">{{ 'Deposit' | translate }}</button>
           <button *ngIf="isConnected && stakedOwn != 0 && isApproved" class="btn btn-withdraw" (click)="withdraw()">{{ 'Withdraw' | translate }}</button>
-          <button *ngIf="isConnected && stakedOwn == 0 && !isApproved" class="btn btn-withdraw" (click)="customAllowance()">{{ 'Enable' | translate }}</button>
+          <button *ngIf="isConnected && stakedOwn != 0 && !isApproved" class="btn btn-withdraw" (click)="withdraw()">{{ 'Withdraw' | translate }}</button>
+          <button *ngIf="isConnected && stakedOwn == 0 && !isApproved" class="btn btn-withdraw" (click)="changeAllowance()">{{ 'Enable' | translate }}</button>
         </div>
         <div *ngIf="isConnected" class="buttons">
           <span class="btn-allow" (click)="changeAllowance('0')">{{'allowance.revoke' | translate}}</span>

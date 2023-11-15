@@ -143,6 +143,9 @@ export class BridgeERC20SenderComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Validates if added wallet is valid
+   */
   validateWalletInput(): void {
     this.walletError = !this.connectionService.ethers.utils.isAddress(this.receiver);
   }

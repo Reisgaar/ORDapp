@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { armorList, rarityBoosterProbabilities, weaponList, weaponPartsInfo, weaponPartsOrder } from 'src/app/constants/craftingData';
+import { DialogService } from '../../../shared/services/dialog.service';
 
 @Component({
   selector: 'app-crafting-home',
@@ -21,7 +22,9 @@ export class CraftingHomeComponent implements OnInit {
   selectedArmor = 0;
   selectedElement = 0; // 0 for non laser, 1 for laser
 
-  constructor() { }
+  constructor(
+    private dialogService: DialogService
+  ) { }
 
   ngOnInit(): void {
     this.setSelectedParts();
@@ -161,7 +164,7 @@ export class CraftingHomeComponent implements OnInit {
    */
   changeSelectedWeapon(move: number): void {
     if (this.selectedWeapon + move < 0) {
-      this.selectedWeapon = this.items[10].length - 1;
+      this.selectedWeapon = this.items[0].length - 1;
     } else if (this.selectedWeapon + move >= this.items[0].length) {
       this.selectedWeapon = 0
     } else {
@@ -175,7 +178,7 @@ export class CraftingHomeComponent implements OnInit {
    */
   changeSelectedArmor(move: number): void {
     if (this.selectedArmor + move < 0) {
-      this.selectedArmor = this.items[0].length - 1;
+    this.selectedArmor = this.items[1].length - 1;
     } else if (this.selectedArmor + move >= this.items[1].length) {
       this.selectedArmor = 0
     } else {
@@ -192,6 +195,13 @@ export class CraftingHomeComponent implements OnInit {
     } else {
       this.selectedElement = 0;
     }
+  }
+
+  /**
+   * Opens the pop up with material getting options
+   */
+  openGetMaterialsDialog(): void {
+    this.dialogService.openGetMaterialsDialog();
   }
 
 }

@@ -28,22 +28,8 @@ import { InMemoryCache } from '@apollo/client/core';
 import { ApolloModule, APOLLO_NAMED_OPTIONS, APOLLO_OPTIONS } from 'apollo-angular';
 import { NamedOptions } from 'apollo-angular/types';
 // Pipes
-// import { FromWeiPipe } from './pipes/fromWei.pipe';
-// import { ToTickerPipe } from './pipes/toTicker.pipe';
-// import { ShortWalletPipe } from './pipes/shortWallet.pipe';
-// import { FormatTimePipe } from './pipes/timeFormat.pipe';
-// import { CeilPipe } from './pipes/ceil.pipe';
-// import { FloorPipe } from './pipes/floor.pipe';
+import { PipesModule } from './pipes/pipes.module';
 import { DatePipe } from '@angular/common';
-import { TimeStampIsPastPipe } from './pipes/timeStampIsPast.pipe';
-import { DeleteWhitespacesPipe } from './pipes/deleteWhitespaces.pipe';
-import { WalletFirstNumPipe } from './pipes/walletImage.pipe';
-import { ParseNumberPipe } from './pipes/parseNumber.pipe';
-import { WalletSpeciePipe } from './pipes/walletSpecie';
-import { NftContractToNamePipe } from './pipes/nftContractToName.pipe';
-import { NftContractToVariablePipe } from './pipes/nftContractToVariable.pipe';
-import { MaterialToTickerPipe } from './pipes/materialToTicker';
-import { MaterialFromAddressPipe } from './pipes/materialFromAddress';
 // General Components
 import { PagesComponent } from './pages/pages.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -74,6 +60,9 @@ import { PopUpLootboxInfoComponent } from './pages/lootbox/pop-up-lootbox-info/p
 import { PopUpPutOnSaleComponent } from './pages/marketplace/pop-up-put-on-sale/pop-up-put-on-sale.component';
 import { PopUpBuyAsGiftComponent } from './pages/marketplace/pop-up-buy-as-gift/pop-up-buy-as-gift.component';
 import { PopUpBidOnAuctionComponent } from './pages/marketplace/pop-up-bid-on-auction/pop-up-bid-on-auction.component';
+import { PopUpGetMaterialsComponent } from './shared/components/pop-ups/pop-up-get-materials/pop-up-get-materials.component';
+import { PopUpSpecieSelectorComponent } from './shared/components/pop-ups/pop-up-specie-selector/pop-up-specie-selector.component';
+import { PopUpConfirmationComponent } from './shared/components/pop-ups/pop-up-confirmation/pop-up-confirmation.component';
 // Governance
 import { GovernanceHomeComponent } from './pages/governance/governance-home/governance-home.component';
 import { GovernanceAddProposalComponent } from './pages/governance/governance-add-proposal/governance-add-proposal.component';
@@ -113,6 +102,8 @@ import { CraftingFactoryComponent } from './pages/crafting/crafting-factory/craf
 import { CraftingStep1CreationComponent } from './pages/crafting/crafting-card/crafting-step1-creation/crafting-step1-creation.component';
 import { CraftingStep2StylingComponent } from './pages/crafting/crafting-card/crafting-step2-styling/crafting-step2-styling.component';
 import { CraftingStep3AssemblyComponent } from './pages/crafting/crafting-card/crafting-step3-assembly/crafting-step3-assembly.component';
+import { CraftingFoundryComponent } from './pages/crafting/crafting-foundry/crafting-foundry.component';
+import { CraftingFoundryCardComponent } from './pages/crafting/crafting-foundry/crafting-foundry-card/crafting-foundry-card.component';
 // Lands
 import { LandsHomeComponent } from './pages/lands/lands-home/lands-home.component';
 import { LandsMapComponent } from './pages/lands/lands-map/lands-map.component';
@@ -132,11 +123,12 @@ import { BridgeFromGameComponent } from './pages/bridge/bridge-from-game/bridge-
 import { BridgeErc20ReceiverComponent } from './pages/bridge/bridge-erc20-receiver/bridge-erc20-receiver.component';
 // Others
 import { KeyringComponent } from './pages/profile/keyring/keyring.component';
-import { PopUpSpecieSelectorComponent } from './shared/components/pop-ups/pop-up-specie-selector/pop-up-specie-selector.component';
-import { PopUpConfirmationComponent } from './shared/components/pop-ups/pop-up-confirmation/pop-up-confirmation.component';
-import { PipesModule } from './pipes/pipes.module';
 import { SalesStatisticsComponent } from './pages/marketplace/sales-statistics/sales-statistics.component';
 import { HealthComponent } from './pages/health/health.component';
+import { BlackMarketComponent } from './pages/black-market/black-market.component';
+import { BlackMarketSaleCreatorComponent } from './pages/black-market/black-market-sale-creator/black-market-sale-creator.component';
+import { BlackMarketMaterialCardComponent } from './pages/black-market/black-market-material-card/black-market-material-card.component';
+import { PopUpNumberInputComponent } from './shared/components/pop-ups/pop-up-number-input/pop-up-number-input.component';
 
 // Factory function required during AOT compilation
 export function httpTranslateLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -156,32 +148,6 @@ export function httpTranslateLoaderFactory(http: HttpClient): TranslateHttpLoade
     PagesComponent,
     NftCardComponent,
     CountdownComponent,
-    // FormatTimePipe,
-    // CeilPipe,
-    // DeleteWhitespacesPipe,
-    // FloorPipe,
-    // FromWeiPipe,
-    // ToTickerPipe,
-    // ShortWalletPipe,
-    // TimeStampIsPastPipe,
-    // WalletFirstNumPipe,
-    // ParseNumberPipe,
-    // WalletSpeciePipe,
-    // FormatTimePipe,
-    // CeilPipe,
-    // DeleteWhitespacesPipe,
-    // FloorPipe,
-    // FromWeiPipe,
-    // ToTickerPipe,
-    // NftContractToNamePipe,
-    // NftContractToVariablePipe,
-    // ShortWalletPipe,
-    // TimeStampIsPastPipe,
-    // WalletFirstNumPipe,
-    // ParseNumberPipe,
-    // WalletSpeciePipe,
-    // MaterialToTickerPipe,
-    MaterialFromAddressPipe,
     LootboxCardComponent,
     PopUpLootboxRewardsComponent,
     PopUpLootboxUtilitiesComponent,
@@ -242,7 +208,7 @@ export function httpTranslateLoaderFactory(http: HttpClient): TranslateHttpLoade
     KeyringComponent,
     PopUpSpecieSelectorComponent,
     PopUpConfirmationComponent,
-	SalesStatisticsComponent,
+	  SalesStatisticsComponent,
     CraftingCardComponent,
     CraftingFactoryComponent,
     CraftingStep1CreationComponent,
@@ -251,6 +217,13 @@ export function httpTranslateLoaderFactory(http: HttpClient): TranslateHttpLoade
     MaterialExtractionComponent,
     MaterialExtractionCardComponent,
     HealthComponent,
+    CraftingFoundryComponent,
+    CraftingFoundryCardComponent,
+    PopUpGetMaterialsComponent,
+    BlackMarketComponent,
+    BlackMarketSaleCreatorComponent,
+    BlackMarketMaterialCardComponent,
+    PopUpNumberInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -338,6 +311,12 @@ export function httpTranslateLoaderFactory(http: HttpClient): TranslateHttpLoade
             cache: new InMemoryCache(),
             link: httpLink.create({
               uri: environment.graphURIPools
+            })
+          },
+          blackMarket: {
+            cache: new InMemoryCache(),
+            link: httpLink.create({
+              uri: environment.graphURIUndergroundMarket
             })
           }
         };

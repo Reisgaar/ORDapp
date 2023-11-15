@@ -14,12 +14,7 @@
       <mat-icon class="icon prev" (click)="changeSelectedType()">arrow_left</mat-icon>
       <mat-icon class="icon next" (click)="changeSelectedType()">arrow_right</mat-icon>
     </p>
-    <p>
-      <span *ngIf="selectedType === 1">{{'crafting.weapons.' + items[selectedType][selectedWeapon] | translate}}</span>
-      <span *ngIf="selectedType === 0">{{'crafting.armors.' + items[selectedType][selectedArmor] | translate}}</span>
-      <mat-icon class="icon prev" (click)="changeSelectedItem(-1, selectedType)">arrow_left</mat-icon>
-      <mat-icon class="icon next" (click)="changeSelectedItem(1, selectedType)">arrow_right</mat-icon>
-    </p>
+
     <p *ngIf="selectedType === 1 && items[selectedType][selectedWeapon] !== 'shotgun' && items[selectedType][selectedWeapon] !== 'repeaterShotgun'">
       <span *ngIf="selectedElement === 0">{{'crafting.element0' | translate}}</span>
       <span *ngIf="selectedElement === 1">{{'crafting.element1' | translate}}</span>
@@ -27,5 +22,20 @@
       <mat-icon class="icon next" (click)="changeSelectedElement()">arrow_right</mat-icon>
     </p>
     <p *ngIf="selectedType === 1 && (items[selectedType][selectedWeapon] === 'shotgun' || items[selectedType][selectedWeapon] === 'repeaterShotgun')">{{'crafting.weaponParts.nonLaser' | translate}}</p>
+
+    <p>
+      <span *ngIf="selectedType === 1">{{'crafting.weapons.' + items[selectedType][selectedWeapon] | translate}}</span>
+      <span *ngIf="selectedType === 0">{{'crafting.armors.' + items[selectedType][selectedArmor] | translate}}</span>
+      <mat-icon class="icon prev" (click)="changeSelectedItem(-1, selectedType)">arrow_left</mat-icon>
+      <mat-icon class="icon next" (click)="changeSelectedItem(1, selectedType)">arrow_right</mat-icon>
+    </p>
   </div>
+</div>
+
+<div class="selection">
+  <div
+    *ngFor="let item of items[selectedType]; let i = index" class="item"
+    [class.selected]="(selectedType === 1 && i === selectedWeapon) || (selectedType === 0 && i === selectedArmor)"
+    (click)="setSelectedWeaponOrArmor(selectedType, i)"
+  ></div>
 </div>

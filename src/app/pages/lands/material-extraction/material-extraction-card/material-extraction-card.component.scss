@@ -140,6 +140,7 @@
           font-style: italic;
           font-size: 0.6rem;
           margin: 10px auto;
+          line-height: 1em;
         }
 
         p {
@@ -532,6 +533,14 @@
         transition: font-size 0.5s ease-in-out;
         font-size: 1rem;
         text-transform: uppercase;
+        margin: 0;
+
+        &-mini {
+          font-size: 0.8rem;
+          text-transform: unset;
+          line-height: 1em;
+          margin-bottom: 20px;
+        }
       }
 
       .crafting-benefit {

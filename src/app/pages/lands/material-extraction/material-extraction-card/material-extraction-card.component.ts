@@ -20,7 +20,7 @@ export class MaterialExtractionCardComponent implements OnInit, OnDestroy {
   pendingRewards: any;
   poolRewards: any;
   interval: any;
-  poolDepositFee: string = '';
+  poolDepositFee = { busd: '', gq: '' };
   discounts: any = { cost: 0, time: 0 };
 
   constructor(
@@ -80,7 +80,7 @@ export class MaterialExtractionCardComponent implements OnInit, OnDestroy {
    * Get fee of pool deposit
    */
   async getPoolDepositFee(): Promise<any> {
-    this.poolDepositFee = await this.materialExtractionService.getPoolDepositFee();
+    this.poolDepositFee = await this.materialExtractionService.getPoolDepositFee(this.landSizes[this.size]);
   }
 
   /**

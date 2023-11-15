@@ -27,12 +27,15 @@ import {
   cpoPriceOnBusd,
 } from 'src/app/constants/pricesOnBusd';
 import { OracleApiService } from '../oracle-api.service';
+import { dexDataConstantsTotalPools } from 'src/app/constants/dexDataConstantsTotalPools';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DexService {
   pools: Pool[] = [];
+  totalPools: Pool[] = [];
+
   abi: any;
   private typeOfPool = new BehaviorSubject<string>('');
   currentPool = this.typeOfPool.asObservable();
@@ -52,6 +55,7 @@ export class DexService {
     private oracleApiService: OracleApiService
   ) {
     this.fillPools();
+    this.fillTotalPools();
   }
 
   /**
@@ -168,8 +172,88 @@ export class DexService {
     return this.pools;
   }
 
+
+  /**
+   * Fills basic data for each pools pool in our constants
+   */
+  async fillTotalPools(): Promise<Pool[]> {
+    dexDataConstantsTotalPools.forEach(async (totalPpool) => {
+      this.totalPools.push({
+        id: '',
+        address: totalPpool.address,
+        allocPoint: '',
+        allowance: false,
+        totalAllocPoint: '',
+        lockupDuration: NaN,
+        timeLockup: NaN,
+        stakedToken: '',
+        stakedTokenSymbol: '',
+        stakedTokenName: '',
+        stakedTokenImg: totalPpool.stakedTokenImg,
+        stakedTokenDecimals: NaN,
+        subsidiaryToken1: '',
+        subsidiaryTokenSymbol1: totalPpool.subsidiaryTokenSymbol1,
+        subsidiaryTokenName1: '',
+        subsidiaryTokenImg1: totalPpool.subsidiaryTokenImg1,
+        subsidiaryTokenDecimals1: NaN,
+        subsidiaryToken2: '',
+        subsidiaryTokenSymbol2: totalPpool.subsidiaryTokenSymbol2,
+        subsidiaryTokenName2: '',
+        subsidiaryTokenImg2: totalPpool.subsidiaryTokenImg2,
+        subsidiaryTokenDecimals2: NaN,
+        subsidiaryTokenReserve1: '',
+        subsidiaryTokenReserve2: '',
+        resourcePerBlock: '',
+        rewardToken: '',
+        rewardTokenSymbol: '',
+        rewardTokenName: '',
+        rewardTokenImg: totalPpool.rewardTokenImg,
+        rewardTokenDecimals: NaN,
+        rewardTokenPrice: 0,
+        rewardDaily: NaN,
+        rewardWeekly: NaN,
+        rewardMonthly: NaN,
+        rewardYearly: NaN,
+        startBlock: NaN,
+        actualBlock: NaN,
+        endBlock: NaN,
+        pendingRewards: '',
+        // unStakeAmount: 0,
+        rewardPerBlock: '',
+        isApproved: false,
+        hasStarted: false,
+        hasEnded: false,
+        staked: '0',
+        stakedTotal: '',
+        // roiDaily: NaN,
+        // roiWeekly: NaN,
+        // roiMonthly: NaN,
+        // roiYearly: NaN,
+        // roiYCompound: NaN,
+        apr: NaN,
+        tvl: BigNumber.from(0),
+        // website: 'https://outerringmmo.com',
+        fee: NaN,
+        // multiplier: pool.multiplier,
+        type: totalPpool.type,
+        factory: totalPpool.factory,
+        liquidityData: 0,
+        hasLimit: false,
+        farm: totalPpool.farm,
+        // rewardTokenImg1: '',
+        // rewardTokenImg2: '',
+      });
+    });
+    return this.totalPools;
+  }
+
+
   async getPools(): Promise<Pool[]> {
     return this.pools;
+  }
+
+  async getTotalPools(): Promise<Pool[]> {
+    return this.totalPools;
   }
 
   async getPoolId(farmAddress: string, address: string): Promise<any> {
@@ -200,6 +284,16 @@ export class DexService {
       [farm]
     );
     const data = this.connectionService.fromWei(dataWei);
+    return data;
+  }
+
+  async getPairTokens(pairAddress: string, typeToken: string): Promise<any> {
+    const data = await this.connectionService.readContract(
+      pairAddress,
+      pairLp.abi,
+      typeToken,
+      []
+    );
     return data;
   }
 
@@ -950,20 +1044,21 @@ export class DexService {
   }
 
   getPriceImpact(
-    amountIn: FixedNumber,
+    amountIn: string,
     fee: number,
     reserveIn: FixedNumber
   ): any {
-    const feeToPI = (100 - fee) / 100;
-    const pI = amountIn
-      .mulUnsafe(FixedNumber.from(feeToPI.toString()))
-      .divUnsafe(reserveIn)
-      .mulUnsafe(FixedNumber.from(100));
-    const pINunber = pI.toUnsafeFloat().toFixed(3);
-    return pINunber;
+
+    const amount = this.connectionService.toWei(amountIn);
+    const feeToPI = FixedNumber.from(((100 - fee) / 100).toString());
+    const pI = ((FixedNumber.from(amount).mulUnsafe(feeToPI)).divUnsafe(FixedNumber.from(reserveIn))).mulUnsafe(FixedNumber.from(100));
+    console.log(pI, feeToPI, amountIn, fee, reserveIn);
+    return pI.toString();
+
   }
 
   public async swapTokens(
+    userAddr: string,
     tradeType: number,
     amountIn: string,
     amountOut: string,
@@ -978,7 +1073,29 @@ export class DexService {
       'confirmSwap',
       ''
     );
-    try {
+    const allowance1 = await this.tokenService.checkApproved(
+      contractAddresses.ROUTER,
+      userAddr,
+      tokenIn,
+      this.connectionService.toWei(amountIn)
+    );
+    let confirm1: boolean;
+    console.log('allowance', allowance1);
+    if (!allowance1) {
+      confirm1 = await this.tokenService.tokenApprove(
+        contractAddresses.ROUTER,
+        tokenIn,
+        this.connectionService.toWei(amountIn)
+      );
+    } else {
+      confirm1 = true;
+    }
+
+    console.log('confirm', confirm1);
+
+    if (confirm1) {
+      try {
+
       const am = (parseFloat(amountOut) * (1000 - slippage)) / 1000;
       const amountOutBn = BigNumber.from(
         this.connectionService.toWei(amountOut)
@@ -1063,6 +1180,7 @@ export class DexService {
       );
     }
   }
+  }
 
   async estimateLiquidityValue(
     address,
@@ -1110,7 +1228,7 @@ export class DexService {
     userAddr,
     pairAddress
   ): Promise<any> {
-
+console.log(slippage);
     const minA: FixedNumber = liquidityValue.amount0
       .mulUnsafe(FixedNumber.from(1000 - slippage))
       .divUnsafe(FixedNumber.from(1000));
@@ -1132,64 +1250,64 @@ export class DexService {
     const wallet = this.connectionService.getWalletAddress();
     const timestamp = lastBlockTimestamp.timestamp + deadline + 120;
 
-    const allow1 = await this.tokenService.getTokenAllowanceOnSpender(
-      tokenA,
-      contractAddresses.ROUTER
-    );
-    console.log('allow1', allow1, minA, minAWei);
-    const allow2 = await this.tokenService.getTokenAllowanceOnSpender(
-      tokenB,
-      contractAddresses.ROUTER
-    );
+    // const allow1 = await this.tokenService.getTokenAllowanceOnSpender(
+    //   tokenA,
+    //   contractAddresses.ROUTER
+    // );
+    // console.log('allow1', allow1, minA, minAWei);
+    // const allow2 = await this.tokenService.getTokenAllowanceOnSpender(
+    //   tokenB,
+    //   contractAddresses.ROUTER
+    // );
     const allowPair = await this.tokenService.getTokenAllowanceOnSpender(
       pairAddress,
       contractAddresses.ROUTER
     );
-    console.log('allow2', allow2, minB, minBWei, liquidityAmount, allowPair);
+    // console.log('allow2', allow2, minB, minBWei, liquidityAmount, allowPair);
 
-    const allowance1 = await this.tokenService.checkApproved(
-      contractAddresses.ROUTER,
-      userAddr,
-      tokenA,
-      minAWei
-    );
-    const allowance2 = await this.tokenService.checkApproved(
-      contractAddresses.ROUTER,
-      userAddr,
-      tokenB,
-      minBWei
-    );
-    const allowancePair = await this.tokenService.checkApproved(
+    // const allowance1 = await this.tokenService.checkApproved(
+    //   contractAddresses.ROUTER,
+    //   userAddr,
+    //   tokenA,
+    //   minAWei
+    // );
+    // const allowance2 = await this.tokenService.checkApproved(
+    //   contractAddresses.ROUTER,
+    //   userAddr,
+    //   tokenB,
+    //   minBWei
+    // );
+    const allowancePair = await this.tokenService.checkPairApproved(
       contractAddresses.ROUTER,
       userAddr,
       pairAddress,
       liquidityAmount
     )
-    let confirm1: boolean;
-    let confirm2: boolean;
+    // let confirm1: boolean;
+    // let confirm2: boolean;
     let confirmAllowancePair: boolean;
-    console.log('allowance', allowance1, allowance2, confirmAllowancePair);
-    if (!allowance1) {
-      confirm1 = await this.tokenService.tokenApprove(
-        contractAddresses.ROUTER,
-        tokenA,
-        minAWei
-      );
-    } else {
-      confirm1 = true;
-    }
-    if (!allowance2) {
-      confirm2 = await this.tokenService.tokenApprove(
-        contractAddresses.ROUTER,
-        tokenB,
-        minBWei
-      );
-    } else {
-      confirm2 = true;
-    }
+    // console.log('allowance', allowance1, allowance2, confirmAllowancePair);
+    // if (!allowance1) {
+    //   confirm1 = await this.tokenService.tokenApprove(
+    //     contractAddresses.ROUTER,
+    //     tokenA,
+    //     minAWei
+    //   );
+    // } else {
+    //   confirm1 = true;
+    // }
+    // if (!allowance2) {
+    //   confirm2 = await this.tokenService.tokenApprove(
+    //     contractAddresses.ROUTER,
+    //     tokenB,
+    //     minBWei
+    //   );
+    // } else {
+    //   confirm2 = true;
+    // }
 
     if (!allowancePair) {
-      confirmAllowancePair = await this.tokenService.tokenApprove(
+      confirmAllowancePair = await this.tokenService.pairApprove(
         contractAddresses.ROUTER,
         pairAddress,
         liquidityAmount
@@ -1197,9 +1315,9 @@ export class DexService {
     } else {
       confirmAllowancePair = true;
     }
-    console.log('confirm', confirm1, confirm2);
+    // console.log('confirm', confirm1, confirm2);
 
-    if (confirm1 && confirm2 && confirmAllowancePair) {
+    if (confirmAllowancePair) {
       console.log( 'transaction ',tokenA,
         tokenB,
         liquidityAmount,
@@ -1257,12 +1375,26 @@ export class DexService {
   /**
    * Get token price in dolars. If is GQ from Coingecko else get LP token price.
    */
-  async tokenPrice(pool, token?: string): Promise<number> {
+  async tokenPrice(pool, token?: string, type?:string): Promise<number> {
     if (
       pool.stakedToken.address.toLowerCase() ==
       contractAddresses.gq.toLowerCase()
     )
       token = pool.stakedToken.address;
+    if( pool.rewardToken[0].address.toLowerCase() ==
+    contractAddresses.gq.toLowerCase() && type == 'earnGQ1'
+    ) {
+      console.log('is gq type');
+      // const priceToken = await this.getUnitTokenPrice(token);
+      return gqPriceOnBusd[0];
+    }
+    if( pool.rewardToken.length > 1 && pool.rewardToken[1].address.toLowerCase() ==
+    contractAddresses.gq.toLowerCase() && type == 'earnGQ2'
+    ) {
+      console.log('is gq type');
+      // const priceToken = await this.getUnitTokenPrice(token);
+      return gqPriceOnBusd[0];
+    }
     if (!pool.stakedToken.LPToken) {
       const price = await this.getUnitTokenPrice(token);
       console.log(price);
@@ -1311,7 +1443,6 @@ export class DexService {
     if (address.toLowerCase() == contractAddresses.ipx.toLowerCase())
       return ipxPriceOnBusd[0];
     if (address.toLowerCase() == contractAddresses.gq.toLowerCase()) {
-      console.log('gq price', gqPriceOnBusd[0]);
       return gqPriceOnBusd[0];
     }
     if (address.toLowerCase() == contractAddresses.sck.toLowerCase()) {

@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
   // Change slider on resize
   @HostListener('window:resize', ['$event'])
   onResize(): void {
-    if (window.innerWidth > 850) {
+    if (window.innerWidth > 860) {
       this.responsiveMenuVisible = false;
     }
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { bnbPriceOnBusd, gqPriceOnBusd } from 'src/app/constants/pricesOnBusd';
 import { contractAddresses } from 'src/app/constants/contractAddresses';
 import { ConnectionService } from './connection/connection.service';
+import { Router } from '@angular/router';
 
 /**
  * Service to manage uncategorized multiple uses functions
@@ -12,7 +13,8 @@ import { ConnectionService } from './connection/connection.service';
 export class UtilsService {
 
   constructor(
-    private connectionService: ConnectionService
+    private connectionService: ConnectionService,
+    private router: Router
   ) { }
 
   /**
@@ -29,6 +31,35 @@ export class UtilsService {
       }
     }
     return imageNum;
+  }
+
+  /**
+   * Opens given own app url on a new tab on wheel click
+   * @param event the click event
+   * @param route the route
+   * @param params params if neccesary
+   */
+  async wheelClickToNewTab(event: any, route: string, params?: any): Promise<void> {
+    event.preventDefault();
+    if (event.button === 1) {
+      const url = this.router.serializeUrl(
+        this.router.createUrlTree([route], {queryParams: params})
+      );
+      window.open(url, '_blank');
+    }
+  }
+
+  /**
+   * Opens given own app url on a new tab
+   * @param event the click event
+   * @param route the route
+   * @param params params if neccesary
+   */
+  async clickToNewTab(route: string, params?: any): Promise<void> {
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([route], {queryParams: params})
+    );
+    window.open(url, '_blank');
   }
 
   /**

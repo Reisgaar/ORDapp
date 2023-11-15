@@ -42,8 +42,13 @@ export class MaterialExtractionService {
    * Get fee of pool deposit
    * @returns fee amount on wei
    */
-  async getPoolDepositFee(): Promise<any> {
-    return await this.connectionService.readContract(contractAddresses.landStaking, LandStaking.abi, 'stakingFee', []);
+  async getPoolDepositFee(landSize: string): Promise<any> {
+    const busd = await this.connectionService.readContract(contractAddresses.landStaking, LandStaking.abi, 'poolStakingFee', [landSize]);
+    const gq = await this.connectionService.readContract(contractAddresses.landStaking, LandStaking.abi, 'getPoolStakingFeeInGQ', [landSize]);
+    return {
+      busd,
+      gq
+    };
   }
 
   /**
@@ -62,21 +67,25 @@ export class MaterialExtractionService {
   async depositLand(tokenId: number, landSize: string): Promise<any> {
     console.log('Deposit ' + tokenId + ' land on material extraction pool.');
     const walletIsConnected = await this.connectionService.syncAccount();
+    const userAddr = this.connectionService.getWalletAddress();
     if (walletIsConnected) {
-      const allowed = await this.tokenService.nftCheckAllowance(contractAddresses.landStaking, contractAddresses.land);
-      if (allowed === true) {
-        let dialog = this.dialogService.openRegularInfoDialog('landStakingDeposit', 'confirmLandStakingDeposit-' + landSize.toLowerCase(), '');
-        try {
-          const fee = await this.connectionService.readContract(contractAddresses.landStaking, LandStaking.abi, 'getStakingFeeInBNB', []);
-          const tx = await this.connectionService.writeContract(contractAddresses.landStaking, LandStaking.abi, 'stakeLand', [tokenId], fee);
-          dialog.close();
-          dialog = this.dialogService.openRegularInfoDialog('landStakingDeposit', 'waitTransaction', '');
-          await waitForTransaction(tx);
-          dialog.close();
-          dialog = this.dialogService.openRegularInfoDialog('landStakingDeposit', 'successfulTransaction', '', 'successfulTransactionLink_html', tx.hash);
-        } catch (error: any) {
-          dialog.close();
-          dialog = this.dialogService.openRegularInfoDialog('error', error.message, '');
+      const landsAllowed = await this.tokenService.nftCheckAllowance(contractAddresses.landStaking, contractAddresses.land);
+      if (landsAllowed === true) {
+        const fee = await this.connectionService.readContract(contractAddresses.landStaking, LandStaking.abi, 'getPoolStakingFeeInGQ', [landSize]);
+        const gqAllowed = await this.tokenService.tokenApprovement(contractAddresses.landStaking, userAddr, contractAddresses.gq, fee)
+        if (gqAllowed === true) {
+          let dialog = this.dialogService.openRegularInfoDialog('landStakingDeposit', 'confirmLandStakingDeposit-' + landSize.toLowerCase(), '');
+          try {
+            const tx = await this.connectionService.writeContract(contractAddresses.landStaking, LandStaking.abi, 'stakeLand', [tokenId]);
+            dialog.close();
+            dialog = this.dialogService.openRegularInfoDialog('landStakingDeposit', 'waitTransaction', '');
+            await waitForTransaction(tx);
+            dialog.close();
+            dialog = this.dialogService.openRegularInfoDialog('landStakingDeposit', 'successfulTransaction', '', 'successfulTransactionLink_html', tx.hash);
+          } catch (error: any) {
+            dialog.close();
+            dialog = this.dialogService.openRegularInfoDialog('error', error.message, '');
+          }
         }
       }
     }

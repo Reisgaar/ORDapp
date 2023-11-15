@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { armorEnum, rarityBoosterProbabilities, weaponEnum } from 'src/app/constants/craftingData';
+import { armorEnum, rarityBoosterProbabilities, stylingPartsOrder, weaponEnum, weaponPartsInfo, weaponPartsOrder } from 'src/app/constants/craftingData';
 
 @Component({
   selector: 'app-crafting-step3-assembly',
@@ -15,6 +15,10 @@ export class CraftingStep3AssemblyComponent implements OnInit, OnChanges {
   boosters: any = rarityBoosterProbabilities;
   @Output() dataEvent = new EventEmitter<number>();
   outputData: number[] = [];
+  element = 0;
+  weaponParts: any = {};
+  weaponPartsOrder: any = weaponPartsOrder;
+  previewWeapon: boolean = false;
 
   ngOnInit(): void {
     if (this.poolData.nftType === 0) {
@@ -22,6 +26,12 @@ export class CraftingStep3AssemblyComponent implements OnInit, OnChanges {
     } else {
       this.weapon = weaponEnum[this.poolData.itemId];
     }
+    if (this.poolData.element === 1) {
+      this.element = this.poolData.element;
+    } else {
+      this.element = 0;
+    }
+    this.setSelectedParts();
     this.sendDataToParent();
   }
 
@@ -50,5 +60,41 @@ export class CraftingStep3AssemblyComponent implements OnInit, OnChanges {
       this.selectedEngineer += sum;
     }
     this.sendDataToParent();
+  }
+
+  /**
+   * Sets the selected parts for the weapon
+   */
+  setSelectedParts(): void {
+    for (let part in weaponPartsInfo[this.element][this.weapon]) {
+      if (['accessories', 'sights', 'underBarrel'].includes(part)) {
+        for (let subPart in weaponPartsInfo[this.element][this.weapon][part]) {
+          if (!this.weaponParts[part]) {
+            this.weaponParts[part] = {};
+          }
+          const aesthetic = this.getPoolNFTAesthetic(subPart);
+          this.weaponParts[part][subPart] = { aesthetic: aesthetic, showOnPreview: true, parts: weaponPartsInfo[this.element][this.weapon][part][subPart]};
+        }
+      } else {
+        const aesthetic = this.getPoolNFTAesthetic(part);
+        this.weaponParts[part] = { aesthetic, showOnPreview: true, parts: weaponPartsInfo[this.element][this.weapon][part]};
+      }
+    }
+    console.log(this.weaponParts)
+  }
+
+  /**
+   * Get the aesthetic of the pool NFT
+   * @param part part name
+   * @returns aesthetic number
+   */
+  getPoolNFTAesthetic(part: string): number {
+    const weaponName = weaponEnum[this.poolData.itemId];
+    const indexOfAesthetic = stylingPartsOrder[weaponName].indexOf(part);
+    return this.poolData.parts[indexOfAesthetic] - 1;
+  }
+
+  switchPreview(): void {
+    this.previewWeapon = !this.previewWeapon;
   }
 }

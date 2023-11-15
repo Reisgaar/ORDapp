@@ -145,10 +145,11 @@ export class SwapComponent implements OnInit, OnDestroy {
   async setPair() {
     const dialogRef = this.dialog.open(PairsComponent, {
       panelClass: 'lootbox-dialog-container',
-      data: { title: 'pairs' },
+      data: { title: 'pairs', type:'swap' },
     });
     dialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
+        console.log('pair selected', result);
         this.farm = result;
         await this.setPairToAdd(result);
         await this.checkIsAllowed(result);
@@ -200,7 +201,7 @@ export class SwapComponent implements OnInit, OnDestroy {
     }
 
     this.pairData = await this.dexService.getPairData(
-      result.stakedToken,
+      result.address,
       result.subsidiaryToken1,
       result.subsidiaryToken2
     );
@@ -481,7 +482,7 @@ export class SwapComponent implements OnInit, OnDestroy {
       } else {
         reserveFrom = this.pairData.reserve1;
       }
-      if (this.amount1 != '' || '0' || undefined) this.priceImpact = this.dexService.getPriceImpact(FixedNumber.from(this.amount1), this.pairData.fee, FixedNumber.from(reserveFrom));
+      if (this.amount1 != '' || '0' || undefined) this.priceImpact = await this.dexService.getPriceImpact(this.amount1, this.pairData.fee, FixedNumber.from(reserveFrom));
     }
 
   }
@@ -516,10 +517,12 @@ export class SwapComponent implements OnInit, OnDestroy {
   async approve(): Promise<void> {
     const deadline = Number(localStorage.getItem('transDeadLine')) * 60 + 120;
     const slippage = localStorage.getItem('slipTolerance');
+    const userAddr = await this.connectionService.getWalletAddress();
     try {
       // Get slippage and deadline values
       // Deadline to seconds
       const receipt = await this.dexService.swapTokens(
+        userAddr,
         this.tradeType,
         this.amount1,
         this.amount2,

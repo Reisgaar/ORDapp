@@ -1,0 +1,23 @@
+<div class="close">
+  <p class="text">{{"getMaterials.title" | translate}}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="content">
+  <p class="info">{{"getMaterials.howTo" | translate}}</p>
+  <div class="link" [routerLink]="['/defi/farms']" (click)="closePopUp()">
+    <p class="main">{{"getMaterials.farms" | translate}}</p>
+    <p class="text">{{"getMaterials.farmsDefinition" | translate}}</p>
+  </div>
+  <div class="link" [routerLink]="['/defi/farms']" (click)="openDefiPopUp('swap')" (click)="closePopUp()">
+    <p class="main">{{"getMaterials.swap" | translate}}</p>
+    <p class="text">{{"getMaterials.swapDefinition" | translate}}</p>
+  </div>
+  <div class="link" [routerLink]="['/lands/materialExtraction']" (click)="closePopUp()">
+    <p class="main">{{"getMaterials.extraction" | translate}}</p>
+    <p class="text">{{"getMaterials.extractionDefinition" | translate}}</p>
+  </div>
+  <div class="link" [routerLink]="['/crafting/foundry']" (click)="closePopUp()">
+    <p class="main">{{"getMaterials.foundry" | translate}}Foundry</p>
+    <p class="text">{{"getMaterials.foundryDefinition" | translate}}Dissasemble NFTs for materials</p>
+  </div>
+</div>

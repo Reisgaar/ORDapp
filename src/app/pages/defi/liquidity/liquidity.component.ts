@@ -84,7 +84,8 @@ export class LiquidityComponent implements OnInit {
   }
 
   async getLPReserves(): Promise<void> {
-    const totalPairs = await this.dexService.getPools();
+    const totalPairs = await this.dexService.getTotalPools();
+    const pairs = await this.dexService.getPools();
     await this.getPairsReserves(totalPairs);
   }
 
@@ -95,10 +96,13 @@ export class LiquidityComponent implements OnInit {
       const pairBalanceUser = await this.dexService.balanceOf(pair.address);
       // await this.lpService.getStakedToken(pair.address).then(arg => pair.stakedToken = arg);
       if (pairBalanceUser != 0) {
+        const token0 = await this.dexService.getPairTokens(pair.address, 'token0');
+        const token1 = await this.dexService.getPairTokens(pair.address, 'token1');
+
         const arg = await this.dexService.getPairData(
           pair.address,
-          pair.subsidiaryToken1,
-          pair.subsidiaryToken2
+          token0,
+          token1
         );
         pair.liquidityData = pairBalanceUser;
         pair.subsidiaryToken1 = arg.token0;
@@ -138,10 +142,9 @@ export class LiquidityComponent implements OnInit {
   async setPair() {
     const dialogRef = this.dialog.open(PairsComponent, {
       panelClass: 'lootbox-dialog-container',
-      data: { title: 'pairs' },
+      data: { title: 'pairs', type:'liquidity' },
     });
     dialogRef.afterClosed().subscribe(async (result: any) => {
-      console.log('The dialog was closed', result);
       if (result) {
         this.liquidityPlus.token1 = result.subsidiaryToken1;
         this.liquidityPlus.subsidiaryTokenSymbol1 = result.subsidiaryTokenSymbol1;
@@ -201,7 +204,6 @@ export class LiquidityComponent implements OnInit {
   }
 
   async validatePair(subscribed, result): Promise<void> {
-    console.log('suscribed', subscribed);
     if (subscribed == false) {
       this.error = false;
       this.firstPool = false;
@@ -219,7 +221,6 @@ export class LiquidityComponent implements OnInit {
     const token1 = await this.connectionService.fetchToken(result.subsidiaryToken2);
     this.pairData.tokenDecimals0 = token0.decimals;
     this.pairData.tokenDecimals1 = token1.decimals;
-    console.log(token1);
     if (this.pairData.addr === '0x0000000000000000000000000000000000000000') {
       this.subscription.unsubscribe();
       this.firstPool = true;
@@ -294,7 +295,6 @@ export class LiquidityComponent implements OnInit {
 
     if (where === '1') {
       this.tradeType = 1;
-      console.log('compare',  BigNumber.from(this.connectionService.toWei(this.liquidityPlus.amount1)), this.liquidityPlus.tokenBalance1);
       if (
         BigNumber.from(this.inputFirst).gt(
           BigNumber.from(this.liquidityPlus.tokenBalance1.toString())
@@ -369,7 +369,6 @@ export class LiquidityComponent implements OnInit {
           parseFloat(this.positionSecond.toString())) *
         100;
       this.shareOfPool = String(share.toFixed(5)) + ' %';
-      console.log('share', share, this.shareOfPool);
 
 
       if (

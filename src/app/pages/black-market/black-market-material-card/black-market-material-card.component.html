@@ -1,0 +1,19 @@
+<div class="card {{sale.material | materialFromAddress}}">
+  <div class="top-side">
+    <p class="name {{sale.material | materialFromAddress}}">{{'materials.' + (sale.material | materialFromAddress) | translate}}</p>
+    <img class="image" src="assets/images/crafting/materials/{{sale.material | materialFromAddress}}.png" alt="{{sale.material | materialFromAddress}} material image"/>
+    <p class="amount {{sale.material | materialFromAddress}}">{{sale.quantity | fromWei | number:'1.0-4'}}</p>
+  </div>
+  <div class="bottom-side">
+    <p class="price">
+      <span class="value">{{sale.price | fromWei | number:'1.0-4'}}</span>
+      <img class="gq" src="assets/images/tokens/gq_mini.png" alt="GQ token logo" />
+    </p>
+    <div class="buttons">
+      <p class="button" *ngIf="(sale.owner | lowercase) !== (owner | lowercase); else ownerButtons;" (click)="buyMaterials()">{{'blackMarket.buttons.buy' | translate}}</p>
+      <ng-template #ownerButtons>
+        <p class="button owner remove" (click)="removeSale()">{{'blackMarket.buttons.remove' | translate}}</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

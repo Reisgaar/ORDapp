@@ -40,10 +40,16 @@ export class BridgeErc20ReceiverComponent implements OnInit, OnDestroy {
     if (this.interval) { clearInterval(this.interval); }
   }
 
+  /**
+   * Gets the full amount of tokens available to redeem
+   */
   async getTokensToRedeem(): Promise<any> {
     this.tokensToRedeem = await this.bridgeService.getTokensToRedeem();
   }
 
+  /**
+   * Claims the selected amount of tokens
+   */
   async claimTokens(): Promise<any> {
     const amount = this.connectionService.toWei(this.tokenSelectedAmount);
     await this.bridgeService.claimTokens(amount);

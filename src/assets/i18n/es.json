@@ -16,11 +16,76 @@
   "allowance": {
     "allowanceManager": "Allowance Manager",
     "contract": "contrato",
-    "revoke": "revocar",
-    "custom": "custom",
-    "max": "máx.",
+    "revoke": "Revocar",
+    "allowAll": "Permitir todos",
+    "custom": "Custom",
+    "max": "Máx.",
     "currentAllowance": "Permiso Actual",
+    "allowedForAll": "Permiso para todos:",
     "notAllowed": "No permitido"
+  },
+
+  "blackMarket": {
+    "name": "Mercado Clandestino",
+    "home": {
+      "tip": "Comercia con tus materiales",
+      "title_html": "COMERCIA CON MATERIALES EN EL <b>MERCADO CLANDESTINO</b>",
+      "subtitle1": "No importa donde te encuentres, en los suburbios de la ciudad, en planetas prácticamente deshabitados o en el rincón más apartado del universo... el mercado clandestino está ahí, solo tienes que buscarlo.",
+      "subtitle2": "Adéntrate con cuidado en este entorno económico gestionado por los propios jugadores de Outer Ring para comerciar con los materiales que has conseguido en tus aventuras.",
+      "subtitle3": "¿Quieres materiales? ¿Quieres GQ? Este es tu sitio para tratar de alcanzar un trato interesante para ambas partes y así prosperar en este universo."
+    },
+    "sales": {
+      "allSales": "Todas",
+      "mySales": "Mis Ventas",
+      "noResults": "No hay resultados.",
+      "creator": {
+        "title": "Vende tus materiales",
+        "conditions": "Condiciones del mercado clandestino:",
+        "condition1": "Una vez creada la venta, y si no se ha vendido, podrás retirarla en cualquier momento.",
+        "condition2": "Las ventas conllevan una fee del ***% por el uso del servicio.",
+        "connectWallet": "Conecta tu wallet",
+        "setYourSale": "Configura la venta",
+        "material": "Material",
+        "amount": "Cantidad",
+        "max": "Máx.",
+        "priceInGQ": "Precio en GQ",
+        "approx": "aprox.",
+        "loading": "Cargando",
+        "notEnoughMaterials": "No tienes materiales",
+        "getMaterials": "Obtén materiales",
+        "selectMaterial": "Selecciona material",
+        "setAmount": "Elige cantidad",
+        "setPrice": "Ponle precio",
+        "createSale": "Crear venta"
+      }
+    },
+    "buttons": {
+      "buy": "Compra",
+      "setPrice": "Cambiar precio",
+      "remove": "Quitar"
+    },
+    "filter": {
+      "name": "Filtro",
+      "showAll": "Ver todos"
+    },
+    "order": {
+      "orderBy": "Ordenar por",
+      "id-asc": "Más antiguos",
+      "id-desc": "Más nuevos",
+      "quantity-asc": "Cantidad asc.",
+      "quantity-desc": "Cantidad desc.",
+      "price-asc": "Precio asc.",
+      "price-desc": "Precio desc."
+    },
+    "pagination": {
+      "page": "Pág.",
+      "of": "de"
+    },
+    "priceChange": {
+      "popUpTitle": "Cambiar precio",
+      "popUpMessage": "Añade el precio que quieras para cambiarlo en la venta del material.",
+      "popUpLabel": "Nuevo precio"
+    }
   },
 
   "bridge": {
@@ -79,12 +144,12 @@
 
   "crafting": {
     "home": {
-      "tip": "Equípate para la batalla",
-      "title_html": "USA MATERIALES PARA <b>CREAR Y MONTAR</b> TU EQUIPAMIENTO",
-      "subtitle1": "Desde todos los planetas y rincones del universo de Outer Ring, ha venido un extraordinario grupo de artesanos e ingenieros.",
-      "subtitle2": "Para compensar la pasión y la dedicación de los jugadores, os extienden la mano para compartir sus conociminetos sobre la creación de armas y armaduras.",
-      "subtitle3": "Bajo su guía, los jugadores podrán dar sus primeros pasos para quiparse lo mejor posible y convertirse en guerreros formidables.",
-      "readCarefuly": "Lee atentamente las siguientes líneas para entender como funciona el proceso del crafting.",
+      "tip": "Prepárate para la batalla",
+      "title_html": "DOMINA EL ARTE DE LA <b>CREACIÓN Y FORJA</b> TU ARSENAL",
+      "subtitle1": "En los vastos confines del Universo del Anillo Exterior, ha surgido un destacado colectivo de ingenieros y artesanos.",
+      "subtitle2": "Su misión: Transmitir su sabiduría en la creación de armas y armaduras a los guerreros más decididos de la galaxia.",
+      "subtitle3": "Bajo su guía, los jugadores pueden ahora confeccionar las armas más letales y las armaduras más exquisitas para enfrentarse a los desafíos más formidables de la galaxia.",
+      "readCarefuly": "Lee atentamente las siguientes líneas para entender cómo funciona el proceso del crafting.",
       "firstStep": "Primer paso:",
       "firstStepText": " la creación de la base",
       "selectCrafter": "Elige el herrero, hay uno para cada tier.",
@@ -92,55 +157,68 @@
       "selectWeapon": "Elige el arma y su elemento",
       "selectArmor": "Selecciona la armadura",
       "materialCost": "Tras realizar la selección, verás el coste de materiales y tu balance para cada uno de los pasos.",
+      "lookingForMaterials": "¿Te falta alguno de los materiales?",
+      "getMaterials": "Obtén materiales",
       "continueWithoutMaterials": "Podrás continuar el proceso con tan solo los materiales necesarios para el siguiente paso.",
-      "processDuration": "La duración del proceso es de XX horas.",
+      "processDuration": "La duración de este paso será de: 4h para Tier 1, 8h para Tier2 y 12h para Tier 3.",
       "secondStep": "Segundo paso:",
       "secondStepText": " dale tu estilo",
-      "sendToStyling": "Cuando se finalice el primer paso, podrás transferir el NFT a una de las tres pools de diseño.",
-      "addExtras": "También podrás añadir, con un pequeño coste adicional, diferente extras a tu arma (accesorios, bajo-cañon o miras).",
+      "sendToStyling": "Cuando finalice el primer paso, podrás transferir el NFT a una de las tres pools de diseño.",
+      "stylingPools": "Estas pools de diseño aceptan armas y armaduras de cualquier tier.",
+      "addExtras": "También podrás añadir, con un pequeño coste adicional, diferentes extras a tu arma (accesorios, bajo-cañon o miras).",
       "of": "de",
       "notEditable": "*En este paso, el arma o armadura y el elemento no serán modificables.",
       "thirdStep": "Tercer paso:",
-      "thirdStepText": " ensamblar las piezas",
-      "chooseEngineer": "Finalmente, tendrás que elegir al ingeniero que quieras que ensamble tu arma o armadura.",
-      "betterEngineer": "A mejor ingeniero seleccionado, mayor probabilidades de obtener una rareza superior.",
+      "thirdStepText": " ensambla las piezas",
+      "chooseEngineer": "En el último paso, deberás seleccionar al ingeniero que desees para ensamblar tu arma o armadura.",
+      "betterEngineer": "Las probabilidades de obtener un objeto de mayor rareza serán mayores a medida que elijas a un ingeniero de rango superior.",
       "rarityProbabilities": "Probabilidades de rareza",
       "onlyWorksT3": "Este ingeniero solo trabaja con NFTs de tier 3.",
       "enjoyExperience": "Disftura tu experiencia",
-      "remember": "Recordad exploradores:",
-      "rememberTip1": "Mirad atentamente el coste de materiales de cada paso, serán necesarios para completar la creación del NFT.",
-      "rememberTip2": "La elecciones que hagas en cada paso no serán modificables en los pasos siguientes.",
-      "faqDoubts": "Si tienes cualquier duda, consulta las ",
+      "remember": "Estimados exploradores: ",
+      "rememberTip1": "Os recordamos la importancia de prestar atención al coste de materiales en cada paso, ya que son esenciales para llevar a cabo el proceso completo de creación del NFT.",
+      "rememberTip2": "Las decisiones que tomes en cada paso no podrán ser modificadas en pasos posteriores así que asegúrate de revisar todo antes de avanzar.",
+      "faqDoubts": "Para obtener más información sobre el proceso de Crafting, te recomendamos consultar nuestras ",
       "startCrafting": "Comienza el crafting!"
     },
+    "approxInGQ": "aprox. *** GQ",
     "discount": "Tienes una reducción del ***% en costes de material y ###% en la duración.",
     "getDiscount1": "Stakea un NFT de Land",
     "getDiscount2": "para conseguir descuentos en materiales y reducciónes de tiempo",
-    "discountTip": "Usar estos beneficios bloqueará la Land por un tiempo.",
+    "discountTip": "Usar estos beneficios bloqueará la mayor Land depositada por un tiempo.",
     "craftingFactory": "Factoría del Crafting",
+    "craftingFoundry": "Fundición del Crafting",
     "connectWallet": "Conecta la Wallet",
     "connectWallet1": "El sistema de crafting no está disponible sin conectar la wallet.",
     "connectWallet2": "Por favor, conecta tu wallet a la Dapp para usar el sistema de crafting.",
     "creation": "Creación",
     "styling": "Estilo",
     "assembly": "Montaje",
-    "step1tip1": "En este paso comenzarás la creación de la base de tu arma o armadura.",
-    "step1tip2": "Elige el herrero dependiendo del tier que quieras y mira los materiales necesarios.",
-    "step1tip3": "La duración del proceso de creación es de 12h.",
+    "step1tip1": "En este paso comenzarás la creación de la base de tu arma/armadura.",
+    "step1tip2": "Elige el herrero dependiendo del tier que quieras.",
+    "step1tip3": "Elige el arma o armadura que quieras crear.",
+    "step1tip4": "Mira los materiales necesarios, ahora solo necesitas los del paso de creación.",
+    "step1tip5": "La duración del proceso de creación es de 4h para Tier 1, 8h para Tier2 y 12h para Tier 3.",
     "step2tip1": "En este paso puedes personalizar el estilo de tu arma a tu gusto.",
-    "step2tip2": "Las piezas adicionales tendrán un coste extra.",
-    "step2tip3": "La duración del proceso de estilo es de 12h.",
+    "step2tip2": "Las pools de diseño aceptan armas/armaduras de cualquier tier.",
+    "step2tip3": "Personaliza tu arma con la estética que más te guste.",
+    "step2tip4": "En armas, las piezas adicionales tendrán un coste extra.",
+    "step2tip5": "La duración del proceso de estilo es de 4h para Tier 1, 8h para Tier2 y 12h para Tier 3.",
     "step3tip1": "En este paso podrás elegir al mejor ingeniero para que monte tu arma.",
-    "step3tip2": "A mejor ingeniero, mayor probabilidad de obtener una rareza superior.",
-    "step3tip3": "La duración del proceso de montaje es de 12h.",
+    "step3tip2": "Los puestos de ingeniería aceptan armas/armaduras de cualquier tier.",
+    "step3tip3": "A mejor ingeniero, mayor probabilidad de obtener una rareza superior.",
+    "step3tip4": "Las mayores rarezas son: Tier 1 Rara, Tier 2 Épica y Tier 4 Legendaria.",
+    "step3tip5": "La duración del proceso de montaje es de 4h para Tier 1, 8h para Tier2 y 12h para Tier 3.",
     "stageCompleted": "¡Paso completado!",
-    "emptyPool": "Esta pool está vacía",
-    "priceStep1": "Sueldo del Herrero: *** BUSD",
+    "emptyPool1": "Esta pool está vacía",
+    "emptyPool2": "Se acepta cualquier tier",
+    "priceStep1": "Sueldo del Herrero: ***$ in GQ",
     "priceFreeStep1": "Sueldo del Herrero: Gratis",
-    "priceStep2": "Precio de extras: *** BUSD",
+    "priceStep2": "Precio de extras: ***$ in GQ",
     "priceFreeStep2": "Sin piezas extra",
-    "priceStep3": "Sueldo del ingeniero: *** BUSD",
+    "priceStep3": "Sueldo del ingeniero: ***$ in GQ",
     "priceFreeStep3": "Sueldo del ingeniero: Gratis",
+    "craftingStartFee": "*iniciar tiene una fee de ***$ en BNB",
     "startStep1": "Iniciar Creación",
     "startStep2": "Iniciar Estilo",
     "startStep3": "Iniciar Montaje",
@@ -150,12 +228,12 @@
     "accelerateStep1": "Acelerar creación",
     "accelerateStep2": "Acelerar estilo",
     "accelerateStep3": "Acelerar montaje",
-    "notAllowed":"No disponible",
+    "missingMaterials":"¿Te faltan materiales?",
     "customize": "¡Personaliza!",
     "remaining": "Restante",
     "step1": {
       "pool0": "Aprendiz de Herrero",
-      "pool1": "Herrero Senior",
+      "pool1": "Herrero Sénior",
       "pool2": "Herrero Experto"
     },
     "step2": {
@@ -168,8 +246,8 @@
       "pool1": "Puesto de Ingeniero",
       "pool2": "Puesto de Ingeniero",
       "trainee": "Ingeniero Aprendiz",
-      "junior": "Ingeniero Junior",
-      "senior": "Ingeniero Senior",
+      "junior": "Ingeniero Júnior",
+      "senior": "Ingeniero Sénior",
       "expert": "Ingeniero Experto",
       "master": "Ingeniero Maestro"
     },
@@ -265,7 +343,17 @@
     },
     "element0": "No láser",
     "element1": "Láser",
-    "element2": "No láser"
+    "element2": "No láser",
+    "materials": "Tus materiales",
+    "creationTip": "Creación, consejo",
+    "stylingTip": "Estilo, consejo",
+    "assemblyTip": "Montaje, consejo",
+    "nextTip": "siguiente",
+    "lockedCrafter": "Herrero bloqueado",
+    "minimumCrafts": "Creaciones de Tier *** requeridas:",
+    "craftsDone": "Creaciones hechas:",
+    "confirm": "Confirmar",
+    "extraAddOnCost": "Las piezas adicionales tienen un coste extra de ***$ en GQ."
   },
 
   "date": {
@@ -297,6 +385,55 @@
     "telegramLink": "https://t.me/galactic_quadrant_es"
   },
 
+  "foundry": {
+    "tip": "Reutiliza tus armas y armaduras",
+    "title_html": "<b>Desmonta</b> tus NFT y <b>recupera materiales</b>",
+    "subtitle1": "¿Necesitas conseguir materiales rápidamente para crear el arma que se adapte perfectamente a tu equipo?",
+    "subtitle2": "Sumérgete en tu inventario, rebusca entre armas y armaduras olvidadas que están acumulando polvo. En Outer Ring el ingenio es la clave: todo puede tener una utilidad.",
+    "subtitle3": "Recuerda: los enemigos se han estado preparando meticulosamente para la batalla con su equipo más formidable. Debes permanecer alerta, siempre listo para afrontar cualquier posible enfrentamiento.",
+    "mainName": "Fundición Galáctica",
+    "selectWeapons": "Elige armas",
+    "select5Weapons": "Elige hasta 5 armas para desmontarlas y recibir materiales.",
+    "selectArmors": "Elige armaduras",
+    "select5Armors": "Elige hasta 5 armaduras para desmontarlas y recibir materiales.",
+    "nftsWillBeBurned": "Los NFTs seleccionados se quemarán después de este proceso.",
+    "selectNFT": "Elige NFTs",
+    "selectedNFTs": "NFTs seleccionados:",
+    "send": "Enviar",
+    "inProgress": "En progreso",
+    "poolLimit": "Puedes añadir hasta *** NFTs a la pool de desmontaje.",
+    "poolUpgradeAdvice": "Puedes aumentar este limite a 3 mejorando o comprando pools.",
+    "card": {
+      "connectWallet": "Por favor, conecta tu wallet",
+      "loadingPool": "Cargando pool",
+      "dismounting": "Desmontando",
+      "remaining": "Restante",
+      "accelerate": "Acelerar",
+      "claimMaterials": "Reclamar Materiales",
+      "endPool": "Reclamar y Terminar",
+      "poolEmpty": "Pool vacía",
+      "poolLocked": "Pool bloqueada",
+      "capacity": "Capacidad",
+      "selectNftToDissasemble": "Selecciona las armas o armaduras para desmontar en uno de los fundidores de arriba.",
+      "upgrade": "Mejorar",
+      "unlockFor": "Desbloquear por",
+      "approx": "aprox."
+    }
+  },
+
+  "getMaterials": {
+    "title": "Obtén materiales",
+    "howTo": "Hay diferentes maneras de obtener materiales:",
+    "farms": "Farms",
+    "farmsDefinition": "Mira en los farming de materiales",
+    "swap": "Swap",
+    "swapDefinition": "Intercambia tus materiales",
+    "extraction": "Extracción de Materiales",
+    "extractionDefinition": "Deposita lands para extraer materiales",
+    "foundry": "Fundición",
+    "foundryDefinition": "Desmonta NFTs por materiales"
+  },
+
   "governance": {
     "getVP": {
       "tip": "Gana influencia dentro de Outer Ring",
@@ -319,7 +456,7 @@
       "earned": "Ganado",
       "harvest": "Recoge VP",
       "staked": "Depositado",
-      "withdraw": "Retirar GQ",
+      "withdraw": "Retirar",
       "details": "Detalles",
       "hide": "Ocultar",
       "totalStaked": "Total stakeado:",
@@ -433,7 +570,7 @@
     "toClaim": "Tienes para reclamar una llave de una ***",
     "ownedKey": "Tienes una *** en el GoldStar Holdtel",
     "roomName": {
-      "junior": "Habitación Junior",
+      "junior": "Habitación Júnior",
       "standard": "Habitación Standard",
       "executive": "Habitación Executive",
       "deluxe": "Suite Deluxe",
@@ -792,20 +929,40 @@
     }
   },
 
+  "materials": {
+    "acetylene": "Acetileno",
+    "aluminium": "Aluminio",
+    "argon": "Argón",
+    "carbon": "Carbono",
+    "chromium": "Cromo",
+    "cobalt": "Cobalto",
+    "copper": "Cobre",
+    "helium": "Helio",
+    "hydrogen": "Hidrógeno",
+    "iron": "Hierro",
+    "methane": "Metano",
+    "nickel": "Níquel",
+    "oxygen": "Oxígeno",
+    "plutonium": "Plutonio",
+    "silicon": "Silicio",
+    "vanadium": "Vanadio"
+  },
+
   "materialExtraction": {
     "tip": "Extrae materiales de tus lands",
-    "title_html": "<b>STAKEA</b> TUS NFTS DE LANDS Y <b>CONSIGUE RECURSOS</b>",
-    "subtitle1": "Los S.T.A.R.S. (Sociedad de Trabajadores para la Adquisición de Recursos en Sectores) han llegado, dándonos la oportunidad de obtener beneficios de nuestras lands.",
-    "subtitle2": "Hay un equipo especializado para cada tipo de land. Confía la extracción a los equipos, así los trabajadores podrán iniciar el proceso de extracción para obtener valiosos materiales.",
-    "subtitle3": "Permitiendo a los equipos S.T.A.R.S. trabajar en tus lands, también conseguirás reducir los costes de materiales y los tiempos de procesamiento en el sistema de crafting.",
+    "title_html": "<b>DEPOSITA</b> TUS NFTS DE LANDS Y <b>CONSIGUE RECURSOS</b>",
+    "subtitle1": "En la vasta extensión de tus preciadas Lands se revela un misterio a medida que los S.T.A.R.S. (Transformadores Espaciales y Buscadores de Recursos) hacen su llegada. Este grupo especial te ayudará a desvelar los secretos de la extracción de recursos y a cosechar recompensas en tus territorios.",
+    "subtitle2": "Para cada tipo de terreno, existe un equipo especializado listo para comenzar su tarea: extraer, desenterrar recursos y obtener valiosos materiales.",
+    "subtitle3": "Permite que los equipos S.T.A.R.S. trabajen en tus tierras y, a cambio, disfrutarás de beneficios como reducir los costes de materiales o acelerar procesos dentro del sistema de Crafting. ¡Tu camino hacia la prosperidad comienza aquí!",
     "poolsTitle": "Equipos de trabajo de S.T.A.R.S.",
     "card": {
       "title": "Equipo de Land ***",
       "poolRewards": "Recompensas",
+      "perBlock": "Por bloque",
       "craftingReduction": "Decuentos en crafting:",
       "craftingReductionData": "Coste de materiales ***% y tiempos ###%",
       "addLand": "Añade tu land",
-      "stakeFee": "*El depósito conlleva una comisión de ***$ en BNB",
+      "stakeFee_html": "*El depósito conlleva una comisión de ***$ en GQ</br>(### GQ approx.)",
       "noLandToStake": "No tienes lands *** para hacer stake.",
       "selectLand": "Selecciona una de tus lands",
       "extracted": "Extraído",
@@ -844,6 +1001,8 @@
     "faq": "FAQ",
     "crafting": "Crafting",
     "factory": "Factory",
+    "foundry": "Fundición",
+    "blackMarket": "Mercado Clandestino",
     "allowanceManager": "Allowance Manager",
     "contactSupport": "Contactar con soporte",
     "directSells": "Venta directa",
@@ -859,8 +1018,9 @@
     "poolsDescription": "Bloquea tokens para obtener recompensas",
     "swapDescription": "Intercambia materiales",
     "liquidityDescription": "Añade liquidez a los pares",
-    "workshopDescription": "Utiliza materiales para crear piezas de armas y armaduras",
-    "factoryDescription": "Utiliza piezas para crear armas",
+    "factoryDescription": "Crea tus armas y armaduras",
+    "foundryDescription": "Desmonta tus NFTs por materiales",
+    "blackMarketDescription": "Comercia con tus materiales",
     "landsDescription": "Puja en las subastas para tener tu land",
     "materialExtractionDescription": "Extrae materiales de tus lands",
     "getGq": "Obten GQ",
@@ -995,6 +1155,22 @@
   },
 
   "popUp": {
+    "foundryClaim": "Reclamar Materiales",
+    "confirmFoundryClaim": "Por favor, confirma la transacción en tu wallet para reclamar los materiales de la fundición.",
+    "foundrySkipConfirm": "Por favor, confirma la transacción en tu wallet para acelerar y reclamar los materiales de la fundición.",
+    "foundrySkip": "Acelerar y reclamar",
+    "upgradePoolConfirm": "Confirma la transacción en tu wallet para mejorar la pool a capacidad 3.",
+    "upgradePool": "Mejorar pool",
+    "unlockPoolConfirm": "Por favor, confirma la transacción en tu wallet para desbloquear la pool de capacidad 3.",
+    "unlockPool": "Desbloquear pool",
+    "confirmMaterialBuy": "Por favor, confirma la transacción en tu wallet para comprar los materiales.",
+    "materialBuy": "Comprar materiales",
+    "confirmSaleRemoving": "Por favor, confirma la transacción en tu wallet para retirar la venta de material.",
+    "saleRemoving": "Retirar venta de material",
+    "confirmMaterialSalePriceChange": "Por favor, confirma la transacción en tu wallet para cambiar el precio de la venta de material.",
+    "materialSalePriceChange": "Cambiar precio de material",
+    "confirmMaterialSaleCreation": "Por favor, confirma la transacción en tu wallet para crear la venta de material.",
+    "materialSaleCreation": "Crear venta de material",
     "landStakingDeposit": "Depositar Land",
     "confirmLandStakingDeposit-nano": "Por favor, confirma la transacción de depósito de Nano Land en tu wallet.",
     "confirmLandStakingDeposit-micro": "Por favor, confirma la transacción de depósito de Micro Land en tu wallet.",
@@ -1020,6 +1196,8 @@
     "craftingCreationEnd": "Confirma la transacción para enviar tu NFT a una Pool de Diseño.",
     "craftingCreationSkip": "Confirma la transacción para para acelerar el tiempo del proceso de creación.",
     "craftingCreationStart": "Confirma la transacción para para iniciar el proceso de creación.",
+    "foundryDissasemble": "Desmontar en fundición",
+    "foundryDissasembleStart": "Confirma la transacción para iniciar el proceso de desmontaje de NFTs.",
     "confirmationNeeded": "Confirmación requerida",
     "specieBurnConfirmation1": "Cuidado, con esta acción estás quemando tu NFT de especie.",
     "specieBurnConfirmation2": "Podrás volver a comprar un NFT de especie.",
@@ -1138,6 +1316,7 @@
       "cancel": "Cancelar",
       "accept": "Aceptar"
     },
+    "settings": "Ajustes",
     "waitSwap": "Swap",
     "confirmSwap": "Por favor, confirma el swap en tu wallet",
     "addLiquidity": "Por favor, confirma añadir liquidez en tu wallet",
@@ -2048,8 +2227,242 @@
           }
         }
       }
+    },
+    "block11": {
+      "title": "Crafting",
+      "id": "crafting",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "¿Qué es el sistema de Crafting de Outer Ring y qué puedo crear?",
+              "answer": "El sistema de Crafting es un proceso mediante el cual podrás crear NFTs de armas o armaduras usando materiales."
+            },
+            "q02": {
+              "title": "¿Qué necesito para poder usar el Crafting?",
+              "answer": "Para usar el crafting será necesario disponer de materiales y el token GQ, con los cuales poder pagar los costes durante todo el proceso. Además, necesitarás también poseer BNB en tu wallet para pagar el gas de las transacciones."
+            },
+            "q03": {
+              "title": "¿Qué son los materiales?",
+              "answer": "Los materiales son recursos tokenizados del universo de Outer Ring.</br></br>Existen un total de 16: Iron, Copper, Oxygen, Hydrogen, Carbon, Nickel, Silicon, Chromium, Helium, Vanadium, Methane, Aluminium, Cobalt, Plutonium, Acetylene y Argon. "
+            },
+            "q04": {
+              "title": "¿Cómo consigo estos materiales?",
+              "answer": "Los materiales, los cuales podían obtenerse a través de las Lootboxes hasta el 25 de julio de 2023, pueden adquirirse ahora a través de las Farms de materiales en la Dapp de Outer Ring o haciendo staking de GQ en algunos pools.</br></br>De manera adicional, también se pueden obtener haciendo staking de NFTs de lands en las nuevas pools de extracción de materiales.</br></br>Por otro lado, si dispones de materiales, puedes intercambiarlos mediante la opción de swap de la sección DeFi de la DApp."
+            },
+            "q05": {
+              "title": "¿Cuáles son los pasos principales del sistema de Crafting?",
+              "answer": "El sistema de Crafting consiste en tres pasos: creación, estilo y montaje."
+            },
+            "q06": {
+              "title": "¿Cuánto tiempo requiere completar el proceso de crafting?",
+              "answer": "El proceso del crafting puede durar entre 12-36 horas, dependiendo de las características del NFT que se esté creando y del uso opcional de la aceleración de procesos."
+            },
+            "q07": {
+              "title": "¿Pueden acelerarse estos procesos?",
+              "answer": "Sí, cada uno de los procesos podrá acelerarse con su correspondiente pago a través del token GQ."
+            },
+            "q08": {
+              "title": "Una vez comenzado el proceso de Crafting, ¿puedo modificar algún paso anterior?",
+              "answer": "Las elecciones que se hayan hecho en cualquiera de los pasos del proceso no serán modificables en los siguientes."
+            },
+            "q09": {
+              "title": "¿Debo estar en posesión de todos los materiales antes de de comenzar el proceso de Crafting?",
+              "answer": "No es necesario. Para comenzar cada  uno de los tres pasos del Crafting, tan solo deberás poseer los materiales necesarios para iniciar ese paso en concreto. Sin embargo, conforme vas avanzando en la construcción de tu ítem, serán necesarios que se indiquen."
+            },
+            "q10": {
+              "title": "¿Cuántos materiales me costará cada paso? ¿Y cuántos GQ?",
+              "answer": "El coste depende del tipo de objeto que deseas fabricar y del nivel que quieras otorgar a cada uno de ellos; podrás visualizar los costes antes de iniciar el proceso."
+            },
+            "q11": {
+              "title": "¿Qué uso tendrán los NFTs que cree en el Crafting?",
+              "answer": "Los NFTs fabricados podrán ser puestos a la venta o puja en el Marketplace de Outer Ring."
+            },
+            "q12": {
+              "title": "¿Qué pasará con los NFTs que he conseguido hasta ahora en la Dapp de Outer Ring?",
+              "answer": "Sus propiedades y su uso serán idénticos a los NFTs creados en el crafting."
+            },
+            "q13": {
+              "title": "¿Cuándo podré usar los NFTs obtenidos en el Crafting?",
+              "answer": "Todavía no se ha concretado una fecha específica."
+            }
+          }
+        },
+        "subsection02": {
+          "title": "Step 1: Creation",
+          "questions": {
+            "q01": {
+              "title": "¿En qué consiste el paso de la Creación?",
+              "answer": "En la creación, el herrero seleccionado creará la base del arma o armadura que selecciones. Aquí también seleccionarás si un arma será tipo láser o no."
+            },
+            "q02": {
+              "title": "¿Qué tipos de armas es posible construir en el Crafting?",
+              "answer": "En total hay 13 armas: Espada, Arma contundente, Cuchillo, Pistola, Revólver, Escopeta, Escopeta de repetición, SMG de Asalto, SMG de Alta Velocidad, Rifle de Asalto, Ametralladora Ligera, Rifle de Francotirador y Rifle de Precisión."
+            },
+            "q03": {
+              "title": "¿Qué tipo de armaduras es posible construir en el Crafting?",
+              "answer": "En total hay 9 armaduras: Casco, Peto, Hombreras, Antebrazos, Brazales, Guantes, Perneras, Rodilleras y Botas."
+            },
+            "q04": {
+              "title": "¿Qué tipo de herreros puedo usar y qué diferencia existe entre ellos?",
+              "answer": "En total hay 3 herreros. Cada uno de ellos consiste en una pool de un Tier diferente donde puedes iniciar el proceso de crafting."
+            },
+            "q05": {
+              "title": "¿Qué coste tiene el proceso de Creación?",
+              "answer": "Cada herrero cobrará un \"honorario\". Conforme mayor es la experiencia del herrero, mejor será el resultado, por lo que este incremento de nivel se verá reflejado en el precio."
+            },
+            "q06": {
+              "title": "¿Cuántas armas y armaduras puedo crear?",
+              "answer": "Podrás crear tantas armas y armaduras como materiales puedas permitirte gastar. Eso sí, solo podrás tener tres ítems a la vez en el proceso de creación, uno de cada Tier."
+            },
+            "q07": {
+              "title": "¿Cómo inicio el proceso de Creación?",
+              "answer": "Para iniciar el proceso, primero selecciona el arma o armadura que desees crear. Si escoges un arma, selecciona si será de tipo laser o no. A continuación, asegúrate de tener los materiales para iniciar el proceso. Por último, haz click en el botón de “iniciar creación” y acepta la transacción en tu cartera."
+            },
+            "q08": {
+              "title": "¿Cuánto dura el proceso de creación?",
+              "answer": "El proceso de creación puede durar entre 4-12 horas, dependiendo de las características del NFT que se esté creando."
+            },
+            "q09": {
+              "title": "¿Cómo termino el proceso de Creación?",
+              "answer": "Una vez finalizado el tiempo de espera, envía tu creación al pool de Diseño para personalizar su estilo."
+            },
+            "q10": {
+              "title": "¿Qué ocurre si recibo un mensaje de error durante la finalización del proceso?",
+              "answer": "Asegúrate de tener una pool de Diseño disponible, la cual habilita el segundo paso del proceso de Crafting. Si no, el herrero no podrá enviar su creación y el proceso no podrá continuar."
+            }
+          }
+        },
+        "subsection03": {
+          "title": "Step 2: Styling",
+          "questions": {
+            "q01": {
+              "title": "¿En qué consiste el paso del Diseño?",
+              "answer": "En el paso de Diseño podrás escoger la estética de la armadura o, en el caso de las armas, la estética de cada una de sus componentes."
+            },
+            "q02": {
+              "title": "¿Cuántos componentes forman un arma?",
+              "answer": "Cada arma sigue el siguiente patrón de composición: todas se componen de partes básicas (las cuales son obligatorias), a las que se les puede añadir tres partes opcionales (miras, silenciadores y accesorios bajo cañón)."
+            },
+            "q03": {
+              "title": "¿Cómo inicio el proceso de Diseño?",
+              "answer": "Para iniciar el proceso, primero selecciona el estilo de las partes de arma o de la armadura que estés creando; puedes añadirle partes opcionales con un coste adicional.</br></br>A continuación, asegúrate de tener los materiales necesarios para iniciar el segundo paso.</br></br>Por último, haz click en el botón de iniciar diseño y acepta la transacción en tu cartera."
+            },
+            "q04": {
+              "title": "¿Cuánto dura el proceso de diseño?",
+              "answer": "El proceso de diseño puede durar entre 4-12 horas, dependiendo de las características del NFT que se esté creando."
+            },
+            "q05": {
+              "title": "¿Cómo culmino el proceso de diseño?",
+              "answer": "Una vez concluido el tiempo de espera, tendrás que hacer click en el botón de la tarjeta de la pool de Diseño para mandar el NFT al siguiente paso de creación: la pool de montaje."
+            },
+            "q06": {
+              "title": "¿Qué ocurre si recibo un mensaje de error durante la finalización del proceso?",
+              "answer": "Asegúrate de tener una pool de Montaje disponible, la cual habilita el tercer paso del proceso de Crafting. Si no, el proceso no podrá continuar."
+            },
+            "q07": {
+              "title": "¿Cuántas armas y armaduras puedo trabajar durante el proceso de diseño?",
+              "answer": "Como máximo se podrán tener hasta tres ítems a la vez durante el proceso de diseño, uno por cada pool disponible."
+            }
+          }
+        },
+        "subsection04": {
+          "title": "Step 3: Assembly",
+          "questions": {
+            "q01": {
+              "title": "¿En qué consiste el paso de Montaje?",
+              "answer": "En el paso de Montaje seleccionarás al ingeniero que se encargará de montar todas las partes."
+            },
+            "q02": {
+              "title": "¿Qué diferencia existe entre los diferentes tipos de ingenieros?",
+              "answer": "Hay un total de 5 ingenieros, y cada uno de ellos podrá montarte el arma asegurándote unos porcentajes de la rareza final del NFT. A mejor ingeniero, mayor probabilidad de obtener una rareza mejor."
+            },
+            "q03": {
+              "title": "¿Qué coste tiene cada ingeniero?",
+              "answer": "Cada ingeniero tendrá un \"honorario\" que cobrará por sus servicios en función del nivel del objeto. El pago será en GQ, equivalente a los siguientes importes en USD:</br></br><div class=\"eng-pay\"><div class=\"centered eng-pay-1\">Aprendiz</div><div class=\"centered eng-pay-2\">Júnior</div><div class=\"centered eng-pay-3\">Sénior</div><div class=\"centered eng-pay-4\">Experto</div><div class=\"centered eng-pay-5\">Maestro</div><div class=\"centered eng-pay-6\">Tier 1</div><div class=\"centered eng-pay-7\">Gratis</div><div class=\"centered eng-pay-8\">1$</div><div class=\"centered eng-pay-9\">3$</div><div class=\"centered eng-pay-10\">5$</div><div class=\"centered eng-pay-11\">-</div><div class=\"centered eng-pay-12\">Tier 2</div><div class=\"centered eng-pay-13\">Gratis</div><div class=\"centered eng-pay-14\">5$</div><div class=\"centered eng-pay-15\">15$</div><div class=\"centered eng-pay-16\">40$</div><div class=\"centered eng-pay-17\">-</div><div class=\"centered eng-pay-18\">Tier 3</div><div class=\"centered eng-pay-19\">Gratis</div><div class=\"centered eng-pay-20\">10$</div><div class=\"centered eng-pay-21\">30$</div><div class=\"centered eng-pay-22\">80$</div><div class=\"centered eng-pay-23\">100$</div></div>"
+            },
+            "q04": {
+              "title": "¿Cómo inicio el proceso de Montaje?",
+              "answer": "Para iniciar el proceso, primero selecciona el ingeniero que quieres que monte tu arma. A continuación, asegúrate de tener los materiales para iniciar el paso. Por último, haz click en el botón de “Iniciar montaje” y acepta la transacción en tu cartera."
+            },
+            "q05": {
+              "title": "¿Cuánto dura el proceso de montaje?",
+              "answer": "El proceso de montaje puede durar entre 4-12 horas, dependiendo de las características del NFT que se esté creando."
+            },
+            "q06": {
+              "title": "¿Cómo termino el proceso de Montaje?",
+              "answer": "Una vez concluido el tiempo de espera, tendrás que hacer click en el botón de la tarjeta del ingeniero que mandará el NFT a tu cartera."
+            },
+            "q07": {
+              "title": "¿Cuántas armas y armaduras puedo hacer durante el proceso de montaje?",
+              "answer": "Como máximo podrás tener tres objetos a la vez en el proceso de montaje."
+            }
+          }
+        }
+      }
+    },
+    "block12": {
+      "title": "Land Staking",
+      "id": "landStaking",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "¿En qué consiste la extracción de materiales?",
+              "answer": "El proceso de extracción consiste en utilizar un equipo de mineros, los cuales se encargarán de recolectar recursos una vez utilices el staking de las NFT Lands de Outer Ring."
+            },
+            "q02": {
+              "title": "¿Cuántas pools de extracción hay?",
+              "answer": "Hay 5 pools en las que depositar las NFT Lands de Outer Ring. Una Pool por cada tamaño."
+            },
+            "q03": {
+              "title": "¿Cuántas Lands puedo tener en staking?",
+              "answer": "Las pools únicamente aceptan una única land, por lo que en total podrás tener 5 en total, una de cada tamaño."
+            },
+            "q04": {
+              "title": "¿Cuánto cuesta depositar una Land en la pool?",
+              "answer": "El coste depende del tipo de Land que deposites. El pago se realiza en GQ, siendo el importe equivalente a las siguientes cantidades en USD: <ul><li>Nano Land: 1$</li><li>Micro Land: 5$</li><li>Standard Land: 10$</li><li>Macro Land: 15$</li><li>Mega Land: 30$</li></ul>"
+            },
+            "q05": {
+              "title": "¿Qué recompensas en forma de materiales puedo obtener a través de las pools?",
+              "answer": "Las pools otorgan diferentes recompensas en base al tamaño de la Land en cuestión: las pools de Nano y Micro Lands otorgan materiales de Tier 1; las pools de Standard y Macro Lands dan materiales de Tier 2, mientras que la pool de Mega Lands da materiales de Tier 3."
+            },
+            "q06": {
+              "title": "¿Qué beneficios para el crafting hay por tener una land depositada?",
+              "answer": "Si tienes depositada una land micro o de mayor tamaño, tendrás descuentos en los costes de materiales y reducción en los tiempos de espera del crafting: <ul><li>Nano: No da recompensas o reducciones.</li><li>Micro: 10% en costes de materiales y 0 en los tiempos.</li><li>Standard: 20% en costes de materiales y 10% en los tiempos.</li><li>Macro: 30% en costes de materiales y 20% en los tiempos.</li><li>Mega: 40% en costes de materiales y 30% en los tiempos.</li></ul>"
+            },
+            "q07": {
+              "title": "¿Cómo se aplican estos beneficios en el sistema de Crafting?",
+              "answer": "Si tienes una Land depositada en alguna de las pools, los descuentos se aplicarán automáticamente. Si tienes varias lands depositadas, siempre se aplicará el descuento de la land de mayor tamaño."
+            },
+            "q08": {
+              "title": "¿Se pueden acumular los descuentos por tener varias lands en las pools?",
+              "answer": "No, únicamente se aplicará el descuento de la land depositada de mayor tamaño, es decir, el mayor descuento."
+            },
+            "q09": {
+              "title": "¿Qué pasa si utilizo estos beneficios en el crafting?",
+              "answer": "Si en alguno de los procesos del crafting te beneficias de tener una land en las pools, esta land se bloqueará en la pool durante el mismo tiempo que dure el proceso."
+            },
+            "q10": {
+              "title": "¿Cómo añado una NFT Land a una pool?",
+              "answer": "Accede a la sección de extracción de materiales de la DApp. Pulsa el botón para añadir Land y selecciona la que quieras añadir. Por último, tras confirmar la transacción en tu cartera, la Land se habrá añadido a la pool."
+            },
+            "q11": {
+              "title": "¿Cómo recojo los recursos generados?",
+              "answer": "Con el tiempo, las pools irán generando recursos. Para recogerlos basta con pulsar el botón de la parte inferior recoger recursos."
+            },
+            "q12": {
+              "title": "¿Cómo retiro una Land si ya no quiero seguir generando recursos?",
+              "answer": "Si quieres terminar de extraer materiales de una Land, pulsa el botón terminar extracción."
+            }
+          }
+        }
+      }
     }
   },
+
   "defi": {
     "home": {
       "manage": "Volumen total de operaciones",
@@ -2088,7 +2501,8 @@
       "All": "Todo",
       "Select": "Seleccionar",
       "Copper": "Copper",
-      "Iron": "Iron"
+      "Iron": "Iron",
+      "GQ-GQ": "GQ-GQ"
     },
     "apr":{
       "title": "Recompensa estimada",
@@ -2097,7 +2511,8 @@
       "Daily": "Diario",
       "Weekly": "Semanal",
       "Monthly": "Mensual",
-      "busdreward": "Recompensa por 1000$"
+      "busdreward": "Recompensa por 1000$",
+      "rewardPer1LP": "Recompensa por 1 LP"
     },
     "pool": {
       "details": "Detalles",
@@ -2182,7 +2597,6 @@
     "popUpGeneral": {
       "swap": "Swap",
       "liquidity": "Liquidity"
-
     }
   }
 }

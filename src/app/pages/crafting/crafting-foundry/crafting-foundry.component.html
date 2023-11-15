@@ -1,0 +1,149 @@
+<div class="top-image">
+  <img src="assets/images/crafting/foundry/header_home.png" alt="Crafting header image">
+</div>
+
+<div class="page">
+  <div class="head crafting">
+    <p class="tip">{{'foundry.tip' | translate}}</p>
+    <h1 class="title" [innerHTML]="'foundry.title_html' | translate"></h1>
+    <p class="subtitle">{{'foundry.subtitle1' | translate}}</p>
+    <p class="subtitle">{{'foundry.subtitle2' | translate}}</p>
+    <p class="subtitle">{{'foundry.subtitle3' | translate}}</p>
+  </div>
+</div>
+
+<ng-template #progressBar>
+  <div class="progress-bar">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-template>
+
+<div class="foundry">
+  <h2 class="title">{{'foundry.mainName' | translate}}</h2>
+
+  <div class="selector">
+
+    <div class="responsive-tabs">
+      <p class="tab weapons" [class.selected]="selectedTab === 'weapon'" (click)="changeSelectedTab('weapon')">{{'categories.weapons' | translate}}</p>
+      <p class="tab armors" [class.selected]="selectedTab === 'armor'" (click)="changeSelectedTab('armor')">{{'categories.armors' | translate}}</p>
+    </div>
+
+    <div class="weapon" [class.hidden]="selectedTab !== 'weapon'" [class.disabled]="armorSelectionIsOpen">
+      <p class="tab">
+        <span *ngIf="!weaponSelectionIsOpen">{{'categories.weapons' | translate}}</span>
+        <span *ngIf="weaponSelectionIsOpen">{{'foundry.selectWeapons' | translate}}</span>
+      </p>
+      <div class="primary" *ngIf="weaponSelectionIsOpen === false">
+        <div class="image">
+          <img src="assets/images/crafting/foundry/founderW.png" alt="Weapon founder image" />
+        </div>
+        <div class="text">
+          <p>{{'foundry.select5Weapons' | translate}}</p>
+          <p>{{'foundry.nftsWillBeBurned' | translate}}</p>
+          <div class="buttons">
+            <span *ngIf="nftListLoaded; else progressBar" class="button" (click)="openWeaponSelection()">{{'foundry.selectNFT' | translate}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="secondary" *ngIf="weaponSelectionIsOpen">
+        <span class="button" (click)="closeWeaponSelection()"><mat-icon>close</mat-icon></span>
+        <div class="tiers">
+          <div class="tier" [class.selected]="tierToShow === 'Tier1'"(click)="setTierToShow('Tier1')">
+            <p>T1</p>
+          </div>
+          <div class="tier" [class.selected]="tierToShow === 'Tier2'"(click)="setTierToShow('Tier2')">
+            <p>T2</p>
+          </div>
+          <div class="tier" [class.selected]="tierToShow === 'Tier3'"(click)="setTierToShow('Tier3')">
+            <p>T3</p>
+          </div>
+        </div>
+        <div class="weapons">
+          <ng-container *ngFor="let weapon of userWeapons">
+            <div class="nft {{weapon.rarity | lowercase}}" *ngIf="weapon.tier === tierToShow && selectedNftsId.includes(weapon.tokenId) === false" (click)="addToSelectedNfts(weapon)">
+              <p><span>{{'crafting.weapons.' + (weapon.name | nftNameToCamelCase) | translate}}</span></p>
+              <p>{{'nft.rarity.' + (weapon.rarity | lowercase) | translate}}</p>
+              <div class="color color-1 {{weapon.rarity | lowercase}}"></div>
+              <div class="color color-2 {{weapon.rarity | lowercase}}"></div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="armor" [class.hidden]="selectedTab !== 'armor'" [class.disabled]="weaponSelectionIsOpen">
+      <p class="tab">
+        <span *ngIf="!armorSelectionIsOpen">{{'categories.armors' | translate}}</span>
+        <span *ngIf="armorSelectionIsOpen">{{'foundry.selectArmors' | translate}}</span>
+      </p>
+      <div class="primary" *ngIf="armorSelectionIsOpen === false">
+        <div class="image">
+          <img src="assets/images/crafting/foundry/founderA.png" alt="Weapon founder image" />
+        </div>
+        <div class="text">
+          <p>{{'foundry.select5Armors' | translate}}</p>
+          <p>{{'foundry.nftsWillBeBurned' | translate}}</p>
+          <div class="buttons">
+            <span *ngIf="nftListLoaded; else progressBar" class="button" (click)="openArmorSelection()">{{'foundry.selectNFT' | translate}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="secondary" *ngIf="armorSelectionIsOpen">
+        <span class="button" (click)="closeArmorSelection()"><mat-icon>close</mat-icon></span>
+        <div class="tiers">
+          <div class="tier" [class.selected]="tierToShow === 'Tier1'"(click)="setTierToShow('Tier1')">
+            <p>T1</p>
+          </div>
+          <div class="tier" [class.selected]="tierToShow === 'Tier2'"(click)="setTierToShow('Tier2')">
+            <p>T2</p>
+          </div>
+          <div class="tier" [class.selected]="tierToShow === 'Tier3'"(click)="setTierToShow('Tier3')">
+            <p>T3</p>
+          </div>
+        </div>
+        <div class="armors">
+          <ng-container *ngFor="let armor of userArmors">
+            <div class="nft {{armor.rarity | lowercase}}" *ngIf="armor.tier === tierToShow && !selectedNftsId.includes(armor.tokenId)" (click)="addToSelectedNfts(armor)">
+              <p><span>{{'crafting.armors.' + (armor.name | lowercase) | translate }}</span></p>
+              <p>{{'nft.rarity.' + (armor.rarity | lowercase) | translate }}</p>
+              <div class="color color-1 {{armor.rarity | lowercase}}"></div>
+              <div class="color color-2 {{armor.rarity | lowercase}}"></div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedNfts.length > 0" class="selected-nft">
+    <p>{{'foundry.selectedNFTs' | translate}}</p>
+    <div *ngFor="let sn of selectedNfts" class="selected-nft-card {{sn.rarity | lowercase}}">
+      <mat-icon class="icon close" (click)="addToSelectedNfts(sn)">close</mat-icon>
+      <mat-icon class="icon search" (click)="clickToDetail(sn)">search</mat-icon>
+      <img class="image" alt="selected {{sn.tokenId}} NFT image" src="{{sn.image320}}" />
+      <div class="text name">{{'crafting.' + (sn.nftContractAddress | nftContractToName | lowercase) + 's.' + (sn.name | nftNameToCamelCase) | translate}}</div>
+      <div class="text">Id: {{sn.tokenId}}</div>
+      <div class="text">Tier {{sn.tier | slice:(sn.tier.length - 1)}}</div>
+      <div class="text">{{'nft.rarity.' + (sn.rarity | lowercase) | translate}}</div>
+    </div>
+    <div class="buttons">
+      <button class="button" (click)="sendNFTsToPool()">{{'foundry.send' | translate}}</button>
+    </div>
+    <div class="advice">
+      <span>
+        *{{('foundry.poolLimitAdvice' | translate).replace('***', burneableNFTMaxAmount)}}
+        <span *ngIf="burneableNFTMaxAmount === 1"> {{'foundry.poolUpgradeAdvice' | translate}}</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="progress">
+    <h3>{{'foundry.inProgress' | translate}}</h3>
+    <div class="items">
+      <app-crafting-foundry-card [pool]="0" (fullCapacityAvailableEvent)="receiveFullAvailabilityData($event)"></app-crafting-foundry-card>
+      <app-crafting-foundry-card [pool]="1" (fullCapacityAvailableEvent)="receiveFullAvailabilityData($event)"></app-crafting-foundry-card>
+      <app-crafting-foundry-card [pool]="2" (fullCapacityAvailableEvent)="receiveFullAvailabilityData($event)"></app-crafting-foundry-card>
+      <app-crafting-foundry-card [pool]="3" (fullCapacityAvailableEvent)="receiveFullAvailabilityData($event)"></app-crafting-foundry-card>
+      <app-crafting-foundry-card [pool]="4" (fullCapacityAvailableEvent)="receiveFullAvailabilityData($event)"></app-crafting-foundry-card>
+    </div>
+  </div>
+</div>

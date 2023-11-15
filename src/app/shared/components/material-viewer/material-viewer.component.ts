@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { minerals } from 'src/app/constants/craftingData';
 import { getWalletMaterials } from 'src/app/constants/gqlQueries';
@@ -13,6 +13,7 @@ import { ConnectionService } from 'src/app/shared/services/connection/connection
   styleUrls: ['./material-viewer.component.scss']
 })
 export class MaterialViewerComponent implements OnInit, OnDestroy {
+  @Input() color: string;
   materials: Array<any> = minerals;
   windowSize: number = 0;
   shownMaterials: Array<any>;

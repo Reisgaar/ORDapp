@@ -288,7 +288,7 @@
 }
 
 // Medium devices
-@media (max-width: 850px) {
+@media (max-width: 860px) {
   .header {
 
     .logo {
@@ -354,7 +354,7 @@
   top: 0;
   left: 0;
   color: white;
-  overflow: scroll;
+  overflow: auto;
 
   .top-side {
     text-align: center;

@@ -23,6 +23,16 @@
   .step {
     margin: 0 0 100px;
 
+    &-block {
+      padding: 20px 10px;
+      border-radius: 10px;
+      background: $white-transparent-10;
+
+      &.m-top {
+        padding-top: 35px !important;
+      }
+    }
+
     .title {
       font-size: 1.7rem;
       text-transform: uppercase;
@@ -230,6 +240,20 @@
             }
           }
         }
+      }
+    }
+
+    .material-button {
+      cursor: pointer;
+      width: max-content;
+      background-color: $red;
+      border-radius: 8px;
+      font-size: 1rem;
+      padding: 7px 30px;
+      margin: auto;
+
+      &:hover {
+        background-color: #dd4f69;
       }
     }
 
@@ -577,6 +601,10 @@
             display: block;
             font-size: 2rem;
             margin-top: 8px;
+          }
+
+          &.disabled {
+            opacity: 0.2;
           }
         }
       }

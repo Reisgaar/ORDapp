@@ -53,8 +53,8 @@
 <div *ngIf="error" class="error">{{errorText}}</div>
 
 <div *ngIf="minimunReceived" class="minimun">
-  <p>{{ 'defi.swap.inimumReceived' | translate }}&nbsp;{{minimunReceived}} {{farm.subsidiaryTokenSymbol2}}</p>
-  <p>{{ 'defi.swap.priceImpact' | translate }}&nbsp;{{priceImpact}}%</p>
+  <p>{{ 'defi.swap.inimumReceived' | translate }}&nbsp;{{minimunReceived | number:'1.0-5'}} {{farm.subsidiaryTokenSymbol2}}</p>
+  <p>{{ 'defi.swap.priceImpact' | translate }}&nbsp;{{priceImpact | number:'1.2-2'}}%</p>
 </div>
 <div class="send">
   <p>{{ 'defi.swap.sendToOther' | translate }}</p>

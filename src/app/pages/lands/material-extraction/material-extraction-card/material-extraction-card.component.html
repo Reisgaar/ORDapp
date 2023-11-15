@@ -36,7 +36,10 @@
             <p>{{('materialExtraction.card.noLandToStake' | translate).replace('***', (landSizes[size] | lowercase))}}</p>
             <div class="square blocked"></div>
           </ng-container>
-          <p *ngIf="poolDepositFee !== '' && lands.length > 0" class="fee-advice">{{('materialExtraction.card.stakeFee' | translate).replace('***', (poolDepositFee | fromWei | number:'1.0-4'))}}</p>
+          <p *ngIf="poolDepositFee.busd !== '' && lands.length > 0" class="fee-advice"
+            [innerHTML]="('materialExtraction.card.stakeFee_html' | translate).replace('***', (poolDepositFee.busd | fromWei | number:'1.0-4')).replace('###', (poolDepositFee.gq | fromWei | number:'1.0-4'))"
+          >
+          </p>
         </div>
         <div class="details" *ngIf="hasLandStaked">
           <p class="extracted">{{'materialExtraction.card.extracted' | translate}}</p>
@@ -69,6 +72,7 @@
   <div class="reward-info" [class.dissapear]="!showInfo">
     <div class="reward-wrapper">
       <p class="text">{{'materialExtraction.card.poolRewards' | translate}}</p>
+      <p class="text text-mini">{{'materialExtraction.card.perBlock' | translate}}</p>
       <div class="reward-materials">
         <div *ngFor="let reward of poolRewards" class="material">
           <div class="image">

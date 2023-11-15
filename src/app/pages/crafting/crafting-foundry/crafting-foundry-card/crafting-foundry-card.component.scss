@@ -1,0 +1,347 @@
+@import '/src/styleVariables.scss';
+
+.item {
+  background-color: $white-transparent-10;
+  border: 1px solid $blue-medium;
+  border-radius: 15px;
+  margin: 10px 0;
+  min-height: 125px;
+  display: grid;
+
+  &-grid {
+    grid-template-columns: max-content minmax(150px, 1fr) minmax(400px, 3fr) 150px;
+    gap: 5px;
+    padding: 10px;
+
+    .nft-image, .info, .materials, .interaction {
+      align-self: center;
+      justify-self: center;
+    }
+
+    .nft-image {
+      grid-column: 1;
+      line-height: 0;
+
+      .image {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        border-radius: 7px;
+      }
+    }
+
+    .info {
+      grid-column: 2;
+      text-align: center;
+
+      p {
+        margin: 0;
+        line-height: 1.5em;
+      }
+    }
+
+    .materials {
+      grid-column: 3;
+      display: flex;
+      flex-flow: wrap;
+      gap: 15px 30px;
+      justify-content: space-evenly;
+      max-height: 130px;
+      overflow: auto;
+      margin-right: 10px;
+
+      &::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $blue-extra-dark;
+        margin: 0 auto;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: $blue-light;
+      }
+
+      .material {
+
+        .mat {
+          margin: 0;
+          font-size: 0.8rem;
+          font-weight: 300;
+          display: grid;
+          grid-template-columns: 15px 1fr;
+          background: linear-gradient(45deg, rgba(255, 255, 255, 0.1450980392), transparent);
+          overflow: hidden;
+          border-radius: 8px 0 0 8px;
+          width: 120px;
+          align-items: center;
+
+          .image {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+            align-self: center;
+            transform: translate(-45%, 30%) scale(4) rotate(-20deg);
+
+            &.t2-ore {
+              transform: translate(-20%, 20%) scale(3.6) rotateY(180deg) rotateZ(5deg);
+            }
+
+            &.t2-gas {
+              transform: translate(-25%, 30%) scale(4) rotate(-20deg);
+            }
+
+            &.t3-gas {
+              transform: translate(-15%, 15%) scale(3) rotate(-20deg);
+            }
+          }
+
+          span {
+            padding-left: 15px;
+            align-self: center;
+            width: max-content;
+            text-shadow: 0px 0px 1px #000000;
+            filter: drop-shadow(0px 0px 1px #000000);
+          }
+        }
+
+        .remaining {
+          margin-top: 3px;
+
+          p {
+            font-size: 0.6rem;
+            margin: 0;
+            line-height: 1.2em;
+            text-align: center;
+
+            &.text {
+              font-weight: 300;
+            }
+
+            &.value {
+              font-size: 0.7rem;
+            }
+          }
+        }
+      }
+    }
+
+    .interaction {
+      grid-column: 4;
+      width: 100%;
+      text-align: center;
+
+      .countdown {
+        background-color: $grey-extra-dark;
+        border: 1px solid $blue-light;
+        border-radius: 7px;
+        width: calc(100% - 2px);
+      }
+
+      .button {
+        cursor: pointer;
+        margin: 10px 0 0 0;
+        width: 100%;
+        padding: 5px 0;
+        border-radius: 7px;
+
+        &.accelerate {
+          background-color: $blue-medium;
+
+          &:hover {
+            background-color: $blue-light;
+          }
+        }
+
+        &.claim {
+          background-color: $green;
+
+          &:hover {
+            background-color: $green-light;
+          }
+        }
+      }
+    }
+  }
+
+  &.connect {
+    cursor: pointer;
+
+    p {
+      align-self: center;
+      justify-self: center;
+      background: linear-gradient(to right, $blue-medium, $blue-semi-dark);
+      margin: 0;
+      width: max-content;
+      padding: 8px 40px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      font-size: 1.4em;
+      height: max-content;
+    }
+
+    &:hover p {
+      background: linear-gradient(to right, $pink, $purple-dark);
+    }
+  }
+
+  &.loading {
+    padding: 10px;
+
+    p {
+      align-self: center;
+      justify-self: center;
+      text-transform: uppercase;
+      font-size: 1.7rem;
+    }
+  }
+
+  &.empty, &.unlock {
+    padding: 10px;
+    text-align: center;
+
+    p {
+      align-self: center;
+      justify-self: center;
+      margin: 0;
+
+      &.title {
+        text-transform: uppercase;
+        font-size: 1.7rem;
+      }
+
+      &.text {
+        font-weight: 300;
+      }
+    }
+
+    .capacity {
+      display: flex;
+      gap: 20px;
+      margin: auto;
+
+      .button {
+        cursor: pointer;
+        background-color: $blue-medium;
+        border-radius: 8px;
+        padding: 5px 30px;
+        width: max-content;
+        text-align: center;
+
+        &:hover {
+          background-color: $blue-light;
+        }
+      }
+    }
+  }
+
+  &.unlock {
+    border-color: $red;
+    background-color: $red-transparent;
+    backdrop-filter: blur(5px);
+    padding: 10px;
+
+    .button {
+      cursor: pointer;
+      align-self: center;
+      justify-self: center;
+      background-color: $blue-medium;
+      border-radius: 8px;
+      padding: 5px 30px;
+      width: max-content;
+      text-align: center;
+      font-size: 1rem;
+      margin: 5px auto;
+      height: max-content;
+
+      &:hover {
+        background-color: $blue-light;
+      }
+
+      .price {
+        display: block;
+        line-height: 1em;
+
+        &-main {
+          font-size: 1rem;
+          margin-bottom: 5px;
+        }
+
+        &-secondary {
+          font-size: 0.7rem;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+/*
+ * Responsive breakpoints
+ */
+
+
+@media (max-width: 850px) {
+
+  .item {
+    width: 300px;
+    min-height: 270px;
+    margin: 0;
+
+    &.empty, &.unlock {
+
+      .capacity {
+        display: block;
+
+        .button {
+          margin: 10px;
+        }
+      }
+    }
+
+    &-grid {
+      grid-template-columns: max-content 1fr;
+      gap: 10px;
+
+      .nft-image {
+        grid-column: 1;
+        grid-row: 1;
+
+        .image {
+          width: 100px;
+          height: 100px;
+        }
+      }
+
+      .info {
+        grid-column: 1/3;
+        grid-row: 2;
+        display: flex;
+        gap: 5px;
+      }
+
+      .materials {
+        grid-column: 1/3;
+        grid-row: 3;
+        margin-top: 10px;
+      }
+
+      .interaction {
+        grid-column: 2;
+        grid-row: 1;
+        max-width: 150px;
+
+        .button {
+          padding: 2px 0;
+          margin: 5px 0 0 0;
+        }
+      }
+    }
+  }
+}

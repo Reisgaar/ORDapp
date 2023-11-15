@@ -57,6 +57,8 @@ export class PopUpInfoComponent implements OnInit {
       this.processViemSimulatedError();
     } else if (this.data.text.toLowerCase().includes(' reverted.') && this.data.text.toLowerCase().includes('version: viem')) {
       this.processViemSimulatedError2()
+    } else if (this.data.text.toLowerCase().includes('cannot read properties of undefined')) {
+      this.data.text = 'Something went wrong.';
     }
   }
 
@@ -103,12 +105,14 @@ export class PopUpInfoComponent implements OnInit {
 
   setViemErrorListSize(): void {
     const el = document.getElementById('viem-error-list');
-    console.log(el);
-    console.log(el.scrollHeight);
-    if (this.showViemErrorDetails) {
-      el.style.height = (el.scrollHeight - 10) + 'px';
-    } else {
-      el.style.height = '0px';
+    if (el) {
+      console.log(el);
+      console.log(el.scrollHeight);
+      if (this.showViemErrorDetails) {
+        el.style.height = (el.scrollHeight - 10) + 'px';
+      } else {
+        el.style.height = '0px';
+      }
     }
   }
 }

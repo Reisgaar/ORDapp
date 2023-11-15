@@ -10,6 +10,7 @@ import { allowances } from 'src/app/constants/allowances';
 import { PopUpCustomAllowanceComponent } from '../../allowance-manager/pop-up-custom-allowance/pop-up-custom-allowance.component';
 import { PoolsTotal } from 'src/app/interfaces/pools-total';
 import { ApyComponent } from '../defi-common/apy/apy.component';
+import { contractAddresses } from 'src/app/constants/contractAddresses';
 
 @Component({
   selector: 'app-pool-card',
@@ -47,6 +48,8 @@ export class PoolCardComponent implements OnInit, OnDestroy {
   hasEnded: boolean;
   withdrawFee: number;
   fee: number;
+  earnGQ1: string = 'earnGQ1';
+  earnGQ2: string = 'earnGQ2';
   subscription1: Subscription = this.dexService.currentFile.subscribe((message: string) => {
     message == 'row'
       ? this.file = true
@@ -82,7 +85,6 @@ export class PoolCardComponent implements OnInit, OnDestroy {
   blockToStart: number;
   linkNetwork:string = 'https://bscscan.com/block/countdown/';
 
-  // subsciptionVisible = this.dexService.visible.subscribe()
 
   constructor(
     public dialog: MatDialog,
@@ -92,21 +94,6 @@ export class PoolCardComponent implements OnInit, OnDestroy {
     private dexDialogService: DexDialogService
   ) { }
 
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event): void {
-  //   this.resizeWindow(window.innerWidth);
-  // }
-  // resizeWindow(inner) {
-  //   inner >= 850 ? this.file = true : this.file = false;
-  // }
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   // this.mode ? this.file = !this.file : null;
-  //   // console.log(changes)
-  //   // this.stakedActive
-  //   //   ? this.setPoolVisibleWithStake(this.stakedActive )
-  //   //   : this.setPoolVisibleWithStake(this.stakedActive );
-  // }
 
   ngOnDestroy(): void {
     if (this.interval) clearInterval(this.interval);
@@ -144,57 +131,22 @@ export class PoolCardComponent implements OnInit, OnDestroy {
       await this.getLockUpDuration(this.pool.pool);
       await this.getFee(this.pool.pool);
     }
-    this.setPoolType();
 
     if (this.isConnected) {
       this.userAccount = this.connectionService.getWalletAddress();
       await this.getUserDataInterval();
-      // this.setPoolVisibleWithStake();
     }
   }
 
-  /**
- * Pool filter by reward token harcoded
- */
-  setPoolType() {
-    // this.subscription1 = this.data.currentMessage.subscribe((message) => {
-    //   this.showPool = false;
-    //   this.filter = message;
-    //   if (this.pool.type == this.filter || this.filter == 'all') {
-    //     this.showPool = true;
-    //   }
-    // });
-  }
 
-  /**
- *
- * Show only active pools
- */
-  // setPoolVisibleWithStake() {
-  //   this.subscription2 = this.dexService.visible.subscribe((message) => {
-  //     if (message == false ) {
-  //       this.showPool = true;
-  //       return;
-  //     }
-  //     if (message == true){
-  //       if (parseInt(this.stakedOwn) == 0 || NaN ) {
-  //         this.showPool = false;
-  //         console.log('no show', this.showPool);
-  //         return;
-  //       }else {
-  //         console.log('show',this.showPool);
-  //         this.showPool = true;
-  //         return;
-  //       }
-  //     }
-  //   });
-  // }
+
 
   /**
  * Retrieves lockup duration to claim withouth paying fee
  */
   async getLockUpDuration(address: string): Promise<any> {
     await this.dexService.getLockUpDuration(address).then((arg) => {
+      console.log('lockupDuration', arg);
       this.lockupDuration = arg;
     });
   }
@@ -205,12 +157,7 @@ export class PoolCardComponent implements OnInit, OnDestroy {
     this.hasEnded = parseInt(this.actualBlockNumber) > parseInt(this.pool.endBlock);
     this.blocksToEnd = parseInt(this.pool.endBlock) - parseInt(this.actualBlockNumber);
     this.blockToStart = parseInt(this.pool.startBlock) - parseInt(this.actualBlockNumber);
-    // this.hasEnded
-    // ? this.showPool = true
-    // : null;
-    // !this.hasStarted
-    // ? this.timeToStart()
-    // :null;
+
   }
 
   /**
@@ -242,93 +189,15 @@ export class PoolCardComponent implements OnInit, OnDestroy {
     this.pool.id = await this.dexService.getPoolId(farm, address);
   }
 
-  // async getInfo(farm:string, address:string){
-  //   const functions = [
-  //     {function:'positionPoolsByLP', args: [address]},
-  //     {function:'resource', args: []},
-  //     {function:'resourcePerBlock', args: []},
-  //     {function:'poolInfo', args: [this.pool.id]},
-  //     {function:'totalAllocPoint', args: []},
-  //   ];
-  //   const info = await this.dexService.getInfo(farm, functions, 'farm');
-  //   console.log('pool info ',info);
-  //   info[0].status === 'success' ? this.pool.id = info[0].result.toString(): this.pool.id = '';
-  //   info[1].status === 'success' ? this.pool.rewardToken = info[1].result: this.pool.rewardToken = '';
-  //   info[2].status === 'success' ? this.pool.resourcePerBlock = info[2].result.toString(): this.pool.resourcePerBlock = '';
-  //   if(info[3].status === 'success'){
-  //     this.pool.stakedToken = info[3].result[0];
-  //     this.pool.allocPoint = info[3].result[1];
-  //   }
-  //   info[4].status === 'success' ? this.pool.totalAllocPoint = info[4].result.toString(): this.pool.totalAllocPoint = '';
-  //   this.pool.stakedToken? await this.getInfoLp(this.pool.stakedToken):null;
-  //   this.pool.rewardToken? await this.getInfoRewardToken(this.pool.rewardToken):null;
-  // }
-
-  // async getInfoLp(address:string): Promise<any>{
-  //   const functions = [
-  //     {function:'token0', args: []},
-  //     {function:'token1', args: []},
-  //   ];
-  //   const info = await this.dexService.getInfo(address, functions, 'lp');
-  //   info[0].status === 'success' ? this.pool.subsidiaryToken1 = info[0].result: this.pool.subsidiaryToken1 = '';
-  //   info[1].status === 'success' ? this.pool.subsidiaryToken2 = info[1].result: this.pool.subsidiaryToken2 = '';
-
-  //   const infoSubsidiary1 = await this.connectionService.fetchToken(this.pool.subsidiaryToken1);
-  //   const infoSubsidiary2 = await this.connectionService.fetchToken(this.pool.subsidiaryToken2);
-  //   if (infoSubsidiary1) {
-  //     this.pool.subsidiaryTokenName1 = infoSubsidiary1.name;
-  //     this.pool.subsidiaryTokenSymbol1 = infoSubsidiary1.symbol;
-  //     this.pool.subsidiaryTokenDecimals1 = infoSubsidiary1.decimals;
-  //   }
-  //   if (infoSubsidiary2) {
-  //     this.pool.subsidiaryTokenName2 = infoSubsidiary1.name;
-  //     this.pool.subsidiaryTokenSymbol2 = infoSubsidiary1.symbol;
-  //     this.pool.subsidiaryTokenDecimals2 = infoSubsidiary1.decimals;
-  //   }
-  // }
-
-  // async getInfoRewardToken(address:any):Promise<any> {
-  //   const tokenValue = await this.connectionService.fetchToken(address);
-  //   if (tokenValue) {
-  //     this.pool.rewardTokenName = tokenValue.name;
-  //     this.pool.rewardTokenSymbol = tokenValue.symbol;
-  //     this.pool.rewardTokenDecimals = tokenValue.decimals;
-
-  //   }
-  // }
-
-  // async getStakedTotal(farm:string, address:string):Promise<any> {
-  //   this.pool.stakedTotal = await this.dexService.getStakedTotal(farm, address);
-  // }
-
-
-  async getUserStakedData(): Promise<any> {
+   async getUserStakedData(): Promise<any> {
     const allowance = Number(await this.tokenService.getTokenAllowanceOnSpender(this.pool.stakedToken.address, this.pool.pool));
-    if (allowance > 0 ) {
+    // if (allowance > 0 ) {
       await this.dexService.getUserPoolStakedData(this.pool.pool, this.userAccount, this.pool.type).then((res: any) => {
         this.stakedOwn = this.connectionService.fromWei(res.amount);
         res.firstDeposit
         ? this.firstDeposit = res.firstDeposit
         : this.firstDeposit = '0';
-
-      //   this.dateToWithdraw = (parseInt(this.firstDeposit) + parseInt(this.lockupDuration));
-      // if (this.dateToWithdraw < this.today ) {
-      //   console.log(this.dateToWithdraw, this.today);
-
-      //   this.canWithdraw = true;
-      // }
-      // const dateToday = this.today - parseInt(this.firstDeposit);
-      // this.percentajeToWithdraw = (dateToday / parseInt(this.lockupDuration)) * 100;
-      // // console.log(dateToday, parseInt(this.lockupDuration));
-      // const countDown = (this.dateToWithdraw / 1000 - this.today) * 1000;
-      // this.days = Math.floor(countDown / (1000 * 60 * 60 * 24));
-      // this.hours = Math.floor(
-      //   (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      // );
-      // this.minutes = Math.floor(
-      //   (countDown % (1000 * 60 * 60)) / (1000 * 60)
-      // );
-      // this.seconds = Math.floor((countDown % (1000 * 60)) / 1000);
+        console.log('firstDeposit', this.firstDeposit);
       });
 
       await this.dexService.getPendingRewards(this.pool.pool, this.userAccount, this.pool.type, this.pool.rewardToken[0].address, this.pool.rewardToken[1]?.address).then((res:any) => {
@@ -338,6 +207,8 @@ export class PoolCardComponent implements OnInit, OnDestroy {
         ? this.pendingRewards2 = this.connectionService.fromWei(res.dataWei1)
         : null;
       });
+      if (allowance > 0 ) {
+
       this.isApproved = true;
 
     }
@@ -348,6 +219,7 @@ export class PoolCardComponent implements OnInit, OnDestroy {
     if(parseFloat(this.firstDeposit) > 0){
     this.dateToWithdraw = (parseInt(this.firstDeposit) + parseInt(this.lockupDuration)) * 1000;
     if (this.dateToWithdraw / 1000 < this.today ) {
+      console.log(this.dateToWithdraw / 1000 < this.today);
       this.canWithdraw = true;
     }
 
@@ -364,22 +236,6 @@ export class PoolCardComponent implements OnInit, OnDestroy {
         (countDown % (1000 * 60 * 60)) / (1000 * 60)
       );
       this.seconds = Math.floor((countDown % (1000 * 60)) / 1000);
-      console.log('first',this.days);
-
-
-
-    // const dateToday = this.today - parseInt(this.firstDeposit);
-    // this.percentajeToWithdraw = (dateToday / parseInt(this.lockupDuration)) * 100;
-    // // console.log(dateToday, parseInt(this.lockupDuration));
-    // const countDown = (this.dateToWithdraw / 1000 - this.today) * 1000;
-    // this.days = Math.floor(countDown / (1000 * 60 * 60 * 24));
-    // this.hours = Math.floor(
-    //   (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    // );
-    // this.minutes = Math.floor(
-    //   (countDown % (1000 * 60 * 60)) / (1000 * 60)
-    // );
-    // this.seconds = Math.floor((countDown % (1000 * 60)) / 1000);
 
   }
   }
@@ -422,12 +278,7 @@ export class PoolCardComponent implements OnInit, OnDestroy {
    * Get and set all allowances of tokens in allowances constant
    */
   async getAllowances(): Promise<any> {
-    // for (const [key1, section] of Object.entries(this.allowances)){
-    //   for (const [key2, contract] of Object.entries(section['contracts'])){
-    //     for (const [key3, token] of Object.entries(contract['allowedTokens'])) {
     if (await this.connectionService.isWalletConnected()) {
-      // const tokenAddress = contractAddresses[token['constant']];
-      // const contractAddress = contractAddresses[contract['addressConstant']];
       this.tokenService.getTokenAllowanceOnSpender(this.pool.stakedToken.address, this.pool.pool).then(res => {
         let allowed = this.connectionService.fromWei(res);
         if (parseFloat(allowed) > 0) {
@@ -439,13 +290,8 @@ export class PoolCardComponent implements OnInit, OnDestroy {
 
       });
     } else {
-      // token['allowed'] = '';
     }
   }
-  //     }
-  //   }
-  //   // console.log(this.allowances);
-  // }
 
 
 
@@ -463,19 +309,17 @@ export class PoolCardComponent implements OnInit, OnDestroy {
   async withdraw(): Promise<void> {
     console.log('withdraw');
     if (this.pool.stakedToken.LPToken) {
-      let data = {
+      const data = {
         type: 'withdraw',
         pool: this.pool.pool,
         staked: this.stakedOwn,
-        // token0: this.pool.stakedToken.LPToken?.token0,
-        // token1: this.pool.stakedToken.LPToken?.token1,
         token0Symbol: this.pool.stakedToken.LPToken?.token0Symbol,
         token1Symbol: this.pool.stakedToken.LPToken?.token1Symbol,
         address: this.pool.stakedToken.address,
         symbol: this.pool.stakedToken.symbol,
-        fee: this.fee
+        fee: this.fee,
+        canWithdraw : this.canWithdraw
       };
-      console.log(data);
       await this.dexDialogService.openWithdrawDialog(
         data
       ).afterClosed().subscribe(async (res: any) => {
@@ -491,6 +335,7 @@ export class PoolCardComponent implements OnInit, OnDestroy {
         token1Symbol: this.pool.stakedToken.LPToken?.token1Symbol,
         address: this.pool.stakedToken.address,
         symbol: this.pool.stakedToken.symbol,
+        canWithdraw : this.canWithdraw
         // decimals: this.pool.stakedToken.decimals,
       };
       await this.dexDialogService.openWithdrawDialog(
@@ -499,15 +344,6 @@ export class PoolCardComponent implements OnInit, OnDestroy {
         this.goWithdraw(res);
       });
     }
-    // await this.dexDialogService.openWithdrawDialog(
-    //   data
-    // ).afterClosed().subscribe(async (res: any) => {
-    //   try {
-    //     console.log(res);
-    //     const amount = res.toString();
-    //     await this.dexService.withdrawPool(this.pool.pool, amount);
-    //   } catch (error: any) { }
-    // });
   }
 
   async goWithdraw(res:any): Promise<void>{
@@ -554,6 +390,31 @@ export class PoolCardComponent implements OnInit, OnDestroy {
     });
 
   }
+
+  tokenHasPrice(token:string): boolean{
+    if(token.toLowerCase() == contractAddresses.carbon.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.nickel.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.vanadium.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.methane.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.plutonium.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.acetylene.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.argon.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.iron.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.copper.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.oxygen.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.hydrogen.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.silicon.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.chromium.toLowerCase()||
+    token.toLowerCase() == contractAddresses.helium.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.aluminium.toLowerCase() ||
+    token.toLowerCase() == contractAddresses.cobalt.toLowerCase()
+    ){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 
   /**
  * Set token on metamask

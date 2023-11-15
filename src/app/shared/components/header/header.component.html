@@ -6,14 +6,15 @@
   <!-- NAV MENU ON DESKTOP -->
   <div class="navigation desktop">
     <!-- MARKETPLACE -->
-    <div class="navigation-tab" [class.active]="actualRoute.includes('/marketplace')">
+    <div class="navigation-tab" [class.active]="actualRoute.includes('/marketplace') || actualRoute.includes('/undergroundMarket')">
       <p [routerLink]="['/marketplace']">
         <span class="tab-name">{{ 'navigation.marketplace' | translate }}</span>
       </p>
       <div class="submenu">
         <p class="subtab" [routerLink]="['/marketplace/directSales']" [class.active]="actualRoute.includes('/marketplace/directSales')"><span>{{ 'navigation.directSells' | translate }}</span></p>
         <p class="subtab" [routerLink]="['/marketplace/auctions']" [class.active]="actualRoute.includes('/marketplace/auctions')"><span>{{ 'navigation.auctions' | translate }}</span></p>
-        <p class="subtab" [routerLink]="['/marketplace/partners']" [class.active]="actualRoute.includes('/marketplace/partners')"><span>{{ 'navigation.partners' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/undergroundMarket']" [class.active]="actualRoute.includes('/undergroundMarket')"><span>{{ 'navigation.blackMarket' | translate }}</span></p>
+        <!-- <p class="subtab" [routerLink]="['/marketplace/partners']" [class.active]="actualRoute.includes('/marketplace/partners')"><span>{{ 'navigation.partners' | translate }}</span></p> -->
         <p class="subtab" [routerLink]="['/marketplace/statistics']" [class.active]="actualRoute.includes('/marketplace/statistics')"><span>{{ 'navigation.statistics' | translate }}</span></p>
       </div>
     </div>
@@ -67,6 +68,7 @@
       </p>
       <div class="submenu">
         <p class="subtab" [routerLink]="['/crafting/factory']" [class.active]="actualRoute.includes('/crafting/factory')"><span>{{ 'navigation.factory' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/crafting/foundry']" [class.active]="actualRoute.includes('/crafting/foundry')"><span>{{ 'navigation.foundry' | translate }}</span></p>
       </div>
     </div>
   </div>
@@ -136,10 +138,14 @@
         <p class="link">{{ 'navigation.auctions' | translate }}</p>
         <p class="description">{{ 'navigation.auctionsDescription' | translate }}</p>
       </div>
-      <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/partners']" (click)="toggleResponsiveMenu()">
+      <div class="navigation-tab sub-tab" [routerLink]="['/undergroundMarket']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.blackMarket' | translate }}</p>
+        <p class="description">{{ 'navigation.blackMarketDescription' | translate }}</p>
+      </div>
+      <!-- <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/partners']" (click)="toggleResponsiveMenu()">
         <p class="link">{{ 'navigation.partners' | translate }}</p>
         <p class="description">{{ 'navigation.partnersDescription' | translate }}</p>
-      </div>
+      </div> -->
       <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/statistics']" (click)="toggleResponsiveMenu()">
         <p class="link">{{ 'navigation.statistics' | translate }}</p>
         <p class="description">{{ 'navigation.statisticsDescription' | translate }}</p>
@@ -230,6 +236,10 @@
         <p class="link">{{ 'navigation.factory' | translate }}</p>
         <p class="description">{{ 'navigation.factoryDescription' | translate }}</p>
       </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/crafting/foundry']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.foundry' | translate }}</p>
+        <p class="description">{{ 'navigation.foundryDescription' | translate }}</p>
+      </div>
     </div>
   </div>
   <!-- GET GQ BUTTON -->
@@ -250,7 +260,7 @@
       </a>
     </span>
     <span class="social-item">
-      <a class="social-item-icon icon-telegram" href="https://t.me/outerringofficialeng" target="_blank">
+      <a class="social-item-icon icon-telegram" href="{{'footer.telegramLink' | translate}}" target="_blank">
         <i class="fab fa-telegram-plane"></i>
       </a>
     </span>

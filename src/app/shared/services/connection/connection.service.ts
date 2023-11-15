@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  EthereumClient,
-  w3mConnectors,
-  w3mProvider,
-} from '@web3modal/ethereum';
 import Web3 from 'web3';
-import { Web3Modal } from '@web3modal/html';
 import {
   configureChains,
   createConfig,
@@ -26,25 +20,51 @@ import { ethers } from 'ethers';
 import { DialogService } from '../dialog.service';
 import { TranslateService } from '@ngx-translate/core';
 import { publicProvider } from '@wagmi/core/providers/public';
+import { createWeb3Modal, walletConnectProvider } from '@web3modal/wagmi'
+import { InjectedConnector } from '@wagmi/core'
+import { CoinbaseWalletConnector } from '@wagmi/core/connectors/coinbaseWallet'
+import { WalletConnectConnector } from '@wagmi/core/connectors/walletConnect'
+
 
 // Set chain with selected environment
-let chain: any;
+let chains: any;
 if (environment.production) {
-  chain = [bsc];
+  chains = [bsc, bsc];
 } else {
-  chain = [bscTestnet];
+  chains = [bscTestnet, bscTestnet];
 }
-// console.log('chain:', chain[0]);
+console.log('chain:', chains[0]);
+
+// 1. Define constants
 const projectId = '3b1a110f2c10dde0a929df684ee9ed96';
-const { chains, publicClient } = configureChains(chain, [w3mProvider({ projectId })]);
+
+// 2. Configure wagmi client
+const { publicClient } = configureChains([chains[0]], [
+  walletConnectProvider({ projectId }),
+  publicProvider()
+])
+
+const metadata = {
+  name: 'Outer Ring DApp',
+  description: 'Outer Ring decentralized application',
+  url: 'https://dapp.outerringmmo.com/',
+  icons: ['https://dapp.outerringmmo.com/assets/images/logo.png']
+}
+
 const wagmiConfig = createConfig({
   autoConnect: false,
-  connectors: w3mConnectors({ projectId, chains }),
+  connectors: [
+    new WalletConnectConnector({ chains, options: { projectId, showQrModal: false, metadata } }),
+    new InjectedConnector({ chains, options: { shimDisconnect: true } }),
+    new CoinbaseWalletConnector({ chains, options: { appName: metadata.name } })
+  ],
   publicClient
-});
-const ethereumClient = new EthereumClient(wagmiConfig, chains);
-const web3modal = new Web3Modal({ projectId }, ethereumClient);
-web3modal.setDefaultChain(chain[0]);
+})
+
+// 3. Create modal
+const web3modal = createWeb3Modal({ wagmiConfig, projectId, chains, defaultChain: chains[0] });
+
+
 
 
 
@@ -342,14 +362,14 @@ export class ConnectionService {
    * Opens Wallect Connect Modal
    */
   async openModal(): Promise<any> {
-    await web3modal.openModal();
+    await web3modal.open();
   }
 
   /**
    * Subscribes to changes on modal
    */
   async subscribeModal(): Promise<any> {
-    web3modal.subscribeModal(() => {
+    web3modal.subscribeState(() => {
       this._userAccount.next(getAccount());
       this.checkChangeRPC();
     });

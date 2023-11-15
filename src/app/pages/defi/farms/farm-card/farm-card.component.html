@@ -25,7 +25,7 @@
         <div class="div4"> <span class="accent">{{pool.rewardTokenSymbol}}</span>&nbsp;{{ 'defi.pool.earned' | translate }}</div>
         <div class="div5"><span *ngIf="pool.pendingRewards && pool.pendingRewards != 0; else noRewards" class="tex-green">{{pool.pendingRewards | number:"1.0-5"}} </span>
           <ng-template #noRewards class="no-reward">{{ 'defi.pool.noReward' | translate }}</ng-template></div>
-        <div class="div6 right"><button class="btn btn-secondary">{{ 'defi.pool.harvest' | translate }}</button></div>
+        <div class="div6 right"><button class="btn btn-secondary" (click)="claimReward()">{{ 'defi.pool.harvest' | translate }}</button></div>
 
         <!-- Staked block -->
         <div class="div7"><span class="accent accent-max">{{pool.subsidiaryTokenSymbol1}} + {{ pool.subsidiaryTokenSymbol2 }}</span><br><span class="accent">{{ 'defi.pool.staked' | translate }}</span></div>

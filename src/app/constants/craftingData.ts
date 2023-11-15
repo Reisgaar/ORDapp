@@ -40,24 +40,24 @@ export const userOwnedMaterials = {
 
 export const rarityBoosterProbabilities = {
   t1: [
-    { common: 99, uncommon: 1, rare: 0, epic: 0, legendary: 0 },
+    { common: 99, uncommon: 0.99, rare: 0.01, epic: 0, legendary: 0 },
     { common: 0, uncommon: 90, rare: 10, epic: 0, legendary: 0 },
-    { common: 0, uncommon: 50, rare: 50, epic: 0, legendary: 0 },
+    { common: 0, uncommon: 70, rare: 30, epic: 0, legendary: 0 },
     { common: 0, uncommon: 0, rare: 100, epic: 0, legendary: 0 },
     { common: 0, uncommon: 0, rare: 0, epic: 0, legendary: 0 }
   ],
   t2: [
-    { common: 99, uncommon: 1, rare: 0, epic: 0, legendary: 0 },
-    { common: 0, uncommon: 90, rare: 10, epic: 0, legendary: 0 },
-    { common: 0, uncommon: 0, rare: 90, epic: 10, legendary: 0 },
+    { common: 97, uncommon: 2, rare: 0.99, epic: 0.01, legendary: 0 },
+    { common: 0, uncommon: 90, rare: 9.9, epic: 0.1, legendary: 0 },
+    { common: 0, uncommon: 0, rare: 70, epic: 30, legendary: 0 },
     { common: 0, uncommon: 0, rare: 0, epic: 100, legendary: 0 },
     { common: 0, uncommon: 0, rare: 0, epic: 0, legendary: 0 }
   ],
   t3:[
-    { common: 99, uncommon: 1, rare: 0, epic: 0, legendary: 0 },
-    { common: 5, uncommon: 85, rare: 10, epic: 0, legendary: 0 },
-    { common: 0, uncommon: 5, rare: 85, epic: 10, legendary: 0 },
-    { common: 0, uncommon: 0, rare: 5, epic: 85, legendary: 10 },
+    { common: 97, uncommon: 2, rare: 0.9, epic: 0.099, legendary: 0.001 },
+    { common: 0, uncommon: 90, rare: 9, epic: 0.99, legendary: 0.01 },
+    { common: 0, uncommon: 0, rare: 90, epic: 9.9, legendary: 0.1 },
+    { common: 0, uncommon: 0, rare: 0, epic: 70, legendary: 30 },
     { common: 0, uncommon: 0, rare: 0, epic: 0, legendary: 100 }
   ]
 }
@@ -112,119 +112,119 @@ export const stylingPartsOrder = {
   precisionRifle: [ 'grip', 'stock', 'barrel', 'body', 'magazine', 'sniperSight', 'laserPointer', 'bipod', 'silencer' ],
 };
 
-// TODO: this is provisional data until new calculations are done
+
 // Material cost for each weapon/tier
 export const craftingMaterialCost = {
+  knife: {
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000, carbon: 500 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { hydrogen: 2500, methane: 1000 }, step3: { helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, silicon: 2000 }, step3: { plutonium: 1500, argon: 1000 } }
+  },
   blade: {
-    t1: { step1: { carbon: 1500 }, step2: { hydrogen: 1500 }, step3: { oxygen: 1000 } },
-    t2: { step1: { iron: 3000 }, step2: { nickel: 2000, carbon: 1000 }, step3: { vanadium: 500, helium: 2000 } },
-    t3: { step1: { iron: 3000, copper: 1500 }, step2: { nickel: 2000, methane: 2000 }, step3: { vanadium: 1000, plutonium: 1500, cobalt: 500 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000, carbon: 2000 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 2000, copper: 1000 }, step2: { hydrogen: 2500, methane: 1000 }, step3: { helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { acetylene: 2000, aluminium: 1500 } }
   },
   blunt: {
-    t1: { step1: { iron: 1000 }, step2: { copper: 1000, carbon: 500 }, step3: { hydrogen: 500, oxygen: 1500 } },
-    t2: { step1: { hydrogen: 1500 }, step2: { oxygen: 1500, chromium: 500, vanadium: 1000 }, step3: { methane: 2000, silicon: 1500, helium: 1000 } },
-    t3: { step1: { iron: 1500, nickel: 1500, carbon: 1500 }, step2: { chromium: 1500, vanadium: 1500, helium: 1500 }, step3: { plutonium: 1000, argon: 1000, aluminium: 500 } }
-  },
-  knife: {
-    t1: { step1: { iron: 500 }, step2: { copper: 1500 }, step3: { carbon: 1500 } },
-    t2: { step1: { carbon: 2000 }, step2: { methane: 1000, vanadium: 2000 }, step3: { helium: 3000 } },
-    t3: { step1: { copper: 3000, carbon: 1500 }, step2: { vanadium: 3500 }, step3: { plutonium: 1500, cobalt: 1000, acetylene: 500 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { carbon: 1000, hydrogen: 2500 }, step3: { methane: 1000, helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { plutonium: 1000, acetylene: 2000, cobalt: 1500 } }
   },
   pistol: {
-    t1: { step1: { iron: 500 }, step2: { copper: 1000, nickel: 500 }, step3: { carbon: 1500, hydrogen: 500 } },
-    t2: { step1: { carbon: 2000 }, step2: { hydrogen: 1500, chromium: 500, methane: 1000 }, step3: { vanadium: 2000, silicon: 1000, helium: 3000 } },
-    t3: { step1: { copper: 1500, carbon: 4500 }, step2: { vanadium: 4000, cobalt: 500, acetylene: 1500 }, step3: { silicon: 1500, plutonium: 1500, aluminium: 500 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000, carbon: 2000 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { hydrogen: 2500, methane: 1000 }, step3: { helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { acetylene: 2000, aluminium: 1500 } }
   },
   revolver: {
-    t1: { step1: { iron: 500 }, step2: { copper: 500, hydrogen: 1000 }, step3: { nickel: 500, carbon: 1500 } },
-    t2: { step1: { iron: 3000, carbon: 1000 }, step2: { nickel: 2000, hydrogen: 1500, chromium: 500 }, step3: { vanadium: 500, silicon: 1000, helium: 2000 } },
-    t3: { step1: { copper: 1500, argon: 500, aluminium: 500 }, step2: { carbon: 3000, chromium: 1500, cobalt: 500 }, step3: { vanadium: 4000, helium: 1500, acetylene: 1000 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000, carbon: 500 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { hydrogen: 2500, methane: 1000 }, step3: { helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, silicon: 2000 }, step3: { plutonium: 1500, argon: 1000 } }
   },
   shotgun: {
-    t1: { step1: { iron: 1500 }, step2: { copper: 2000 }, step3: { carbon: 1000, oxygen: 1000 } },
-    t2: { step1: { iron: 3000, silicon: 500 }, step2: { nickel: 2000, carbon: 1000, oxygen: 1500 }, step3: { methane: 1000, vanadium: 500, helium: 2000 } },
-    t3: { step1: { copper: 1500, argon: 500, cobalt: 500 }, step2: { carbon: 3000, chromium: 1500, acetylene: 1000 }, step3: { vanadium: 4000, helium: 1500, plutonium: 1500 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { carbon: 1000, hydrogen: 2500 }, step3: { methane: 1000, helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { plutonium: 1000, acetylene: 2000, cobalt: 1500 } }
   },
   repeaterShotgun: {
-    t1: { step1: { iron: 2000 }, step2: { copper: 2500 }, step3: { carbon: 1000, oxygen: 1000 } },
-    t2: { step1: { iron: 3000, chromium: 500, vanadium: 500 }, step2: { nickel: 2000, carbon: 1000, helium: 1500 }, step3: { hydrogen: 1500, oxygen: 1500, silicon: 1500 } },
-    t3: { step1: { copper: 1500, argon: 500, cobalt: 500 }, step2: { carbon: 4500, chromium: 1500, plutonium: 1500 }, step3: { vanadium: 4000, silicon: 1500, helium: 1500 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000, carbon: 2000 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { hydrogen: 2500, methane: 1000 }, step3: { helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { acetylene: 2000, aluminium: 1500 } }
   },
   assaultSMG: {
-    t1: { step1: { iron: 1000, copper: 1500 }, step2: { carbon: 2000, hydrogen: 1000 }, step3: { oxygen: 5000 } },
-    t2: { step1: { nickel: 3000, oxygen: 3000 }, step2: { chromium: 2000, methane: 3000 }, step3: { vanadium: 2000, silicon: 1000, helium: 1000 } },
-    t3: { step1: { iron: 1500, nickel: 1500, argon: 500 }, step2: { carbon: 6000, acetylene: 2000, aluminium: 500 }, step3: { vanadium: 4500, silicon: 1500, plutonium: 2000 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000, carbon: 500 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { hydrogen: 2500, methane: 1000 }, step3: { helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, silicon: 2000 }, step3: { plutonium: 1500, argon: 1000 } }
   },
   highRateSMG: {
-    t1: { step1: { iron: 1500 }, step2: { copper: 1000, nickel: 500 }, step3: { carbon: 2000, hydrogen: 1000 } },
-    t2: { step1: { nickel: 3000, silicon: 1000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { methane: 3000, vanadium: 2000, helium: 1000 } },
-    t3: { step1: { copper: 3000, aluminium: 500 }, step2: { carbon: 4500, silicon: 1500, cobalt: 1000 }, step3: { vanadium: 5000, plutonium: 2000, acetylene: 1500 } }
-  },
-  assaultRifle: {
-    t1: { step1: { iron: 1000 }, step2: { copper: 2000 }, step3: { carbon: 2500, hydrogen: 500 } },
-    t2: { step1: { iron: 1500, nickel: 1000 }, step2: { carbon: 2000, methane: 2000 }, step3: { vanadium: 3000, helium: 4500 } },
-    t3: { step1: { copper: 3000, cobalt: 1000 }, step2: { carbon: 4500, plutonium: 2500 }, step3: { vanadium: 6500, acetylene: 1000 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { carbon: 1000, hydrogen: 2500 }, step3: { methane: 1000, helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { plutonium: 1000, acetylene: 2000, cobalt: 1500 } }
   },
   lightMachinegun: {
-    t1: { step1: { iron: 2000, copper: 1000 }, step2: { nickel: 1000, carbon: 1000 }, step3: { hydrogen: 1000, oxygen: 1000 } },
-    t2: { step1: { carbon: 2000 }, step2: { oxygen: 3000, methane: 4000 }, step3: { vanadium: 3000, silicon: 1000, helium: 4000 } },
-    t3: { step1: { iron: 6000, argon: 1000, aluminium: 1000 }, step2: { nickel: 5000, plutonium: 2000, acetylene: 1000 }, step3: { carbon: 3000, methane: 2000, silicon: 3000 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000, carbon: 2000 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { hydrogen: 2500, methane: 1000 }, step3: { helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { acetylene: 2000, aluminium: 1500 } }
+  },
+  assaultRifle: {
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000, carbon: 500 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { hydrogen: 2500, methane: 1000 }, step3: { helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, silicon: 2000 }, step3: { plutonium: 1500, argon: 1000 } }
   },
   sniperRifle: {
-    t1: { step1: { iron: 2000 }, step2: { copper: 2500 }, step3: { carbon: 1500, oxygen: 500 } },
-    t2: { step1: { nickel: 1500, silicon: 1000 }, step2: { oxygen: 3000, chromium: 1000 }, step3: { methane: 4000, vanadium: 1000, helium: 2000 } },
-    t3: { step1: { iron: 1500, copper: 1500, argon: 500 }, step2: { nickel: 1500, carbon: 4500, cobalt: 500 }, step3: { vanadium: 5500, plutonium: 2500, acetylene: 1500 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { carbon: 1000, hydrogen: 2500 }, step3: { methane: 1000, helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { plutonium: 1000, acetylene: 2000, cobalt: 1500 } }
   },
   precisionRifle: {
-    t1: { step1: { iron: 1500 }, step2: { copper: 2000, hydrogen: 500 }, step3: { carbon: 2000, oxygen: 500 } },
-    t2: { step1: { nickel: 1500, carbon: 1500 }, step2: { oxygen: 3000, chromium: 1000, silicon: 1000 }, step3: { methane: 3000, vanadium: 2000, helium: 2000 } },
-    t3: { step1: { iron: 3000, copper: 1500, cobalt: 500 }, step2: { nickel: 3000, carbon: 3000, acetylene: 1000 }, step3: { vanadium: 4000, plutonium: 2500, argon: 1000 } }
+    t1: { step1: { iron: 1000, copper: 1000 }, step2: { nickel: 1000, carbon: 2000 }, step3: { vanadium: 1000 } },
+    t2: { step1: { iron: 3000, copper: 3000 }, step2: { hydrogen: 2500, methane: 1000 }, step3: { helium: 3000 } },
+    t3: { step1: { iron: 10000, copper: 10000 }, step2: { oxygen: 3000, chromium: 2000 }, step3: { acetylene: 2000, aluminium: 1500 } }
   },
   helmet: {
-    t1: { step1: { iron: 500 }, step2: { copper: 1000 }, step3: { carbon: 1500, hydrogen: 500 } },
-    t2: { step1: { iron: 1500 }, step2: { nickel: 1000, carbon: 2000 }, step3: { vanadium: 1000, helium: 2500 } },
-    t3: { step1: { iron: 1500, argon: 500 }, step2: { copper: 3000, cobalt: 1000 }, step3: { vanadium: 2000, plutonium: 1500 } }
+    t1: { step1: { iron: 800, copper: 800 }, step2: { nickel: 800 }, step3: { vanadium: 800 } },
+    t2: { step1: { iron: 2400, copper: 2400 }, step2: { carbon: 800, hydrogen: 2000 }, step3: { methane: 800, helium: 2400 } },
+    t3: { step1: { iron: 8000, copper: 8000 }, step2: { oxygen: 2400, chromium: 1600 }, step3: { plutonium: 800, acetylene: 1600, cobalt: 1200 } }
   },
   chest: {
-    t1: { step1: { iron: 1000 }, step2: { copper: 1000, carbon: 1500 }, step3: { hydrogen: 1000, oxygen: 1500 } },
-    t2: { step1: { carbon: 2000, chromium: 500 }, step2: { hydrogen: 1500, methane: 1000 }, step3: { vanadium: 2000, silicon: 1000, helium: 3000 } },
-    t3: { step1: { copper: 3000, aluminium: 500 }, step2: { carbon: 3000, silicon: 1500, cobalt: 1000 }, step3: { vanadium: 3500, plutonium: 1500, acetylene: 1000 } }
+    t1: { step1: { iron: 800, copper: 800 }, step2: { nickel: 800 }, step3: { vanadium: 800 } },
+    t2: { step1: { iron: 2400, copper: 2400 }, step2: { carbon: 800, hydrogen: 2000 }, step3: { methane: 800, helium: 2400 } },
+    t3: { step1: { iron: 8000, copper: 8000 }, step2: { oxygen: 2400, chromium: 1600 }, step3: { plutonium: 800, acetylene: 1600, cobalt: 1200 } }
   },
   shoulders: {
-    t1: { step1: { carbon: 1000 }, step2: { hydrogen: 1000 }, step3: { oxygen: 500 } },
-    t2: { step1: { carbon: 1000 }, step2: { methane: 1000 }, step3: { vanadium: 1500, helium: 2000 } },
-    t3: { step1: { carbon: 1500, argon: 500 }, step2: { chromium: 1500, acetylene: 500 }, step3: { silicon: 1500, helium: 1500, aluminium: 1000 } }
+    t1: { step1: { iron: 800, copper: 800 }, step2: { nickel: 800, carbon: 1600 }, step3: { vanadium: 800 } },
+    t2: { step1: { iron: 1600, copper: 800 }, step2: { hydrogen: 2000, methane: 800 }, step3: { helium: 2400 } },
+    t3: { step1: { iron: 8000, copper: 8000 }, step2: { oxygen: 2400, chromium: 1600 }, step3: { acetylene: 1600, aluminium: 1200 } }
   },
   forearms: {
-    t1: { step1: { copper: 500 }, step2: { carbon: 1000 }, step3: { hydrogen: 500, oxygen: 500 } },
-    t2: { step1: { hydrogen: 1500 }, step2: { oxygen: 1500, chromium: 500 }, step3: { methane: 1000, silicon: 1500 } },
-    t3: { step1: { carbon: 1500, argon: 500 }, step2: { chromium: 1500, aluminium: 500, acetylene: 500 }, step3: { vanadium: 1500, helium: 1500, plutonium: 500 } }
+    t1: { step1: { iron: 800, copper: 800 }, step2: { nickel: 800, carbon: 400 }, step3: { vanadium: 800 } },
+    t2: { step1: { iron: 2400, copper: 2400 }, step2: { hydrogen: 2000, methane: 800 }, step3: { helium: 2400 } },
+    t3: { step1: { iron: 8000, copper: 8000 }, step2: { oxygen: 2400, silicon: 1600 }, step3: { plutonium: 1200, argon: 800 } }
   },
   arms: {
-    t1: { step1: { copper: 500 }, step2: { carbon: 1000 }, step3: { hydrogen: 500, oxygen: 500 } },
-    t2: { step1: { hydrogen: 1500 }, step2: { oxygen: 1500, chromium: 500 }, step3: { methane: 1000, silicon: 1500 } },
-    t3: { step1: { carbon: 1500, argon: 500 }, step2: { chromium: 1500, aluminium: 500, acetylene: 500 }, step3: { vanadium: 1500, helium: 1500, plutonium: 500 } }
+    t1: { step1: { iron: 800, copper: 800 }, step2: { nickel: 800, carbon: 1600 }, step3: { vanadium: 800 } },
+    t2: { step1: { iron: 1600, copper: 800 }, step2: { hydrogen: 2000, methane: 800 }, step3: { helium: 2400 } },
+    t3: { step1: { iron: 8000, copper: 8000 }, step2: { oxygen: 2400, chromium: 1600 }, step3: { acetylene: 1600, aluminium: 1200 } }
   },
   gloves: {
-    t1: { step1: { iron: 500 }, step2: { copper: 500 }, step3: { carbon: 500 } },
-    t2: { step1: { oxygen: 1500 }, step2: { methane: 1000 }, step3: { helium: 500 } },
-    t3: { step1: { iron: 1500 }, step2: { nickel: 1500 }, step3: { plutonium: 500, argon: 500 } }
+    t1: { step1: { iron: 800, copper: 800 }, step2: { nickel: 800, carbon: 400 }, step3: { vanadium: 800 } },
+    t2: { step1: { iron: 2400, copper: 2400 }, step2: { hydrogen: 2000, methane: 800 }, step3: { helium: 2400 } },
+    t3: { step1: { iron: 8000, copper: 8000 }, step2: { oxygen: 2400, silicon: 1600 }, step3: { plutonium: 1200, argon: 800 } }
   },
   legs: {
-    t1: { step1: { iron: 500, copper: 500 }, step2: { carbon: 1000 }, step3: { hydrogen: 1000, oxygen: 1000 } },
-    t2: { step1: { nickel: 3000 }, step2: { carbon: 1000, chromium: 2000 }, step3: { vanadium: 1500, helium: 1000 } },
-    t3: { step1: { copper: 1500, cobalt: 500 }, step2: { carbon: 3000, acetylene: 500 }, step3: { vanadium: 4000, plutonium: 1500 } }
+    t1: { step1: { iron: 800, copper: 800 }, step2: { nickel: 800, carbon: 1600 }, step3: { vanadium: 800 } },
+    t2: { step1: { iron: 1600, copper: 800 }, step2: { hydrogen: 2000, methane: 800 }, step3: { helium: 2400 } },
+    t3: { step1: { iron: 8000, copper: 8000 }, step2: { oxygen: 2400, chromium: 1600 }, step3: { acetylene: 1600, aluminium: 1200 } }
   },
   kneepads: {
-    t1: { step1: { copper: 500 }, step2: { carbon: 500 }, step3: { hydrogen: 500 } },
-    t2: { step1: { carbon: 1000 }, step2: { vanadium: 500 }, step3: { helium: 1000 } },
-    t3: { step1: { copper: 1500 }, step2: { vanadium: 1000 }, step3: { plutonium: 500, cobalt: 500 } }
+    t1: { step1: { iron: 800, copper: 800 }, step2: { nickel: 800, carbon: 400 }, step3: { vanadium: 800 } },
+    t2: { step1: { iron: 2400, copper: 2400 }, step2: { hydrogen: 2000, methane: 800 }, step3: { helium: 2400 } },
+    t3: { step1: { iron: 8000, copper: 8000 }, step2: { oxygen: 2400, silicon: 1600 }, step3: { plutonium: 1200, argon: 800 } }
   },
   boots: {
-    t1: { step1: { copper: 500 }, step2: { carbon: 1000 }, step3: { hydrogen: 500, oxygen: 500 } },
-    t2: { step1: { hydrogen: 1500 }, step2: { oxygen: 1500, chromium: 500 }, step3: { methane: 1000, silicon: 1500 } },
-    t3: { step1: { carbon: 1500, argon: 500 }, step2: { chromium: 1500, aluminium: 500 }, step3: { vanadium: 1500, helium: 1500, plutonium: 500 } }
-  },
+    t1: { step1: { iron: 800, copper: 800 }, step2: { nickel: 800 }, step3: { vanadium: 800 } },
+    t2: { step1: { iron: 2400, copper: 2400 }, step2: { carbon: 800, hydrogen: 2000 }, step3: { methane: 800, helium: 2400 } },
+    t3: { step1: { iron: 8000, copper: 8000 }, step2: { oxygen: 2400, chromium: 1600 }, step3: { plutonium: 800, acetylene: 1600, cobalt: 1200 } }
+  }
 };
 
 export const weaponPartsInfo = [

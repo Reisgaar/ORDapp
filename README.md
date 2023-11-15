@@ -42,16 +42,16 @@ Before you can run the OR Dapp website locally, you need to have the following p
 1. Clone this repository to your local machine:
 
    ```
-   git clone ...
+   git clone https://github.com/NexxyoLabs/NLD001.Frontend.Dapp.git
    ```
 
 2. Navigate to the project directory:
 
    ```
-   cd ...
+   cd NLD001.Frontend.Dapp
    ```
 
-3. Install project dependencies::
+3. Install project dependencies:
 
    ```
    npm install
@@ -65,13 +65,11 @@ To start the development server and view the website locally, run:
   ng serve
   ```
 
-If wallet connect doesn't work properly, try:
-
-  ```
-  ng serve --ssl true
-  ```
-
 This command starts a development server, and you can access the website in your web browser at http://localhost:4200.
+
+* If wallet connect doesn't work properly, add `--ssl true` to run as https.
+* If you want to use another port, add `--port 4201` or the number of the port.
+* If you want to allow access to other computers connected to the same network, add `--host 0.0.0.0`.
 
 ## Deployment
 

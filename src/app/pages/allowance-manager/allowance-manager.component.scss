@@ -2,9 +2,10 @@
 
 .content {
   max-width: 1200px;
-  margin: auto;
+  margin: 100px auto 150px;
   color: $white;
   padding: 0 20px;
+  min-height: 250px;
 
   h1 {
     font-family: $magistral !important;
@@ -15,18 +16,54 @@
     text-transform: uppercase;
   }
 
+  .tabs {
+    text-align: center;
+
+    .tab {
+      cursor: pointer;
+      padding: 5px 25px;
+      margin: 0 20px;
+      border-radius: 7px;
+      font-size: 1rem;
+
+      &.selected {
+        background-color: $blue-medium;
+      }
+    }
+  }
+
   .section {
     margin: 50px 0;
 
+    &-wrapper {
+      overflow: hidden;
+      height: 0;
+      transition: height 0.3s ease-in-out;
+    }
+
     &-title {
+      cursor: pointer;
+      position: relative;
       border-bottom-width: 1px;
       border-bottom-style: solid;
       border-image: linear-gradient(to right, $pink, transparent) 100% 1;
       font-family: $magistral !important;
       text-transform: uppercase;
       font-size: 1.5em;
-      padding: 0 0 5px 10px;
+      padding: 5px 0 5px 10px;
       margin: 0;
+      border-radius: 7px 7px 0 0;
+
+      &:hover {
+        background-color: $white-transparent-10;
+      }
+    }
+
+    .switcher {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
     }
 
     .contract {
@@ -53,13 +90,15 @@
       .tokens {
         padding: 5px 20px 5px 0;
         margin: 5px 0 15px;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-evenly;
 
         .token {
           background: radial-gradient(ellipse at center, #ffffff 0%, #CFD8DC 100%);
           box-shadow: #3BD5F850 2px 2px 3px;
           color: black;
           width: max-content;
-          display: inline-block;
           margin: 0 15px 10px 0;
           padding: 5px 10px;
           border-radius: 8px;
@@ -120,6 +159,10 @@
               gap: 10px;
               border-top: 1px solid $blue-medium;
               padding-top: 5px;
+
+              &.nfts {
+                grid-template-columns: repeat(2, 1fr);
+              }
 
               .button {
                 cursor: pointer;

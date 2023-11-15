@@ -17,6 +17,9 @@ export class CraftingFactoryComponent implements OnInit, OnDestroy {
   querySubscription: any;
   walletIsConnected: boolean = false;
   discounts: any = { cost: 0, time: 0 };
+  visibleTip: number = 1;
+  totalTips: number = 5;
+  tipInterval: any;
 
   constructor(
     private connectionService: ConnectionService,
@@ -35,6 +38,7 @@ export class CraftingFactoryComponent implements OnInit, OnDestroy {
         if (this.querySubscription) { this.querySubscription.unsubscribe(); }
       }
     });
+    this.setTipInterval();
   }
 
   /**
@@ -42,6 +46,7 @@ export class CraftingFactoryComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy(): void {
     if (this.querySubscription) { this.querySubscription.unsubscribe(); }
+    if (this.tipInterval) { clearInterval(this.tipInterval) }
   }
 
   /**
@@ -50,6 +55,8 @@ export class CraftingFactoryComponent implements OnInit, OnDestroy {
    */
   changeSelectedStep(newStep: string): void {
     this.selectedStep = newStep;
+    this.visibleTip = 1;
+    this.setTipInterval();
   }
 
   /**
@@ -89,10 +96,28 @@ export class CraftingFactoryComponent implements OnInit, OnDestroy {
   }
 
   /**
-   *
+   * Get discounts from staked lands
    */
   async getDiscounts(): Promise<any> {
     this.discounts = await this.materialExtractionService.getUserCraftingDiscount();
     console.log('discounts', this.discounts);
+  }
+
+  /**
+   * Set the interval to change tip automatically
+   */
+  setTipInterval(): void{
+    if (this.tipInterval) { clearInterval(this.tipInterval) }
+    this.tipInterval = setInterval(() => {
+      this.changeVisibleTip();
+    }, 5000);
+  }
+
+  /**
+   * Change the visible tip to the next one
+   */
+  changeVisibleTip(): void {
+    this.visibleTip = ((this.visibleTip + 1) > this.totalTips) ? 1 : (this.visibleTip + 1);
+    this.setTipInterval();
   }
 }

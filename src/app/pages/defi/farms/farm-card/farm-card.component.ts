@@ -122,6 +122,7 @@ export class FarmCardComponent implements OnInit, OnDestroy {
     info[1].status === 'success'
       ? (this.pool.rewardToken = info[1].result)
       : (this.pool.rewardToken = '');
+      console.log('info2',info[2]);
     info[2].status === 'success'
       ? (this.pool.resourcePerBlock = info[2].result.toString())
       : (this.pool.resourcePerBlock = '');
@@ -140,6 +141,7 @@ export class FarmCardComponent implements OnInit, OnDestroy {
     this.pool.rewardToken
       ? await this.getInfoRewardToken(this.pool.rewardToken)
       : null;
+    this.pool.type = 'farm';
   }
 
   async getInfoLp(address: string): Promise<any> {
@@ -342,9 +344,24 @@ export class FarmCardComponent implements OnInit, OnDestroy {
   }
 
   apy() {
+    console.log('data',this.pool,
+      this.pool.resourcePerBlock,
+      this.pool.totalAllocPoint,
+       this.pool.rewardTokenName,
+
+       this.pool.address,
+       this.isConnected,
+       this.pool.stakedToken,
+       this.pool.staked,
+       this.pool.stakedTotal,
+       this.pool.stakedTokenDecimals,
+       this.pool.pendingRewards,
+       this.pool.rewardTokenSymbol,
+       this.pool.farm)
     const dialogRef = this.dialog.open(ApyComponent, {
       panelClass: 'lootbox-dialog-container',
       data: {
+        // type: 'farm',
         id: this.pool.id,
         resourcePerBlock: this.pool.resourcePerBlock,
         totalAllocPoint: this.pool.totalAllocPoint,
@@ -358,7 +375,7 @@ export class FarmCardComponent implements OnInit, OnDestroy {
         stakedTokenDecimals: this.pool.stakedTokenDecimals,
         pendingRewards: this.pool.pendingRewards,
         rewardTokenSymbol: this.pool.rewardTokenSymbol,
-        farm: this.pool.farm,
+        pool: this.pool,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

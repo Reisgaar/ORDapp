@@ -37,7 +37,6 @@ export class LiquidityMinusComponent implements OnInit {
   inputTooHigh: boolean = false;
   inputNegative: boolean = false;
   userAddr: string;
-
   constructor(
     public dialogRef: MatDialogRef<LiquidityMinusComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
@@ -62,15 +61,16 @@ export class LiquidityMinusComponent implements OnInit {
 
   async getLPReserves(): Promise<void> {
     this.maxAmount = this.connectionService.fromWei(this.data.farm.liquidityData);
+    console.log(this.maxAmount);
   }
 
   // Percentage change event return amount
   async setRewards(): Promise<void> {
     // Modify liquidity amount
-    const amount = this.ammountPercentaje / 100;
+    const amountPercentaje = this.ammountPercentaje / 100;
 
-    console.log(amount);
-    const amountFN = FixedNumber.from(amount.toString());
+    console.log(this.ammountPercentaje, amountPercentaje, this.amount);
+    const amountFN = FixedNumber.from(amountPercentaje.toString());
     // this.ammountBalance = FixedNumber.from(this.data.farm.liquidityData).mulUnsafe(amountFN);
     const liquidityDataFN = FixedNumber.from(this.data.farm.liquidityData);
     this.liquidityAmount = liquidityDataFN.mulUnsafe(amountFN);
@@ -89,15 +89,25 @@ export class LiquidityMinusComponent implements OnInit {
   // Returns the percentage to subtract from liquidity
   async setPercent(percent: number): Promise<void> {
     this.ammountPercentaje = percent;
+    if(percent == 100) {
+      this.amount = this.maxAmount;
+      await this.setRewards();
+    } else {
     this.amount = ((parseFloat(this.maxAmount)* percent) / 100).toString();
     await this.setRewards();
+    }
   }
 
   // Amount onchange
   async maxBalance(): Promise<void> {
-    if (this.amount <= this.maxAmount) {
+    console.log(
+      BigNumber.from(this.connectionService.toWei(this.maxAmount)),
+      BigNumber.from(this.connectionService.toWei(this.amount.toString()))
+    );
+    if (BigNumber.from(this.connectionService.toWei(this.maxAmount)).gt(BigNumber.from(this.connectionService.toWei(this.amount.toString())))) {
       this.ammountPercentaje = (parseFloat(this.amount) * 100) / parseFloat(this.maxAmount);
-      // this.amount = this.ammountPercentaje;
+      // this.amount = parseFloat(this.amount);
+      this.amount = this.amount.toString();
       await this.setRewards();
     } else {
       this.ammountPercentaje = 100;
@@ -116,20 +126,19 @@ export class LiquidityMinusComponent implements OnInit {
       const slippage = Number(localStorage.getItem('slipTolerance'));
       // Deadline to seconds
       const deadline = Number(localStorage.getItem('transDeadLine')) * 60;
-
+const liquidityToRemove = this.connectionService.toWei(this.amount);
       // Approve liquidity if needed
-
 
       // Remove Liquidity
       await this.dexService.removeLiquidityAny(
-        this.data.farm.liquidityData,
+        liquidityToRemove,
         slippage,
         deadline,
         this.liquidityValues,
         this.data.farm.subsidiaryToken1,
         this.data.farm.subsidiaryToken2,
         this.userAddr,
-        this.data.farm.stakedToken
+        this.data.farm.address
       );
 
     } catch (error) {

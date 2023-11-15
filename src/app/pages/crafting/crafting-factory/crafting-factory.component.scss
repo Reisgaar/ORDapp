@@ -4,7 +4,7 @@
   color: $white;
   max-width: 1200px;
   margin: auto;
-  padding: 50px 20px 150px;
+  padding: 50px 20px;
 
   &.connect {
     font-size: 1.1rem;
@@ -48,7 +48,7 @@
   .tabs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin: 40px 0 20px;
+    margin: 40px 0;
 
     .tab {
       cursor: pointer;
@@ -68,11 +68,6 @@
   }
 
   .step {
-
-    .info {
-      text-align: center;
-      margin: 50px 0;
-    }
 
     .cards {
       display: flex;
@@ -111,3 +106,97 @@
     }
   }
 }
+
+.tips {
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: $blue-medium;
+  border-top: 1px solid $white;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  gap: 15px;
+  color: $white;
+
+  p {
+    margin: 0;
+  }
+
+  .stage {
+    align-self: center;
+    padding-left: 10px;
+  }
+
+  .info {
+    align-self: center;
+    text-align: center;
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+
+    p {
+      align-self: center;
+      text-align: center;
+      grid-column: 1;
+      grid-row: 1;
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
+      &.disabled {
+        position: relative;
+        opacity: 0;
+        transform: scale(0);
+
+        &.active {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+  }
+
+  .next {
+    align-self: center;
+    cursor: pointer;
+    padding: 10px;
+
+    span, .icon {
+      vertical-align: middle;
+    }
+  }
+}
+
+// Small devices
+@media (max-width: 576px) {
+
+  .tips {
+    grid-template-columns: 1fr;
+    gap: 0;
+
+    .stage {
+      font-size: 0.7rem;
+      font-weight: 300;
+    }
+
+    .info {
+      margin: 5px 0;
+
+      p {
+        font-size: 0.8rem;
+        line-height: 1em;
+        padding: 0 10px;
+      }
+    }
+
+    .next {
+      font-size: 0.7rem;
+      font-weight: 300;
+      width: max-content;
+      justify-self: right;
+      padding: 0;
+    }
+  }
+}
+

@@ -1,0 +1,100 @@
+@import 'src/styleVariables.scss';
+
+.close {
+  font-family: 'magistral', sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding-right: 50px;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+
+.message {
+  text-align: center;
+  word-break: break-word;
+
+  .text {
+    margin: 15px 0 30px;
+  }
+
+  .input {
+    position: relative;
+    width: max-content;
+    margin: 0 auto 20px;
+
+    .label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-100%);
+      font-size: 0.7rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      padding: 0 0 2px 7px;
+      line-height: 1em;
+    }
+
+    &-field {
+      border: 1px solid $blue-medium;
+      background-color: $grey-extra-dark;
+      color: $white;
+      border-radius: 7px;
+      padding: 7px 15px;
+      width: 150px;
+      font-size: 1rem;
+
+      &:disabled {
+        opacity: 0.5;
+        border-color: grey;
+      }
+
+      &:focus { outline: none; }
+
+      &.error {
+        border-color: $red-error;
+      }
+    }
+  }
+
+  .button {
+    cursor: pointer;
+    display: inline-block;
+    background: linear-gradient(to right, #262EBF, #111A58);
+    width: max-content;
+    padding: 7px 30px;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin: 0;
+
+    &:hover {
+      background: linear-gradient(to right, #D2196F, #520066);
+    }
+  }
+}

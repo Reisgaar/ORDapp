@@ -8,9 +8,10 @@ if (environment.production) {
   enableProdMode();
   localStorage.setItem('connected', 'disconnected');
   if (window) {
-    window.console.log = () => { };
+    window.console.log = () => {};
   }
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));

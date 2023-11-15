@@ -9,18 +9,28 @@
       <table class="table">
         <tr>
           <td><strong>{{ 'defi.apr.Daily' | translate }}</strong></td>
-          <td class="table-y">{{aprDayOwn1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+          <td class="table-y">{{aprDayOwn1 | number: "1.0-3"}}&nbsp;
+            <span class="tex-med" *ngIf="data.pool.rewardToken[0].symbol; else farmSymbol">{{data.pool.rewardToken[0].symbol}}</span>
+            <ng-template #farmSymbol> <span class="tex-med">{{ data.rewardTokenSymbol }}</span></ng-template>
+          </td>
           <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprDayOwn2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
         </tr>
         <tr>
           <td><strong>{{'defi.apr.Weekly' | translate }}</strong></td>
-          <td class="table-y">{{aprWeekOwn1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+          <td class="table-y">{{aprWeekOwn1 | number: "1.0-3"}}&nbsp;
+            <span class="tex-med" *ngIf="data.pool.rewardToken[0].symbol; else farmSymbolWeek">{{data.pool.rewardToken[0].symbol}}</span>
+            <ng-template #farmSymbolWeek> <span class="tex-med">{{ data.rewardTokenSymbol }}</span></ng-template>
+          </td>
           <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprWeekOwn2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
         </tr>
 
         <tr>
           <td><strong>{{'defi.apr.Monthly' | translate }}</strong></td>
-          <td class="table-y">{{aprMonthOwn1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[0].symbol}}</span></td>
+          <td class="table-y">{{aprMonthOwn1 | number: "1.0-3"}}&nbsp;
+            <span class="tex-med" *ngIf="data.pool.rewardToken[0].symbol; else farmSymbolMonth">{{data.pool.rewardToken[0].symbol}}</span>
+            <ng-template #farmSymbolMonth> <span class="tex-med">{{ data.rewardTokenSymbol }}</span></ng-template>
+
+          </td>
           <td *ngIf="data.pool.rewardToken.length == 2" class="table-y">{{aprMonthOwn2 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.pool.rewardToken[1].symbol}}</span></td>
         </tr>
       </table>
@@ -91,6 +101,23 @@
             </tr>
           </table>
         </div>
+        <div *ngIf="data.pool.type == 'farm'">
+          {{ 'defi.apr.rewardPer1LP' | translate }}
+            <table class="table">
+              <tr>
+                <td><strong>{{ 'defi.apr.Daily' | translate }}</strong></td>
+                <td class="table-y">{{aprDay1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.rewardTokenSymbol}}</span></td>
+              </tr>
+              <tr>
+                <td><strong>{{'defi.apr.Weekly' | translate }}</strong></td>
+                <td class="table-y">{{aprWeek1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.rewardTokenSymbol}}</span></td>
+              </tr>
+              <tr>
+                <td><strong>{{'defi.apr.Monthly' | translate }}</strong></td>
+                <td class="table-y">{{aprMonth1 | number: "1.0-3"}}&nbsp;<span class="tex-med">{{data.rewardTokenSymbol}}</span></td>
+              </tr>
+            </table>
+          </div>
   </div>
 </div>
 

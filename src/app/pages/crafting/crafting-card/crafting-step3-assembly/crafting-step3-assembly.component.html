@@ -3,6 +3,7 @@
     <p *ngIf="poolData.nftType === 0">{{'crafting.armors.' + weapon | translate | uppercase}}</p>
     <p *ngIf="poolData.nftType === 1">{{'crafting.weapons.' + weapon | translate | uppercase}}</p>
     <p class="weapon-data">{{'crafting.element' + poolData.element | translate}} - Tier {{poolData.tier}}</p>
+    <mat-icon class="search-icon" (click)="switchPreview()">search</mat-icon>
   </div>
 
     <div class="image">
@@ -22,15 +23,51 @@
       <div class="booster" [class.started]="poolData.started === true">
         <ng-container *ngFor="let rar of ['common', 'uncommon', 'rare', 'epic', 'legendary']; let i = index">
           <span class="name"
+            [class.disabled]="boosters['t' + poolData.tier][selectedEngineer][rar] === 0"
             [class.final-rarity]="i === poolData.rarity && poolData.rarity < 5"
-            [ngClass]="poolData.rarity === 5 && poolData.started ? 'waiting-' + i : ''"
+            [ngClass]="poolData.rarity === 5 && poolData.started ? 'waiting-t' + poolData.tier + '-rb' + selectedEngineer + '-' + i : ''"
           >{{'nft.rarity.' + rar | translate}}:</span>
           <span class="value"
+            [class.disabled]="boosters['t' + poolData.tier][selectedEngineer][rar] === 0"
             [class.final-rarity]="i === poolData.rarity && poolData.rarity < 5"
-            [ngClass]="poolData.rarity === 5 && poolData.started ? 'waiting-' + i : ''"
+            [ngClass]="poolData.rarity === 5 && poolData.started ? 'waiting-t' + poolData.tier + '-rb' + selectedEngineer + '-' + i : ''"
           >{{boosters['t' + poolData.tier][selectedEngineer][rar]}}%</span>
         </ng-container>
       </div>
     </ng-template>
+
+</div>
+
+<div>
+
+<!-- FINAL IMAGE FOR WEAPON -->
+  <div class="preview-image" *ngIf="poolData.nftType === 1 && previewWeapon">
+    <mat-icon class="close-icon" (click)="switchPreview()">close</mat-icon>
+    <div class="image-mix">
+      <p class="name">{{'crafting.weapons.' + weapon | translate | uppercase}}</p>
+      <ng-container *ngFor="let part of weaponParts | keyvalue">
+        <ng-container *ngIf="!['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase))">
+          <img
+            [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(part.key)}"
+            class="preview-part {{weapon + '-' + part.key}}"
+            id="{{weapon}}_{{part.key}}_{{part.value.aesthetic}}"
+            src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{part.key}}_{{part.value.parts[part.value.aesthetic]}}.png"
+          />
+        </ng-container>
+        <ng-container *ngIf="['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase))">
+          <ng-container *ngFor="let subPart of weaponParts[part.key] | keyvalue">
+            <img
+              *ngIf="subPart.value.aesthetic > -1"
+              [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(subPart.key)}"
+              class="preview-part {{weapon + '-' + subPart.key}}"
+              id="{{weapon}}_{{subPart.key}}_{{subPart.value.aesthetic}}"
+              src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{subPart.key}}_{{subPart.value.parts[subPart.value.aesthetic]}}.png"
+            />
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <p class="data">{{'crafting.element' + poolData.element | translate}} - Tier {{poolData.tier}}</p>
+    </div>
+  </div>
 
 </div>

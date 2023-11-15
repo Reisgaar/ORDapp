@@ -5,15 +5,17 @@ import { DeleteWhitespacesPipe } from './deleteWhitespaces.pipe';
 import { FloorPipe } from './floor.pipe';
 import { ParseNumberPipe } from './parseNumber.pipe';
 import { ShortWalletPipe } from './shortWallet.pipe';
-import { FormatTimePipe } from './timeFormat.pipe';
+import { FormatTimePipe } from './formatTime.pipe';
 import { TimeStampIsPastPipe } from './timeStampIsPast.pipe';
 import { ToTickerPipe } from './toTicker.pipe';
-import { WalletFirstNumPipe } from './walletImage.pipe';
-import { WalletSpeciePipe } from './walletSpecie';
+import { WalletFirstNumPipe } from './walletFirstNum.pipe';
+import { WalletSpeciePipe } from './walletSpecie.pipe';
 import { FromWeiPipe } from './fromWei.pipe';
 import { NftContractToNamePipe } from './nftContractToName.pipe';
 import { NftContractToVariablePipe } from './nftContractToVariable.pipe';
-import { MaterialToTickerPipe } from './materialToTicker';
+import { MaterialToTickerPipe } from './materialToTicker.pipe';
+import { MaterialFromAddressPipe } from './materialFromAddress.pipe';
+import { NftNameToCamelCase } from './nftNameToCamelCase.pipe';
 
 
 
@@ -23,6 +25,10 @@ import { MaterialToTickerPipe } from './materialToTicker';
     DeleteWhitespacesPipe,
     FloorPipe,
     FromWeiPipe,
+    MaterialFromAddressPipe,
+    MaterialToTickerPipe,
+    NftContractToNamePipe,
+    NftContractToVariablePipe,
     ParseNumberPipe,
     ShortWalletPipe,
     FormatTimePipe,
@@ -30,9 +36,7 @@ import { MaterialToTickerPipe } from './materialToTicker';
     ToTickerPipe,
     WalletFirstNumPipe,
     WalletSpeciePipe,
-    NftContractToNamePipe,
-    NftContractToVariablePipe,
-    MaterialToTickerPipe
+    NftNameToCamelCase,
   ],
   imports: [
     CommonModule
@@ -42,6 +46,10 @@ import { MaterialToTickerPipe } from './materialToTicker';
     DeleteWhitespacesPipe,
     FloorPipe,
     FromWeiPipe,
+    MaterialFromAddressPipe,
+    MaterialToTickerPipe,
+    NftContractToNamePipe,
+    NftContractToVariablePipe,
     ParseNumberPipe,
     ShortWalletPipe,
     FormatTimePipe,
@@ -49,9 +57,7 @@ import { MaterialToTickerPipe } from './materialToTicker';
     ToTickerPipe,
     WalletFirstNumPipe,
     WalletSpeciePipe,
-    NftContractToNamePipe,
-    NftContractToVariablePipe,
-    MaterialToTickerPipe
+    NftNameToCamelCase,
   ]
 })
 export class PipesModule { }

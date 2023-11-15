@@ -8,6 +8,8 @@ import { armorEnum, stylingPartsOrder, weaponEnum, weaponPartsInfo, weaponPartsO
 })
 export class CraftingStep2StylingComponent implements OnInit {
   @Input() poolData: any;
+  @Input() poolPrice: any;
+  @Input() poolPriceInGQ: any;
   weapon = '';
   element = 0;
   showPreview: boolean = false;

@@ -12,38 +12,6 @@
 
 <div class="content" *ngIf="walletIsConnected === true" style="padding: 50px 20px 20px;">
   <h2>{{'crafting.craftingFactory' | translate}}</h2>
-
-  <div class="tabs">
-    <span class="tab" [class.active]="selectedStep === 'creation'" (click)="changeSelectedStep('creation')">{{'crafting.creation' | translate}}</span>
-    <span class="tab" [class.active]="selectedStep === 'styling'" (click)="changeSelectedStep('styling')">{{'crafting.styling' | translate}}</span>
-    <span class="tab" [class.active]="selectedStep === 'assembly'" (click)="changeSelectedStep('assembly')">{{'crafting.assembly' | translate}}</span>
-  </div>
-
-  <!-- FIRST STEP: CREATION -->
-  <div class="step" *ngIf="selectedStep === 'creation'">
-    <div class="info">
-      <p>{{'crafting.step1tip1' | translate}}</p>
-      <p>{{'crafting.step1tip2' | translate}}</p>
-      <p>{{'crafting.step1tip3' | translate}}</p>
-    </div>
-  </div>
-  <!-- SECOND STEP: STYLING -->
-  <div class="step" *ngIf="selectedStep === 'styling'">
-    <div class="info">
-      <p>{{'crafting.step2tip1' | translate}}</p>
-      <p>{{'crafting.step2tip2' | translate}}</p>
-      <p>{{'crafting.step2tip3' | translate}}</p>
-    </div>
-  </div>
-  <!-- THIRD STEP: ASSEMBLY -->
-  <div class="step" *ngIf="selectedStep === 'assembly'">
-    <div class="info">
-      <p>{{'crafting.step3tip1' | translate}}</p>
-      <p>{{'crafting.step3tip2' | translate}}</p>
-      <p>{{'crafting.step3tip3' | translate}}</p>
-    </div>
-  </div>
-
 </div>
 
 <div *ngIf="walletIsConnected === true" class="discount">
@@ -56,7 +24,14 @@
   <p class="tip">*{{'crafting.discountTip' | translate}}</p>
 </div>
 
-<div class="content" *ngIf="walletIsConnected === true">
+<div class="content" *ngIf="walletIsConnected === true" style="padding: 20px;">
+  <div class="tabs">
+    <span class="tab" [class.active]="selectedStep === 'creation'" (click)="changeSelectedStep('creation')">{{'crafting.creation' | translate}}</span>
+    <span class="tab" [class.active]="selectedStep === 'styling'" (click)="changeSelectedStep('styling')">{{'crafting.styling' | translate}}</span>
+    <span class="tab" [class.active]="selectedStep === 'assembly'" (click)="changeSelectedStep('assembly')">{{'crafting.assembly' | translate}}</span>
+  </div>
+
+
   <!-- FIRST STEP: CREATION -->
   <div class="step" *ngIf="selectedStep === 'creation'">
     <div class="cards">
@@ -81,4 +56,30 @@
       <app-crafting-card [step]="3" [pool]="2" [discounts]="discounts"></app-crafting-card>
     </div>
   </div>
+</div>
+
+<div style="max-width: 1200px; margin: 50px auto;">
+  <p style="color: white; margin: 0 auto; text-align: center;">{{'crafting.materials' | translate}}:</p>
+  <app-material-viewer [color]="'blue'"></app-material-viewer>
+</div>
+
+<div class="tips">
+  <ng-container *ngFor="let step of ['creation', 'styling', 'assembly']; let i = index">
+    <ng-container *ngIf="selectedStep === step">
+      <p class="stage">{{'crafting.' + step + 'Tip' | translate}} {{visibleTip}}: </p>
+
+      <div class="info">
+        <p class="disabled" [class.active]="visibleTip === 1">{{'crafting.step' + (i + 1) + 'tip1' | translate}}</p>
+        <p class="disabled" [class.active]="visibleTip === 2">{{'crafting.step' + (i + 1) + 'tip2' | translate}}</p>
+        <p class="disabled" [class.active]="visibleTip === 3">{{'crafting.step' + (i + 1) + 'tip3' | translate}}</p>
+        <p class="disabled" [class.active]="visibleTip === 4">{{'crafting.step' + (i + 1) + 'tip4' | translate}}</p>
+        <p class="disabled" [class.active]="visibleTip === 5">{{'crafting.step' + (i + 1) + 'tip5' | translate}}</p>
+      </div>
+
+      <p class="next" (click)="changeVisibleTip()">
+        <span>{{'crafting.nextTip' | translate}}</span>
+        <mat-icon class="icon">arrow_right</mat-icon>
+      </p>
+    </ng-container>
+  </ng-container>
 </div>

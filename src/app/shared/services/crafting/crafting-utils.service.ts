@@ -8,16 +8,50 @@ import { default as CraftingCreation } from 'src/app/shared/contracts/crafting/C
 import { default as CraftingStyling } from 'src/app/shared/contracts/crafting/CraftingStyling.json';
 import { default as CraftingAssembly } from 'src/app/shared/contracts/crafting/CraftingAssembly.json';
 import { default as CraftingSharedStorage } from 'src/app/shared/contracts/crafting/CraftingSharedStorage.json';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CraftingUtilsService {
+  private _userCraftedAmounts = new BehaviorSubject<any>({});
+  userCraftedAmounts = this._userCraftedAmounts.asObservable();
 
   constructor(
     private connectionService: ConnectionService,
     private tokenService: TokenService
-  ) { }
+  ) {}
+
+
+  /**
+   * Sets data of creation step requirements
+   */
+  async setUserCraftedAmount(userAddr: string): Promise<any> {
+    let userCraftedT1Items = await this.connectionService.readContract(contractAddresses.craftingCreation, CraftingCreation.abi, 'userCraftedItemsByTier', [1, userAddr]);
+    let userCraftedT2Items = await this.connectionService.readContract(contractAddresses.craftingCreation, CraftingCreation.abi, 'userCraftedItemsByTier', [2, userAddr]);
+    userCraftedT1Items = typeof userCraftedT1Items !== 'number' ? parseInt(userCraftedT1Items) : userCraftedT1Items;
+    userCraftedT2Items = typeof userCraftedT2Items !== 'number' ? parseInt(userCraftedT2Items) : userCraftedT2Items;
+    this._userCraftedAmounts.next({tier1: userCraftedT1Items, tier2: userCraftedT2Items});
+  }
+
+  /**
+   * Gets data of creation step requirements
+   * @returns object with requirements
+   */
+  getUserCraftedAmount(): any {
+    return this._userCraftedAmounts;
+  }
+
+
+  /**
+   * Get price of the crafting start fee pool
+   * @returns fee price
+   */
+  async getCraftingFeeInUSD(): Promise<any> {
+    let price = await this.connectionService.readContract(contractAddresses.craftingSharedStorage, CraftingSharedStorage.abi, 'craftingFee', []);
+    if (price !== '0') { price = this.connectionService.fromWei(price); }
+    return price.toString();
+  }
 
   /**
    * Get de data of the selected step and pool
@@ -41,8 +75,13 @@ export class CraftingUtilsService {
    * @returns the pool data
    */
   async getFirstStepPoolData(pool: number): Promise<any> {
+    const tier = pool + 1;
     const userAddr = this.connectionService.getWalletAddress();
     let item = await this.connectionService.readContract(contractAddresses.craftingCreation, CraftingCreation.abi, 'userCreationItems', [userAddr, pool]);
+    let poolGameStatus = await this.connectionService.readContract(contractAddresses.craftingCreation, CraftingCreation.abi, 'checkTierStatusByUser', [tier, userAddr]);
+    let requiredCrafts = await this.connectionService.readContract(contractAddresses.craftingCreation, CraftingCreation.abi, 'requiredCraftedItemsByTier', [tier]);
+    requiredCrafts = typeof requiredCrafts !== 'number' ? parseInt(requiredCrafts) : requiredCrafts;
+    if (pool === 1) { this.setUserCraftedAmount(userAddr); }
     if (item.exists) {
       const idData = await this.getCraftingIdData(item.craftingId);
       item = {
@@ -50,7 +89,11 @@ export class CraftingUtilsService {
         ...idData
       }
     }
-    return item;
+    return {
+      ...item,
+      isLocked: !poolGameStatus,
+      requiredCrafts
+    };
   }
 
   /**

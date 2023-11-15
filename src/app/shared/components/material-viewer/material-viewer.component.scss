@@ -25,6 +25,11 @@
       box-shadow: inset 0px 0px 4px 0px #0d1f29;
       filter: drop-shadow(3px 3px 5px #00000099);
 
+      &.blue {
+        background: linear-gradient(to bottom left, $blue-semi-dark 20%, #373c93, $blue-semi-dark 80%);
+        filter: drop-shadow(2px 2px 3px $blue-light-transparent);
+      }
+
       .image {
         width: 100%;
         object-fit: contain;

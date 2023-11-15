@@ -46,6 +46,20 @@ export class CraftingStep1CreationComponent implements OnInit {
   }
 
   /**
+   * Sets the selected weapon/armor with given param
+   * @param type type to change (0 is weapon, 1 is armor)
+   * @param newSelection new selected item
+   */
+  setSelectedWeaponOrArmor(type: number, newSelection: number): void {
+    if (type === 1) {
+      this.selectedWeapon = newSelection;
+    } else {
+      this.selectedArmor = newSelection;
+    }
+    this.sendDataToParent();
+  }
+
+  /**
    * Changes between selected item type
    * @param move +1 or -1 to move a step
    * @param type type to move (0 is weapon, 1 is armor)
@@ -67,7 +81,7 @@ export class CraftingStep1CreationComponent implements OnInit {
     if (this.selectedWeapon + move < 0) {
       this.selectedWeapon = this.items[1].length - 1;
     } else if (this.selectedWeapon + move >= this.items[1].length) {
-      this.selectedWeapon = 0
+      this.selectedWeapon = 0;
     } else {
       this.selectedWeapon += move;
     }
@@ -81,7 +95,7 @@ export class CraftingStep1CreationComponent implements OnInit {
     if (this.selectedArmor + move < 0) {
       this.selectedArmor = this.items[0].length - 1;
     } else if (this.selectedArmor + move >= this.items[0].length) {
-      this.selectedArmor = 0
+      this.selectedArmor = 0;
     } else {
       this.selectedArmor += move;
     }

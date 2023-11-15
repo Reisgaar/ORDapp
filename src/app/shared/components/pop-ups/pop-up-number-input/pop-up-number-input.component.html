@@ -1,0 +1,26 @@
+<div class="close">
+  <p class="text">{{ data.titleRoute | translate }}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="message">
+  <p class="text" [innerHTML]="data.messageRoute | translate"></p>
+
+  <div class="input">
+    <label class="label" for="amount">{{ data.popUpLabelRoute | translate }}</label>
+    <input type="text"
+      class="input-field"
+      [class.error]="formError"
+      id="price"
+      name="price"
+      autocomplete="off"
+      inputmode="decimal"
+      placeholder="0.0"
+      pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+      value="0"
+      [(ngModel)]="newPrice"
+      (keypress)="controlInput($event)"
+    />
+  </div>
+
+  <p class="button" (click)="confirmationSend()">Confirm</p>
+</div>

@@ -26,7 +26,20 @@ export class CraftingCreationService {
    * @returns price of the pool
    */
   async getPoolPrice(pool: number): Promise<any> {
-    return await this.connectionService.readContract(contractAddresses.craftingCreation, Creation.abi, 'poolPrices', [pool]);
+    let price = await this.connectionService.readContract(contractAddresses.craftingCreation, Creation.abi, 'poolPrices', [pool]);
+    if (price !== '0') { price = this.connectionService.fromWei(price); }
+    return price.toString();
+  }
+
+  /**
+   * Get price of the given pool in GQ
+   * @param pool number of the pool
+   * @returns price of the pool
+   */
+  async getPoolPriceInGQ(pool: number): Promise<any> {
+    let price = await this.connectionService.readContract(contractAddresses.craftingCreation, Creation.abi, 'getPoolPriceInGQ', [pool]);
+    if (price !== '0') { price = this.connectionService.fromWei(price); }
+    return price.toString();
   }
 
   /**
@@ -42,16 +55,21 @@ export class CraftingCreationService {
     const walletIsConnected = await this.connectionService.syncAccount();
     if (walletIsConnected) {
       const userAddr = this.connectionService.getWalletAddress();
+      const gqPrice = await this.connectionService.readContract(contractAddresses.craftingCreation, Creation.abi, 'getPoolPriceInGQ', [poolId]);
+      const gqAllowed = await this.tokenService.tokenApprovement(contractAddresses.craftingCreation, userAddr, 'GQ', gqPrice);
+      if (!gqAllowed) { return; }
       const materialsAllowed = await this.craftingUtilsService.checkAllowanceOfRequiredMaterials(materials, contractAddresses.craftingResourcesController, userAddr);
       if (materialsAllowed) {
         let dialog = this.dialogService.openRegularInfoDialog('actionNeeded', 'craftingCreationStart', '');
         try {
-          const tx = await this.connectionService.writeContract(contractAddresses.craftingCreation, Creation.abi, 'createItem', [poolId, nftType, itemId, tier, element]);
+          const fee = await this.connectionService.readContract(contractAddresses.craftingCreation, Creation.abi, 'getCraftingFeeInBNB', []);
+          const tx = await this.connectionService.writeContract(contractAddresses.craftingCreation, Creation.abi, 'createItem', [poolId, nftType, itemId, tier, element], fee);
           dialog.close();
           dialog = this.dialogService.openRegularInfoDialog('craftingCreation', 'waitTransaction', '');
           await waitForTransaction(tx);
           dialog.close();
           dialog = this.dialogService.openRegularInfoDialog('craftingCreation', 'successfulTransaction', '', 'successfulTransactionLink_html', tx.hash);
+          this.craftingUtilsService.setUserCraftedAmount(userAddr);
         } catch (error: any) {
           dialog.close();
           dialog = this.dialogService.openRegularInfoDialog('error', error.message, '');
@@ -68,10 +86,10 @@ export class CraftingCreationService {
     const walletIsConnected = await this.connectionService.syncAccount();
     if (walletIsConnected) {
       const userAddr = this.connectionService.getWalletAddress();
-      // TODO: Set price correctly to acceleration process
       const acceleratePrice = await this.getAccelerationPrice(userAddr, poolId);
-      const allowed = await this.tokenService.tokenApprovement(contractAddresses.craftingCreation, userAddr, 'GQ', '10000000000000000000000000000000000000000000000000');
-      let dialog = this.dialogService.openRegularInfoDialog('actionNeeded', 'craftingCreationSkip', acceleratePrice + ' BUSD');
+      const allowed = await this.tokenService.tokenApprovement(contractAddresses.craftingCreation, userAddr, 'GQ', acceleratePrice);
+      const formattedValue = parseFloat(parseFloat(this.connectionService.fromWei(acceleratePrice)).toFixed(4)).toLocaleString('en-GB');
+      let dialog = this.dialogService.openRegularInfoDialog('actionNeeded', 'craftingCreationSkip',formattedValue + ' GQ');
       if (allowed === true) {
         try {
           const tx = await this.connectionService.writeContract(contractAddresses.craftingCreation, Creation.abi, 'skipCraftingTime', [poolId]);
@@ -89,7 +107,7 @@ export class CraftingCreationService {
   }
 
   async getAccelerationPrice(userAddr: string, poolId: number): Promise<string> {
-    return await this.connectionService.readContract(contractAddresses.craftingCreation, Creation.abi, 'getSkipCraftingTimePrice', [userAddr, poolId]);
+    return await this.connectionService.readContract(contractAddresses.craftingCreation, Creation.abi, 'getSkipCraftingTimePriceInGQ', [userAddr, poolId]);
   }
 
   /**

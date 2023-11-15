@@ -67,6 +67,24 @@ export const CurrentVotesForUserByProposalId = gql`
   }
 `;
 
+// BLACK MARKET
+export const getBlackMarketSales = gql`
+  query getBlackMarketSales($materialAddresses: [Bytes!]!, $orderBy: Bytes!, $orderDirection: Bytes!, $ownerContains: Bytes!, $ownerNot: Bytes!) {
+    sales(
+      first: 1000,
+      where: {isActive: true, material_in: $materialAddresses, owner_contains: $ownerContains, owner_not: $ownerNot},
+      orderBy: $orderBy, orderDirection: $orderDirection
+    ) {
+      id
+      isActive
+      material
+      owner
+      price
+      quantity
+    }
+  }
+`;
+
 
 // MARKETPLACE
 
@@ -632,6 +650,41 @@ query getWalletMaterials($wallet: Bytes!){
       plutonium
       silicon
       vanadium
+    }
+  }
+`;
+
+export const getWalletArmorAndWeaponsquery = gql`
+  query getWalletArmorAndWeaponsquery($wallet: Bytes!) {
+    inventory: usersInventories(where: {id: $wallet}) {
+      armors(first: 1000) {
+        id
+        type
+        nftContractAddress
+        tier
+        rarityId
+        rarityName
+        collectionId
+        collectionName
+        piece
+        fullTokenURI
+        tokenURI
+        metadata {uriString}
+      }
+      weapons(first: 1000) {
+        id
+        type
+        nftContractAddress
+        tier
+        rarityId
+        rarityName
+        collectionId
+        collectionName
+        piece
+        fullTokenURI
+        tokenURI
+        metadata {uriString}
+      }
     }
   }
 `;

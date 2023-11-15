@@ -1,0 +1,316 @@
+@import 'src/styleVariables.scss';
+
+.black-market {
+  background: #000000aa;
+  padding-bottom: 50px;
+
+  .top-image {
+    position: relative;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+  }
+
+  .market {
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+    color: $white;
+
+    .title {
+      width: 100%;
+      text-transform: uppercase;
+      font-family: $magistral !important;
+      font-size: 3rem;
+      line-height: 1em;
+      border-bottom: 1px solid $white;
+      text-align: center;
+      margin-bottom: 100px;
+    }
+
+    .sales {
+      margin: 150px 0 70px;
+
+      .tabs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 20px 0;
+
+        .tab {
+          cursor: pointer;
+          align-self: center;
+          text-align: center;
+          margin: 0;
+          color: #7e7e7e;
+          border-bottom: 2px solid #7e7e7e;
+          font-size: 1.2rem;
+          line-height: 1.3em;
+
+          &.active {
+            color: #ffffff;
+            border-bottom: 2px solid #D2196F;
+          }
+        }
+      }
+
+      .sales-head {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+
+        .order {
+          align-self: center;
+          justify-self: end;
+
+          .label {
+            margin-right: 10px;
+          }
+
+          .selector {
+            cursor: pointer;
+            border: 1px solid $blue-medium;
+            background-color: $grey-extra-dark;
+            color: $white;
+            border-radius: 7px;
+            padding: 3px 10px;
+            width: 120px;
+            font-size: 0.9rem;
+          }
+        }
+
+        .filter {
+          align-self: center;
+          justify-self: end;
+          position: relative;
+          border: 1px solid $blue-medium;
+          background-color: $grey-extra-dark;
+          color: $white;
+          border-radius: 7px;
+          padding: 3px 10px;
+          width: 120px;
+          font-size: 0.9rem;
+          z-index: 1;
+
+          .label {
+            position: absolute;
+            right: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
+          .select-panel {
+            display: none;
+            position: absolute;
+            border: 1px solid $blue-medium;
+            background-color: $grey-extra-dark;
+            width: 100%;
+            top: 100%;
+            left: -1px;
+            border-radius: 0 0 7px 7px;
+          }
+
+          &:hover {
+            border-radius: 7px 7px 0 0;
+
+            .select-panel {
+              display: block;
+            }
+          }
+
+          .material {
+            padding: 2px 5px;
+            cursor: pointer;
+
+            &.selected {
+              background-color: transparent !important;
+              cursor: default !important;
+              padding: 0;
+            }
+
+            span {
+              position: relative;
+              margin-left: 25px;
+
+              img {
+                position: absolute;
+                height: 25px;
+                width: 25px;
+                right: 100%;
+                top: 50%;
+                transform: translateY(-50%) scale(1.2);
+              }
+            }
+
+            &:hover {
+              background-color: $white-transparent-10;
+            }
+          }
+        }
+      }
+
+      .items {
+        display: flex;
+        gap: 30px;
+        flex-flow: wrap;
+        justify-content: space-evenly;
+      }
+
+      .spinner {
+        width: max-content;
+        margin: 100px auto;
+      }
+
+      .no-results {
+        font-size: 1.5rem;
+        line-height: 1em;
+        margin: 100px auto;
+        text-align: center;
+      }
+
+      .pagination {
+        text-align: right;
+        color: $white;
+        margin: 30px auto 5px;
+
+        span {
+          vertical-align: middle;
+        }
+
+        .arrow {
+          cursor: pointer;
+          vertical-align: middle;
+          height: 35px;
+          width: 35px;
+          font-size: 35px;
+
+          &.disabled {
+            cursor: default;
+            color: $white-transparent-60;
+          }
+        }
+
+        .page-amount {
+          position: relative;
+          display: inline-block;
+          border: 1px solid $blue-medium;
+          background-color: $grey-extra-dark;
+          color: $white;
+          border-radius: 7px;
+          padding: 3px 10px;
+          width: max-content;
+          font-size: 0.8rem;
+          z-index: 1;
+          text-align: center;
+
+          &-selector {
+            display: none;
+            position: absolute;
+            border: 1px solid $blue-medium;
+            background-color: $grey-extra-dark;
+            width: 100%;
+            top: 100%;
+            left: -1px;
+            border-radius: 0 0 7px 7px;
+
+            .amount {
+              cursor: pointer;
+
+              &:hover {
+                background-color: $white-transparent-10;
+              }
+
+              &.hidden {
+                display: none;
+              }
+            }
+          }
+
+          &:hover {
+            border-radius: 7px 7px 0 0;
+
+            .page-amount-selector {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*
+ * Responsive breakpoints
+ */
+
+// Small devices
+@media (max-width: 576px) {
+  .black-market {
+
+    .head .subtitle {
+      font-size: 0.8rem;
+      line-height: 1em;
+    }
+
+    .market {
+
+      .title {
+        font-size: 1.5rem;
+        margin-bottom: 80px;
+      }
+
+      .sales {
+
+        .tabs .tab {
+          font-size: 1rem;
+        }
+
+        .sales-head {
+          font-size: 1rem;
+          grid-template-columns: 1fr 1fr;
+          gap: 15px;
+
+          .order {
+            justify-self: start;
+            align-self: end;
+            text-align: center;
+
+            .label {
+              font-size: 0.8rem;
+              margin: 0;
+              display: block;
+            }
+
+            .selector {
+              font-size: 0.8rem;
+            }
+          }
+
+          .filter {
+            align-self: end;
+            padding: 1px;
+
+            .label {
+              font-size: 0.8rem;
+              right: unset;
+              left: 50%;
+              top: unset;
+              bottom: 100%;
+              transform: translate(-50%, 0);
+            }
+
+            .material {
+              padding: 1px 5px;
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

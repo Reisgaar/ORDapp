@@ -33,7 +33,7 @@
           <span (click)="setRange(50)" [class.active]="amount === maxAmountHalf">50%</span>
           <span (click)="setRange(100)" [class.active]="amount === maxAmount">max</span>
         </div>
-        <div *ngIf="data.fee">{{ 'defi.pool.fee' | translate }} <span>{{ data.fee }}%</span></div>
+        <div *ngIf="data.fee && !data.canWithdraw">{{ 'defi.pool.fee' | translate }} <span>{{ data.fee }}%</span></div>
         <button type="submit" class="vote-button" (click)="confirmAction()">{{'governance.popUpGqSelector.' + (data.type
           | lowercase) + 'Button' | translate}}</button>
       </form>

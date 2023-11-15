@@ -10,7 +10,7 @@
   transition: transform 1s ease-in-out;
 
   &.shown {
-    transform: translateY(0px);
+    transform: translateY(-100px);
     transition: transform 1s ease-in-out;
   }
 }

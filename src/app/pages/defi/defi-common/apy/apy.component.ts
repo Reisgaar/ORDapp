@@ -55,21 +55,24 @@ export class ApyComponent implements OnInit{
   ) {}
 
   async ngOnInit(): Promise<void> {
-    console.log(this.data);
     this.isConnected = await this.connectionService.isWalletConnected();
     this.dexService.setTokenPricesOnBusd();
+    if(this.data.pool.type == 'farm'){
+
+      await this.getApy();
+      return;
+    }
 
     this.tokenPrice = await this.dexService.tokenPrice(this.data.pool);
-    console.log(this.tokenPrice);
     if(this.data.pool.type == 'GalacticAlliance'){
       await this.getGalacticAllianceApy(this.data.pool);
     }
 
     if(this.data.pool.type == 'Stake' || 'GalacticReserve'){
-      console.log('stake');
       await this.getStakeApy(this.data.pool);
     }
-    // await this.getApy();
+
+
   }
 
 
@@ -77,22 +80,21 @@ export class ApyComponent implements OnInit{
 /**
  * Get reward. Related to staked token user and reward per 1 LP token
  */
-// async getApy(): Promise<any>{
-//   const rewardBlockWei = this.data.resourcePerBlock;
-//   const rewardPerBlock = this.connectionService.fromWei(rewardBlockWei);
-//   const rewardPerSecond = (this.data.totalAllocPoint / this.data.totalAllocPoint) * parseFloat(rewardPerBlock) / 3.03;
-//   console.log(rewardBlockWei, rewardPerBlock, rewardPerSecond)
-//   if(this.data.isConnected && this.data.staked!='0'){
-//   this.rewardPerBlockOwn = ((this.data.staked / this.data.stakedTotal) * rewardPerSecond);
-//   this.aprDayOwn = this.rewardPerBlockOwn * 28800;
-//   this.aprWeekOwn = this.rewardPerBlockOwn * 201600;
-//   this.aprMonthOwn = this.rewardPerBlockOwn * 864000;
-//   }
-//   this.rewardPerBlock =  ((1000 / this.data.stakedTotal) * rewardPerSecond);
-//   this.aprDay = this.rewardPerBlock * 28800;
-//   this.aprWeek = this.rewardPerBlock * 201600;
-//   this.aprMonth = this.rewardPerBlock * 864000;
-// }
+async getApy(): Promise<any>{
+  const rewardBlockWei = this.data.resourcePerBlock;
+  const rewardPerBlock = this.connectionService.fromWei(rewardBlockWei);
+  const rewardPerSecond = (this.data.totalAllocPoint / this.data.totalAllocPoint) * parseFloat(rewardPerBlock) / 3.03;
+  if(this.data.isConnected && this.data.pool.staked!='0'){
+  this.rewardPerBlockOwn1 = ((parseFloat(this.data.staked) / parseFloat(this.data.stakedTotal)) * rewardPerSecond);
+  this.aprDayOwn1 = this.rewardPerBlockOwn1 * 86400;
+  this.aprWeekOwn1 = this.rewardPerBlockOwn1 * 604800;
+  this.aprMonthOwn1 = this.rewardPerBlockOwn1 * 2628000;
+  }
+  const rewardPerBlockMil1 =  ((1 / this.data.pool.stakedTotal) * rewardPerSecond);
+  this.aprDay1 = rewardPerBlockMil1 * 86400;
+  this.aprWeek1 = rewardPerBlockMil1 * 604800;
+  this.aprMonth1 = rewardPerBlockMil1 * 2628000;
+}
 
 async getStakeApy(pool): Promise<any>{
 
@@ -101,26 +103,26 @@ async getStakeApy(pool): Promise<any>{
   : await this.dexService.getStakeRewardPerBlock(pool.pool, '1');
   const rewardPerBlock1 = this.connectionService.fromWei(rewardBlockWei1);
   this.rewardPerBlockOwn1 = ((parseInt(this.data.staked) / parseInt(this.data.stakedTotal)) * parseFloat(rewardPerBlock1));
-  this.aprDayOwn1 = this.rewardPerBlockOwn1 * 28800;
-  this.aprWeekOwn1 = this.rewardPerBlockOwn1 * 201600;
-  this.aprMonthOwn1 = this.rewardPerBlockOwn1 * 864000;
+  this.aprDayOwn1 = this.rewardPerBlockOwn1 * 86400;
+  this.aprWeekOwn1 = this.rewardPerBlockOwn1 * 604800;
+  this.aprMonthOwn1 = this.rewardPerBlockOwn1 * 2628000;
   const rewardPerBlockMil1 = (((1000/this.tokenPrice) / parseInt(this.data.stakedTotal)) * parseFloat(rewardPerBlock1));
-  this.aprDay1 = rewardPerBlockMil1 * 28800;
-  this.aprWeek1 = rewardPerBlockMil1 * 201600;
-  this.aprMonth1 = rewardPerBlockMil1 * 864000;
+  this.aprDay1 = rewardPerBlockMil1 * 86400;
+  this.aprWeek1 = rewardPerBlockMil1 * 604800;
+  this.aprMonth1 = rewardPerBlockMil1 * 2628000;
   console.log('reward stake',rewardPerBlockMil1, this.tokenPrice);
 
   if(pool.rewardToken.length == 2){
     const rewardBlockWei2 = await this.dexService.getStakeRewardPerBlock(pool.pool, '2');
     const rewardPerBlock2 = this.connectionService.fromWei(rewardBlockWei2);
     this.rewardPerBlockOwn2 = ((parseInt(this.data.staked) / parseInt(this.data.stakedTotal)) * parseFloat(rewardPerBlock2));
-    this.aprDayOwn2 = this.rewardPerBlockOwn1 * 28800;
-    this.aprWeekOwn2 = this.rewardPerBlockOwn1 * 201600;
-    this.aprMonthOwn2 = this.rewardPerBlockOwn1 * 864000;
+    this.aprDayOwn2 = this.rewardPerBlockOwn1 * 86400;
+    this.aprWeekOwn2 = this.rewardPerBlockOwn1 * 604800;
+    this.aprMonthOwn2 = this.rewardPerBlockOwn1 * 2628000;
     const rewardPerBlockMil2 = (((1000/this.tokenPrice) / parseInt(this.data.stakedTotal)) * parseFloat(rewardPerBlock2));
-    this.aprDay2 = rewardPerBlockMil2 * 28800;
-    this.aprWeek2 = rewardPerBlockMil2 * 201600;
-    this.aprMonth2 = rewardPerBlockMil2 * 864000;
+    this.aprDay2 = rewardPerBlockMil2 * 86400;
+    this.aprWeek2 = rewardPerBlockMil2 * 604800;
+    this.aprMonth2 = rewardPerBlockMil2 * 2628000;
 
 
   }
@@ -135,28 +137,27 @@ async getGalacticAllianceApy(pool): Promise<any>{
   const rewardPerBlock2 = this.connectionService.fromWei(rewardBlockWei2);
   // await this.getPriceToken().then(
   //   );
-  console.log('reward galactic',rewardBlockWei1, rewardPerBlock2, this.tokenPrice);
 
   this.rewardPerBlockOwn1 = ((parseInt(this.data.staked) / parseInt(this.data.stakedTotal)) * parseFloat(rewardPerBlock1));
-  this.aprDayOwn1 = this.rewardPerBlockOwn1 * 28800;
-  this.aprWeekOwn1 = this.rewardPerBlockOwn1 * 201600;
-  this.aprMonthOwn1 = this.rewardPerBlockOwn1 * 864000;
+  this.aprDayOwn1 = this.rewardPerBlockOwn1 * 86400;
+  this.aprWeekOwn1 = this.rewardPerBlockOwn1 * 604800;
+  this.aprMonthOwn1 = this.rewardPerBlockOwn1 * 2628000;
 
   this.rewardPerBlockOwn2= ((parseInt(this.data.staked) / parseInt(this.data.stakedTotal)) * parseFloat(rewardPerBlock2));
-  this.aprDayOwn2 = this.rewardPerBlockOwn2 * 28800;
-  this.aprWeekOwn2 = this.rewardPerBlockOwn2 * 201600;
-  this.aprMonthOwn2 = this.rewardPerBlockOwn2 * 864000;
+  this.aprDayOwn2 = this.rewardPerBlockOwn2 * 86400;
+  this.aprWeekOwn2 = this.rewardPerBlockOwn2 * 604800;
+  this.aprMonthOwn2 = this.rewardPerBlockOwn2 * 2628000;
 
   const rewardPerBlockMil1 = (((1000/this.tokenPrice) / parseInt(this.data.stakedTotal)) * parseFloat(rewardPerBlock1));
-  this.aprDay1 = rewardPerBlockMil1 * 28800;
-  this.aprWeek1 = rewardPerBlockMil1 * 201600;
-  this.aprMonth1 = rewardPerBlockMil1 * 864000;
+  this.aprDay1 = rewardPerBlockMil1 * 86400;
+  this.aprWeek1 = rewardPerBlockMil1 * 604800;
+  this.aprMonth1 = rewardPerBlockMil1 * 2628000;
 
   const rewardPerBlockMil2 = (((1000/this.tokenPrice) / parseInt(this.data.stakedTotal)) * parseFloat(rewardPerBlock2));
 
-  this.aprDay2 = rewardPerBlockMil2 * 28800;
-  this.aprWeek2 = rewardPerBlockMil2 * 201600;
-  this.aprMonth2 = rewardPerBlockMil2 * 864000;
+  this.aprDay2 = rewardPerBlockMil2 * 86400;
+  this.aprWeek2 = rewardPerBlockMil2 * 604800;
+  this.aprMonth2 = rewardPerBlockMil2 * 2628000;
   console.log('reward galactic',rewardPerBlockMil1, rewardPerBlockMil2, this.tokenPrice);
 
 }

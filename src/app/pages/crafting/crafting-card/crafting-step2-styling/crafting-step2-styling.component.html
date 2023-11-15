@@ -20,7 +20,7 @@
   </p>
 </div>
 <!-- FINAL IMAGE FOR WEAPON -->
-<div class="content"*ngIf="poolData.nftType === 1">
+<div class="content" *ngIf="poolData.nftType === 1">
   <div class="image">
     <div class="weapon-name">
       <p >{{'crafting.weapons.' + weapon | translate | uppercase}}</p>
@@ -63,7 +63,7 @@
             {{'crafting.weaponParts.' + part.key | translate}}
             <mat-icon class="arrow prev" (click)="changeMainImagePart(-1, part.key)">arrow_left</mat-icon>
             <mat-icon class="arrow next" (click)="changeMainImagePart(1, part.key)">arrow_right</mat-icon>
-            <span class="partof">{{part.value.aesthetic + 1}} of {{part.value.parts.length}}</span>
+            <span class="partof">{{part.value.aesthetic + 1}} {{"crafting.home.of" | translate}} {{part.value.parts.length}}</span>
           </p>
         </div>
       </ng-container>
@@ -100,7 +100,7 @@
         <ng-container *ngIf="!['accessories', 'underbarrel', 'sights'].includes((part.key | lowercase))">
           <img
             [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(part.key)}"
-            class="preview-part {{weapon + '-' + part.key}}"
+            class="preview-part {{weapon + '-' + part.key}} shine{{part.value.aesthetic}}"
             id="{{weapon}}_{{part.key}}_{{part.value.aesthetic}}"
             src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{part.key}}_{{part.value.parts[part.value.aesthetic]}}.png"
           />
@@ -110,14 +110,18 @@
             <img
               *ngIf="subPart.value.aesthetic > -1"
               [ngStyle]="{'z-index': weaponPartsOrder[weapon].indexOf(subPart.key)}"
-              class="preview-part {{weapon + '-' + subPart.key}}"
+              class="preview-part {{weapon + '-' + subPart.key}} shine{{subPart.value.aesthetic}}"
               id="{{weapon}}_{{subPart.key}}_{{subPart.value.aesthetic}}"
               src="assets/images/crafting/weapons/parts/{{weapon}}/{{weapon}}_{{subPart.key}}_{{subPart.value.parts[subPart.value.aesthetic]}}.png"
             />
           </ng-container>
         </ng-container>
       </ng-container>
-      <p class="advice" *ngIf="addOnsAdded">*Add ons will have an extra cost.</p>
+      <div class="bottom-side">
+        <p class="button" (click)="switchPreviewTo(false)">{{"crafting.confirm" | translate}}</p>
+        <p class="advice" *ngIf="addOnsAdded">*{{('crafting.extraAddOnCost' | translate).replace('***', (poolPrice | number:'1.0-4'))}}</p>
+        <p class="advice approx" *ngIf="addOnsAdded">{{'(' + ('crafting.approxInGQ' | translate).replace('***',  (poolPriceInGQ | number:'1.0-4') ) + ')'}}</p>
+      </div>
     </div>
   </div>
 </div>

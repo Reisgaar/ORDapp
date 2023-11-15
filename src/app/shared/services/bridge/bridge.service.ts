@@ -32,20 +32,31 @@ export class BridgeService {
    * @returns
    */
   async sendTokenToGame(receiver: string, tokenAddress: string, tokenTicker: string, tokenAmount: string): Promise<any> {
-    console.log('Sending tokens to game:', tokenAmount, tokenTicker);
-    console.log(tokenAddress);
+    console.log('Sending', tokenAmount, ' ', tokenTicker, '(', tokenAddress, ') to BG');
+    // The price has to be on WEI
     const tokenAmountWei = this.connectionService.toWei(tokenAmount);
+    // Get the connected wallet address
     const userAddr = this.connectionService.getWalletAddress();
+    // Check the token approvement
     const isApproved = await this.tokenService.tokenApprovement(contractAddresses.bridgeERC20Redeemer, userAddr, tokenAddress, tokenAmountWei);
     if (isApproved) {
+      // Dialogs to inform about the process to the user
       let dialog = this.dialogService.openRegularInfoDialog('bridgeToBlink', 'checkingBlinkUser', '');
-      const isOnDb = await this.checkIfUserIsOnDb(receiver);
-      console.log(isOnDb);
-      if (isOnDb) {
-        return await this.redeemTokens(receiver, dialog, tokenAddress, tokenTicker, tokenAmount, tokenAmountWei);
-      } else {
+      try {
+        // Check if user is on BG DB
+        const isOnDb = await this.checkIfUserIsOnDb(receiver);
+        console.log(isOnDb);
+        if (isOnDb) {
+          // Redeem tokens
+          return await this.redeemTokens(receiver, dialog, tokenAddress, tokenTicker, tokenAmount, tokenAmountWei);
+        } else {
+          dialog.close();
+          dialog = this.dialogService.openRegularInfoDialog('bridgeToBlink', 'userNotInDb', '', 'createBlinkAccount_html');
+        }
+      } catch (error) {
         dialog.close();
-        dialog = this.dialogService.openRegularInfoDialog('bridgeToBlink', 'userNotInDb', '', 'createBlinkAccount_html');
+        console.log(error);
+        dialog = this.dialogService.openRegularInfoDialog('error', error.message, '');
       }
     } else { }
   }
@@ -56,9 +67,13 @@ export class BridgeService {
    * @returns boolean, true if is on DB
    */
   async checkIfUserIsOnDb(userAddr: string): Promise<boolean> {
-    const res = await this.bridgeApiService.walletIsValid(userAddr);
-    console.log('Wallet on Blink Galaxy database:', res.isValid);
-    return res.isValid;
+    try {
+      const res = await this.bridgeApiService.walletIsValid(userAddr);
+      console.log('Wallet on Blink Galaxy database:', res.isValid);
+      return res.isValid;
+    } catch (error) {
+      throw error;
+    }
   }
 
   /**
@@ -74,15 +89,16 @@ export class BridgeService {
   async redeemTokens(receiver: string, dialog: any, tokenAddress: string, tokenTicker: string, tokenAmount: string, tokenAmountWei: string): Promise<any> {
     try {
       const deadline = Math.ceil(Date.now() / 1000) + 600;
-      // Signature
+      // Get the user signature
       dialog.close();
       dialog = this.dialogService.openRegularInfoDialog('bridgeToBlink', 'signTx', '');
       const signature = await this.sign(receiver, tokenAddress, tokenAmountWei, deadline);
       console.log(signature);
-      // Get fee and redeem tokens
       dialog.close();
       dialog = this.dialogService.openRegularInfoDialog('bridgeToBlink', 'transferTokens', tokenAmount + ' ' + tokenTicker);
+      // Get fee and redeem tokens
       const fee = await this.connectionService.readContract(contractAddresses.bridgeERC20Redeemer, BridgeERC20Redeemer.abi, 'getOperationFeeInBNB' , []);
+      // Redeem tokens on contract
       const tx = await this.connectionService.writeContract(contractAddresses.bridgeERC20Redeemer, BridgeERC20Redeemer.abi, 'redeemTokens' , [tokenAddress, receiver, tokenAmountWei, deadline, signature.v, signature.r, signature.s], fee);
       dialog.close();
       dialog = this.dialogService.openRegularInfoDialog('bridgeToBlink', 'waitTransaction', '');
@@ -105,6 +121,7 @@ export class BridgeService {
    * @returns
    */
   async sign(receiver: string, tokenAddress: string, amountToRedeem: string, deadline: any): Promise<any> {
+    // Set the domain
     const domain = {
       name: 'Blockchain Bridge',
       version: '1',
@@ -121,8 +138,11 @@ export class BridgeService {
         { name: 'nonce', type: 'uint256' }
       ],
     };
+    // Get connected wallet address
     const userAddr = this.connectionService.getWalletAddress();
+    // Get the nonce for the transaction
     const nonce = await this.connectionService.readContract(contractAddresses.bridgeERC20Redeemer, BridgeERC20Redeemer.abi, 'redemptionNonces' , [userAddr]);
+    // Prepare the message
     const message = {
       tokenAddress,
       receiver,
@@ -130,8 +150,10 @@ export class BridgeService {
       deadline,
       nonce: nonce
     };
+    // Sign with eth_signTypedData-v4
     const config: any = { domain, message, primaryType: 'RedeemTokens', types };
     const signature = await signTypedData(config);
+    // Return splitted signaute s v r
     return ethers.utils.splitSignature(signature);
   }
 
@@ -150,9 +172,12 @@ export class BridgeService {
    */
   async claimTokens(amount: string): Promise<any> {
     console.log(amount);
+    // Dialogs to inform about the process to the user
     let dialog = this.dialogService.openRegularInfoDialog('bridgeFromBlink', 'claimTokens', '');
     try {
+      // Get the fee of the transaction
       const fee = await this.connectionService.readContract(contractAddresses.bridgeERC20Redeemer, BridgeERC20Redeemer.abi, 'getOperationFeeInBNB' , []);
+      // Claim the tokens
       const tx = await this.connectionService.writeContract(contractAddresses.bridgeERC20Claimer, BridgeERC20Claimer.abi, 'claimTokens', [amount], fee);
       dialog.close();
       dialog = this.dialogService.openRegularInfoDialog('bridgeFromBlink', 'waitTransaction', '');

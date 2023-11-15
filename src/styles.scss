@@ -439,14 +439,14 @@ tbody {
   }
 }
 
-@keyframes rarityBoosterWaiting-0 {
+@keyframes rarityBoosterWaiting-5-1 {
   0%    { color: $white; }
   12.5% { color: $white; }
   12.6% { color: $white-transparent-60; }
   100%  { color: $white-transparent-60; }
 }
 
-@keyframes rarityBoosterWaiting-1 {
+@keyframes rarityBoosterWaiting-5-2 {
   0%    { color: $white-transparent-60; }
   12.4% { color: $white-transparent-60; }
   12.5% { color: $white; }
@@ -458,7 +458,7 @@ tbody {
   100%  { color: $white-transparent-60; }
 }
 
-@keyframes rarityBoosterWaiting-2 {
+@keyframes rarityBoosterWaiting-5-3 {
   0%    { color: $white-transparent-60; }
   24.9% { color: $white-transparent-60; }
   25%   { color: $white; }
@@ -471,7 +471,7 @@ tbody {
   100%  { color: $white-transparent-60; }
 }
 
-@keyframes rarityBoosterWaiting-3 {
+@keyframes rarityBoosterWaiting-5-4 {
   0%    { color: $white-transparent-60; }
   37.4% { color: $white-transparent-60; }
   37.5% { color: $white; }
@@ -484,13 +484,96 @@ tbody {
   100%  { color: $white-transparent-60; }
 }
 
-@keyframes rarityBoosterWaiting-4 {
+@keyframes rarityBoosterWaiting-5-5 {
   0%    { color: $white-transparent-60; }
   49.9% { color: $white-transparent-60; }
   50%   { color: $white; }
   62.5% { color: $white; }
   62.6% { color: $white-transparent-60; }
   100%  { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-4-1 {
+  0%     { color: $white; }
+  16.66% { color: $white; }
+  16.67% { color: $white-transparent-60; }
+  100%  { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-4-2 {
+  0%     { color: $white-transparent-60; }
+  16.65% { color: $white-transparent-60; }
+  16.66% { color: $white; }
+  33.33% { color: $white; }
+  33.34% { color: $white-transparent-60; }
+  83.32% { color: $white-transparent-60; }
+  83.33% { color: $white; }
+  99.9%  { color: $white; }
+  100%   { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-4-3 {
+  0%     { color: $white-transparent-60; }
+  33.32% { color: $white-transparent-60; }
+  33.33% { color: $white; }
+  50%    { color: $white; }
+  50.01% { color: $white-transparent-60; }
+  66.65% { color: $white-transparent-60; }
+  66.66% { color: $white; }
+  83.33% { color: $white; }
+  83.34% { color: $white-transparent-60; }
+  100%   { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-4-4 {
+  0%     { color: $white-transparent-60; }
+  49.99% { color: $white-transparent-60; }
+  50%    { color: $white; }
+  66.66% { color: $white; }
+  66.67% { color: $white-transparent-60; }
+  100%   { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-3-1 {
+  0%     { color: $white; }
+  25%    { color: $white; }
+  25.01% { color: $white-transparent-60; }
+  100%   { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-3-2 {
+  0%     { color: $white-transparent-60; }
+  24.99% { color: $white-transparent-60; }
+  25%    { color: $white; }
+  50%    { color: $white; }
+  50.01% { color: $white-transparent-60; }
+  74.99% { color: $white-transparent-60; }
+  75%    { color: $white; }
+  99.9%  { color: $white; }
+  100%   { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-3-3 {
+  0%     { color: $white-transparent-60; }
+  49.99% { color: $white-transparent-60; }
+  50%    { color: $white; }
+  75%    { color: $white; }
+  75.01% { color: $white-transparent-60; }
+  100%   { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-2-1 {
+  0%     { color: $white; }
+  50%    { color: $white; }
+  50.01% { color: $white-transparent-60; }
+  100%   { color: $white-transparent-60; }
+}
+
+@keyframes rarityBoosterWaiting-2-2 {
+  0%     { color: $white-transparent-60; }
+  49.99% { color: $white-transparent-60; }
+  50%    { color: $white; }
+  100%   { color: $white; }
 }
 
 @keyframes land-mining {
@@ -554,4 +637,45 @@ tbody {
   35%  { transform: translate(-50%, -70%) rotateX(0) scale(1); transform-origin: 50% -250%; opacity: 1; }
   85%  { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 50% 100%; opacity: 1; }
   100% { transform: translate(-50%, 0%) rotateX(-30deg) scale(0); transform-origin: 50% 100%; opacity: 1; }
+}
+
+@keyframes preview-appear-shine0 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
+}
+@keyframes preview-appear-shine1 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
+}
+@keyframes preview-appear-shine2 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
+}
+@keyframes preview-appear-shine3 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
+}
+@keyframes preview-appear-shine4 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
+}
+@keyframes preview-appear-shine5 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
+}
+@keyframes preview-appear-shine6 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
+}
+@keyframes preview-appear-shine7 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
+}
+@keyframes preview-appear-shine8 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
+}
+@keyframes preview-appear-shine9 {
+  from { filter: drop-shadow(0px 0px 15px white); }
+  to   { filter: drop-shadow(0px 0px 0px transparent) }
 }

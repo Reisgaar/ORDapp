@@ -1,8 +1,8 @@
 <div class="materials">
   <div class="slider" id="material-slider">
-    <div *ngFor="let mat of shownMaterials" class="material">
+    <div *ngFor="let mat of shownMaterials" class="material {{color}}">
       <img class="image" src="/assets/images/crafting/materials/{{mat.image}}" alt="Material image" />
-      <p class="name">{{mat.name}}</p>
+      <p class="name">{{'materials.' + (mat.name | lowercase) | translate}}</p>
       <p class="amount" *ngIf="mat.amount">{{(mat.amount | fromWei | number)?.toLocaleString()}}</p>
       <p class="amount" *ngIf="!mat.amount">-</p>
     </div>

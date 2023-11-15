@@ -59,3 +59,37 @@
     }
   }
 }
+
+.selection {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 10px;
+
+  .item {
+    cursor: pointer;
+    rotate: 45deg;
+    height: 6px;
+    width: 6px;
+    background-color: $blue-dark;
+    border: 1px solid $white;
+    align-self: center;
+    justify-self: center;
+
+    &.selected {
+      cursor: default;
+      background-color: $pink;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 1px;
+    background-color: $white;
+  }
+}
