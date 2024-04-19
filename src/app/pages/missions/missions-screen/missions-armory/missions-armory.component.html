@@ -1,0 +1,124 @@
+<div *ngIf="dataIsLoaded === false" class="spinner">
+  <mat-spinner [diameter]="250" [strokeWidth]="10"></mat-spinner>
+</div>
+
+<div class="content" *ngIf="dataIsLoaded === true">
+  <h1 class="title">{{'missions.armory.name' | translate}}</h1>
+
+  <div class="info">
+    <h3>{{'missions.armory.equipment' | translate}}</h3>
+    <p>{{'missions.armory.equipmentText1' | translate}}</p>
+    <p>{{'missions.armory.equipmentText2' | translate}}</p>
+  </div>
+  
+  <div class="sets">
+    <div class="selector">
+      <p class="set-name">
+        <span>{{'missions.armory.equipmentSet' | translate}} {{selectedEquipmentSet + 1}}</span>
+        <span class="used" *ngIf="equipmentInfo.inUse">{{'missions.armory.equipmentInUse' | translate}}</span>
+      </p>
+      <mat-icon class="arrow prev" (click)="changeSelectedEquipmentStep(false)">chevron_left</mat-icon>
+      <mat-icon class="arrow next" (click)="changeSelectedEquipmentStep(true)">chevron_right</mat-icon>
+    
+      <div class="box" [class.used]="equipmentInfo.inUse === true">
+        <div class="equipment">
+          <div class="nft" *ngFor="let item of equipmentItems; let i = index" class="type{{i}}"
+            [class.broken]="selectedNFTs[i].exists === true && selectedNFTs[i].inRepair === false && selectedNFTs[i].durability === 0"
+            [class.repairing]="selectedNFTs[i].inRepair === true && (selectedNFTs[i].repairEndTime | timeStampIsPast)"
+            [class.repaired]="selectedNFTs[i].inRepair === true && !(selectedNFTs[i].repairEndTime | timeStampIsPast)"
+          >
+            <div class="item" [class.empty]="selectedNFTs[i].exists === false">
+              <p class="name" *ngIf="i === (equipmentItems.length - 1)">{{'categories.weapon' | translate}}</p>
+              <p class="name" *ngIf="i !== (equipmentItems.length - 1)">{{'crafting.armors.' + item | translate}}</p>
+              <ng-container *ngIf="loadingNFTByIndex[i] === true">
+                <div class="spinner"><mat-spinner [diameter]="40" [strokeWidth]="3"></mat-spinner></div>
+              </ng-container>
+              <ng-container *ngIf="loadingNFTByIndex[i] === false">
+                <div class="add" *ngIf="selectedNFTs[i].exists === false" (click)="changeItem(i)">
+                  <div class="line vertical"></div>
+                  <div class="line horizontal"></div>
+                  <img *ngIf="equipedNFTs[i].exists === true" class="replace" src="assets/images/missions/icons/replace.svg" alt="Replace icon" (click)="resetPositionChanges(i)" />
+                </div>
+                <div class="data" *ngIf="selectedNFTs[i].exists === true">
+                  <img class="image" *ngIf="i === (equipmentItems.length - 1)" src="{{loadedNFTsMetadata['weapon_' + selectedNFTs[i].tokenId].image320}}" alt="selectedNFTs[i].tokenId id weapon NFT image" />
+                  <img class="image" *ngIf="i !== (equipmentItems.length - 1)" src="{{loadedNFTsMetadata['armor_' + selectedNFTs[i].tokenId].image320}}" alt="selectedNFTs[i].tokenId id armor NFT image" />
+                  <img class="tier" src="assets/images/missions/icons/{{selectedNFTs[i].tier}}.svg" alt="Tier icon" />
+                  <img class="rarity" src="assets/images/nft/circle_{{craftingUtilsService.getRarityNameById(selectedNFTs[i].rarityId) | lowercase}}.png" alt="Tier icon" />
+                  <img class="replace" *ngIf="selectedNFTs[i].inRepair === false && equipmentInfo.inUse === false" src="assets/images/missions/icons/replace.svg" alt="Replace icon" (click)="removeNFT(i)" />
+                  <div class="durability" *ngIf="selectedNFTs[i].inRepair === false">
+                    <div class="tick" *ngFor="let usePoint of [10,9,8,7,6,5,4,3,2,1]" [class.used]="usePoint > selectedNFTs[i].durability"></div>
+                  </div>
+                </div>
+                <div class="countdown" *ngIf="selectedNFTs[i].inRepair === true">
+                  <p class="text" *ngIf="selectedNFTs[i].repairEndTime | timeStampIsPast">{{'missions.armory.repairing' | translate}}</p>
+                  <p class="text" *ngIf="!(selectedNFTs[i].repairEndTime | timeStampIsPast)">{{'missions.armory.repairment' | translate}}</p>
+                  <app-countdown class="time" [end]="selectedNFTs[i].repairEndTime" (countdownEndedEvent)="receiveCounterData($event, i)"></app-countdown>
+                </div>
+                <div class="buttons" *ngIf="selectedNFTs[i].exists === true && equipmentInfo.inUse === false">
+                  <ng-container *ngIf="selectedNFTs[i].durability < 10 && selectedNFTs[i].inRepair === false">
+                    <p class="button disabled" *ngIf="changesToUpdate === true">{{'missions.buttons.repair' | translate}}</p>
+                    <p class="button" *ngIf="changesToUpdate === false" (click)="repairEquipmentItem(i)">{{'missions.buttons.repair' | translate}}</p>
+                  </ng-container>
+                  <ng-container *ngIf="selectedNFTs[i].inRepair === true">
+                    <p class="button" *ngIf="selectedNFTs[i].repairEndTime | timeStampIsPast" (click)="skipEquipmentItemRepairTime(i)">{{'missions.buttons.speedUp' | translate}}</p>
+                    <p class="button" *ngIf="!(selectedNFTs[i].repairEndTime | timeStampIsPast)" (click)="claimEquipmentItem(i)">{{'missions.buttons.finish' | translate}}</p>
+                  </ng-container>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="diamonds">
+        <div class="diamond" *ngFor="let num of [0,1,2,3,4,5,6,7,8,9]" [class.active]="selectedEquipmentSet === num" (click)="changeSelectedEquipment(num)">
+          <div class="fill" *ngIf="selectedEquipmentSet === num"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text">
+      
+      <h3>{{'missions.armory.protection' | translate}}</h3>
+      <p>{{'missions.armory.protectionText' | translate}}</p>
+      <p class="percentage">{{equipmentProtection}}%</p>
+      
+      <h3>{{'missions.armory.changes' | translate}}</h3>
+      <ng-container *ngIf="changesToUpdate === false">
+        <p>{{'missions.armory.changesNo1' | translate}}</p>
+        <p>{{'missions.armory.changesNo2' | translate}}</p>
+        <div class="buttons">
+          <p class="button disabled">{{'missions.buttons.confirmChanges' | translate}}</p>
+          <p class="button disabled">{{'missions.buttons.reset' | translate}}</p>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="changesToUpdate === true">
+        <p>{{'missions.armory.changesYes1' | translate}}</p>
+        <p>{{'missions.armory.changesYes2' | translate}}</p>
+        <div class="buttons">
+          <p class="button" (click)="confirmChanges()">{{'missions.buttons.confirmChanges' | translate}}</p>
+          <p class="button" (click)="resetChanges()">{{'missions.buttons.reset' | translate}}</p>
+        </div>
+      </ng-container>
+      <br/><br/>
+      <h3>{{'missions.armory.repairs' | translate}}</h3>
+      <p>{{'missions.armory.repairsText1' | translate}}</p>
+      <p>{{'missions.armory.repairsText2' | translate}}</p>
+      <ol>
+        <li>{{'missions.armory.repairsList1' | translate}}</li>
+        <li>{{'missions.armory.repairsList2' | translate}}</li>
+      </ol>
+      <div class="buttons">
+        <ng-container *ngIf="changesToUpdate === false && equipmentInfo.inUse === false">
+          <p class="button disabled" *ngIf="showRepairSet === false">{{'missions.buttons.repairSet' | translate}}</p>
+          <p class="button" *ngIf="showRepairSet === true" (click)="repairEquipment()">{{'missions.buttons.repairSet' | translate}}</p>
+          <p class="button" *ngIf="multipleClaimAvailable === true" (click)="claimEquipment()">{{'missions.buttons.claimSet' | translate}}</p>
+          <p class="button" *ngIf="multipleSpeedUpAvailable === true" (click)="skipEquipmentRepairTime()">{{'missions.buttons.skipTimeSet' | translate}}</p>
+        </ng-container>
+        <ng-container *ngIf="changesToUpdate === true || equipmentInfo.inUse === true">
+          <p class="button disabled">{{'missions.buttons.repairSet' | translate}}</p>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

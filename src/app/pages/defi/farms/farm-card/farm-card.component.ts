@@ -122,7 +122,6 @@ export class FarmCardComponent implements OnInit, OnDestroy {
     info[1].status === 'success'
       ? (this.pool.rewardToken = info[1].result)
       : (this.pool.rewardToken = '');
-      console.log('info2',info[2]);
     info[2].status === 'success'
       ? (this.pool.resourcePerBlock = info[2].result.toString())
       : (this.pool.resourcePerBlock = '');

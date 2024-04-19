@@ -356,6 +356,7 @@
       grid-area: 2 / 6 / 3 / 7;
     }
     .div12 {
+      cursor: pointer;
       grid-area: 1 / 7 / 2 / 8;
       align-self: end;
       span {
@@ -395,11 +396,15 @@
         align-items: flex-end;
         .buttons {
           .button-allow {
+            cursor: pointer;
             margin: 0.2rem;
             padding: 0.3rem 0.5rem;
             border-radius: 0.4rem;
             background-color: #262ebf;
             color: $white;
+            &:hover {
+              background-color: $blue-light;
+            }
           }
         }
       }

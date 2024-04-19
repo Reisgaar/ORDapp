@@ -1,0 +1,80 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.content {
+ 
+  .block {
+
+    .resources {
+      display: flex;
+      flex-flow: wrap;
+      gap: 1rem;
+      justify-content: space-around;
+      margin-top: 5rem;
+      
+      .resource {
+        border: 1px solid $blue-medium;
+        border-radius: 10px;
+        background-color: $black-transparent-25;
+        text-align: center;
+        max-width: 250px;
+        
+        .actual {
+          padding: 1rem;
+
+          .name {
+            text-align: left;
+            font-family: $magistral !important;
+            font-size: 2rem;
+            line-height: 1em;
+            font-weight: 500;
+            text-transform: capitalize;
+            margin: 0;
+          }
+          
+          .storage {
+            text-align: left;
+            font-family: $magistral !important;
+            font-size: 0.9rem;
+          }
+
+          .image {
+            height: 70px;
+            width: 70px;
+            margin: 0 auto 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid $blue-medium;
+          }
+
+          .about {
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin: 0 0 5px 0;
+          }
+          
+          .description {
+            font-size: 0.7rem;
+            font-weight: 300;
+            line-height: 1.2em;
+          }
+        }
+
+        .next {
+          border-top: 1px solid $blue-medium;
+          padding: 0.3rem;
+          text-transform: uppercase;
+          font-size: 0.8rem;
+          font-weight: 300;
+          
+          p {
+            margin: 0;
+          }
+          
+          span {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+<div *ngIf="dataIsLoaded === false" class="spinner">
+  <mat-spinner [diameter]="250" [strokeWidth]="10"></mat-spinner>
+</div>
+
+<div class="content" *ngIf="dataIsLoaded === true">
+  <h1 class="title">{{'missions.recruitment.name' | translate}}</h1>
+
+  <div class="upgrade">
+    <div class="switcher" (click)="switchLevelView()">
+      <img src="assets/images/missions/icons/{{(userRecruitmentInfo.campaignLevel)}}.svg" class="icon" alt="number icon" />
+      <span>{{'missions.recruitment.level' + userRecruitmentInfo.campaignLevel | translate}}</span>
+      <mat-icon *ngIf="showLeveling === false">expand_more</mat-icon>
+      <mat-icon *ngIf="showLeveling === true">expand_less</mat-icon>
+    </div>
+    <div id="level-block">
+      <div class="headline">
+        <h3>{{'missions.recruitment.campaignLevel' | translate}}</h3>
+        <p>{{'missions.recruitment.campaignLevelDescription' | translate}}</p>
+      </div>
+      <div class="levels">
+        <div class="level" [class.active]="userRecruitmentInfo && userRecruitmentInfo.campaignLevel === '0'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/0.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{'missions.free' | translate}}</p>
+          <p class="name">{{'missions.recruitment.level0' | translate}}</p>
+          <p class="improvement">Max: 1 {{'missions.soldier' | translate}}</p>
+          <p class="button unlocked">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+        <div class="level" [class.active]="userRecruitmentInfo && userRecruitmentInfo.campaignLevel === '1'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/1.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{prices.level1.usd | fromWei | number:'1.0-4'}} $</p>
+          <p class="name">{{'missions.recruitment.level1' | translate}}</p>
+          <p class="improvement">Max: 3 {{'missions.soldiers' | translate}}</p>
+          <p *ngIf="userRecruitmentInfo && userRecruitmentInfo.campaignLevel === '0'" class="button" (click)="upgradeLevel(1)">{{'missions.buttons.improve' | translate}}</p>
+          <p *ngIf="userRecruitmentInfo && (userRecruitmentInfo.campaignLevel === '1' || userRecruitmentInfo.campaignLevel === '2')" class="button unlocked">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+        <div class="level" [class.active]="userRecruitmentInfo && userRecruitmentInfo.campaignLevel === '2'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/2.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{prices.level2.usd | fromWei | number:'1.0-4'}} $</p>
+          <p class="name">{{'missions.recruitment.level2' | translate}}</p>
+          <p class="improvement">Max: 5 {{'missions.soldiers' | translate}}</p>
+          <p *ngIf="userRecruitmentInfo && userRecruitmentInfo.campaignLevel === '0'" class="button disabled">{{'missions.buttons.blocked' | translate}}</p>
+          <p *ngIf="userRecruitmentInfo && userRecruitmentInfo.campaignLevel === '1'" class="button" (click)="upgradeLevel(2)">{{'missions.buttons.improve' | translate}}</p>
+          <p *ngIf="userRecruitmentInfo && userRecruitmentInfo.campaignLevel === '2'" class="button unlocked">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="box" [class.ongoing]="userRecruitmentInfo && userRecruitmentInfo.campaignInfo.isOngoing">
+    <div class="soldiers">
+      <img class="image" src="assets/images/missions/soldier.png" alt="scavengon soldier image">
+      <div class="selector">
+        <p class="name">{{'missions.soldiers' | translate}}</p>
+        <mat-icon class="icon" (click)="changeSelectedSoldierAmount(false)" *ngIf="maxSoldierAmount > 1">chevron_left</mat-icon>
+        <span class="number" [class.no-arrow]="maxSoldierAmount === 1">{{selectedSoldierAmount}}</span>
+        <mat-icon class="icon" (click)="changeSelectedSoldierAmount(true)" *ngIf="maxSoldierAmount > 1">chevron_right</mat-icon>
+      </div>
+    </div>
+    <div class="funding">
+      <h3>{{'missions.recruitment.funding' | translate}}</h3>
+      <p class="description">{{'missions.recruitment.fundingDescription' | translate}}</p>
+      <div class="input">
+        <p class="label">{{'missions.recruitment.investmentAmount' | translate}}:</p>
+        <input type="text"
+        class="input-field"
+        id="gqAmount"
+        name="gqAmount"
+        autocomplete="off"
+        inputmode="decimal"
+        placeholder="0.0"
+        pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+        value="0"
+        [(ngModel)]="investmentAmount"
+        (keypress)="controlInput($event)"
+        (input)="validateAmount()"
+        />
+        
+        <p class="error" [class.active]="formError">
+          <span *ngIf="balanceError">{{'missions.recruitment.balanceError' | translate}}</span>
+          <span *ngIf="investmentMaxError">{{'missions.recruitment.investmentMaxError' | translate}}</span>
+        </p>
+      </div>
+      
+      <div class="percentages">
+        <p class="button" (click)="getPriceForPercentage(25)">25%</p>
+        <p class="button" (click)="getPriceForPercentage(50)">50%</p>
+        <p class="button" (click)="getPriceForPercentage(100)">max.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block resume">
+    <div class="column">
+      <p class="name">{{'missions.recruitment.soldiersToRecruit' | translate}}:</p>
+      <div class="value">
+        <img class="icon" src="assets/images/missions/icons/soldier.svg" alt="Soldier icon">
+        <p *ngIf="userRecruitmentInfo && !userRecruitmentInfo.campaignInfo.isOngoing">{{ selectedSoldierAmount }}</p>
+        <p *ngIf="userRecruitmentInfo && userRecruitmentInfo.campaignInfo.isOngoing">{{userRecruitmentInfo.campaignInfo.numSoldiers}}</p>
+      </div>
+    </div>
+    <div class="column">
+      <p class="name">{{'missions.recruitment.gqInvestment' | translate}}:</p>
+      <div class="value">
+        <p *ngIf="userRecruitmentInfo && !userRecruitmentInfo.campaignInfo.isOngoing">{{ investmentAmount }}</p>
+        <p *ngIf="userRecruitmentInfo && userRecruitmentInfo.campaignInfo.isOngoing">{{userRecruitmentInfo.campaignInfo.fundingAmount | fromWei | number:'1.0-4'}}</p>
+        <img class="icon" src="assets/images/missions/icons/gq.svg" alt="GQ icon">
+      </div>
+    </div>
+    <div class="column">
+      <p class="name">
+        <ng-container *ngIf="userRecruitmentInfo && !userRecruitmentInfo.campaignInfo.isOngoing">{{'missions.recruitment.expectedDuration' | translate}}:</ng-container>
+        <ng-container *ngIf="userRecruitmentInfo && userRecruitmentInfo.campaignInfo.isOngoing">{{'missions.recruitment.campaignEndsOn' | translate}}:</ng-container>
+      </p>
+      <div class="value">
+        <ng-container *ngIf="userRecruitmentInfo && !userRecruitmentInfo.campaignInfo.isOngoing">
+          <p *ngIf="!(campaignDurationString | lowercase).includes('nan')">{{ campaignDurationString }}</p>
+          <p *ngIf="(campaignDurationString | lowercase).includes('nan')">{{'missions.recruitment.notAvailable' | translate}}</p>
+        </ng-container>
+        <ng-container *ngIf="userRecruitmentInfo && userRecruitmentInfo.campaignInfo.isOngoing">
+          <ng-container *ngIf="(userRecruitmentInfo.campaignInfo.endTime | timeStampIsPast) === true">
+            <mat-progress-bar class="progress" mode="determinate" value="{{campaingProgressPercentage | number:'1.0-2'}}"></mat-progress-bar>
+            <p class="mini">{{userRecruitmentInfo.campaignInfo.endTime + '000' | date: 'MMM d, y, h:mm:ss a'}}</p>
+          </ng-container>
+          <p class="medium" *ngIf="(userRecruitmentInfo.campaignInfo.endTime | timeStampIsPast) === false">{{'missions.recruitment.campaignEnded' | translate}}</p>
+        </ng-container>
+      </div>
+    </div>
+    <div class="column buttons">
+      <ng-container *ngIf="userRecruitmentInfo && !userRecruitmentInfo.campaignInfo.isOngoing">
+        <p *ngIf="balanceError || investmentMaxError" class="button disabled">{{'missions.recruitment.startCampaign' | translate}}</p>
+        <p *ngIf="!balanceError && !investmentMaxError" class="button" (click)="startCampaign()">{{'missions.recruitment.startCampaign' | translate}}</p>
+      </ng-container>
+      <ng-container *ngIf="userRecruitmentInfo && userRecruitmentInfo.campaignInfo.isOngoing">
+        <ng-container *ngIf="(userRecruitmentInfo.campaignInfo.endTime | timeStampIsPast) === true">
+          <p class="button disabled">{{'missions.recruitment.getSoldiers' | translate}}</p>
+        </ng-container>
+        <ng-container *ngIf="(userRecruitmentInfo.campaignInfo.endTime | timeStampIsPast) === false">
+          <p *ngIf="(userRecruitmentInfo.campaignInfo.endTime | timeStampIsPast) === false" class="button" (click)="recruitSoldiers()">{{'missions.recruitment.getSoldiers' | translate}}</p>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+
+</div>

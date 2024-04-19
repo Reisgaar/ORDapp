@@ -1,0 +1,76 @@
+@import '/src/styleVariables.scss';
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  .data {
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+
+    .value {
+      font-family: $magistral !important;
+      font-size: 2rem;
+      line-height: 1em;
+      margin: 0 0 5px;
+
+      p, span {
+        font-family: $magistral !important;
+      }
+
+      &.token {
+        grid-template-columns: max-content 30px;
+        display: grid;
+        gap: 5px;
+      }
+
+      span {
+        grid-column: 1;
+        align-self: center;
+        justify-self: center;
+      }
+
+      img {
+        grid-column: 2;
+        align-self: center;
+        justify-self: center;
+        width: 100%;
+        object-fit: contain;
+
+        &.rotatehue {
+          animation: rotate-hue 10s linear infinite;
+        }
+
+        @keyframes rotate-hue {
+          from { filter: hue-rotate(0deg); }
+          to { filter: hue-rotate(360deg); }
+        }
+      }
+    }
+
+    .name {
+      font-size: 0.8rem;
+      line-height: 1em;
+      margin: 0;
+      font-weight: 300;
+    }
+  }
+}
+
+
+/*
+ * Responsive breakpoints
+ */
+
+// Small devices
+@media (max-width: 576px) {
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+

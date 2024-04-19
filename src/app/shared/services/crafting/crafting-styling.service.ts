@@ -58,11 +58,11 @@ export class CraftingStylingService {
    * @param poolId id of the pool
    * @param aesthetics user aesthetic selection
    */
-  async startStyling(materials: any, poolId: number, aesthetics: any[], tier: number, addOnAmount: number): Promise<any> {
+  async startStyling(materials: any, poolId: number, aesthetics: any[], tier: number, addOnAmount: number, matDiscount: number): Promise<any> {
     const walletIsConnected = await this.connectionService.syncAccount();
     if (walletIsConnected) {
       const userAddr = this.connectionService.getWalletAddress();
-      const materialsAllowed = await this.craftingUtilsService.checkAllowanceOfRequiredMaterials(materials, contractAddresses.craftingResourcesController, userAddr);
+      const materialsAllowed = await this.craftingUtilsService.checkAllowanceOfRequiredMaterials(materials, contractAddresses.craftingResourcesController, userAddr, matDiscount);
       let gqAllowed: boolean = true;
       if (addOnAmount > 0) {
         const gqPrice = this.connectionService.toWei(await this.getPoolAddOnPriceInGQ(tier, addOnAmount));

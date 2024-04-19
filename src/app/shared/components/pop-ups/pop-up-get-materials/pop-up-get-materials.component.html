@@ -16,8 +16,12 @@
     <p class="main">{{"getMaterials.extraction" | translate}}</p>
     <p class="text">{{"getMaterials.extractionDefinition" | translate}}</p>
   </div>
+  <div class="link" [routerLink]="['/undergroundMarket']" (click)="closePopUp()">
+    <p class="main">{{"getMaterials.undergroundMarket" | translate}}</p>
+    <p class="text">{{"getMaterials.undergroundMarketDefinition" | translate}}</p>
+  </div>
   <div class="link" [routerLink]="['/crafting/foundry']" (click)="closePopUp()">
-    <p class="main">{{"getMaterials.foundry" | translate}}Foundry</p>
-    <p class="text">{{"getMaterials.foundryDefinition" | translate}}Dissasemble NFTs for materials</p>
+    <p class="main">{{"getMaterials.foundry" | translate}}</p>
+    <p class="text">{{"getMaterials.foundryDefinition" | translate}}</p>
   </div>
 </div>

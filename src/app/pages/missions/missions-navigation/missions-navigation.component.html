@@ -1,0 +1,25 @@
+
+<div class="logo" [routerLink]="['/missions']">
+  <img class="image" src="assets/images/missions/logo.svg" alt="Command Center area icon" />
+</div>
+
+<div class="navigation" [class.active]="showResponsiveMenu === true">
+  <div class="switcher" (click)="toggleMenuOnResponsive()">
+    <span>{{'missions.menu' | translate}}</span>
+    <mat-icon *ngIf="showResponsiveMenu === false">expand_more</mat-icon>
+    <mat-icon *ngIf="showResponsiveMenu === true">expand_less</mat-icon>
+  </div>
+  <ng-container *ngFor="let tab of ['recruitment', 'armory', 'garage', 'warehouse', 'restingArea', 'bank', 'missionsSelection']">
+    <div
+      class="navigation-tab"
+      [routerLink]="['/missions/' + tab]"
+      [class.complete]="tab === 'missionsSelection'"
+      [class.active]="actualRoute.includes(tab)"
+      (click)="closeResponsiveMenu()"
+    >
+      <p class="name">{{ 'navigation.' + tab | translate }}</p>
+
+      <img class="indicator" *ngIf="actualRoute.includes(tab)" src="assets/images/missions/icons/menu_active.svg" alt="active tab indicator" />
+    </div>
+  </ng-container>
+</div>

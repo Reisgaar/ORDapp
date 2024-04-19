@@ -56,12 +56,12 @@
       </div>
       <div class="tab">
         <h2 class="title" [routerLink]="['/crafting']">{{ 'navigation.crafting' | translate }}</h2>
-        <p class="item" [routerLink]="['/factory']">{{ 'navigation.factory' | translate }}</p>
-        <p class="item" [routerLink]="['/foundry']">{{ 'navigation.foundry' | translate }}</p>
+        <p class="item" [routerLink]="['/crafting/factory']">{{ 'navigation.factory' | translate }}</p>
+        <p class="item" [routerLink]="['/crafting/foundry']">{{ 'navigation.foundry' | translate }}</p>
       </div>
-      <div class="tab">
+      <!-- <div class="tab">
         <h2 class="title" [routerLink]="['/lootboxes']">{{ 'navigation.lootboxes' | translate }}</h2>
-      </div>
+      </div> -->
       <div class="tab">
         <h2 class="title" [routerLink]="['/lands']">{{ 'navigation.lands' | translate }}</h2>
         <p class="item" [routerLink]="['/lands/map']">{{ 'navigation.landsMap' | translate }}</p>
@@ -78,13 +78,23 @@
         <p class="item" [routerLink]="['/marketplace/directSales']">{{ 'navigation.directSells' | translate }}</p>
         <p class="item" [routerLink]="['/marketplace/auctions']">{{ 'navigation.auctions' | translate }}</p>
         <p class="item" [routerLink]="['/undergroundMarket']">{{ 'navigation.blackMarket' | translate }}</p>
-        <!-- <p class="item" [routerLink]="['/marketplace/partners']">{{ 'navigation.partners' | translate }}</p> -->
+        <p class="item" [routerLink]="['/marketplace/partners']">{{ 'navigation.partners' | translate }}</p>
         <p class="item" [routerLink]="['/marketplace/statistics']">{{ 'navigation.statistics' | translate }}</p>
       </div>
       <div class="tab">
         <h2 class="title" [routerLink]="['/defi']">{{ 'navigation.defi' | translate }}</h2>
         <p class="item" [routerLink]="['/defi/farms']">{{ 'navigation.farms' | translate }}</p>
         <p class="item" [routerLink]="['/defi/pools']">{{ 'navigation.pools' | translate }}</p>
+      </div>
+      <div class="tab">
+        <h2 class="title" [routerLink]="['/missions']">{{ 'navigation.missions' | translate }}</h2>
+        <p class="item" [routerLink]="['/missions/recruitment']">{{ 'navigation.recruitment' | translate }}</p>
+        <p class="item" [routerLink]="['/missions/armory']">{{ 'navigation.armory' | translate }}</p>
+        <p class="item" [routerLink]="['/missions/garage']">{{ 'navigation.garage' | translate }}</p>
+        <p class="item" [routerLink]="['/missions/warehouse']">{{ 'navigation.warehouse' | translate }}</p>
+        <p class="item" [routerLink]="['/missions/restingArea']">{{ 'navigation.restingArea' | translate }}</p>
+        <p class="item" [routerLink]="['/missions/bank']">{{ 'navigation.bank' | translate }}</p>
+        <p class="item" [routerLink]="['/missions/missions']">{{ 'navigation.missionsSelection' | translate }}</p>
       </div>
       <div class="tab">
         <h2 class="title"><a href="https://outerringmmo.com" target="_blank">{{ 'navigation.about' | translate }}</a></h2>

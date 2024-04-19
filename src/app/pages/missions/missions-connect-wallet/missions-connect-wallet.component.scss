@@ -1,0 +1,29 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.content {
+  margin: 2rem auto;
+  padding: 0;
+
+  p {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 3em;
+  }
+
+  .button {
+    cursor: pointer;
+    background: linear-gradient(to right, $blue-medium, $blue-semi-dark);
+    margin: 40px auto;
+    width: max-content;
+    padding: 7px 40px;
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    line-height: 1em;
+
+    &:hover {
+      background: linear-gradient(to right, $pink, #520066);
+    }
+  }
+}

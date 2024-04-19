@@ -51,14 +51,14 @@ export class CraftingCreationService {
    * @param tier the tier of the item to create
    * @param element the element of the item to create (bullet 0, laser 1, metal 2)
    */
-  async startCrafting(materials: any, poolId: number, nftType: number, itemId: number, tier: number, element: number): Promise<any> {
+  async startCrafting(materials: any, poolId: number, nftType: number, itemId: number, tier: number, element: number, matDiscount: number): Promise<any> {
     const walletIsConnected = await this.connectionService.syncAccount();
     if (walletIsConnected) {
       const userAddr = this.connectionService.getWalletAddress();
       const gqPrice = await this.connectionService.readContract(contractAddresses.craftingCreation, Creation.abi, 'getPoolPriceInGQ', [poolId]);
       const gqAllowed = await this.tokenService.tokenApprovement(contractAddresses.craftingCreation, userAddr, 'GQ', gqPrice);
       if (!gqAllowed) { return; }
-      const materialsAllowed = await this.craftingUtilsService.checkAllowanceOfRequiredMaterials(materials, contractAddresses.craftingResourcesController, userAddr);
+      const materialsAllowed = await this.craftingUtilsService.checkAllowanceOfRequiredMaterials(materials, contractAddresses.craftingResourcesController, userAddr, matDiscount);
       if (materialsAllowed) {
         let dialog = this.dialogService.openRegularInfoDialog('actionNeeded', 'craftingCreationStart', '');
         try {

@@ -3,6 +3,7 @@ import { contractAddresses } from 'src/app/constants/contractAddresses';
 import { BridgeService } from 'src/app/shared/services/bridge/bridge.service';
 import { ConnectionService } from 'src/app/shared/services/connection/connection.service';
 import { TokenService } from 'src/app/shared/services/token/token.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-bridge-erc20-sender',
@@ -48,6 +49,12 @@ export class BridgeERC20SenderComponent implements OnInit, OnDestroy {
    * Gets balance of the token
    */
   async getBalance(): Promise<any> {
+    // Just fix for testnet
+    if (environment.network === 'testnet') {
+      console.log('TESTNET!!!')
+      this.token.constant = 'gqBridge';
+    }
+    //
     this.tokenBalance = await this.tokenService.getBalanceOfToken(contractAddresses[this.token.constant]);
     this.loadingBalance = false;
   }

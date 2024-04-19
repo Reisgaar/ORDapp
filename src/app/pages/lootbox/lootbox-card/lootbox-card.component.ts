@@ -5,6 +5,7 @@ import { ConnectionService } from 'src/app/shared/services/connection/connection
 import { BuyLootboxService } from 'src/app/shared/services/lootboxes/buy-lootbox.service';
 import { LootboxService } from 'src/app/shared/services/lootboxes/lootbox.service';
 import { PopUpLootboxUtilitiesComponent } from '../pop-up-lootbox-utilities/pop-up-lootbox-utilities.component';
+import { getNetwork } from '@wagmi/core';
 
 /**
  * Card with info and interaction of a lootbox
@@ -29,6 +30,7 @@ export class LootboxCardComponent implements OnInit, OnDestroy {
   sliderPosition = 0;
   sliderMaxPosition: number;
   shownReward: string = '';
+  isTestnet: boolean = false;
 
   constructor(
     private connectionService: ConnectionService,
@@ -53,6 +55,7 @@ export class LootboxCardComponent implements OnInit, OnDestroy {
    * Control sliders and get lootboxes supplies
    */
   ngOnInit(): void {
+    this.isTestnet = getNetwork().chains[0].id === 97 ? true : false;
     this.sliderLength = this.itemList[this.category].rewards.length;
     this.setSliderMaxPos();
     this.getSupplyAndPrice();

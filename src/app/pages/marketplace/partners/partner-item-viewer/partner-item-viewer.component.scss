@@ -14,7 +14,7 @@
       align-self: center;
       text-align: left;
       font-size: 2em;
-      border-bottom: 1px solid $blue-light;
+      border-bottom: 1px solid $grey-light;
       padding: 5px;
       margin: 0;
     }
@@ -22,6 +22,47 @@
 
   .content {
     padding: 15px 0 0 0;
+
+    .data-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+
+      .connect {
+        cursor: pointer;
+        box-shadow: 0px 0px 15px #ffffff60;
+        background: linear-gradient(to right, $blue-medium, $blue-semi-dark);
+        border-radius: 50px;
+        padding: 8px 40px;
+        margin: 50px auto;
+        width: max-content;
+        height: max-content;
+        text-transform: uppercase;
+        font-size: 1.4em;
+
+        &:hover {
+          background: linear-gradient(to right, $pink, $purple-dark);
+          box-shadow: 0px 0px 30px #ffffff60;
+        }
+      }
+
+      .spinner, .connect {
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        transform: translateX(-50%);
+
+        .mat-spinner {
+          width: 300px !important;
+          height: 300px !important;
+        }
+      }
+    }
 
     .sorting {
 
@@ -51,8 +92,8 @@
           z-index: 1;
           width: 120px;
           margin: auto 0 auto auto;
-          background-color: $blue-dark;
-          border: 1px solid $blue-medium;
+          background-color: $grey-extra-dark;
+          border: 1px solid $grey-light;
           border-radius: 7px;
           padding: 5px 0px;
 
@@ -159,7 +200,7 @@
 
         .filter-wrapper {
           overflow: hidden;
-          border-bottom: 1px solid $blue-tab-active;
+          border-bottom: 1px solid $grey-light;
           transition: height 1s ease-in-out;
         }
 
@@ -234,32 +275,94 @@
       }
     }
 
-    .table {
+    .items {
       position: relative;
-      width: calc(100% - 200px);
+      width: calc(100% - 240px);
+      padding: 0 20px;
       display: inline-block;
       vertical-align: top;
       background: none;
       margin: auto;
       text-align: center;
 
-      .mat-mdc-header-row,
-      .mat-mdc-header-cell {
-        display: none;
+      .list {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-evenly;
+        gap: 15px;
+
+        .card {
+          width: max-content;
+        }
       }
 
-      .mat-mdc-row {
-        height: auto;
-        display: inline-block;
-        vertical-align: top;
-        text-align: left;
-        margin: 15px;
 
-        .mat-mdc-cell {
-          border: none;
-          overflow: visible;
-          padding: 0;
-          width: 250px;
+
+      .pagination {
+        text-align: right;
+        color: $white;
+        margin: 30px auto 5px;
+
+        span {
+          vertical-align: middle;
+        }
+
+        .arrow {
+          cursor: pointer;
+          vertical-align: middle;
+          height: 35px;
+          width: 35px;
+          font-size: 35px;
+
+          &.disabled {
+            cursor: default;
+            color: $white-transparent-60;
+          }
+        }
+
+        .page-amount {
+          position: relative;
+          display: inline-block;
+          border: 1px solid $grey-light;
+          background-color: $grey-extra-dark;
+          color: $white;
+          border-radius: 7px;
+          padding: 3px 10px;
+          width: max-content;
+          font-size: 0.8rem;
+          z-index: 1;
+          text-align: center;
+
+          &-selector {
+            display: none;
+            position: absolute;
+            border: 1px solid $grey-light;
+            background-color: $grey-extra-dark;
+            width: 100%;
+            top: 100%;
+            left: -1px;
+            border-radius: 0 0 7px 7px;
+
+            .amount {
+              cursor: pointer;
+
+              &:hover {
+                background-color: $white-transparent-10;
+              }
+
+              &.hidden {
+                display: none;
+              }
+            }
+          }
+
+          &:hover {
+            border-radius: 7px 7px 0 0;
+
+            .page-amount-selector {
+              display: block;
+            }
+          }
         }
       }
     }
@@ -329,14 +432,14 @@
             z-index: 1;
             width: 80px;
             margin: auto;
-            background-color: #0C1133;
-            border: 1px solid #262EBF;
+            background-color: transparent;
+            border: 1px solid $white;
             border-radius: 7px;
             padding: 5px 0px;
             text-align: center;
 
             &.active {
-              background-color: $pink;
+              background-color: $blue-light;
             }
           }
         }
@@ -356,7 +459,7 @@
       .filter {
         width: unset;
         display: none;
-        border: 1px solid $blue-medium;
+        border: 1px solid $white;
         padding: 0 10px 20px;
         border-radius: 10px;
 
@@ -365,8 +468,9 @@
         }
       }
 
-      .table {
-        width: 100%;
+      .items {
+        padding: 20px;
+        width: calc(100% - 40px);
       }
     }
   }

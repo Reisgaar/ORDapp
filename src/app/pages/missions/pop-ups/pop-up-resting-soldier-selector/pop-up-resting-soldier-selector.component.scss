@@ -1,0 +1,127 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.close {
+  font-family: 'magistral', sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding-right: 50px;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+      padding: 0;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+
+.selector {
+  display: flex;
+  flex-flow: wrap;
+  gap: 30px;
+  justify-content: space-around;
+  max-height: 60vh;
+  max-width: 60vw;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $blue-extra-dark;
+    margin: 25px auto 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $blue-light;
+  }
+
+  .item {
+    cursor: pointer;
+    position: relative;
+    margin: 10px 0;
+    padding: 0 5px;
+
+    &:hover .card {
+      background-color: $blue-medium-transparent-25;
+    }
+      
+    .card {
+      position: relative;
+      border: 1px solid $blue-medium;
+      border-radius: 7px;
+      padding: 1rem;
+      height: 70px;
+      width: 70px;
+
+      .number {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        font-family: $magistral !important;
+        font-size: 1rem;
+      }
+
+      .info {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+        margin: 0;
+        display: flex;
+        align-items: center;
+
+        .energy {
+          height: 15px;
+          width: 15px;
+          object-fit: contain;
+        }
+      }
+
+      .image {
+        height: calc(100% - 1rem);
+        width: calc(100% - 1rem);
+        object-fit: contain;
+        padding: 0.5rem;
+      }
+    }
+
+    .countdown {
+      margin: 5px auto;
+      width: max-content;
+    }
+
+    .buttons {
+      margin: 5px auto;
+
+      .button {
+        margin: auto;
+      }
+    }
+  }
+}

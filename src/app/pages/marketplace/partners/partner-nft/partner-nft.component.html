@@ -2,9 +2,9 @@
   <img src="assets/images/item_background.png">
 </div> -->
 
-<div class="logo-background">
+<!-- <div class="logo-background">
   <img *ngIf="partner.logo !== ''" src="assets/images/partnership/{{partner.logo}}" alt="Partner logo">
-</div>
+</div> -->
 
 <div class="data-loading" *ngIf="loadingData">
   <div class="spinner">
@@ -33,7 +33,16 @@
     </div>
 
     <div class="image" *ngIf="!nftData.animation_url || nftData.animation_url === ''">
-      <img src="{{nftData.image}}" alt="NFT image" />
+      <img 
+        [src]="nftData.image_game"
+        [ngClass]="{
+          'feline': nftData.attributes[8].value === 'Feline',
+          'ursid': nftData.attributes[8].value === 'Ursid',
+          'bird': nftData.attributes[8].value === 'Bird',
+          'canid': nftData.attributes[8].value === 'Canid'
+          }" 
+        alt="NFT image" 
+        />
     </div>
 
     <div class="image" *ngIf="nftData.animation_url && nftData.animation_url !== ''">
@@ -69,7 +78,7 @@
       </div>
     </div>
 
-    <div class="variable nft-detail-block" *ngIf="buyPrice !== '0'" [ngStyle]=" { 'background-color': partner.color }">
+    <div class="variable nft-detail-block" *ngIf="buyPrice !== '0'" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
       <!-- Price showing for regular sale -->
       <div class="price" *ngIf="saleType === 'sell'">
         <p class="tip">{{'nft.sellPrice' | translate}}</p>
@@ -123,16 +132,16 @@
     </div>
 
     <div class="bid nft-detail-block" *ngIf="saleType === 'english'">
-      <div class="current" *ngIf="nftSaleData.nftHighestBidder !== zeroAddress" [ngStyle]=" { 'background-color': partner.color }">
+      <div class="current" *ngIf="nftSaleData.nftHighestBidder !== zeroAddress" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
         <p class="tip">{{'nft.lastBid' | translate}}</p>
         <p class="value">{{buyPrice | number: '1.0-4'}} {{buyCoin}}</p>
         <p class="bidder" *ngIf="nftSaleData.nftHighestBidder" [routerLink]="['/profile']" [queryParams]="{wallet: nftSaleData.nftHighestBidder}">{{'nft.by' | translate}} {{nftSaleData.nftHighestBidder | shortWallet}}</p>
       </div>
-      <div class="current" *ngIf="nftSaleData.nftHighestBidder === zeroAddress" [ngStyle]=" { 'background-color': partner.color }">
+      <div class="current" *ngIf="nftSaleData.nftHighestBidder === zeroAddress" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
         <p class="tip">{{'nft.noBids' | translate}}</p>
         <p class="value">{{initialPrice | number: '1.0-4'}} {{buyCoin}}</p>
       </div>
-      <div class="countdown" [ngStyle]=" { 'background-color': partner.color }">
+      <div class="countdown" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
         <p class="tip">{{'nft.countdown' | translate}}</p>
         <p class="value"><app-countdown [end]="nftSaleData.auctionEnd" (countdownEndedEvent)="receiveData($event)"></app-countdown></p>
       </div>
@@ -153,7 +162,7 @@
       </div>
     </ng-container>
 
-    <div class="about nft-detail-block" [class.hidden]="!showAbout" [ngStyle]=" { 'background-color': partner.color }">
+    <div class="about nft-detail-block" [class.hidden]="!showAbout" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
       <h2 class="title">
         <mat-icon class="icon">list</mat-icon>
         {{'nft.aboutItem' | translate}}
@@ -163,14 +172,14 @@
     </div>
 
     <div class="property nft-detail-block">
-      <div *ngIf="saleType === 'none'" class="owner" [routerLink]="['/profile']" [queryParams]="{wallet: nftData.owner}" [ngStyle]=" { 'background-color': partner.color }">
+      <div *ngIf="saleType === 'none'" class="owner" [routerLink]="['/profile']" [queryParams]="{wallet: nftData.owner}" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
         <img src="assets/images/species/portrait_{{(nftData.owner | walletSpecie) | async}}.png" alt="Profile icon" />
         <div class="owner-data">
           <p>{{'nft.owner' | translate}}</p>
           <p>{{nftData.owner | shortWallet}}</p>
         </div>
       </div>
-      <div *ngIf="saleType !== 'none'" class="owner" [routerLink]="['/profile']" [queryParams]="{wallet: nftSaleData.nftSeller}" [ngStyle]=" { 'background-color': partner.color }">
+      <div *ngIf="saleType !== 'none'" class="owner" [routerLink]="['/profile']" [queryParams]="{wallet: nftSaleData.nftSeller}" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
         <img src="assets/images/species/portrait_{{(nftSaleData.nftSeller | walletSpecie) | async}}.png" alt="Profile icon" />
         <div class="owner-data">
           <p>{{'nft.owner' | translate}}</p>
@@ -179,7 +188,7 @@
       </div>
     </div>
 
-    <div class="attributes nft-detail-block" [class.hidden]="!showAttributes" [ngStyle]=" { 'background-color': partner.color }">
+    <div class="attributes nft-detail-block" [class.hidden]="!showAttributes" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
       <h2 class="title">
         <mat-icon class="icon">security</mat-icon>
         {{'nft.attributes' | translate}}
@@ -197,11 +206,23 @@
           </p>
         </div>
       </div>
+      <div style="margin-bottom: 10px;"></div>
+      <div class="attributes-list" *ngIf="nftData.in_game_data.gymTrainingsLeft.length">
+        <div *ngFor="let att of inGameAttr; index as i " class="attribute">
+          <p class="trait">{{att + ' trainings left:'}}</p>
+          <p class="value">
+            <span *ngIf="!nftData.in_game_data.gymTrainingsLeft[i]">10</span>
+            <span *ngIf="nftData.in_game_data.gymTrainingsLeft[i]">
+              <span >{{nftData.in_game_data.gymTrainingsLeft[i]}}</span>
+            </span>
+          </p>
+        </div>
+      </div>
       <h3 class="attributes-error" *ngIf="!nftData.attributes.length">{{'nft.attributeError' | translate}}</h3>
       <p class="advice" *ngIf="showAttributes">{{'nft.attributeExternalAdvice' | translate}}</p>
     </div>
 
-  <div *ngIf="allowedNFTs.includes(nftContractAddress | lowercase)" class="history nft-detail-block" [class.hidden]="!showHistory" [ngStyle]=" { 'background-color': partner.color }">
+  <div *ngIf="allowedNFTs.includes(nftContractAddress | lowercase)" class="history nft-detail-block" [class.hidden]="!showHistory" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
     <h2 class="title">
       <mat-icon class="icon">security</mat-icon>
       {{'nft.history' | translate}}
@@ -227,7 +248,7 @@
 
 </div>
 
-<div class="metadata nft-detail-block" [class.hidden]="!showMetadata" [ngStyle]=" { 'background-color': partner.color }">
+<div class="metadata nft-detail-block" [class.hidden]="!showMetadata" [ngStyle]=" { 'border': '3px solid' + partner.color, background: 'linear-gradient(to right, #222222, ' + partner.color + '66, #222222)' }">
   <h2 class="title">
     <mat-icon class="icon">security</mat-icon>
     {{'nft.metadata' | translate}}

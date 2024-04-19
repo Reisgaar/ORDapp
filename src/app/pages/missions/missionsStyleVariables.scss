@@ -1,0 +1,228 @@
+@import '/src/styleVariables.scss';
+
+.spinner {
+  width: max-content;
+  margin: 150px auto;
+}
+
+.input {
+  margin: 10px 0;
+
+  .label {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 0.8rem;
+    margin: 0 0 0 5px;
+  }
+
+  &-field {
+    border: 1px solid $blue-medium;
+    background-color: $grey-extra-dark;
+    color: $white;
+    border-radius: 7px;
+    padding: 7px 15px;
+    width: 120px;
+    font-size: 1rem;
+
+    &:disabled {
+      opacity: 0.5;
+      border-color: grey;
+    }
+
+    &:focus { outline: none; }
+  }
+
+  .error {
+    color: $red-error;
+    font-size: 0.8rem;
+    margin: 0;
+
+    span { display: block; }
+  }
+}
+
+.button {
+  cursor: pointer;
+  background-color: $blue-medium;
+  border-radius: 5px;
+  padding: 3px 10px;
+  width: max-content;
+  height: max-content;
+
+  &:hover {
+    background-color: $blue-light;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    background-color: $grey;
+
+    &:hover {
+      background-color: $grey;
+    }
+  }
+
+  &.transparent {
+    opacity: 0.5;
+  }
+
+  &.unlocked {
+    cursor: default;
+    color: $green;
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &.btn-pink {
+    background-color: $pink;
+
+    &:hover {
+      background-color: $pink-light;
+    }
+  }
+}
+
+.content {
+  max-width: 1200px;
+  margin: 1rem auto 5rem;
+  padding: 1rem;
+  color: $white;
+
+  .title {
+    width: 100%;
+    text-transform: uppercase;
+    font-family: $magistral !important;
+    font-size: 2.5rem;
+    line-height: 1em;
+    text-align: center;
+    margin: 0 0 3rem;
+  }
+
+  .box {
+    width: max-content;
+    margin: 0 auto;
+    border: 1px solid $blue-medium;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .upgrade {
+    margin: 1rem 0 3rem;
+
+    .switcher {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      width: max-content;
+      margin: auto;
+      border-bottom: 1px solid $white;
+      padding-bottom: 3px;
+
+      span {
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 0.8rem;
+      }
+    }
+
+    #level-block {
+      overflow: hidden;
+      height: 0;
+      transition: height 1s ease-in-out;
+    }
+
+    .headline {
+      text-align: center;
+      margin: 2rem 1rem;
+
+      h3 {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 1.2rem;
+        margin: 0;
+      }
+
+      p {
+        font-weight: 300;
+        font-size: 0.9rem;
+        max-width: 400px;
+        margin: auto;
+        line-height: 1em;
+      }
+    }
+
+    .levels {
+      display: flex;
+      flex-flow: wrap;
+      gap: 15px;
+      justify-content: space-around;
+
+      .level {
+        height: max-content;
+        align-self: center;
+        display: grid;
+        grid-template-rows: repeat(3, max-content);
+        border: 1px solid $blue-medium;
+        border-radius: 10px;
+        background: $black-transparent-90;
+        padding: 1rem 2rem;
+        text-align: center;
+        width: calc(250px - 2rem);
+
+        &.active {
+          border-color: $white;
+        }
+
+        .button {
+          margin: 5px auto 0;
+          text-transform: uppercase;
+        }
+
+        .number {
+          border-bottom: 1px solid $white;
+          display: flex;
+          gap: 7px;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 10px;
+          padding-bottom: 5px;
+
+          p {
+            margin: 0;
+          }
+
+          img {
+            height: 20px;
+            width: 20px;
+            object-fit: contain;
+          }
+        }
+
+        .price {
+          margin: 0;
+        }
+
+        .name {
+          text-transform: uppercase;
+          font-size: 1.5rem;
+          margin: 0;
+          height: 2em;
+          display: flex;
+          align-items: center;
+          justify-self: center;
+        }
+
+        .improvement {
+          font-size: 0.8rem;
+          font-weight: 300;
+          margin: 12px 0;
+        }
+
+      }
+    }
+  }
+}

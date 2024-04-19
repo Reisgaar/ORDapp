@@ -1,0 +1,59 @@
+<div class="close">
+  <p class="text">{{ 'popUp.' + data.title | translate }}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+
+<div class="message">
+  <p class="text">{{'missions.missions.missionCompleted' | translate}}</p>
+  <p *ngIf="data.link" [innerHTML]="('popUp.' + data.link | translate).replace('***', data.tx)" class="link"></p>
+  <div *ngIf="dataIsLoaded === false" class="spinner">
+    <mat-spinner [diameter]="100" [strokeWidth]="5"></mat-spinner>
+  </div>
+  <ng-container *ngIf="dataIsLoaded === true">
+    <div class="category">
+      <p class="title">{{'missions.missions.consequences' | translate}}</p>
+      <div class="item-wrapper">
+        <div class="item">
+          <p class="name">{{'missions.missions.fatigue' | translate}}</p>
+          <img class="icon" src="assets/images/missions/icons/soldierFatigue.svg" alt="Soldier fatigue icon"/>
+          <p class="value">{{rewards.soldiersFatigue}}</p>
+        </div>
+        <div class="item">
+          <p class="name">{{'missions.missions.death' | translate}}</p>
+          <img class="icon" src="assets/images/missions/icons/deathProbability.svg" alt="Death icon"/>
+          <p class="value">{{rewards.soldiersDead}}</p>
+        </div>
+        <div class="item">
+          <p class="name">{{'missions.missions.itemUsage' | translate}}</p>
+          <img class="icon" src="assets/images/missions/icons/itemUsage.svg" alt="Item usage icon"/>
+          <p class="value">{{rewards.itemUsage}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="category">
+      <p class="title">{{'missions.missions.rewards' | translate}}</p>
+      <div class="item-wrapper">
+        <div class="item" *ngIf="rewards.militaryLevel > 0">
+          <p class="name">{{'missions.missions.militaryLevel' | translate}}</p>
+          <img class="icon" src="assets/images/missions/icons/rank.svg" alt="Rank icon"/>
+          <p class="value">{{rewards.militaryLevel}}</p>
+        </div>
+        <div class="item" *ngIf="rewards.food > 0">
+          <p class="name">{{'missions.missions.food' | translate}}</p>
+          <img class="icon" src="assets/images/missions/icons/food.svg" alt="Food icon"/>
+          <p class="value">{{rewards.food}}</p>
+        </div>
+        <div class="item" *ngIf="rewards.fuel > 0">
+          <p class="name">{{'missions.missions.fuel' | translate}}</p>
+          <img class="icon" src="assets/images/missions/icons/fuel.svg" alt="Fuel icon"/>
+          <p class="value">{{rewards.fuel}}</p>
+        </div>
+        <div class="item" *ngIf="rewards.treasures > 0">
+          <p class="name">{{'missions.missions.treasures' | translate}}</p>
+          <img class="icon" src="assets/images/missions/icons/treasures.svg" alt="Treasures icon"/>
+          <p class="value">{{rewards.treasures}}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

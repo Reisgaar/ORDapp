@@ -2,23 +2,24 @@
 
 .nft-card {
   cursor: pointer;
-  background: $blue-card-background;
-  padding: 15px;
-  border-radius: 15px;
+  background: $grey-extra-dark;
+  padding: 10px;
+  border-radius: 10px;
   color: $white;
+  max-width: 200px;
+  backdrop-filter: blur(3px);
 
   &:hover {
-    transform: scale(1.03);
+    transform: scale(1.01);
   }
 
   .image {
     position: relative;
     text-align: center;
-    height: 220px;
-    width: 220px;
+    height: 200px;
+    width: 200px;
 
     .nft {
-      background: $white;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -30,7 +31,26 @@
       object-position: top;
       border-radius: 15px;
     }
+    .nft-back{
+      position: absolute;
+      max-height: 100%;
+      max-width: 100%;
+      border-radius: 15px;
 
+    }
+    .feline{
+      background-image: url('/assets/images/partnership/hashapon/feline.svg');
+    }
+    .ursid{
+      background-image: url('/assets/images/partnership/hashapon/ursid.svg');
+    }
+    .bird{
+      background-image: url('/assets/images/partnership/hashapon/bird.svg');
+    }
+    .canid{
+      background-image: url('/assets/images/partnership/hashapon/canid.svg');
+    }
+    
     .countdown {
       position: absolute;
       left: 50%;
@@ -54,16 +74,12 @@
     .name {
       position: relative;
       margin: 15px 0 5px 0;
-      height: 35px;
 
       h2 {
         text-align: center;
+        font-size: 1rem;
         line-height: 1em;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 100%;
-        transform: translate(-50%, -50%);
+        margin: 20px auto;
       }
     }
 
@@ -116,8 +132,10 @@
 
     .price {
       padding: 5px 0;
-      border-top: 2px solid #2d697e;
       height: 50px;
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-image: linear-gradient(to right, transparent, $white, transparent) 100% 1;
 
       p {
         margin: 0;
@@ -139,5 +157,4 @@
       }
     }
   }
-
 }

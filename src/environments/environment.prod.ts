@@ -29,10 +29,10 @@ export const environment = {
   // Graph API Testnet
   graphURI: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/ormarketplace',
   graphURImarketplace: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/ormarketplace',
+  graphURIUndergroundMarket: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/undergroundmarket',
   graphURIpartners: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/ormarketplacepartners',
   graphURIgovernance: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/orgovernance',
   graphURIcrafting: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/orcrafting',
   graphURIlands: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/orlands',
-  graphURIPools: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/orpools',
-  graphURIUndergroundMarket: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/undergroundmarket'
+  graphURIPools: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/orpools'
 };

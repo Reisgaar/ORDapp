@@ -1,0 +1,20 @@
+<div *ngIf="dataIsLoaded === false" class="spinner">
+  <mat-spinner [diameter]="250" [strokeWidth]="10"></mat-spinner>
+</div>
+
+<div class="content" *ngIf="dataIsLoaded === true">
+  <h1 class="title">{{'navigation.missionsSelection' | translate}}</h1>
+
+  <div>
+    <div class="level">
+      <div class="title">
+        <h3>{{'missions.missions.level' | translate}} {{shownLevel}}</h3>
+        <mat-icon class="arrow prev" (click)="changeMissionLevel(false)">chevron_left</mat-icon>
+        <mat-icon class="arrow next" (click)="changeMissionLevel(true)">chevron_right</mat-icon>
+      </div>
+      <ng-container *ngFor="let mission of missions['level' + shownLevel] | slice:(missionsPaginationPage*missionsPerPage):((missionsPaginationPage*missionsPerPage) + missionsPerPage)">
+        <app-mission-card [mission]="mission" [userResources]="userResources"></app-mission-card>
+      </ng-container>
+    </div>
+  </div>
+</div>

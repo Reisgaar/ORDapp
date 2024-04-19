@@ -1,0 +1,65 @@
+@import '/src/styleVariables.scss';
+
+.close {
+  font-family: 'magistral', sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding-right: 50px;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+
+.content {
+  cursor: pointer;
+  margin-top: 10px;
+
+  .info {
+    margin: 20px 0;
+  }
+
+  .link {
+    margin: 20px 0;
+
+    p {
+      margin: 0;
+    }
+
+    .main {
+      color: $blue-extra-light;
+      font-size: 1.3rem;
+    }
+
+    .text {
+      font-size: 0.8rem;
+    }
+
+    &:hover .main {
+      color: $pink-light;
+    }
+  }
+}

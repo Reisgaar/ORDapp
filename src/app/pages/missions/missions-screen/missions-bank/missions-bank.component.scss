@@ -1,0 +1,279 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.content {
+    
+  .countdown {
+    background: linear-gradient(to left, transparent, $blue-medium, transparent);
+    display: flex;
+    width: max-content;
+    margin: auto;
+    padding: 5px 80px;
+    
+    &.open {
+      background: linear-gradient(to left, transparent, $green, transparent);
+
+      p {
+
+        &.text {
+          color: $white;
+          border-right: unset;
+          margin: 0;
+          padding: 0 1rem;
+        }
+      }
+    }
+
+    p {
+      margin: 0;
+
+      &.text {
+        text-transform: uppercase;
+        color: $blue-extra-light;
+        border-right: 1px solid white;
+        margin-right: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  }
+
+  .reroll {
+    margin: 2rem auto;
+    border: 1px solid $blue-medium;
+    border-radius: 7px;
+    background-color: $white-transparent-10;
+    width: max-content;
+    text-align: center;
+    padding: 1rem;
+    max-width: 30rem;
+
+    .text {
+      font-weight: 300;
+      max-width: 30rem;
+      margin: 0;
+    }
+
+    .options {
+      display: flex;
+      flex-flow: wrap;
+      justify-content: space-evenly;
+      gap: 2rem;
+      margin: 1rem 0;
+
+      .option {
+        font-size: 1.3rem;
+        line-height: 1em;
+        margin: 0;
+      }
+    }
+
+    .button {
+      margin: 0.5rem auto 0;
+      min-width: 100px;
+      padding: 1rem 1rem;
+    }
+  }
+
+  .prices {
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem 5rem;
+    margin: 3rem auto;
+
+    .token {
+      display: flex;
+      align-items: center;
+      gap: 0 1rem;
+      
+      .icon {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+      }
+      
+      p {
+        margin: 0;
+        
+        span {
+          display: block;
+        }
+        
+        .name {
+          font-size: 0.6rem;
+          line-height: 1em;
+          text-transform: uppercase;
+        }
+        
+        .value {
+          font-size: 1.7rem;
+          line-height: 1em;
+          font-family: $magistral !important;
+        }
+      }
+    }
+  }
+  
+  .exchange {
+    text-align: center;
+    margin: 2rem 1rem;
+
+    &.disabled {
+      cursor: default;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    
+    .headline {
+      
+      h3 {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 1.2rem;
+        margin: 0;
+      }
+      
+      p {
+        font-weight: 300;
+        font-size: 0.9rem;
+        margin: 1rem auto;
+        line-height: 1em;
+      }
+    }
+  }
+  
+  .interaction {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    padding: 2rem 1rem;
+    
+    .balance, .amount, .conversion, .buttons {
+      align-self: center;
+      justify-self: center;
+      text-align: left;
+      padding: 0 1rem;
+      margin: 0 1rem;
+      border-right: 1px solid $blue-medium;
+
+      .error {
+        color: $red-error;
+        max-width: 10rem;
+        line-height: 1em;
+        height: 2em;
+        display: flex;
+        align-items: center;
+      }
+      
+      .name {
+        font-size: 0.6rem;
+        line-height: 1em;
+        text-transform: uppercase;
+      }
+      
+      .value {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 1.7rem;
+        line-height: 1em;
+        height: 1.5em;
+        
+        p {
+          font-family: $magistral !important;
+          margin: 0;
+        }
+      }
+    }
+
+    .amount .value {
+      
+      .input {
+        margin: 0;
+      }
+
+      .button {
+        font-size: 1rem;
+        line-height: 1em;
+        padding: 4px 7px;
+        text-transform: lowercase;
+      }
+    }
+
+    .buttons {
+      border: unset !important;
+
+      p {
+        margin: 0;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .fee {
+    margin: 1rem;
+
+    .text {
+      font-style: italic;
+      margin: 0;
+      font-weight: 300;
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 850px) {
+}
+
+// Medium devices
+@media (max-width: 768px) {
+}
+
+// Small devices
+@media (max-width: 860px) {
+  .content {
+    
+    .interaction {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, max-content);
+      padding: 1rem;
+
+      .balance, .amount, .conversion, .buttons {
+        padding: 1rem 0;
+        width: 100%;
+        text-align: center;
+
+        .value {
+          justify-content: center;
+        }
+      }
+
+      .balance, .amount, .conversion {
+        border-right: unset;
+        border-bottom: 1px solid $blue-medium;
+      }
+
+      .balance {
+        padding: 0 0 1rem;
+      }
+
+      .conversion {
+
+        .error {
+          margin: auto;
+          justify-content: center;
+        }
+      }
+
+      .buttons {
+        padding: 1rem 0 0;
+        width: max-content;
+      }
+    }
+  }
+}

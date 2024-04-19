@@ -1,0 +1,15 @@
+<div class="close">
+  <p class="text">{{"getNFTs.title" | translate}}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="content">
+  <p class="info">{{"getNFTs.howTo" | translate}}</p>
+  <div class="link" [routerLink]="['/marketplace']" (click)="closePopUp()">
+    <p class="main">{{"getNFTs.marketplace" | translate}}</p>
+    <p class="text">{{"getNFTs.marketplaceDefinition" | translate}}</p>
+  </div>
+  <div class="link" [routerLink]="['/crafting/factory']" (click)="closePopUp()">
+    <p class="main">{{"getNFTs.crafting" | translate}}</p>
+    <p class="text">{{"getNFTs.craftingDefinition" | translate}}</p>
+  </div>
+</div>

@@ -227,13 +227,28 @@ export class CraftingUtilsService {
    * @param value name of the rarity
    * @returns the rarity id
    */
-  async getRarityIdByName(name: string): Promise<number> {
+  getRarityIdByName(name: string): number {
     switch (name.toLowerCase()) {
       case 'common': return 0;
       case 'uncommon': return 1;
       case 'rare': return 2;
       case 'epic': return 3;
       case 'legendary': return 4;
+    }
+  }
+
+  /**
+   * Gets the id of a rarity
+   * @param value name of the rarity
+   * @returns the rarity id
+   */
+  getRarityNameById(id: number): string {
+    switch (id) {
+      case 0: return 'common';
+      case 1: return 'uncommon';
+      case 2: return 'rare';
+      case 3: return 'epic';
+      case 4: return 'legendary';
     }
   }
 
@@ -263,11 +278,12 @@ export class CraftingUtilsService {
    * @param userAddr the wallet of the user
    * @returns true if all materials are allowed
    */
-  async checkAllowanceOfRequiredMaterials(tokens: any, spender: string, userAddr: string): Promise<boolean> {
+  async checkAllowanceOfRequiredMaterials(tokens: any, spender: string, userAddr: string, matDiscount: number): Promise<boolean> {
     let allTokensAllowed = true;
     // tslint:disable-next-line: forin
     for (const token in tokens) {
-      const tokenAmount = this.connectionService.toWei(tokens[token].toString());
+      const tokenWithDiscount = tokens[token] - (tokens[token] * (matDiscount / 100));
+      const tokenAmount = this.connectionService.toWei(tokenWithDiscount.toString());
       const tokenToSpend = contractAddresses[token.toLowerCase()];
       const thisTokenIsApproved = await this.tokenService.tokenApprovement(spender, userAddr, tokenToSpend, tokenAmount);
       if (!thisTokenIsApproved) {

@@ -1,0 +1,145 @@
+<div *ngIf="dataIsLoaded === false" class="spinner">
+  <mat-spinner [diameter]="250" [strokeWidth]="10"></mat-spinner>
+</div>
+
+<div class="content" *ngIf="dataIsLoaded === true">
+  <h1 class="title">{{'navigation.restingArea' | translate}}</h1>
+
+  <ng-container *ngIf="dataIsLoaded === true">
+    <div class="block">
+      <div class="info">
+        <h3 *ngIf="userSoldiers.length > 0">{{'missions.resting.soldiersFatigue' | translate}}</h3>
+        <h3 *ngIf="userSoldiers.length === 0">{{'missions.resting.noSoldiers' | translate}}</h3>
+        <p *ngIf="userSoldiers.length === 0">
+          <span>{{'missions.resting.recruitSoldiers1' | translate}}</span>
+          <span class="link" [routerLink]="['/missions/recruitment']">{{'missions.resting.recruitSoldiers2' | translate}}</span>
+          <span>{{'missions.resting.recruitSoldiers3' | translate}}</span>
+        </p>
+      </div>
+      <div class="soldiers slider">
+        <ng-container *ngIf="userSoldiers.length > soldiersPerPage">
+          <mat-icon *ngIf="soldiersPaginationPage === 0" class="arrow prev disabled">chevron_left</mat-icon>
+          <mat-icon *ngIf="soldiersPaginationPage > 0" (click)="changePage(false, 'soldiers')" class="arrow prev">chevron_left</mat-icon>
+          <span class="page">{{'blackMarket.pagination.page' | translate}} {{soldiersPaginationPage + 1}} {{'blackMarket.pagination.of' | translate}} {{soldiersTotalPages + 1}}</span>
+          <mat-icon *ngIf="soldiersPaginationPage < soldiersTotalPages" (click)="changePage(true, 'soldiers')" class="arrow next">chevron_right</mat-icon>
+          <mat-icon *ngIf="soldiersPaginationPage >= soldiersTotalPages" class="arrow next disabled">chevron_right</mat-icon>
+        </ng-container>
+        <div class="soldier" *ngFor="let sol of userSoldiers | slice:(soldiersPaginationPage*soldiersPerPage):((soldiersPaginationPage*soldiersPerPage) + soldiersPerPage); let i = index">
+          <div class="card energy_{{sol.energyPoints}}" *ngIf="sol.isRecruited === true && sol.status > 0"
+            [class.regular]="sol.status === 1 && sol.energyPoints < 10 && sol.energyPoints > 0"
+            [class.tired]="sol.status === 1 && sol.energyPoints === 0"
+            [class.resting]="sol.status === 2 && (sol.endTime | timeStampIsPast)"
+            [class.rested]="sol.status === 2 && !(sol.endTime | timeStampIsPast)"
+            [class.unavailable]="sol.status === 3"
+          >
+            <p class="number">{{sol.soldierPosition + 1}}</p>
+            <img class="type" *ngIf="sol.restingType !== 0" src="assets/images/missions/icons/{{restingTypes[sol.restingType - 1] | lowercase}}.svg" alt="{{restingTypes[sol.restingType - 1]}} icon"/>
+            <img class="image" src="assets/images/missions/icons/soldier.svg" alt="soldier icon" />
+            <p class="info">
+              <app-countdown *ngIf="sol.status === 2" [end]="sol.endTime" (countdownEndedEvent)="receiveCounterData($event)"></app-countdown>
+              <span *ngIf="sol.status !== 2">
+                <img class="energy" src="assets/images/missions/icons/energy.svg" alt="energy icon"/>
+                {{sol.energyPoints}}/10
+              </span>
+            </p>
+          </div>
+          <div class="card energy_{{sol.energyPoints}}" *ngIf="sol.isRecruited === true && sol.status === 0">
+            <p class="number">{{sol.soldierPosition + 1}}</p>
+            <img class="image" src="assets/images/missions/icons/deathProbability.svg" alt="soldier icon" />
+          </div>
+          <div class="buttons">
+            <ng-container *ngIf="sol.status === 1">
+              <p *ngIf="sol.energyPoints < 10" class="button" (click)="addRestingSoldier(i)">{{'missions.buttons.rest' | translate}}</p>
+            </ng-container>
+            <ng-container *ngIf="sol.status === 2">
+              <p class="button" *ngIf="(sol.endTime | timeStampIsPast)" (click)="accelerateSoldierResting(i)">{{'missions.buttons.speedUp' | translate}}</p>
+              <p class="button" *ngIf="!(sol.endTime | timeStampIsPast)" (click)="claimRestingSoldier(i)">{{'missions.buttons.withdraw' | translate}}</p>
+            </ng-container>
+            <ng-container *ngIf="sol.status === 3">
+              <p class="button disabled">{{'missions.missions.onMission' | translate}}</p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="info">
+        <h3>{{'missions.resting.holdtelKeys' | translate}}</h3>
+        <p>{{'missions.resting.holdtelKeysText1' | translate}}</p>
+        <p>{{'missions.resting.holdtelKeysText2' | translate}}</p>
+        <p (click)="stakeKey()" class="button">{{'missions.buttons.stakeKey' | translate}}</p>
+      </div>
+      <div class="keys slider">
+        <ng-container *ngIf="userKeys.length > keysPerPage">
+          <mat-icon *ngIf="keysPaginationPage === 0" class="arrow prev disabled">chevron_left</mat-icon>
+          <mat-icon *ngIf="keysPaginationPage > 0" (click)="changePage(false, 'keys')" class="arrow prev">chevron_left</mat-icon>
+          <span class="page">{{'blackMarket.pagination.page' | translate}} {{keysPaginationPage + 1}} {{'blackMarket.pagination.of' | translate}} {{keysTotalPages + 1}}</span>
+          <mat-icon *ngIf="keysPaginationPage < keysTotalPages" (click)="changePage(true, 'keys')" class="arrow next">chevron_right</mat-icon>
+          <mat-icon *ngIf="keysPaginationPage >= keysTotalPages" class="arrow next disabled">chevron_right</mat-icon>
+        </ng-container>
+        <div class="key" *ngFor="let key of userKeys | slice:(keysPaginationPage*keysPerPage):((keysPaginationPage*keysPerPage) + keysPerPage)">
+          <div class="card" *ngIf="key.exists === true">
+            <div class="name"><p>{{'holdtel.roomName.' + (key.holdtelSize |lowercase) | translate}}</p></div>
+            <img class="image" src="assets/images/holdtel/keys/key_{{key.holdtelSize | lowercase}}.png" alt="{{key.holdtelSize}} holdtel key" />
+            <mat-icon class="withdraw" (click)="withdrawKey(key.tokenId)" style="color: red;">close</mat-icon>
+          </div>
+          <div class="buttons">
+            <p class="using" *ngIf="key.inUse === true">{{'missions.resting.inUse' | translate}}</p>
+            <ng-container *ngIf="key.inUse === false">
+              <p class="button" *ngIf="landOrKeyBoostIsAvailable === true" (click)="useHoldtelKey(key.tokenId)">{{'missions.resting.use' | translate}}</p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="info">
+        <h3>{{'missions.resting.lands' | translate}}</h3>
+        <p>{{'missions.resting.landsText1' | translate}}</p>
+        <p>{{'missions.resting.landsText2' | translate}}</p>
+        <p class="button" (click)="rentLand()">{{'missions.buttons.stakeLand' | translate}}</p>
+      </div>
+      <div class="rents">
+        <ng-container *ngFor="let size of rentedLands; let i = index">
+          <ng-container *ngIf="size.length > 0">
+            <p class="size">{{landSizes[i]}} lands</p>
+            <div class="lands slider">
+              <ng-container *ngIf="size.length > landsPerPage">
+                <mat-icon *ngIf="landsPaginationPage[i] === 0" class="arrow prev disabled">chevron_left</mat-icon>
+                <mat-icon *ngIf="landsPaginationPage[i] > 0" (click)="changePage(false, 'lands', i)" class="arrow prev">chevron_left</mat-icon>
+                <span class="page">{{'blackMarket.pagination.page' | translate}} {{landsPaginationPage[i] + 1}} {{'blackMarket.pagination.of' | translate}} {{landsTotalPages[i] + 1}}</span>
+                <mat-icon *ngIf="landsPaginationPage[i] < landsTotalPages[i]" (click)="changePage(true, 'lands', i)" class="arrow next">chevron_right</mat-icon>
+                <mat-icon *ngIf="landsPaginationPage[i] >= landsTotalPages[i]" class="arrow next disabled">chevron_right</mat-icon>
+              </ng-container>
+              <div class="land" *ngFor="let land of size | slice:(landsPaginationPage[i]*landsPerPage):((landsPaginationPage[i]*landsPerPage) + landsPerPage)">
+                <div class="card" [class.red-border]="land.numRestingSoldiers === landSizeLimits[i]">
+                  <img class="image" src="assets/images/lands/land_{{landSizes[i]}}_alpha.png" alt="{{landSizes[i]}} land image">
+                  <div class="vacancy">
+                    <span>{{land.numRestingSoldiers}}/{{landSizeLimits[i]}}</span>
+                    <img class="icon" src="assets/images/missions/icons/soldier.svg" alt="soldier icon" />
+                  </div>
+                  <ng-container *ngIf="(land.owner | lowercase) === (userAddr | lowercase)">
+                    <mat-icon *ngIf="(land.lockEndTime + '' | timeStampIsPast) === false" class="withdraw" (click)="unrentLand(land.tokenId)" style="color: red;">close</mat-icon>
+                    <p *ngIf="(land.lockEndTime | timeStampIsPast) === true" class="block">
+                      <span>{{'missions.resting.blocked' | translate}}</span>
+                      <span>{{land.lockEndTime + '000' | date:'MMM d, y, h:mm a'}}</span>
+                    </p>
+                  </ng-container>
+                </div>
+                <div class="buttons">
+                  <p class="full" *ngIf="land.numRestingSoldiers === landSizeLimits[i]">{{'missions.resting.full' | translate}}</p>
+                  <ng-container *ngIf="landOrKeyBoostIsAvailable === true">
+                      <p class="button" *ngIf="land.numRestingSoldiers < landSizeLimits[i]" (click)="addSoldierToLand(land.tokenId)">{{'missions.resting.addSoldier' | translate}}</p>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

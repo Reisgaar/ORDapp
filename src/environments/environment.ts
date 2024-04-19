@@ -30,10 +30,10 @@ export const environment = {
   graphURI: 'https://api.thegraph.com/subgraphs/name/nexxyolabsmikelariceta/marketplace-with-lands-new',
   graphURImarketplace: 'https://api.thegraph.com/subgraphs/name/nexxyolabsmikelariceta/marketplace-with-lands-new',
   // graphURImarketplace: 'https://api.thegraph.com/subgraphs/name/nexxyolabsibaicastanon/onlylands',
-  graphURIpartners: 'https://api.thegraph.com/subgraphs/name/ariceta/partners-with-new-fees-and-roy',
+  graphURIUndergroundMarket: 'https://api.thegraph.com/subgraphs/name/nexxyolabsmikelariceta/blackmarket-bsctestnet',
+  graphURIpartners: 'https://api.thegraph.com/subgraphs/name/nexxyolabsmikelariceta/partners-or-hashapon',
   graphURIgovernance: 'https://api.thegraph.com/subgraphs/name/nexxyolabsmikelariceta/governance-chapel',
   graphURIcrafting: 'https://api.thegraph.com/subgraphs/name/nexxyolabsmikelariceta/crafting-new',
   graphURIlands: 'https://api.thegraph.com/subgraphs/name/nexxyolabsibaicastanon/onlylands',
-  graphURIPools: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/orpools',
-  graphURIUndergroundMarket: 'https://api.thegraph.com/subgraphs/name/nexxyolabsmikelariceta/blackmarket-bsctestnet'
+  graphURIPools: 'https://api.thegraph.com/subgraphs/name/outerringblockchain/orpools'
 };

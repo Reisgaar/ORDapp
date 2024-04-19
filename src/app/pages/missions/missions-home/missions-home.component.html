@@ -1,0 +1,33 @@
+<div class="top-image">
+  <img src="assets/images/missions/header_home.png" alt="missions header image">
+</div>
+  
+<div class="page">
+  <div class="head missions">
+    <p class="tip">{{'missions.home.tip' | translate}}</p>
+    <h1 class="title" [innerHTML]="'missions.home.title_html' | translate"></h1>
+    <p class="subtitle">{{'missions.home.subtitle1' | translate}}</p>
+    <p class="subtitle">{{'missions.home.subtitle2' | translate}}</p>
+    <p class="subtitle">{{'missions.home.subtitle3' | translate}}</p>
+  </div>
+</div>
+
+<div class="content">
+  <h1 class="title">{{'missions.commandCenter' | translate}}</h1>
+  <div class="navigation">
+      <div *ngFor="let tab of ['recruitment', 'armory', 'garage', 'warehouse', 'restingArea', 'bank', 'missionsSelection']; let i = index" class="navigation-tab" (click)="goToArea(i)" [class.active]="areas[actualArea].includes(tab)" >
+        <p class="name">{{ 'navigation.' + tab | translate }}</p>
+        <img class="indicator" *ngIf="areas[actualArea].includes(tab)" src="assets/images/missions/icons/menu_active.svg" alt="active tab indicator" />
+      </div>
+  </div>
+  <div class="areas">
+    <div class="area" [routerLink]="['/missions/' + areas[actualArea]]">
+      <div class="description">
+        <p class="name">{{ 'navigation.' + areas[actualArea] | translate }}</p>
+        <p class="text">{{ 'missions.' + areas[actualArea] + 'Text' | translate }}</p>
+        <p class="button">{{ 'missions.' + areas[actualArea] + 'GoTo' | translate }}</p>
+      </div>
+      <img class="image" src="assets/images/missions/locations/{{areas[actualArea]}}.png" alt="{{areas[actualArea]}} area icon" />
+    </div>
+  </div>
+</div>

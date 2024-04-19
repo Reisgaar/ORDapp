@@ -10,6 +10,7 @@ import { DialogService } from '../../../../shared/services/dialog.service';
 })
 export class CraftingFoundryCardComponent implements OnInit, OnDestroy {
   @Input() pool: number;
+  @Output() fullCapacityAvailableEvent = new EventEmitter<any>();
   countdownEnd: number;
   walletIsConnected: boolean;
   userAddress: string = '';
@@ -18,7 +19,6 @@ export class CraftingFoundryCardComponent implements OnInit, OnDestroy {
   poolPrices: any = { usd: '', gq: ''}
   poolData: any;
   interval: any;
-  @Output() fullCapacityAvailableEvent = new EventEmitter<any>();
 
   constructor(
     private connectionService: ConnectionService,
@@ -32,14 +32,13 @@ export class CraftingFoundryCardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.connectionService.userAccount.subscribe( (userAccount: any) => {
       this.walletIsConnected = userAccount.isConnected;
+      if (this.interval) { clearInterval(this.interval); }
       if (this.walletIsConnected) {
         this.userAddress = this.connectionService.getWalletAddress().toLowerCase();
         this.getPoolData();
         this.interval = setInterval(() => {
           this.getPoolData();
         }, 5000);
-      } else {
-        if (this.interval) { clearInterval(this.interval); }
       }
     });
   }
@@ -74,18 +73,13 @@ export class CraftingFoundryCardComponent implements OnInit, OnDestroy {
     if (this.poolIsAvailable) {
       this.poolData = await this.foundryService.getPoolData(this.userAddress, this.pool);
       const isUpgraded = this.poolData.isUpgraded === true && this.poolData.items.exists === false ? true : false;
-      this.fullCapacityAvailableEvent.emit({pool: this.pool, isUpgraded});
+      this.fullCapacityAvailableEvent.emit({pool: this.pool, isUpgraded, isEmpty: !this.poolData.items.exists});
       this.poolDataIsLoaded = true;
     } else {
       this.poolPrices = await this.foundryService.getPoolUnlockingPrice(this.pool);
       this.poolDataIsLoaded = true;
     }
-    // console.log('---------------');
-    // console.log('Pool', this.pool);
-    // console.log('is available?', this.poolIsAvailable);
-    // console.log('unlock price', this.poolPrices);
-    // console.log('Data: ', this.poolData)
-    // console.log('---------------');
+    // console.log('Pool', this.pool, 'data: ', this.poolData);
   }
 
   /**

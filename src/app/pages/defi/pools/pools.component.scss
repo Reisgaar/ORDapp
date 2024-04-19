@@ -119,7 +119,13 @@
   width: 62rem;
   justify-content: center;
   border: 1px solid $blue-extra-light;
-  background: $blue-stake-card-background;
+  // background: $blue-stake-card-background;
+  background: #11174669;
+  backdrop-filter: blur(5px);
+
+  .cdk-row, .cdk-cell {
+    background: transparent;
+  }
 }
 .table-pools-grid{
   display: flex;
@@ -134,4 +140,5 @@
 .pool-container{
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }

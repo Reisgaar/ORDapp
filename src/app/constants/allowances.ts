@@ -260,6 +260,88 @@ export const allowances = {
     }
   },
   section07: {
+    title: 'Missions',
+    contracts: {
+      contract01: {
+        name: 'Armory',
+        addressConstant: 'armory',
+        allowedTokens: {
+          token01: {
+            ticker: 'GQ',
+            constant: 'gq',
+            allowed: ''
+          }
+        }
+      },
+      contract02: {
+        name: 'Bank',
+        addressConstant: 'bank',
+        allowedTokens: {
+          token01: {
+            ticker: 'GQ',
+            constant: 'gq',
+            allowed: ''
+          }
+        }
+      },
+      contract03: {
+        name: 'Garage',
+        addressConstant: 'garage',
+        allowedTokens: {
+          token01: {
+            ticker: 'GQ',
+            constant: 'gq',
+            allowed: ''
+          }
+        }
+      },
+      contract04: {
+        name: 'Missions',
+        addressConstant: 'missions',
+        allowedTokens: {
+          token01: {
+            ticker: 'GQ',
+            constant: 'gq',
+            allowed: ''
+          }
+        }
+      },
+      contract05: {
+        name: 'Recruitment',
+        addressConstant: 'recruitmentArea',
+        allowedTokens: {
+          token01: {
+            ticker: 'GQ',
+            constant: 'gq',
+            allowed: ''
+          }
+        }
+      },
+      contract06: {
+        name: 'Resting Area',
+        addressConstant: 'restingArea',
+        allowedTokens: {
+          token01: {
+            ticker: 'GQ',
+            constant: 'gq',
+            allowed: ''
+          }
+        }
+      },
+      contract07: {
+        name: 'Warehouse',
+        addressConstant: 'warehouse',
+        allowedTokens: {
+          token01: {
+            ticker: 'GQ',
+            constant: 'gq',
+            allowed: ''
+          }
+        }
+      }
+    }
+  },
+  section08: {
     title: 'Marketplace',
     contracts: {
       contract01: {
@@ -296,7 +378,7 @@ export const allowances = {
       }
     }
   },
-  section08: {
+  section09: {
     title: 'Partners Marketplace',
     contracts: {
       contract01: {
@@ -333,7 +415,7 @@ export const allowances = {
       }
     }
   },
-  section09: {
+  section10: {
     title: 'Species',
     contracts: {
       contract01: {
@@ -349,7 +431,7 @@ export const allowances = {
       }
     }
   },
-  section10: {
+  section11: {
     title: 'Underground Market',
     contracts: {
       contract01: {
@@ -519,21 +601,26 @@ export const nftAllowances = {
             allowed: ''
           },
           token05: {
+            ticker: 'Holdtel Key',
+            constant: 'holdtelKey',
+            allowed: ''
+          },
+          token06: {
             ticker: 'Land',
             constant: 'land',
             allowed: ''
           },
-          token06: {
+          token07: {
             ticker: 'Land Vehicle',
             constant: 'landVehicle',
             allowed: ''
           },
-          token07: {
+          token08: {
             ticker: 'Space Vehicle',
             constant: 'spaceVehicle',
             allowed: ''
           },
-          token08: {
+          token09: {
             ticker: 'Weapon',
             constant: 'weapon',
             allowed: ''
@@ -565,25 +652,83 @@ export const nftAllowances = {
             allowed: ''
           },
           token05: {
+            ticker: 'Holdtel Key',
+            constant: 'holdtelKey',
+            allowed: ''
+          },
+          token06: {
             ticker: 'Land',
             constant: 'land',
             allowed: ''
           },
-          token06: {
+          token07: {
             ticker: 'Land Vehicle',
             constant: 'landVehicle',
             allowed: ''
           },
-          token07: {
+          token08: {
             ticker: 'Space Vehicle',
             constant: 'spaceVehicle',
             allowed: ''
           },
-          token08: {
+          token09: {
             ticker: 'Weapon',
             constant: 'weapon',
             allowed: ''
           }
+        }
+      }
+    }
+  },
+  section04: {
+    title: 'Missions',
+    contracts: {
+      contract01: {
+        name: 'Armory',
+        addressConstant: 'armory',
+        allowedTokens: {
+          token01: {
+            ticker: 'Armor',
+            constant: 'armor',
+            allowed: ''
+          },
+          token02: {
+            ticker: 'Weapon',
+            constant: 'weapon',
+            allowed: ''
+          }
+        }
+      },
+      contract02: {
+        name: 'Garage',
+        addressConstant: 'garage',
+        allowedTokens: {
+          token01: {
+            ticker: 'Land Vehicle',
+            constant: 'landVehicle',
+            allowed: ''
+          },
+          token02: {
+            ticker: 'Space Vehicle',
+            constant: 'spaceVehicle',
+            allowed: ''
+          },
+        }
+      },
+      contract03: {
+        name: 'Resting Area',
+        addressConstant: 'restingArea',
+        allowedTokens: {
+          token01: {
+            ticker: 'Holdtel Key',
+            constant: 'holdtelKey',
+            allowed: ''
+          },
+          token02: {
+            ticker: 'Land',
+            constant: 'land',
+            allowed: ''
+          },
         }
       }
     }

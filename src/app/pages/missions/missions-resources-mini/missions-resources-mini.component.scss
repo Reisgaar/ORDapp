@@ -1,0 +1,35 @@
+@import '/src/styleVariables.scss';
+
+.menu {
+  display: flex;
+  color: $white;
+  width: max-content;
+  background: linear-gradient(90deg, transparent, black 20%);
+  padding: 5px 5px 5px 25px;
+
+  .resource {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 5px;
+    padding: 2px 5px;
+
+    &.separator {
+      border-left: 1px solid $white;
+    }
+
+    .icon {
+      align-self: center;
+      justify-self: center;
+      height: 15px;
+      width: 15px;
+      object-fit: contain;
+    }
+
+    .value {
+      align-self: center;
+      justify-self: center;
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="close">
+  <p class="text">{{'missions.selectSoldier' | translate}}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="selector">
+  <ng-container *ngFor="let sol of data.soldiers; let i = index">
+    <div class="item" *ngIf="sol.isResting === true && sol.restingType === 0 && (sol.endTime | timeStampIsPast)" (click)="selectNft(i)">
+      <div class="card">
+        <p class="number">{{i + 1}}</p>
+        <img class="image" src="assets/images/missions/icons/soldier.svg" alt="soldier icon" />
+        <div class="info">
+          <app-countdown *ngIf="sol.status === 2" [end]="sol.endTime" (countdownEndedEvent)="receiveCounterData($event)"></app-countdown>
+        </div>
+      </div>
+      <div class="buttons">
+        <p class="button">{{'missions.buttons.select' | translate}}</p>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,41 @@
+<div class="close">
+  <p class="text">{{'missions.selectNFT' | translate}}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="spinner" *ngIf="!nftsLoaded">
+  <mat-spinner [diameter]="150" [strokeWidth]="7"></mat-spinner>
+</div>
+
+<div *ngIf="data.showTierRarityFilter === true && nftsLoaded" class="filter">
+  <div class="filter-option">
+    <p class="category">Tier:</p>
+    <p [class.selected]="selectedTier === 'Tier1'" (click)="setSelectedTier('Tier1')">1</p>
+    <p [class.selected]="selectedTier === 'Tier2'" (click)="setSelectedTier('Tier2')">2</p>
+    <p [class.selected]="selectedTier === 'Tier3'" (click)="setSelectedTier('Tier3')">3</p>
+  </div>
+  <div class="filter-option">
+    <p class="category">Rarity:</p>
+    <img [class.selected]="selectedRarity === 0" src="assets/images/nft/circle_common.png" class="icon" (click)="setSelectedRarity(0)"/>
+    <img [class.selected]="selectedRarity === 1" src="assets/images/nft/circle_uncommon.png" class="icon" (click)="setSelectedRarity(1)"/>
+    <img [class.selected]="selectedRarity === 2" src="assets/images/nft/circle_rare.png" class="icon" (click)="setSelectedRarity(2)"/>
+    <img [class.selected]="selectedRarity === 3" src="assets/images/nft/circle_epic.png" class="icon" (click)="setSelectedRarity(3)"/>
+    <img [class.selected]="selectedRarity === 4" src="assets/images/nft/circle_legendary.png" class="icon" (click)="setSelectedRarity(4)"/>
+  </div>
+</div>
+
+<div class="selector" *ngIf="nftsLoaded">
+  <ng-container *ngFor="let nft of nftList">
+    <div
+      *ngIf="(nft.rarityId === selectedRarity || selectedRarity === -1)
+              && ((nft.tier | lowercase) === (selectedTier | lowercase) || (selectedTier | lowercase) === 'all')"
+      class="item" (click)="selectNft(nft.tokenId)"
+    >
+      <img *ngIf="nft.image320" class="image" src="{{nft.image320}}" alt="{{nft.type}} nft image"/>
+      <img *ngIf="!nft.image320" class="image" src="{{nft.image}}" alt="{{nft.type}} nft image"/>
+      <p class="text"><span>Token id:</span> {{nft.tokenId}}</p>
+      <p class="tier" *ngIf="nft.tier">Tier {{nft.tier[nft.tier.length - 1]}}</p>
+      <img class="rarity" *ngIf="nft.rarity" src="assets/images/nft/circle_{{nft.rarity | lowercase}}.png"/>
+    </div>
+  </ng-container>
+  <p *ngIf="filteredItemsExist === false || nftList.length === 0" class="no-items">{{'missions.noNFTFound' | translate}}</p>
+</div>

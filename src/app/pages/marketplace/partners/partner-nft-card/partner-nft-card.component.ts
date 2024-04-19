@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { bnbPriceOnBusd, gqPriceOnBusd } from 'src/app/constants/pricesOnBusd';
 import { partners } from 'src/app/constants/partnerships';
 import { UtilsService } from 'src/app/shared/services/utils.service';
+import { Observable, Observer, map } from 'rxjs';
 
 /**
  * NFT card to show on the partner marketplace list
@@ -10,21 +11,24 @@ import { UtilsService } from 'src/app/shared/services/utils.service';
 @Component({
   selector: 'app-partner-nft-card',
   templateUrl: './partner-nft-card.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./partner-nft-card.component.scss']
 })
 export class PartnerNftCardComponent implements OnInit, OnDestroy {
   @Input() nft: any;
   @Input() category: string;
+
   partner: any;
   priceOnBusd: number = 0;
   interval: any;
   auctionEnded: boolean = false;
   profileImage: number;
-
   constructor(
     private router: Router,
-    private utilsService: UtilsService
-  ) { }
+    private utilsService: UtilsService,
+  ) {
+  }
+    
 
   /**
    * Get prices on busd and wallet image

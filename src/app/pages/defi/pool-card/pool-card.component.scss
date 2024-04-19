@@ -227,7 +227,7 @@
 
 .inline-grid {
   // margin: 0rem 0.6rem;
-  background: $blue-stake-card-background;
+  // background: $blue-stake-card-background;
   color: $white;
   width: 100%;
 
@@ -386,6 +386,7 @@
           display: inherit;
           text-align: end;
           span {
+            cursor: pointer;
             display: flex;
             align-items: center;
           }
@@ -453,6 +454,7 @@
           display: flex;
           flex-direction: row;
           .btn-allow {
+            cursor: pointer;
             width: 4rem;
             margin: 0.2rem 0.3rem;
           }

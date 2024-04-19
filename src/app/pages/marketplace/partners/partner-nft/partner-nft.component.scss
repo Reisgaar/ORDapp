@@ -112,6 +112,18 @@
       border-radius: 15px;
       width: 100%;
     }
+    .feline{
+      background-image: url('/assets/images/partnership/hashapon/feline.svg');
+    }
+    .ursid{
+      background-image: url('/assets/images/partnership/hashapon/ursid.svg');
+    }
+    .bird{
+      background-image: url('/assets/images/partnership/hashapon/bird.svg');
+    }
+    .canid{
+      background-image: url('/assets/images/partnership/hashapon/canid.svg');
+    }
 
   }
 
@@ -273,7 +285,7 @@
       background-color: $blue-card-background;
       border-radius: 15px;
       display: inline-block;
-      width: calc(50% - 30px);
+      width: calc(50% - 36px);
       padding: 10px;
       text-align: center;
 
@@ -317,7 +329,7 @@
       cursor: pointer;
       border-radius: 15px;
       display: inline-block;
-      width: calc(100% - 20px);
+      width: calc(100% - 26px);
       padding: 10px;
 
       img {

@@ -85,6 +85,18 @@ export const getBlackMarketSales = gql`
   }
 `;
 
+export const getBlackMarketFinishedSales = gql`
+  query getBlackMarketFinishedSales($first: Int!, $skip: Int!) {
+    sales( first: $first, skip: $skip, where: {isActive: false, saleCompleted: true} ) {
+      material
+      price
+      quantity
+      saleCompleted
+      saleCompletedAtBlock
+    }
+  }
+`;
+
 
 // MARKETPLACE
 
@@ -552,17 +564,26 @@ export const getPartnerNftOnWallet = gql`
 export const getPartnerNftOnSale = gql`
   query getPartnerNftOnSale($nftAddresses: [Bytes!]!, $wallet: Bytes!) {
     response: ongoingPartnerDirectSales(first: 1000, where: {nftContractAddress_in: $nftAddresses}) {
-      id
       block
-      nftContractAddress
-      tokenId
-      tokenURI
-      metadata { uriString }
-      nftSeller
-      erc20Token
       buyPrice
-      tokenURI
+      erc20Token
+      id
+      nftContractAddress
       nftOn
+      nftSeller
+      tokenId
+      partnerNFT {
+        fullTokenURI
+        id
+        nftContractAddress
+        nftOn
+        tokenId
+        tokenURI
+        metadata {
+          id
+          uriString
+        }
+      }
     }
   }
 `;
@@ -575,24 +596,34 @@ export const getPartnerNftOnSale = gql`
 export const getPartnerNftOnAuction = gql`
   query getPartnerNftOnAuction($nftAddresses: [Bytes!]!, $wallet: Bytes!) {
     response: ongoingPartnerAuctions(first: 1000, where: {nftContractAddress_in: $nftAddresses})  {
-      id
-      block
-      nftContractAddress
-      tokenId
-      tokenURI
-      metadata { uriString }
-      nftSeller
-      erc20Token
-      minPrice
       auctionBidPeriod
       bidIncreasePercentage
-      feeRecipients
+      bidsMade
+      block
+      endTimeStamp
+      erc20Token
       feePercentages
+      feeRecipients
+      id
+      minPrice
+      nftContractAddress
       nftHighestBid
       nftHighestBidder
-      bidsMade
-      endTimeStamp
       nftOn
+      nftSeller
+      tokenId
+      partnerNFT {
+        fullTokenURI
+        id
+        nftContractAddress
+        nftOn
+        tokenId
+        tokenURI
+        metadata {
+          id
+          uriString
+        }
+      }
     }
   }
 `;
@@ -956,22 +987,66 @@ query getPools{
 }
 `;
 
-// REPLACE PREVIOUS QUERY FOR MAINNET OR WHEN PREALPHA KEYS SET ON MAINNET
-// query getUserKeys($wallet: Bytes!) {
-//   usersInventories(first: 1000, where: {id: $wallet}) {
-//     keys: orGoldStarKeys {
-//       size
-//       currentOwner
-//     }
-//     preAlpha: preAlphaERC721 {
-//       currentOwner
-//       fullTokenURI
-//       metadata {
-//         id
-//         uriString
-//       }
-//       tokenId
-//       type
-//     }
-//   }
-// }
+// NFTS
+export const getArmors = gql`
+query getArmors($first: Int!, $skip: Int!, $tier: Int!, $rarityName: Bytes!) {
+  nft: armors(first: $first, skip: $skip, where: {tier: $tier, rarityName: $rarityName}) {
+    firstOwner
+    tier
+    rarityName
+    rarityId
+    nftContractAddress
+    id
+  }
+}
+`;
+export const getWeapons = gql`
+  query getWeapons($first: Int!, $skip: Int!, $tier: Int!, $rarityName: Bytes!) {
+    nft: weapons(first: $first, skip: $skip, where: {tier: $tier, rarityName: $rarityName}) {
+      firstOwner
+      tier
+      rarityName
+      rarityId
+      nftContractAddress
+      id
+    }
+  }
+`;
+export const getLandVehicles = gql`
+  query getLandVehicles($first: Int!, $skip: Int!) {
+    nft: landVehicles(first: $first, skip: $skip) {
+      firstOwner
+      nftContractAddress
+      id
+    }
+  }
+`;
+export const getSpaceVehicles = gql`
+  query getSpaceVehicles($first: Int!, $skip: Int!) {
+    nft: spaceVehicles(first: $first, skip: $skip) {
+      firstOwner
+      nftContractAddress
+      id
+    }
+  }
+`;
+export const getLands = gql`
+  query getLands($first: Int!, $skip: Int!) {
+    nft: lands(first: $first, skip: $skip) {
+      firstOwner
+      nftContractAddress
+      id
+      size
+    }
+  }
+`;
+export const getKeys = gql`
+  query getKeys($first: Int!, $skip: Int!) {
+    nft: orGoldStarKeys(first: $first, skip: $skip) {
+      firstOwner: currentOwner
+      nftContractAddress
+      id
+      size
+    }
+  }
+`;

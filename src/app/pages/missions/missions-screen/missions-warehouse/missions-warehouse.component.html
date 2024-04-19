@@ -1,0 +1,110 @@
+<div *ngIf="dataIsLoaded === false" class="spinner">
+  <mat-spinner [diameter]="250" [strokeWidth]="10"></mat-spinner>
+</div>
+
+<div class="content" *ngIf="dataIsLoaded === true">
+  <h1 class="title">{{'navigation.warehouse' | translate}}</h1>
+
+  <div class="upgrade">
+    <div class="switcher" (click)="switchLevelView()">
+      <img src="assets/images/missions/icons/{{userWarehouseInfo.level}}.svg" class="icon" alt="number icon" />
+      <span>Warehouse level</span>
+      <mat-icon *ngIf="showLeveling === false">expand_more</mat-icon>
+      <mat-icon *ngIf="showLeveling === true">expand_less</mat-icon>
+    </div>
+    <div id="level-block">
+      <div class="headline">
+        <h3>{{'missions.warehouse.warehouseLevel' | translate}}</h3>
+        <p>{{'missions.warehouse.warehouseLevelDescription' | translate}}</p>
+      </div>
+      <div class="levels">
+        <div class="level" [class.active]="userWarehouseInfo && userWarehouseInfo.level === '0'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/0.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{'missions.free' | translate}}</p>
+          <p class="name">{{'missions.warehouse.level0' | translate}}</p>
+          <p class="improvement">
+            <span>{{'missions.warehouse.size' | translate}}</span>
+            <span>{{('missions.warehouse.food' | translate).replace('***', userWarehouseInfo.limits[0].food)}}</span>
+            <span>{{('missions.warehouse.fuel' | translate).replace('***', userWarehouseInfo.limits[0].fuel)}}</span>
+            <span>{{('missions.warehouse.treasures' | translate).replace('***', userWarehouseInfo.limits[0].treasures)}}</span>
+          </p>
+          <p class="button unlocked">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+        <div class="level" [class.active]="userWarehouseInfo && userWarehouseInfo.level === '1'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/1.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{prices.level1.usd | fromWei | number:'1.0-4'}} $</p>
+          <p class="name">{{'missions.warehouse.level1' | translate}}</p>
+          <p class="improvement">
+            <span>{{'missions.warehouse.size' | translate}}</span>
+            <span>{{('missions.warehouse.food' | translate).replace('***', userWarehouseInfo.limits[1].food)}}</span>
+            <span>{{('missions.warehouse.fuel' | translate).replace('***', userWarehouseInfo.limits[1].fuel)}}</span>
+            <span>{{('missions.warehouse.treasures' | translate).replace('***', userWarehouseInfo.limits[1].treasures)}}</span>
+          </p>
+          <!-- <p class="button unlocked" *ngIf="userWarehouseInfo && userWarehouseInfo.level === '1'"></p> -->
+          <p *ngIf="userWarehouseInfo && userWarehouseInfo.level === '0'" class="button" (click)="upgradeLevel(1)">{{'missions.buttons.improve' | translate}}</p>
+          <p class="button unlocked" *ngIf="userWarehouseInfo && (userWarehouseInfo.level === '1' || userWarehouseInfo.level === '2' || userWarehouseInfo.level === '3')">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+        <div class="level" [class.active]="userWarehouseInfo && userWarehouseInfo.level === '2'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/2.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{prices.level2.usd | fromWei | number:'1.0-4'}} $</p>
+          <p class="name">{{'missions.warehouse.level2' | translate}}</p>
+          <p class="improvement">
+            <span>{{'missions.warehouse.size' | translate}}</span>
+            <span>{{('missions.warehouse.food' | translate).replace('***', userWarehouseInfo.limits[2].food)}}</span>
+            <span>{{('missions.warehouse.fuel' | translate).replace('***', userWarehouseInfo.limits[2].fuel)}}</span>
+            <span>{{('missions.warehouse.treasures' | translate).replace('***', userWarehouseInfo.limits[2].treasures)}}</span>
+          </p>
+          <p *ngIf="userWarehouseInfo && userWarehouseInfo.level === '0'" class="button disabled">{{'missions.buttons.blocked' | translate}}</p>
+          <p *ngIf="userWarehouseInfo && userWarehouseInfo.level === '1'" class="button" (click)="upgradeLevel(2)">{{'missions.buttons.improve' | translate}}</p>
+          <p class="button unlocked" *ngIf="userWarehouseInfo && (userWarehouseInfo.level === '2' || userWarehouseInfo.level === '3')">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+        <div class="level" [class.active]="userWarehouseInfo && userWarehouseInfo.level === '3'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/3.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{prices.level3.usd | fromWei | number:'1.0-4'}} $</p>
+          <p class="name">{{'missions.warehouse.level3' | translate}}</p>
+          <p class="improvement">
+            <span>{{'missions.warehouse.size' | translate}}</span>
+            <span>{{('missions.warehouse.food' | translate).replace('***', userWarehouseInfo.limits[3].food)}}</span>
+            <span>{{('missions.warehouse.fuel' | translate).replace('***', userWarehouseInfo.limits[3].fuel)}}</span>
+            <span>{{('missions.warehouse.treasures' | translate).replace('***', userWarehouseInfo.limits[3].treasures)}}</span>
+          </p>
+          <p class="button unlocked" *ngIf="userWarehouseInfo && userWarehouseInfo.level === '3'"></p>
+          <p *ngIf="userWarehouseInfo && (userWarehouseInfo.level === '0' || userWarehouseInfo.level === '1')" class="button disabled">{{'missions.buttons.blocked' | translate}}</p>
+          <p *ngIf="userWarehouseInfo && userWarehouseInfo.level === '2'" class="button" (click)="upgradeLevel(3)">{{'missions.buttons.improve' | translate}}</p>
+          <p class="button unlocked" *ngIf="userWarehouseInfo && userWarehouseInfo.level === '3'">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="resources">
+      <div class="resource" *ngFor="let resource of userWarehouseInfo.resources | keyvalue">
+        <div class="actual">
+          <p class="name">{{resource.key}}</p>
+          <p class="storage">{{resource.value.amount}}/{{resource.value.limit}}</p>
+          <img class="image" src="assets/images/missions/icons/{{resource.key}}.svg" alt="{{resource.key}} icon" />
+          <p class="about">{{'missions.warehouse.aboutItem' | translate}}:</p>
+          <p class="description">{{'missions.warehouse.' + resource.key + 'Description' | translate}}</p>
+        </div>
+        <div class="next">
+          <p *ngIf="(userWarehouseInfo.limits.length - 1) > actualLevel">{{'missions.warehouse.nextLevel' | translate}}: <span>{{userWarehouseInfo.limits[actualLevel + 1][resource.key]}}</span></p>
+          <p *ngIf="(userWarehouseInfo.limits.length - 1) === actualLevel">{{'missions.warehouse.maxLevel' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

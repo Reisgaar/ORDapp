@@ -284,7 +284,36 @@
 
 // Large devices
 @media (max-width: 992px) {
+  .header {
+  
+    .navigation {
+  
+      &.desktop {
+  
+        .navigation-tab {
+          padding: 0 5px;
+        }
+      }
+    }
 
+    .rightside {
+  
+      .get-gq {
+  
+        span {
+          margin-right: 5px;
+        }
+      }
+
+      .profile {
+        margin: 0;
+      }
+  
+      .wallet {
+        padding: 0;
+      }
+    }
+  }
 }
 
 // Medium devices

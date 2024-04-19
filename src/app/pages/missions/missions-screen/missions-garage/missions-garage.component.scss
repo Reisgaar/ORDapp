@@ -1,0 +1,166 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.content {
+    
+  .block {
+    display: flex;
+    flex-flow: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-around;
+
+    .slot {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid $blue-medium;
+      border-radius: 15px;
+      width: 240px;
+      height: 330px;
+      margin: 0px 40px 70px;
+      padding: 10px;
+      text-align: center;
+      background-color: $nft-image-background;
+      
+      .add {
+        cursor: pointer;
+        position: relative;
+        background: $white-transparent-10;
+        border-radius: 7px;
+        padding: 2rem;
+        border: 1px dashed $grey;
+        width: 50px;
+        height: 50px;
+
+        &:hover {
+          background: $white-transparent-25;
+        }
+
+        .line {
+          position: absolute;
+          background-color: $white;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          &.horizontal {
+            height: 50%;
+            width: 1px;
+          }
+
+          &.vertical {
+            height: 1px;
+            width: 50%;
+          }
+        }
+      }
+
+      .staked {
+        position: relative;
+        display: grid;
+        grid-template-rows: repeat(5, minmax(max-content, auto));
+        justify-items: center;
+
+        .image {
+          width: 150px;
+          height: 150px;
+          object-fit: contain;
+        }
+
+        .description {
+          font-size: 0.6rem;
+          line-height: 1em;
+          font-weight: 300;
+          margin: 5px 0 15px;
+          padding: 0 20px;
+          
+          p {
+            margin: 0;
+          }
+        }
+        
+        .collection {
+          font-size: 0.7rem;
+          line-height: 1em;
+          text-transform: uppercase;
+          
+          span {
+            color: $pink;
+          }
+        }
+        
+        .number {
+          font-size: 0.7rem;
+          font-weight: 300;
+        }
+      }
+
+      .upgrade {
+        text-align: center;
+        font-size: 0.9rem;
+        line-height: 1.5em;
+        margin: 1rem;
+      }
+
+      .arrow {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        
+        &.prev {
+          right: calc(100% - 20px);
+          transform: translate(-50%, -50%);
+          padding: 30px 10px;
+        }
+        
+        &.next {
+          left: calc(100% - 20px);
+          transform: translate(50%, -50%);
+          padding: 30px 10px;
+        }
+      }
+
+      .bottom {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        
+        .type {
+          font-size: 1rem;
+          font-family: $magistral !important;
+          text-transform: uppercase;
+          width: max-content;
+        }
+
+        .diamonds {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+          
+          .diamond {
+            cursor: pointer;
+            position: relative;
+            border: 1px solid $white;
+            height: 8px;
+            width: 8px;
+            padding: 2px;
+            rotate: 45deg;
+
+            .fill {
+              position: absolute;
+              background-color: $white;
+              height: 8px;
+              width: 8px;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+        }
+      }
+    }
+  }
+}

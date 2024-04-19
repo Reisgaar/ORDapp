@@ -27,24 +27,28 @@
 
   "blackMarket": {
     "name": "Underground Market",
+    "salesCompleted": "Sales completed",
+    "gqMoved": "GQ moved",
+    "materialsSold": "Materials sold",
     "home": {
-      "tip": "Trade with your materials",
-      "title_html": "TRADE WITH MATERIALS ON THE <b>UNDERGROUND MARKET</b>",
-      "subtitle1": "No matter where you are, in the suburbs of a city, on almost uninhabited planets or in the most remote corner of the universe... the underground market is there, you just have to look for it.",
-      "subtitle2": "Enter carefully into this economic environment managed by the Outer Ring players themselves to trade the materials you have obtained in your adventures.",
-      "subtitle3": "You want materials? you want GQ? This is your place, just try to reach a mutually interesting deal to prosper in this universe."
+      "tip": "Trade materials",
+      "title_html": "YOU'VE ENTERED THE <b>UNDERGROUND MARKET</b>",
+      "subtitle1": "Seeking materials? Looking for GQ? Do you want to prosper in this universe? Then, this is the place for you, stranger. But remember, we don't play games here; we mean business. Be ready to negotiate and bargain, as the best offer is right in front of your eyes. PICK IT!",
+      "subtitle2": "But be careful... in this economic environment, the Outer Ring citizens themselves make the rules. Caution is advised, but the undergound deals are the best ones, stranger."
     },
     "sales": {
       "allSales": "All Sales",
       "mySales": "My Sales",
       "noResults": "No results found.",
+      "decimals": "The quantities of materials on sale are shown without decimals rounded down. Therefore, 4.99 will be shown as 4.",
       "creator": {
         "title": "Sell your materials",
         "conditions": "Underground market conditions:",
-        "condition1": "Once the sale is created, and if it has not been sold, you will be able to withdraw it at any time.",
-        "condition2": "Completing this sale carries out a ***% service fee.",
+        "condition1": "Once the sale is created, and if it has not been sold, you will be able to withdraw it at any time. Lucky you...",
+        "condition2": "Completing this sale carries out a ***% service fee. You came here for a reason, stranger.",
         "connectWallet": "Connect your wallet",
         "setYourSale": "Set your sale",
+        "select": "Select",
         "material": "Material",
         "amount": "Amount",
         "max": "Max.",
@@ -386,19 +390,24 @@
   },
 
   "foundry": {
-    "tip": "Repurpose your weapons and armors",
-    "title_html": "<b>Dissasemble</b> your NFTs to <b>recover materials</b>",
-    "subtitle1": "Need to obtain materials quickly to create the weapon that perfectly suits your equipment?",
-    "subtitle2": "Dive into your inventory, rummage through forgotten weapons and armor that are gathering dust. In Outer Ring, ingenuity is the key: everything can have a use.",
-    "subtitle3": "Remember: the enemies have been meticulously preparing themselves for battle with their most formidable equipment. You must remain vigilant, always ready to face any potential confrontation.",
+    "tip": "Revitalize your arsenal",
+    "title_html": "<b>Disassemble</b> your NFTs and <b>unlock materials</b>",
+    "subtitle1": "Running low on materials or in need of a quick resupply? Consider dismantling your NFTs to acquire valuable resources. In this resourceful world, every item serves a purpose.",
+    "subtitle2": "Out in Outer Ring, survival is all about being clever. Your enemies are kitted out with serious gear, so you've got to be ready to match their prep.",
+    "subtitle3": "Stay sharp, and tackle whatever comes your way!",
     "mainName": "Galactic Foundry",
+    "connect": "Connect",
+    "noPoolsAvailable": "No pools available",
     "selectWeapons": "Select weapons",
-    "select5Weapons": "Select up to 5 weapons to dissasemble and receive materials.",
+    "select5Weapons": "Select up to *** weapons to dissasemble and receive materials.",
     "selectArmors": "Select armors",
-    "select5Armors": "Select up to 5 armors to dissasemble and receive materials.",
+    "select5Armors": "Select up to *** armors to dissasemble and receive materials.",
     "nftsWillBeBurned": "Selected NFTs will be burned after the process.",
     "selectNFT": "Select NFTs",
+    "getWeapons": "Get Weapons",
+    "getArmors": "Get Armors",
     "selectedNFTs": "Selected NFTs:",
+    "youWillReceive": "You will receive",
     "send": "Send",
     "inProgress": "In progress",
     "poolLimitAdvice": "You can add up to *** NFTs to dissasemble pool.",
@@ -417,7 +426,8 @@
       "selectNftToDissasemble": "Select the weapons or armors you want to dissasemble on one of the founders above.",
       "upgrade": "Upgrade",
       "unlockFor": "Unlock for",
-      "approx": "approx."
+      "approx": "approx.",
+      "fee": "Fee"
     }
   },
 
@@ -431,7 +441,18 @@
     "extraction": "Material Extraction",
     "extractionDefinition": "Stake lands to get materials",
     "foundry": "Foundry",
-    "foundryDefinition": "Dissasemble NFTs for materials"
+    "foundryDefinition": "Dissasemble NFTs for materials",
+    "undergroundMarket": "Underground Market",
+    "undergroundMarketDefinition": "Buy and sell materials with other users"
+  },
+
+  "getNFTs": {
+    "title": "Get NFTs",
+    "howTo": "There are different ways to get NFTs:",
+    "crafting": "Crafting",
+    "craftingDefinition": "Create NFTs with materials",
+    "marketplace": "Marketplace",
+    "marketplaceDefinition": "Buy and sell NFTs with other users"
   },
 
   "governance": {
@@ -972,6 +993,222 @@
     }
   },
 
+  "missions": {
+    "home": {
+      "tip": "Exploring Outer Ring",
+      "title_html": "Build your army and complete missions",
+      "subtitle1": "The time has come to venture into this deep universe, entirely unknown to you, full of incredible possibilities and unexpected dangers.",
+      "subtitle2": "Prepare yourself with your best equipment, tune up your ships and gather your party to embark on different missions throughout this system.",
+      "subtitle3": "Earn exploration points as you complete tasks to progressively unlock better missions and become the best explorer of the Outer Ring."
+    },
+    "connection": {
+      "title": "Identify yourself!",
+      "text1": "Attention, soldier! Before you enter the battlefield, you must show your credentials.",
+      "text2": "This is not a request, it's an order.",
+      "text3": "Connect your wallet to access the mission system.",
+      "button": "Connect",
+      "text4": "Not identifying yourself is not an option. Your comrades await your arrival on the front line.",
+      "text5": "If you are not ready, you can leave the way you came."
+    },
+    "commandCenter": "Command center",
+    "recruitmentText": "Stake GQ on the pool to fund your army's recruitment campaign and get soldiers faster.",
+    "armoryText": "Stake weapon and armor NFTs to equip your soldiers with your best items. Also you can repair broken items.",
+    "garageText": "Stake land or space vehicles on your garage to use them for speeding up missions.",
+    "warehouseText": "Store and manage the resources you have collected in the missions.",
+    "restingAreaText": "Let your soldiers rest in a comfortable bed so that they can recover quickly.",
+    "bankText": "Exchange your treasures for GQ when the intergalactic bank is active.",
+    "missionsSelectionText": "Complete missions with your soldiers to obtain rewards and level up.",
+    "recruitmentGoTo": "Go to Recruitment",
+    "armoryGoTo": "Go to Armory",
+    "garageGoTo": "Go to Garage",
+    "warehouseGoTo": "Go to Warehouse",
+    "restingAreaGoTo": "Go to Resting Area",
+    "bankGoTo": "Go to Bank",
+    "missionsSelectionGoTo": "Go to Missions",
+    "level": "Level",
+    "free": "Free",
+    "soldier": "soldier",
+    "soldiers": "soldiers",
+    "selectNFT": "Select NFT",
+    "selectSoldier": "Select Soldier",
+    "noNFTFound": "No NFTs found.",
+    "menu": "Menu",
+    "buttons": {
+      "blocked": "Blocked",
+      "improve": "Improve",
+      "unlocked": "Unlocked",
+      "confirmChanges": "Confirm changes",
+      "reset": "Reset",
+      "repair": "Repair",
+      "repairSet": "Repair Set",
+      "claimSet": "Claim Set",
+      "skipTimeSet": "Skip all times",
+      "finish": "Finish",
+      "speedUp": "Speed up",
+      "select": "Select",
+      "rest": "Rest",
+      "withdraw": "Withdraw",
+      "stakeKey": "Stake Key",
+      "stakeLand": "Stake Land",
+      "exchange": "Exchange",
+      "unavailable": "Unavailable",
+      "selectTroops": "Select troops",
+      "endMission": "End mission"
+    },
+    "recruitment" : {
+      "name": "Recruitment area",
+      "level0": "Recruitment post",
+      "level1": "Recruitment office",
+      "level2": "Recruitment pavilion",
+      "campaignLevel": "Campaign level",
+      "campaignLevelDescription": "Raise your campaign level to increase the recruitment limit and get more soldiers.",
+      "funding": "Funding",
+      "fundingDescription": "By increasing the funding, the campaing duration will decrease.",
+      "investmentAmount": "Investment amount",
+      "balanceError": "Not enough GQ",
+      "investmentMaxError": "Investment limit exceeded",
+      "soldiersToRecruit": "Soldiers to recruit",
+      "gqInvestment": "GQ investment",
+      "expectedDuration": "Expected duration",
+      "campaignEndsOn": "Campaign ends on",
+      "notAvailable": "Not available",
+      "campaignEnded": "Ended",
+      "startCampaign": "Start campaign",
+      "getSoldiers": "Get soldiers"
+    },
+    "garage" : {
+      "level0": "Parking",
+      "level1": "Garage",
+      "level2": "Hangar",
+      "level3": "Spatial port",
+      "type0": "Land vehicles",
+      "type1": "Space vehicles",
+      "type2": "Clan vehicles",
+      "upgrade1": "Upgrade your garage level to unlock Space vehicle parking",
+      "upgrade2": "Upgrade your garage level to unlock Clan vehicle parking",
+      "garageLevel": "Garage level",
+      "aboutItem": "About the item",
+      "garageLevelDescription": "Get a bigger garage to park all your different ships.",
+      "ships": "Ships:",
+      "landVehicles": " *** Land",
+      "spaceVehicles": ", *** Space",
+      "clanVehicles": ", *** Clan"
+    },
+    "armory": {
+      "name": "Armory and Workshop",
+      "equipmentSet": "Equipment set",
+      "equipment": "Equipment",
+      "equipmentText1": "Prepare the equipment for your soldiers with armor and weapon NFTs. This items will help your soldiers to complete the missions and ensure their survival.",
+      "equipmentText2": "Set the desired configuration to your equipment set and then click update button to set the configuration.",
+      "repairs": "Repairs",
+      "repairsText1": "When any of the NFT loses it's durability, it will need to be repaired.",
+      "repairsText2": "You can repair NFTs in two ways:",
+      "repairsList1": "Individually, clicking on each NFT and selecting Repair.",
+      "repairsList2": "By equipment set, clicking repair set.",
+      "changes": "Changes",
+      "changesNo1": "No changes to save.",
+      "changesNo2": "Remember, if any NFT is changed on the set, a confirmation action is needed on the smart contract.",
+      "changesYes1": "There are some unsaved changes.",
+      "changesYes2": "To save the equipment set, confirm changes on the smart contract.",
+      "repairing": "Repairing...",
+      "repairment": "Repairment",
+      "equipmentInUse": "In use on a mission",
+      "protection": "Protection",
+      "protectionText": "The equipment protection percentage to survive a potential death is:"
+    },
+    "warehouse": {
+      "level0": "Supply box",
+      "level1": "Shed",
+      "level2": "Warehouse",
+      "level3": "Industrial Warehouse",
+      "warehouseLevel": "Warehouse level",
+      "aboutItem": "About the resource",
+      "warehouseLevelDescription": "Get a bigger warehouse to store more resources.",
+      "size": "Size:",
+      "food": " *** Food,",
+      "fuel": " *** Fuel,",
+      "treasures": " *** Treasures",
+      "foodDescription": "Vital for sustaining the health and productivity of your soldiers, food is obtained from diverse sources, such as gathering, hunting or looting. It is essential to maintain morale and enable your people to perform tasks efficiently, ensuring the prosperity of your army.",
+      "fuelDescription": "Fuels power your machinery, vehicles and infrastructure, providing the necessary energy for progress and development. Whether it is from solar energy, nuclear energy, coal or oil, an efficient management of your fuel resources is essential to keep your army ready.",
+      "treasuresDescription": "From precious metals, to rare gems, ancient artifacts or exotic resources. Acquiring treasures will increase the wealth of your army, but they will not be useful until you turn them into a valid currency for commerce. Always try to find the best exchange rate on the Bank.",
+      "nextLevel": "Next level limit",
+      "maxLevel": "Max. level reached"
+    },
+    "resting": {
+      "soldiersFatigue": "Soldiers fatigue",
+      "noSoldiers": "No soldiers recruited",
+      "recruitSoldiers1": "Get them on the",
+      "recruitSoldiers2": " recruitment area",
+      "recruitSoldiers3": ".",
+      "holdtelKeys": "Your holdtel keys",
+      "holdtelKeysText1": "Let your holdtel rooms to your soldiers to make them rest faster.",
+      "holdtelKeysText2": "Staked keys will be only for your use.",
+      "use": "Use",
+      "inUse": "In use",
+      "full": "Full",
+      "lands": "Lands for rent",
+      "landsText1": "Let your soldiers rest event faster in a confortable bed, rented by OR players.",
+      "landsText2": "Staked lands will be for the use of all players, and the owner will receive GQ for each use.",
+      "addSoldier": "Add soldier",
+      "blocked": "Blocked until:"
+    },
+    "bank": {
+      "name": "Intergalactic Bank",
+      "open": "Bank is open",
+      "opens": "Opens",
+      "gqPrice": "GQ price",
+      "treasuresPrice": "Treasures price",
+      "dailyLimiy": "Max. limit per window",
+      "exchangeWindow": "Exchange window",
+      "exchangeWindowText": "Choose the amount of treasures you want to change for GQ.",
+      "yourTreasuresBalance": "Your treasures balance",
+      "balanceError": "Not enough Treasures",
+      "maxPerWindowError": "Max. limit exceeded",
+      "bothErrors": "Insufficient resources and limit exceeded",
+      "exchangeAmount": "Amount to exchange",
+      "exchangeApprox": "Approx. exchange",
+      "fee": "This operation carries a 4% fee of received GQs.",
+      "rerollText1": "You can reroll the bank opening time, with one of this options:",
+      "rerollText2": "Be careful with the times, if the waiting time is less than the minimum reroll, you will just increase it.",
+      "day": "day",
+      "days": "days",
+      "reroll": "Reroll"
+    },
+    "missions": {
+      "level": "Level",
+      "day": "day",
+      "days": "s",
+      "requirements": "Requirements",
+      "rewards": "Rewards",
+      "selectTroops": "Select required soldiers and equipments",
+      "selectShip": "Optional: Select a vehicle to complete the mission faster",
+      "none": "None",
+      "vehicle0": "Land vehicle",
+      "vehicle1": "Space Vehicle",
+      "vehicle2": "Clan ship",
+      "selectAllSoldiers": "Select all soldiers",
+      "sendOnMission": "Send on mission",
+      "resting": "Resting",
+      "tired": "Tired",
+      "onMission": "On mission",
+      "select": "Select",
+      "selected": "Selected",
+      "equipment": "Equipment",
+      "protection": "Protection",
+      "toRepair": "To repair",
+      "inRepair": "In repair",
+      "missionCompleted": "Mission completed!",
+      "consequences": "Consequences",
+      "fatigue": "Fatigue",
+      "death": "Soldiers Dead",
+      "itemUsage": "Item usage",
+      "food": "Food",
+      "fuel": "Fuel",
+      "treasures": "Treasures",
+      "militaryLevel": "Military rank"
+    }
+  },
+
   "navigation": {
     "home": "Home",
     "marketplace": "Marketplace",
@@ -1025,7 +1262,22 @@
     "materialExtractionDescription": "Extract materials from your lands",
     "getGq": "Get GQ",
     "statistics": "Statistics",
-    "statisticsDescription": "View NFT sales statistics"
+    "statisticsDescription": "View NFT sales statistics",
+    "missions": "Missions",
+    "recruitment": "Recruitment",
+    "recruitmentDescription": "Recruit soldiers to complete your team",
+    "armory": "Armory",
+    "armoryDescription": "Manage the equipment of your soldiers",
+    "garage": "Garage",
+    "garageDescription": "Manage your ships for missions",
+    "warehouse": "Warehouse",
+    "warehouseDescription": "Store and manage your mission resources",
+    "restingArea": "Resting Area",
+    "restingAreaDescription": "Let your soldiers rest to recover energy",
+    "bank": "Bank",
+    "bankDescription": "Convert your treasures on benefits",
+    "missionsSelection": "Missions",
+    "missionsSelectionDescription": "Select missions to accomplish"
   },
 
   "nft": {
@@ -1093,6 +1345,11 @@
       "includeText": " if you want to include your NFT project in our marketplace",
       "joinUs": "Join us!"
     },
+    "tabs": {
+      "sales": "Sales",
+      "auctions": "Auctions",
+      "wallet": "Wallet"
+    },
     "collection": "Partnership collections",
     "upcoming": "Upcoming partnerships",
     "burn": {
@@ -1130,7 +1387,9 @@
       "submit": "Submit",
       "back": "Back",
       "confirm": "Confirm",
-      "finish": "Finish"
+      "finish": "Finish",
+      "connectWallet": "Please, connect your wallet",
+      "website": "Website"
     },
     "terms": {
       "title": "NFT Redemption - Clause text",
@@ -1155,14 +1414,6 @@
   },
 
   "popUp": {
-    "foundryClaim": "Claim Materials",
-    "confirmFoundryClaim": "Please, confirm transaction in your wallet to claim foundry materials.",
-    "foundrySkipConfirm": "Please, confirm transaction in your wallet to skip the foundry time and claim materials.",
-    "foundrySkip": "Foundry skip & claim",
-    "upgradePoolConfirm": "Confirm transaction in your wallet to upgrade the pool to capacity 3.",
-    "upgradePool": "Upgrade pool",
-    "unlockPoolConfirm": "Please, confirm transaction in your wallet to unlock the pool with capacity 3.",
-    "unlockPool": "Unlock pool",
     "confirmMaterialBuy": "Please, confirm the transaction in your wallet to buy the materials.",
     "materialBuy": "Buy Materials",
     "confirmSaleRemoving": "Please, confirm the transaction in your wallet to remove the material sale.",
@@ -1171,6 +1422,14 @@
     "materialSalePriceChange": "Material sale price change",
     "confirmMaterialSaleCreation": "Please, confirm the transaction in your wallet to create the material sale.",
     "materialSaleCreation": "Material sale creation",
+	  "foundryClaim": "Claim Materials",
+    "confirmFoundryClaim": "Please, confirm transaction in your wallet to claim foundry materials.",
+    "foundrySkipConfirm": "Please, confirm transaction in your wallet to skip the foundry time and claim materials.",
+    "foundrySkip": "Foundry skip & claim",
+    "upgradePoolConfirm": "Confirm transaction in your wallet to upgrade the pool to capacity 3.",
+    "upgradePool": "Upgrade pool",
+    "unlockPoolConfirm": "Please, confirm transaction in your wallet to unlock the pool with capacity 3.",
+    "unlockPool": "Unlock pool",
     "landStakingDeposit": "Staking Land",
     "confirmLandStakingDeposit-nano": "Please, confirm the Nano Land deposit transaction in your wallet.",
     "confirmLandStakingDeposit-micro": "Please, confirm the Micro Land deposit transaction in your wallet.",
@@ -1320,9 +1579,288 @@
     "waitSwap": "Swap",
     "confirmSwap": "Please, confirm swap in your wallet",
     "addLiquidity": "Please confirm add liquidity in your wallet",
-    "minusLiquidity": "Please confirm remove liquidity in your wallet"
+    "minusLiquidity": "Please confirm remove liquidity in your wallet",
+    "missionAreaImprovePrice": "The price to complete the upgrade of this area is:",
+    "recruitmentAreaImprove": "Upgrade Recruitment Area",
+    "recruitmentCampaign": "Recruitment Campaign",
+    "recruitmentCampaignStart": "Please, confirm the transaction in your wallet to start the campaign.",
+    "recruitmentCampaignEnd": "Please, confirm the transaction in your wallet to get the soldiers.",
+    "garageAreaImprove": "Upgrade Garage",
+    "garageStakeDeposit": "Please, confirm the transaction in your wallet to stake the vehicle.",
+    "garageStake": "Stake vehicle",
+    "garageStakeWithdraw": "Please, confirm the transaction in your wallet to withdraw the vehicle.",
+    "garageWithdraw": "Withdraw vehicle",
+    "warehouseAreaImprove": "Upgrade Warehouse",
+    "restingSoldierDeposit": "Please, confirm the transaction in your wallet to start the soldier's rest.",
+    "restingSoldierSkip": "Please, confirm the transaction in your wallet to skip the soldier's resting time for:",
+    "restingSoldierWithdraw": "Please, confirm the transaction in your wallet to finish the soldier's rest.",
+    "startSoldierRest": "Start Rest",
+    "skipSoldierRest": "Skip Resting Time",
+    "finishSoldierRest": "Finish Rest",
+    "restingAreaStakeKey": "Stake Holdtel key",
+    "restingAreaWithdrawKey": "Withdraw Holdtel key",
+    "restingAreaStakeDepositKey": "Please, confirm the transaction in your wallet to stake the Holdtel key.",
+    "restingAreaStakeWithdrawKey": "Please, confirm the transaction in your wallet to withdraw the Holdtel key.",
+    "restingAreaStakeLand": "Stake Land",
+    "restingAreaWithdrawLand": "Withdraw Land",
+    "restingAreaStakeDepositLand": "Please, confirm the transaction in your wallet to stake the Land.",
+    "restingAreaStakeWithdrawLand": "Please, confirm the transaction in your wallet to withdraw the Land.",
+    "restingAreaUseHoldtel": "Send to Holdtel",
+    "restingAreaSendToHoldtel": "Please, confirm the transaction in your wallet to send the soldier to rest on the Holdtel room.",
+    "restingAreaUseLand": "Send to Land",
+    "restingAreaSendToLand": "Please, confirm the transaction in your wallet to send the soldier to rest on the Land.",
+    "armoryCloseWithChangesConfirmation1": "You have made changes on this equipment.",
+    "armoryCloseWithChangesConfirmation2": "Are you sure you want to change?",
+    "armoryEquipment0Change": "Please, confirm the transaction in your wallet to change equipped items on slot 1.",
+    "armoryEquipment1Change": "Please, confirm the transaction in your wallet to change equipped items on slot 2.",
+    "armoryEquipment2Change": "Please, confirm the transaction in your wallet to change equipped items on slot 3.",
+    "armoryEquipment3Change": "Please, confirm the transaction in your wallet to change equipped items on slot 4.",
+    "armoryEquipment4Change": "Please, confirm the transaction in your wallet to change equipped items on slot 5.",
+    "armoryEquipment5Change": "Please, confirm the transaction in your wallet to change equipped items on slot 6.",
+    "armoryEquipment6Change": "Please, confirm the transaction in your wallet to change equipped items on slot 7.",
+    "armoryEquipment7Change": "Please, confirm the transaction in your wallet to change equipped items on slot 8.",
+    "armoryEquipment8Change": "Please, confirm the transaction in your wallet to change equipped items on slot 9.",
+    "armoryEquipment9Change": "Please, confirm the transaction in your wallet to change equipped items on slot 10.",
+    "armoryEquipmentChange": "Changing equipment",
+    "armoryRepair0_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 1.",
+    "armoryRepair0_1": "Please, confirm the transaction in your wallet to repair chest on equipment 1.",
+    "armoryRepair0_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 1.",
+    "armoryRepair0_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 1.",
+    "armoryRepair0_4": "Please, confirm the transaction in your wallet to repair arms on equipment 1.",
+    "armoryRepair0_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 1.",
+    "armoryRepair0_6": "Please, confirm the transaction in your wallet to repair legs on equipment 1.",
+    "armoryRepair0_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 1.",
+    "armoryRepair0_8": "Please, confirm the transaction in your wallet to repair boots on equipment 1.",
+    "armoryRepair0_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 1.",
+    "armoryRepair1_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 2.",
+    "armoryRepair1_1": "Please, confirm the transaction in your wallet to repair chest on equipment 2.",
+    "armoryRepair1_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 2.",
+    "armoryRepair1_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 2.",
+    "armoryRepair1_4": "Please, confirm the transaction in your wallet to repair arms on equipment 2.",
+    "armoryRepair1_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 2.",
+    "armoryRepair1_6": "Please, confirm the transaction in your wallet to repair legs on equipment 2.",
+    "armoryRepair1_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 2.",
+    "armoryRepair1_8": "Please, confirm the transaction in your wallet to repair boots on equipment 2.",
+    "armoryRepair1_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 2.",
+    "armoryRepair2_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 3.",
+    "armoryRepair2_1": "Please, confirm the transaction in your wallet to repair chest on equipment 3.",
+    "armoryRepair2_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 3.",
+    "armoryRepair2_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 3.",
+    "armoryRepair2_4": "Please, confirm the transaction in your wallet to repair arms on equipment 3.",
+    "armoryRepair2_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 3.",
+    "armoryRepair2_6": "Please, confirm the transaction in your wallet to repair legs on equipment 3.",
+    "armoryRepair2_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 3.",
+    "armoryRepair2_8": "Please, confirm the transaction in your wallet to repair boots on equipment 3.",
+    "armoryRepair2_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 3.",
+    "armoryRepair3_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 4.",
+    "armoryRepair3_1": "Please, confirm the transaction in your wallet to repair chest on equipment 4.",
+    "armoryRepair3_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 4.",
+    "armoryRepair3_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 4.",
+    "armoryRepair3_4": "Please, confirm the transaction in your wallet to repair arms on equipment 4.",
+    "armoryRepair3_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 4.",
+    "armoryRepair3_6": "Please, confirm the transaction in your wallet to repair legs on equipment 4.",
+    "armoryRepair3_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 4.",
+    "armoryRepair3_8": "Please, confirm the transaction in your wallet to repair boots on equipment 4.",
+    "armoryRepair3_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 4.",
+    "armoryRepair4_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 5.",
+    "armoryRepair4_1": "Please, confirm the transaction in your wallet to repair chest on equipment 5.",
+    "armoryRepair4_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 5.",
+    "armoryRepair4_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 5.",
+    "armoryRepair4_4": "Please, confirm the transaction in your wallet to repair arms on equipment 5.",
+    "armoryRepair4_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 5.",
+    "armoryRepair4_6": "Please, confirm the transaction in your wallet to repair legs on equipment 5.",
+    "armoryRepair4_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 5.",
+    "armoryRepair4_8": "Please, confirm the transaction in your wallet to repair boots on equipment 5.",
+    "armoryRepair4_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 5.",
+    "armoryRepair5_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 6.",
+    "armoryRepair5_1": "Please, confirm the transaction in your wallet to repair chest on equipment 6.",
+    "armoryRepair5_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 6.",
+    "armoryRepair5_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 6.",
+    "armoryRepair5_4": "Please, confirm the transaction in your wallet to repair arms on equipment 6.",
+    "armoryRepair5_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 6.",
+    "armoryRepair5_6": "Please, confirm the transaction in your wallet to repair legs on equipment 6.",
+    "armoryRepair5_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 6.",
+    "armoryRepair5_8": "Please, confirm the transaction in your wallet to repair boots on equipment 6.",
+    "armoryRepair5_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 6.",
+    "armoryRepair6_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 7.",
+    "armoryRepair6_1": "Please, confirm the transaction in your wallet to repair chest on equipment 7.",
+    "armoryRepair6_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 7.",
+    "armoryRepair6_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 7.",
+    "armoryRepair6_4": "Please, confirm the transaction in your wallet to repair arms on equipment 7.",
+    "armoryRepair6_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 7.",
+    "armoryRepair6_6": "Please, confirm the transaction in your wallet to repair legs on equipment 7.",
+    "armoryRepair6_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 7.",
+    "armoryRepair6_8": "Please, confirm the transaction in your wallet to repair boots on equipment 7.",
+    "armoryRepair6_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 7.",
+    "armoryRepair7_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 8.",
+    "armoryRepair7_1": "Please, confirm the transaction in your wallet to repair chest on equipment 8.",
+    "armoryRepair7_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 8.",
+    "armoryRepair7_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 8.",
+    "armoryRepair7_4": "Please, confirm the transaction in your wallet to repair arms on equipment 8.",
+    "armoryRepair7_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 8.",
+    "armoryRepair7_6": "Please, confirm the transaction in your wallet to repair legs on equipment 8.",
+    "armoryRepair7_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 8.",
+    "armoryRepair7_8": "Please, confirm the transaction in your wallet to repair boots on equipment 8.",
+    "armoryRepair7_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 8.",
+    "armoryRepair8_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 9.",
+    "armoryRepair8_1": "Please, confirm the transaction in your wallet to repair chest on equipment 9.",
+    "armoryRepair8_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 9.",
+    "armoryRepair8_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 9.",
+    "armoryRepair8_4": "Please, confirm the transaction in your wallet to repair arms on equipment 9.",
+    "armoryRepair8_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 9.",
+    "armoryRepair8_6": "Please, confirm the transaction in your wallet to repair legs on equipment 9.",
+    "armoryRepair8_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 9.",
+    "armoryRepair8_8": "Please, confirm the transaction in your wallet to repair boots on equipment 9.",
+    "armoryRepair8_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 9.",
+    "armoryRepair9_0": "Please, confirm the transaction in your wallet to repair helmet on equipment 10.",
+    "armoryRepair9_1": "Please, confirm the transaction in your wallet to repair chest on equipment 10.",
+    "armoryRepair9_2": "Please, confirm the transaction in your wallet to repair shoulders on equipment 10.",
+    "armoryRepair9_3": "Please, confirm the transaction in your wallet to repair forearms on equipment 10.",
+    "armoryRepair9_4": "Please, confirm the transaction in your wallet to repair arms on equipment 10.",
+    "armoryRepair9_5": "Please, confirm the transaction in your wallet to repair gloves on equipment 10.",
+    "armoryRepair9_6": "Please, confirm the transaction in your wallet to repair legs on equipment 10.",
+    "armoryRepair9_7": "Please, confirm the transaction in your wallet to repair kneepads on equipment 10.",
+    "armoryRepair9_8": "Please, confirm the transaction in your wallet to repair boots on equipment 10.",
+    "armoryRepair9_9": "Please, confirm the transaction in your wallet to repair weapon on equipment 10.",
+    "armoryRepairItem": "Repair item",
+    "armoryRepair0": "Please, confirm the transaction in your wallet to repair the equipment 1.",
+    "armoryRepair1": "Please, confirm the transaction in your wallet to repair the equipment 2.",
+    "armoryRepair2": "Please, confirm the transaction in your wallet to repair the equipment 3.",
+    "armoryRepair3": "Please, confirm the transaction in your wallet to repair the equipment 4.",
+    "armoryRepair4": "Please, confirm the transaction in your wallet to repair the equipment 5.",
+    "armoryRepair5": "Please, confirm the transaction in your wallet to repair the equipment 6.",
+    "armoryRepair6": "Please, confirm the transaction in your wallet to repair the equipment 7.",
+    "armoryRepair7": "Please, confirm the transaction in your wallet to repair the equipment 8.",
+    "armoryRepair8": "Please, confirm the transaction in your wallet to repair the equipment 9.",
+    "armoryRepair9": "Please, confirm the transaction in your wallet to repair the equipment 10.",
+    "armoryRepairEquipment": "Repair equipment",
+    "repairingItemSkip": "Please, confirm the transaction in your wallet to skip the item repairing time for:",
+    "repairingEquipmentSkip": "Please, confirm the transaction in your wallet to skip the equipment repairing time for:",
+    "armoryClaim0_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 1.",
+    "armoryClaim0_1": "Please, confirm the transaction in your wallet to claim chest on equipment 1.",
+    "armoryClaim0_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 1.",
+    "armoryClaim0_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 1.",
+    "armoryClaim0_4": "Please, confirm the transaction in your wallet to claim arms on equipment 1.",
+    "armoryClaim0_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 1.",
+    "armoryClaim0_6": "Please, confirm the transaction in your wallet to claim legs on equipment 1.",
+    "armoryClaim0_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 1.",
+    "armoryClaim0_8": "Please, confirm the transaction in your wallet to claim boots on equipment 1.",
+    "armoryClaim0_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 1.",
+    "armoryClaim1_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 2.",
+    "armoryClaim1_1": "Please, confirm the transaction in your wallet to claim chest on equipment 2.",
+    "armoryClaim1_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 2.",
+    "armoryClaim1_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 2.",
+    "armoryClaim1_4": "Please, confirm the transaction in your wallet to claim arms on equipment 2.",
+    "armoryClaim1_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 2.",
+    "armoryClaim1_6": "Please, confirm the transaction in your wallet to claim legs on equipment 2.",
+    "armoryClaim1_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 2.",
+    "armoryClaim1_8": "Please, confirm the transaction in your wallet to claim boots on equipment 2.",
+    "armoryClaim1_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 2.",
+    "armoryClaim2_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 3.",
+    "armoryClaim2_1": "Please, confirm the transaction in your wallet to claim chest on equipment 3.",
+    "armoryClaim2_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 3.",
+    "armoryClaim2_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 3.",
+    "armoryClaim2_4": "Please, confirm the transaction in your wallet to claim arms on equipment 3.",
+    "armoryClaim2_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 3.",
+    "armoryClaim2_6": "Please, confirm the transaction in your wallet to claim legs on equipment 3.",
+    "armoryClaim2_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 3.",
+    "armoryClaim2_8": "Please, confirm the transaction in your wallet to claim boots on equipment 3.",
+    "armoryClaim2_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 3.",
+    "armoryClaim3_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 4.",
+    "armoryClaim3_1": "Please, confirm the transaction in your wallet to claim chest on equipment 4.",
+    "armoryClaim3_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 4.",
+    "armoryClaim3_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 4.",
+    "armoryClaim3_4": "Please, confirm the transaction in your wallet to claim arms on equipment 4.",
+    "armoryClaim3_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 4.",
+    "armoryClaim3_6": "Please, confirm the transaction in your wallet to claim legs on equipment 4.",
+    "armoryClaim3_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 4.",
+    "armoryClaim3_8": "Please, confirm the transaction in your wallet to claim boots on equipment 4.",
+    "armoryClaim3_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 4.",
+    "armoryClaim4_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 5.",
+    "armoryClaim4_1": "Please, confirm the transaction in your wallet to claim chest on equipment 5.",
+    "armoryClaim4_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 5.",
+    "armoryClaim4_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 5.",
+    "armoryClaim4_4": "Please, confirm the transaction in your wallet to claim arms on equipment 5.",
+    "armoryClaim4_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 5.",
+    "armoryClaim4_6": "Please, confirm the transaction in your wallet to claim legs on equipment 5.",
+    "armoryClaim4_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 5.",
+    "armoryClaim4_8": "Please, confirm the transaction in your wallet to claim boots on equipment 5.",
+    "armoryClaim4_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 5.",
+    "armoryClaim5_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 6.",
+    "armoryClaim5_1": "Please, confirm the transaction in your wallet to claim chest on equipment 6.",
+    "armoryClaim5_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 6.",
+    "armoryClaim5_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 6.",
+    "armoryClaim5_4": "Please, confirm the transaction in your wallet to claim arms on equipment 6.",
+    "armoryClaim5_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 6.",
+    "armoryClaim5_6": "Please, confirm the transaction in your wallet to claim legs on equipment 6.",
+    "armoryClaim5_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 6.",
+    "armoryClaim5_8": "Please, confirm the transaction in your wallet to claim boots on equipment 6.",
+    "armoryClaim5_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 6.",
+    "armoryClaim6_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 7.",
+    "armoryClaim6_1": "Please, confirm the transaction in your wallet to claim chest on equipment 7.",
+    "armoryClaim6_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 7.",
+    "armoryClaim6_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 7.",
+    "armoryClaim6_4": "Please, confirm the transaction in your wallet to claim arms on equipment 7.",
+    "armoryClaim6_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 7.",
+    "armoryClaim6_6": "Please, confirm the transaction in your wallet to claim legs on equipment 7.",
+    "armoryClaim6_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 7.",
+    "armoryClaim6_8": "Please, confirm the transaction in your wallet to claim boots on equipment 7.",
+    "armoryClaim6_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 7.",
+    "armoryClaim7_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 8.",
+    "armoryClaim7_1": "Please, confirm the transaction in your wallet to claim chest on equipment 8.",
+    "armoryClaim7_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 8.",
+    "armoryClaim7_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 8.",
+    "armoryClaim7_4": "Please, confirm the transaction in your wallet to claim arms on equipment 8.",
+    "armoryClaim7_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 8.",
+    "armoryClaim7_6": "Please, confirm the transaction in your wallet to claim legs on equipment 8.",
+    "armoryClaim7_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 8.",
+    "armoryClaim7_8": "Please, confirm the transaction in your wallet to claim boots on equipment 8.",
+    "armoryClaim7_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 8.",
+    "armoryClaim8_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 9.",
+    "armoryClaim8_1": "Please, confirm the transaction in your wallet to claim chest on equipment 9.",
+    "armoryClaim8_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 9.",
+    "armoryClaim8_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 9.",
+    "armoryClaim8_4": "Please, confirm the transaction in your wallet to claim arms on equipment 9.",
+    "armoryClaim8_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 9.",
+    "armoryClaim8_6": "Please, confirm the transaction in your wallet to claim legs on equipment 9.",
+    "armoryClaim8_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 9.",
+    "armoryClaim8_8": "Please, confirm the transaction in your wallet to claim boots on equipment 9.",
+    "armoryClaim8_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 9.",
+    "armoryClaim9_0": "Please, confirm the transaction in your wallet to claim helmet on equipment 10.",
+    "armoryClaim9_1": "Please, confirm the transaction in your wallet to claim chest on equipment 10.",
+    "armoryClaim9_2": "Please, confirm the transaction in your wallet to claim shoulders on equipment 10.",
+    "armoryClaim9_3": "Please, confirm the transaction in your wallet to claim forearms on equipment 10.",
+    "armoryClaim9_4": "Please, confirm the transaction in your wallet to claim arms on equipment 10.",
+    "armoryClaim9_5": "Please, confirm the transaction in your wallet to claim gloves on equipment 10.",
+    "armoryClaim9_6": "Please, confirm the transaction in your wallet to claim legs on equipment 10.",
+    "armoryClaim9_7": "Please, confirm the transaction in your wallet to claim kneepads on equipment 10.",
+    "armoryClaim9_8": "Please, confirm the transaction in your wallet to claim boots on equipment 10.",
+    "armoryClaim9_9": "Please, confirm the transaction in your wallet to claim weapon on equipment 10.",
+    "armoryClaimItem": "Claim item",
+    "armoryClaim0": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 1.",
+    "armoryClaim1": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 2.",
+    "armoryClaim2": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 3.",
+    "armoryClaim3": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 4.",
+    "armoryClaim4": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 5.",
+    "armoryClaim5": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 6.",
+    "armoryClaim6": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 7.",
+    "armoryClaim7": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 8.",
+    "armoryClaim8": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 9.",
+    "armoryClaim9": "Please, confirm the transaction in your wallet to claim the repaired items of equipment 10.",
+    "armoryClaimEquipment": "Claim equipment",
+    "missionStart": "Start mission",
+    "missionStartConfirm": "Please, confirm the transaction in your wallet to start the mission.",
+    "missionTimeSkip": "Please, confirm the transaction in your wallet to skip the mission time for:",
+    "skipMissionTime": "Skip Mission Time",
+    "missionEnd": "End mission",
+    "missionEndConfirm": "Please, confirm the transaction in your wallet to end the mission.",
+    "missionResult": "Mission result",
+    "treasureExchange": "Exchange treasure",
+    "treasureExchangeConfirm": "Please, confirm the transaction in your wallet to exchange your Treasures for GQ.",
+    "rerollWindow": "Change Bank Open Time",
+    "rerollWindowConfirm": "Please, confirm the transaction in your wallet to change bank open date."
   },
-
+  
   "profile": {
     "inventory": "Inventory",
     "sales": "On sale",
@@ -1331,7 +1869,7 @@
     "bridge": "Bridge",
     "allowances": "Allowances"
   },
-
+  
   "slider": {
     "card1": {
       "tip1": "Outer Ring ",
@@ -2456,6 +2994,422 @@
             "q12": {
               "title": "How do I remove a Land if I no longer want to continue generating resources?",
               "answer": "If you want to stop extracting materials from a land, press the \"end extraction\" button."
+            }
+          }
+        }
+      }
+    },
+    "block13": {
+      "title": "Foundry",
+      "id": "foundry",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What is the Foundry process?",
+              "answer": "It is designed to recover materials from weapons or armors that you have obtained but are not interested in, disassembling them and converting them into new materials."
+            },
+            "q02": {
+              "title": "Is there a way to reverse the process?",
+              "answer": "No, it is irreversible."
+            },
+            "q03": {
+              "title": "What types of objects can I disassemble?",
+              "answer": "You can only disassemble weapons and armors."
+            },
+            "q04": {
+              "title": "Is the process instantaneous?",
+              "answer": "No, it lasts 12 hours if the NFT is Tier 1, 24 hours if it is Tier 2 and 36 hours if it is Tier 3. If you put more than one NFT in a Pool, the time will be summed."
+            },
+            "q05": {
+              "title": "Can I expedite the process?",
+              "answer": "Yes, you can accelerate the process by paying with GQ. The cost varies depending on the remaining time."
+            },
+            "q06": {
+              "title": "How many objects can I disassemble at one time?",
+              "answer": "For free, two with capacity for one NFT. You can upgrade them by paying 5 dollars in GQ to get 3 capacity slots in each of them.<br><br>Additionally, there are three extra pool available for purchase: 10 dollars in GQ for the first, 15 dollars in GQ for the second, and 20 dollars in GQ for the third. Each of these pools will have capacity for 3 NFTs."
+            },
+            "q07": {
+              "title": "Can I put a weapon and armor in the same pool?",
+              "answer": "No, only one type of NFT can be in each pool at a time."
+            },
+            "q08": {
+              "title": "Will the tier of the materials affect the types of materials I receive?",
+              "answer": "Yes, the greater the tier of the items, the more materials you will receive."
+            },
+            "q09": {
+              "title": "How can I determine the number of materials I will obtain?",
+              "answer": "When you select the NFT you will see what you will receive for each material."
+            },
+            "q10": {
+              "title": "Do you receive the same reward for an NFT obtained from a lootbox as for an NFT from crafting?",
+              "answer": "No, those coming from crafting receive 45% of the materials it took to create them. If they come from a lootbox, you will have a standard reward depending on the tier."
+            },
+            "q11": {
+              "title": "Do I have benefits for having lands in staking?",
+              "answer": "Yes, depending on the size of the land you will receive between 2% and 10% extra. Remember that they must be in the same wallet. In case of having several, the benefits of the largest land will be obtained."
+            },
+            "q12": {
+              "title": "Can I see the materials I have already generated so far?",
+              "answer": "Yes, for each material you will be able to see what you have generated up to that moment. Below that number, on the left side you will see the amount you have left to receive and on the right side the total amount you will receive."
+            },
+            "q13": {
+              "title": "Can I claim the materials I have earned so far?",
+              "answer": "Yes, you can claim the materials and continue to disassemble the remaining objects."
+            },
+            "q14": {
+              "title": "Once the process is finished, what should I do?",
+              "answer": "Simply claim your materials, and they will be directly transferred to your wallet."
+            }
+          }
+        }
+      }
+    },
+    "block14": {
+      "title": "Underground Market",
+      "id": "undergroundMarket",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What is the Underground Market?",
+              "answer": "The Underground Market is a section of the Dapp where users can buy and sell material tokens for GQ."
+            },
+            "q02": {
+              "title": "What materials can be sold?",
+              "answer": "Any of the 16 materials in the ecosystem can be sold: <ul><li>Acetylene: <a href=\"https://bscscan.com/address/0x6BF6c2B429421A55d90a02c56B2D8bffBC636039\" target=\"_blank\">0x6BF6c2B429421A55d90a02c56B2D8bffBC636039</a></li><li>Aluminium: <a href=\"https://bscscan.com/address/0x7edbf3F14E1071F5351345DF7e133290a3923DD3\" target=\"_blank\">0x7edbf3F14E1071F5351345DF7e133290a3923DD3</a></li><li>Argon: <a href=\"https://bscscan.com/address/0x0EFCF1737b81CE89325b17EafAe2686A8aFE8bD4\" target=\"_blank\">0x0EFCF1737b81CE89325b17EafAe2686A8aFE8bD4</a></li><li>Carbon: <a href=\"https://bscscan.com/address/0x253B7A24003684F7b4Fe87e531A017C7382A3894\" target=\"_blank\">0x253B7A24003684F7b4Fe87e531A017C7382A3894</a></li><li>Chromium: <a href=\"https://bscscan.com/address/0x74cbF7890BDbD497BEc8f81aa538325a2276cEe8\" target=\"_blank\">0x74cbF7890BDbD497BEc8f81aa538325a2276cEe8</a></li><li>Cobalt: <a href=\"https://bscscan.com/address/0x557800E817a46AF24E168B026CfA6064ee93C80D\" target=\"_blank\">0x557800E817a46AF24E168B026CfA6064ee93C80D</a></li><li>Copper: <a href=\"https://bscscan.com/address/0x892F23E32B82EF0d5394cF33dcD4dFf7f4b274B0\" target=\"_blank\">0x892F23E32B82EF0d5394cF33dcD4dFf7f4b274B0</a></li><li>Helium: <a href=\"https://bscscan.com/address/0x9900e80255De6AB680C5b6A0517E3B64dB21a91e\" target=\"_blank\">0x9900e80255De6AB680C5b6A0517E3B64dB21a91e</a></li><li>Hydrogen: <a href=\"https://bscscan.com/address/0xa808D79666B8bA90CA77aA2De58353bC615088da\" target=\"_blank\">0xa808D79666B8bA90CA77aA2De58353bC615088da</a></li><li>Iron: <a href=\"https://bscscan.com/address/0xbD1945Cd85A2BE93a6475381c9F5EDF19407A921\" target=\"_blank\">0xbD1945Cd85A2BE93a6475381c9F5EDF19407A921</a></li><li>Methane: <a href=\"https://bscscan.com/address/0x03697CAf2E5458C7C2a8d9f8818079C2AE72f353\" target=\"_blank\">0x03697CAf2E5458C7C2a8d9f8818079C2AE72f353</a></li><li>Nickel: <a href=\"https://bscscan.com/address/0xf9A71CBA51E260E184a72D9EDF888d3f99F3baC1\" target=\"_blank\">0xf9A71CBA51E260E184a72D9EDF888d3f99F3baC1</a></li><li>Oxygen: <a href=\"https://bscscan.com/address/0x1d006868aFBb97196A7F859605845B957c64b164\" target=\"_blank\">0x1d006868aFBb97196A7F859605845B957c64b164</a></li><li>Plutonium: <a href=\"https://bscscan.com/address/0x07958Be5D12365db62a6535D0a88105944a2E81E\" target=\"_blank\">0x07958Be5D12365db62a6535D0a88105944a2E81E</a></li><li>Silicon: <a href=\"https://bscscan.com/address/0x06071928F8671874D0135a41E25De0027a0ac755\" target=\"_blank\">0x06071928F8671874D0135a41E25De0027a0ac755</a></li><li>Vanadium: <a href=\"https://bscscan.com/address/0xd3DbF84F7aED90D5f56E8d7cAB2f43004E9EF6A6\" target=\"_blank\">0xd3DbF84F7aED90D5f56E8d7cAB2f43004E9EF6A6</a></li></ul>"
+            },
+            "q03": {
+              "title": "How do I put a material up for sale? ",
+              "answer": "In the top section of the platform, you'll find an option to select a material for selling. Choose from the materials you own (these are the ones you have in your balance). After selecting the material, specify the quantity you wish to sell and set your desired price. Then, simply click the \"Create sale\" button. This action will add your material to the Marketplace listings. Note: If it's your first time selling this type of material, you must first authorize the transaction by approving the contract associated with that material."
+            },
+            "q04": {
+              "title": "What can I do once it's up for sale?",
+              "answer": "Once it's up for sale, there are two possible options: wait for it to sell and the tokens to arrive in your wallet or withdraw the sale."
+            },
+            "q05": {
+              "title": "Where can I see the sales I've created?",
+              "answer": "To manage the sales you have created, go to \"My Sales\" tab. Your sales will not be visible in the \"All\" tab to you, but other users will be able to see them."
+            },
+            "q06": {
+              "title": "Can I change the price of my sale?",
+              "answer": "Once a sale is listed, you cannot change its price. If you need to adjust the price, your only option is to cancel the current sale and then relist the material with the new price."
+            },
+            "q07": {
+              "title": "Where to find materials available for sale?",
+              "answer": "You can view all available material sales in the Underground Market by going to the \"All\" tab. This section showcases all current offerings."
+            },
+            "q08": {
+              "title": "How do I buy a material?",
+              "answer": "To buy a material, look through the sale listings and find one that suits your needs. Once you find the right material, click \"buy\" to proceed. Remember, for your first purchase, you must have already approved the transaction for your GQ."
+            },
+            "q09": {
+              "title": "Who sets the prices?",
+              "answer": "The prices are determined by the players using the Dapp. This platform merely facilitates the trading process between users."
+            },
+            "q10": {
+              "title": "What's the commission fee for using the service?",
+              "answer": "The Dapp takes a 10% fee from the transaction price as a commission for using its service."
+            },
+            "q11": {
+              "title": "What should I do If there are technical problems?",
+              "answer": "Sales listings rely on The Graph technology. At times, this service may experience issues that affect its performance, like not showing the sales listings or failing to update them properly."
+            }
+          }
+        }
+      }
+    },
+    "block15": {
+      "title": "Missions",
+      "id": "missions",
+      "subsections": {
+        "subsection01": {
+          "title": "",
+          "questions": {
+            "q01": {
+              "title": "What is the mission system?",
+              "answer": "It is a game system in which NFTs from the Outer Ring ecosystem can be used to perform quests and obtain treasures that can be exchanged for GQ."
+            },
+            "q02": {
+              "title": "What do I need to play?",
+              "answer": "The only requirement to play is to have BNB to pay the gas of the transactions."
+            },
+            "q03": {
+              "title": "How do I use NFTs?",
+              "answer": "To use the NFTs you must deposit them in the corresponding section: Weapons and armor in the armory, ships in the garage, Lands and Holdtel keys in the resting area."
+            },
+            "q04": {
+              "title": "What does depositing NFTs give me?",
+              "answer": "Each type gives you different improvements in the game: weapons and armors increase the soldiers' chance of survival, ships reduce the duration of missions, and lands and Holdtel keys reduce the soldiers' resting time."
+            }
+          }
+        },
+        "subsection02": {
+          "title": "Recruitment",
+          "questions": {
+            "q01": {
+              "title": "What does recruitment consist of?",
+              "answer": "In this section you will create a recruitment campaign to obtain soldiers for your army. In this campaign you will have to set how many soldiers you want to recruit (limited by your campaign level) and how much GQ you want to invest (which will speed up the process)."
+            },
+            "q02": {
+              "title": "What is the campaign level?",
+              "answer": "The campaign level is the capacity of your recruitment team to recruit soldiers, the higher the campaign level the more soldiers you will be able to recruit at once.<br><br>Once a level is unlocked, it will be permanent for all your future campaigns. "
+            },
+            "q03": {
+              "title": "How many soldiers can I recruit at the same time?",
+              "answer": "Those that are limited by your campaign level."
+            },
+            "q04": {
+              "title": "Why investing in the campaign?",
+              "answer": "The recruitment campaign will have a duration depending on the soldiers you want to recruit, the more soldiers the longer the duration. With investment, paying GQ, you can reduce the duration."
+            },
+            "q05": {
+              "title": "Once the campaign has started, can it be accelerated?",
+              "answer": "No, once you have started you can do nothing but wait. If you want to get the soldiers instantly, you must make the maximum investment before starting the campaign."
+            },
+            "q06": {
+              "title": "How do I get the soldiers?",
+              "answer": "Once the campaign is finished, click on the \"get soldiers\" button and they will become part of your army, you can see how many you have in the auxiliary menu at the top right."
+            },
+            "q07": {
+              "title": "How many soldiers can I have?",
+              "answer": "The limit is 10 soldiers per wallet."
+            },
+            "q08": {
+              "title": "What happens if I have 9 soldiers recruited and 3 to be recruited in the campaign?",
+              "answer": "If you claim at that time, one of the soldiers will pass to your army and the other two will be lost. "
+            }
+          }
+        },
+        "subsection03": {
+          "title": "Armory",
+          "questions": {
+            "q01": {
+              "title": "What does the armory consist of?",
+              "answer": "In this section you will be able to create 10 sets of equipment to increase the soldiers' survival chances in the missions."
+            },
+            "q02": {
+              "title": "How do I assign a set to a soldier?",
+              "answer": "It is not necessary in this section, at the time of starting a mission it will be when you choose which soldiers to send, and which sets to use."
+            },
+            "q03": {
+              "title": "What NFTs can be added to the equipment?",
+              "answer": "One armor of each type and one weapon can be added, a total of 10 NFTs."
+            },
+            "q04": {
+              "title": "Can I use the equipment I obtained in lootboxes, or only the crafted one?",
+              "answer": "You can equip both the crafted equipment and the ones obtained through lootboxes."
+            },
+            "q05": {
+              "title": "How do I equip an NFT?",
+              "answer": "In the armory screen, you will see an interface where you can switch between the 10 armor sets available. Each of the sets will have 10 slots for adding NFTs. Click on one of the slots to add the NFT corresponding to that slot, selecting it in the popup that will appear.<br><br>Once you have selected all the NFTs you want to add to the set, click the \"confirm changes\" button to save the changes you want to make to the contract. If you exit the screen without saving the changes they will not be saved."
+            },
+            "q06": {
+              "title": "How do I change or unequip an NFT? ",
+              "answer": "Each slot has a blue button at the bottom left with two arrows.<br><br>If an NFT is equipped and the button is clicked, it will be unequipped. Now you have three options: leave it empty if you want to unequip it, click the button again to reset the NFT equipped in the contract, or click on the + icon to equip a new one.<br><br>You can do this with the NFTs of the set you want, but when you finish, remember to click on the \"confirm changes\" button to save your changes in the contract. "
+            },
+            "q07": {
+              "title": "Can I modify a set that is being used in a mission?",
+              "answer": "No, while a set is being used in one of the missions, it will be locked, and no changes will be possible."
+            },
+            "q08": {
+              "title": "Is it possible to mix rarities and tiers?",
+              "answer": "Yes, NFTs of different rarities and tiers can be mixed without problems."
+            },
+            "q09": {
+              "title": "What is the benefit of equipping an NFT?",
+              "answer": "Equipped NFTs provide a protection index that will increase the chances of your soldiers surviving the most dangerous missions."
+            },
+            "q10": {
+              "title": "Can I use NFTs infinitely?",
+              "answer": "Yes, but the NFTs of a set lose durability every time that set is used in a mission, so they will need to be repaired from time to time.<br><br>On the right side of each slot, you can see the remaining durability of each of the NFTs. "
+            },
+            "q11": {
+              "title": "Can I use an NFT without durability points in a mission?",
+              "answer": "No, a set with any NFT without durability points will not be selectable when starting a mission, so that NFT will have to be repaired."
+            },
+            "q12": {
+              "title": "How do I repair an NFT?",
+              "answer": "You can repair individually on the button next to the corresponding NFT or you can repair the full set by clicking on the \"repair set\" button. The last option will repair all the NFTs in the set that have any spent durability points. "
+            },
+            "q13": {
+              "title": "Can I speed up the repair of an NFT?",
+              "answer": "Yes, you can speed up by paying GQ. You can also speed up all repairs in a set by clicking on the \"skip all times\" button."
+            },
+            "q14": {
+              "title": "Can I equip the same set to different soldiers? ",
+              "answer": "No, a set of equipment can only be assigned to one soldier. Once assigned, it becomes unavailable for others until you finish the current mission."
+            }
+          }
+        },
+        "subsection04": {
+          "title": "Garage",
+          "questions": {
+            "q01": {
+              "title": "What does the garage consist of?",
+              "answer": "In this section you will park the ships you want to use in the mission system."
+            },
+            "q02": {
+              "title": "What is the benefit of using the ships?",
+              "answer": "The ships will reduce the time to complete the missions."
+            },
+            "q03": {
+              "title": "Which ships can I park in my garage?",
+              "answer": "There are currently three types of ships, which have been obtained through lootboxes: land ships, space ships and Clan ships."
+            },
+            "q04": {
+              "title": "How can I increase the size of my garage?",
+              "answer": "By raising the garage level, buying a larger garage will give you more parking spaces."
+            },
+            "q05": {
+              "title": "What is the garage level?",
+              "answer": "The garage level indicates the number of slots to park ships that you will have, the higher the garage level, the more types, and the greater number of ships you will be able to park.<br><br>Once a level is unlocked, it will be permanent until a higher level is unlocked."
+            },
+            "q06": {
+              "title": "How do I park a ship?",
+              "answer": "In an empty garage slot, click the + button, select the ship in the pop-up window and complete the transaction in your wallet."
+            },
+            "q07": {
+              "title": "Can I remove a ship from the garage? ",
+              "answer": "Yes, press the \"withdraw\" button to return the NFT to your wallet. However, it will only be available to remove if it is not being used to reduce a mission's duration. "
+            }
+          }
+        },
+        "subsection05": {
+          "title": "Warehouse",
+          "questions": {
+            "q01": {
+              "title": "What does the warehouse consist of?",
+              "answer": "The warehouse is the section where you will store the resources you obtain in the missions. Here you will see how many resources you have and what is the maximum resource limit that your warehouse accepts."
+            },
+            "q02": {
+              "title": "What resources are stored here?",
+              "answer": "The three basic resources used to complete missions and obtained in them: food, fuel and treasures."
+            },
+            "q03": {
+              "title": "What happens if I get resources from a mission, but I have no place to store them?",
+              "answer": "After completing a mission, the resources will be collected. If they exceed the maximum limit, those that have space will be stored and the remaining ones will be lost."
+            },
+            "q04": {
+              "title": "How can I increase the size of my warehouse?",
+              "answer": "By raising the level of the warehouse, you buy a larger one, which will give you more storage capacity for each of the resources."
+            },
+            "q05": {
+              "title": "What is the warehouse level?",
+              "answer": "The storage level indicates the number of resources you can store, the higher the storage level, the more resources you can store.<br><br>Once a level is unlocked, it will be permanent until a higher one is unlocked."
+            }
+          }
+        },
+        "subsection06": {
+          "title": "Resting Area",
+          "questions": {
+            "q01": {
+              "title": "What does the resting area consist of?",
+              "answer": "In this area you will make your soldiers rest and recover energy to be able to complete missions."
+            },
+            "q02": {
+              "title": "How do I put a soldier to rest?",
+              "answer": "If a soldier is low on energy points, you can put him to rest by pressing the \"rest\" button below."
+            },
+            "q03": {
+              "title": "How do I use a Holdtel key to obtain profit?",
+              "answer": "First you must deposit one of your keys in the contract by clicking on the \"deposit key\" button. After this and when you have a soldier resting, click on the \"use\" button under the key and select the soldier in the pop-up window.<br><br>The soldier will go to rest in the holdtel room, which will make him rest faster."
+            },
+            "q04": {
+              "title": "How do I use a Land to obtain the benefit?",
+              "answer": "In the lands for rent section, look for a Land that has a free slot for your soldiers. After that and when you have a soldier resting, click on the \"add soldier\" button under the Land and select the soldier in the popup window.<br><br>The soldier will go to the Land to rest and will rest even faster than in the holdtel.<br><br>The resting on the Land will have a small cost, most of it will go to the user who rented the land and a small percentage for rewards. "
+            },
+            "q05": {
+              "title": "What is the difference between using a Land or a Holdtel key?",
+              "answer": "To use the Holdtel key, you must have the NFT in your possession and deposit it, while with lands you can use NFTs of other users in exchange for a small payment in GQ. You do not need to have a land in possession.<br><br>Resting in the lands will be faster than in the Holdtel."
+            },
+            "q06": {
+              "title": "What is the difference between the sizes of lands?",
+              "answer": "The only difference is the capacity, larger lands will hold more soldiers, but the price per soldier will be the same."
+            },
+            "q07": {
+              "title": "Can I withdraw a key or a land when I want?",
+              "answer": "You can withdraw any of the two by pressing the X button on the corresponding NFT, if this NFT is not in use."
+            },
+            "q08": {
+              "title": "Can I speed up a soldier's rest?",
+              "answer": "Yes, you can speed up any rest by paying with GQ."
+            }
+          }
+        },
+        "subsection07": {
+          "title": "Missions",
+          "questions": {
+            "q01": {
+              "title": "What do the missions consist of?",
+              "answer": "Missions are different actions that you will carry out with your army to obtain rewards such as food, fuel, military rank or treasures."
+            },
+            "q02": {
+              "title": "What types of missions are available?",
+              "answer": "There are 4 levels of missions, with distinct types of missions in each level. All of them will have requirements, rewards, and consequences."
+            },
+            "q03": {
+              "title": "What are the mission requirements?",
+              "answer": "The basic requirements to participate in the missions are military rank, food, fuel. The higher the mission level, the more requirements you will have."
+            },
+            "q04": {
+              "title": "What is the military rank?",
+              "answer": "It is the rank of your army, which you will increase by completing certain missions. By increasing this rank, you will be able to access higher level missions."
+            },
+            "q05": {
+              "title": "Which rewards do the missions have?",
+              "answer": "The rewards are food, fuel, treasures, and military rank. Not all missions give all rewards. The higher the mission level, the more rewards they will give."
+            },
+            "q06": {
+              "title": "What are the consequences of the missions?",
+              "answer": "There are three consequences of completing missions, loss of equipment durability, soldier fatigue and death probability."
+            },
+            "q07": {
+              "title": "How do I protect myself from the possibility of death?",
+              "answer": "If you are unlucky and the mission ends with the possibility of death, you still have the option to save your soldiers. Each one will have a survival percentage that will be taken from their equipment, so try to equip them with the best items."
+            },
+            "q08": {
+              "title": "What happens when a mission ends?",
+              "answer": "When the mission time is over, you must click the end mission button. After executing the transaction, you will receive the obtained rewards and suffer the consequences of the mission."
+            },
+            "q09": {
+              "title": "What happens if a soldier dies?",
+              "answer": "If a soldier dies, he will disappear from your army, and you will have to create a recruitment campaign to generate more soldiers. The equipment, being independent of the soldier, will remain as it was, but will lose the corresponding durability points."
+            },
+            "q10": {
+              "title": "Can I speed up the missions?",
+              "answer": "Missions can be accelerated by paying GQ."
+            }
+          }
+        },
+        "subsection08": {
+          "title": "Bank",
+          "questions": {
+            "q01": {
+              "title": "What does the bank consist of?",
+              "answer": "The bank will be the place where you exchange the treasures you obtain in the missions for GQ."
+            },
+            "q02": {
+              "title": "Can I use the bank at any time?",
+              "answer": "No, the bank has time windows in which it will be in operation, different for each user. You can see when it will be active on the bank screen."
+            },
+            "q03": {
+              "title": "How do time windows work?",
+              "answer": "The bank will show on what date and time it opens, and from that moment it will be open until you make an exchange. Once the exchange is made, the bank will close and show you when it will reopen."
+            },
+            "q04": {
+              "title": "Can I modify the time windows?",
+              "answer": "You have the option to reroll the date when the bank will reopen, this will be done randomly between the available options. Be careful, if your waiting time is less than the minimum option, you will only increase your waiting time."
+            },
+            "q05": {
+              "title": "Is the price of the treasure always the same?",
+              "answer": "No, the price of treasures will fluctuate over time depending on the number of treasures generated and the amount of GQ there is to distribute collected from various sources."
+            },
+            "q06": {
+              "title": "Can I wait to make the exchange?",
+              "answer": "You can wait if you want to try to get the best possible exchange rate but remember that you have a storage limit. "
             }
           }
         }

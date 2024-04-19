@@ -1,0 +1,136 @@
+<div *ngIf="dataIsLoaded === false" class="spinner">
+  <mat-spinner [diameter]="250" [strokeWidth]="10"></mat-spinner>
+</div>
+
+<div class="content" *ngIf="dataIsLoaded === true">
+  <h1 class="title">{{'navigation.garage' | translate}}</h1>
+
+  <div class="upgrade">
+    <div class="switcher" (click)="switchLevelView()">
+      <img src="assets/images/missions/icons/{{userGarageInfo.garageLevel}}.svg" class="icon" alt="number icon" />
+      <span>{{'missions.garage.level' + userGarageInfo.garageLevel | translate}}</span>
+      <mat-icon *ngIf="showLeveling === false">expand_more</mat-icon>
+      <mat-icon *ngIf="showLeveling === true">expand_less</mat-icon>
+    </div>
+    <div id="level-block">
+      <div class="headline">
+        <h3>{{'missions.garage.garageLevel' | translate}}</h3>
+        <p>{{'missions.garage.garageLevelDescription' | translate}}</p>
+      </div>
+      <div class="levels">
+        <div class="level" [class.active]="userGarageInfo && userGarageInfo.garageLevel === '0'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/0.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{'missions.free' | translate}}</p>
+          <p class="name">{{'missions.garage.level0' | translate}}</p>
+          <p class="improvement">
+            <span>{{'missions.garage.ships' | translate}}</span>
+            <span>{{('missions.garage.landVehicles' | translate).replace('***', levelLimits.level0[0])}}</span>
+            <span *ngIf="levelLimits.level0[1] > 0">{{('missions.garage.spaceVehicles' | translate).replace('***', levelLimits.level0[1])}}</span>
+            <span *ngIf="levelLimits.level0[2] > 0">{{('missions.garage.clanVehicles' | translate).replace('***', levelLimits.level0[2])}}</span>
+          </p>
+          <p class="button unlocked">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+        <div class="level" [class.active]="userGarageInfo && userGarageInfo.garageLevel === '1'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/1.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{prices.level1.usd | fromWei | number:'1.0-4'}} $</p>
+          <p class="name">{{'missions.garage.level1' | translate}}</p>
+          <p class="improvement">
+            <span>{{'missions.garage.ships' | translate}}</span>
+            <span>{{('missions.garage.landVehicles' | translate).replace('***', levelLimits.level1[0])}}</span>
+            <span *ngIf="levelLimits.level1[1] > 0">{{('missions.garage.spaceVehicles' | translate).replace('***', levelLimits.level1[1])}}</span>
+            <span *ngIf="levelLimits.level1[2] > 0">{{('missions.garage.clanVehicles' | translate).replace('***', levelLimits.level1[2])}}</span>
+          </p>
+          <p *ngIf="userGarageInfo && userGarageInfo.garageLevel === '0'" class="button" (click)="upgradeLevel(1)">{{'missions.buttons.improve' | translate}}</p>
+          <p class="button unlocked" *ngIf="userGarageInfo && (userGarageInfo.garageLevel === '1' || userGarageInfo.garageLevel === '2' || userGarageInfo.garageLevel === '3')">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+        <div class="level" [class.active]="userGarageInfo && userGarageInfo.garageLevel === '2'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/2.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{prices.level2.usd | fromWei | number:'1.0-4'}} $</p>
+          <p class="name">{{'missions.garage.level2' | translate}}</p>
+          <p class="improvement">
+            <span>{{'missions.garage.ships' | translate}}</span>
+            <span>{{('missions.garage.landVehicles' | translate).replace('***', levelLimits.level2[0])}}</span>
+            <span *ngIf="levelLimits.level2[1] > 0">{{('missions.garage.spaceVehicles' | translate).replace('***', levelLimits.level2[1])}}</span>
+            <span *ngIf="levelLimits.level2[2] > 0">{{('missions.garage.clanVehicles' | translate).replace('***', levelLimits.level2[2])}}</span>
+          </p>
+          <p *ngIf="userGarageInfo && userGarageInfo.garageLevel === '0'" class="button disabled">{{'missions.buttons.blocked' | translate}}</p>
+          <p *ngIf="userGarageInfo && userGarageInfo.garageLevel === '1'" class="button" (click)="upgradeLevel(2)">{{'missions.buttons.improve' | translate}}</p>
+          <p class="button unlocked" *ngIf="userGarageInfo && (userGarageInfo.garageLevel === '2' || userGarageInfo.garageLevel === '3')">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+        <div class="level" [class.active]="userGarageInfo && userGarageInfo.garageLevel === '3'">
+          <div class="number">
+            <p>{{'missions.level' | translate}}</p>
+            <img src="assets/images/missions/icons/3.svg" alt="level number icon" />
+          </div>
+          <p class="price" *ngIf="prices">{{prices.level3.usd | fromWei | number:'1.0-4'}} $</p>
+          <p class="name">{{'missions.garage.level3' | translate}}</p>
+          <p class="improvement">
+            <span>{{'missions.garage.ships' | translate}}</span>
+            <span>{{('missions.garage.landVehicles' | translate).replace('***', levelLimits.level3[0])}}</span>
+            <span *ngIf="levelLimits.level3[1] > 0">{{('missions.garage.spaceVehicles' | translate).replace('***', levelLimits.level3[1])}}</span>
+            <span *ngIf="levelLimits.level3[2] > 0">{{('missions.garage.clanVehicles' | translate).replace('***', levelLimits.level3[2])}}</span>
+          </p>
+          <p *ngIf="userGarageInfo && (userGarageInfo.garageLevel === '0' || userGarageInfo.garageLevel === '1')" class="button disabled">{{'missions.buttons.blocked' | translate}}</p>
+          <p *ngIf="userGarageInfo && userGarageInfo.garageLevel === '2'" class="button" (click)="upgradeLevel(3)">{{'missions.buttons.improve' | translate}}</p>
+          <p class="button unlocked" *ngIf="userGarageInfo && userGarageInfo.garageLevel === '3'">{{'missions.buttons.unlocked' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-container *ngIf="dataIsLoaded === true">
+    <div class="block">
+      <div class="slot" *ngFor="let vehicles of userGarageInfo.vehicleLimits; let i = index">
+        <ng-container *ngIf="vehicles > 0">
+          <div class="staked" *ngIf="stakedVehicles && stakedVehicles[selectedVehicles[i]] && stakedVehicles[i][selectedVehicles[i]].staked === true; else emptySlot">
+            <img class="image" src ="{{stakedNftsData['type_' + i + '_tokenId_' + stakedVehicles[i][selectedVehicles[i]].tokenId].image}}" alt="Staked vehicle image" />
+            <div class="description">
+              <p><b>{{'missions.garage.aboutItem' | translate}}:</b></p>
+              <p>{{stakedNftsData['type_' + i + '_tokenId_' + stakedVehicles[i][selectedVehicles[i]].tokenId].description}}</p>
+            </div>
+            <p class="collection">{{'nft.collection' | translate}}: <span>{{stakedNftsData['type_' + i + '_tokenId_' + stakedVehicles[i][selectedVehicles[i]].tokenId].collection}}</span></p>
+            <p class="number">Token id: {{stakedVehicles[i][selectedVehicles[i]].tokenId}}</p>
+            <span *ngIf="stakedVehicles[i][selectedVehicles[i]].inUse === false" (click)="withdrawVehicle(i, selectedVehicles[i])" class="button">{{'missions.buttons.withdraw' | translate}}</span>
+            <span *ngIf="stakedVehicles[i][selectedVehicles[i]].inUse === true" class="button disabled">{{'missions.missions.onMission' | translate}}</span>
+          </div>
+          <ng-template #emptySlot>
+            <div class="add" (click)="stakeVehicle(i, selectedVehicles[i])">
+              <div class="line vertical"></div>
+              <div class="line horizontal"></div>
+            </div>
+          </ng-template>
+        </ng-container>
+
+        <div *ngIf="vehicles === 0">
+          <p class="upgrade">{{'missions.garage.upgrade' + i | translate}}</p>
+        </div>
+
+        <div class="bottom">
+          <p class="type">{{'missions.garage.type' + i | translate}}</p>
+          
+          <ng-container *ngIf="vehicles > 1">
+            <div class="diamonds">
+              <ng-container *ngFor="let s of [0, 1, 2, 3, 4, 5]">
+                <div class="diamond" *ngIf="s < vehicles" (click)="changeSelectedVehicle(i, s)">
+                  <div class="fill" *ngIf="selectedVehicles[i] === s"></div>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+        <mat-icon class="arrow prev" (click)="moveSelectedVehicle(i, false)">chevron_left</mat-icon>
+        <mat-icon class="arrow next" (click)="moveSelectedVehicle(i, true)">chevron_right</mat-icon>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

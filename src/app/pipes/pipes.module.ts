@@ -16,6 +16,8 @@ import { NftContractToVariablePipe } from './nftContractToVariable.pipe';
 import { MaterialToTickerPipe } from './materialToTicker.pipe';
 import { MaterialFromAddressPipe } from './materialFromAddress.pipe';
 import { NftNameToCamelCase } from './nftNameToCamelCase.pipe';
+import { GetNftImagePipe } from './getNftImage.pipe';
+import { TimeToDhmsPipe } from './timeToDhms.pipe';
 
 
 
@@ -24,19 +26,21 @@ import { NftNameToCamelCase } from './nftNameToCamelCase.pipe';
     CeilPipe,
     DeleteWhitespacesPipe,
     FloorPipe,
+    FormatTimePipe,
     FromWeiPipe,
+    GetNftImagePipe,
     MaterialFromAddressPipe,
     MaterialToTickerPipe,
     NftContractToNamePipe,
     NftContractToVariablePipe,
+    NftNameToCamelCase,
     ParseNumberPipe,
     ShortWalletPipe,
-    FormatTimePipe,
     TimeStampIsPastPipe,
+    TimeToDhmsPipe,
     ToTickerPipe,
     WalletFirstNumPipe,
     WalletSpeciePipe,
-    NftNameToCamelCase,
   ],
   imports: [
     CommonModule
@@ -45,19 +49,21 @@ import { NftNameToCamelCase } from './nftNameToCamelCase.pipe';
     CeilPipe,
     DeleteWhitespacesPipe,
     FloorPipe,
+    FormatTimePipe,
     FromWeiPipe,
+    GetNftImagePipe,
     MaterialFromAddressPipe,
     MaterialToTickerPipe,
     NftContractToNamePipe,
     NftContractToVariablePipe,
+    NftNameToCamelCase,
     ParseNumberPipe,
     ShortWalletPipe,
-    FormatTimePipe,
     TimeStampIsPastPipe,
+    TimeToDhmsPipe,
     ToTickerPipe,
     WalletFirstNumPipe,
     WalletSpeciePipe,
-    NftNameToCamelCase,
   ]
 })
 export class PipesModule { }

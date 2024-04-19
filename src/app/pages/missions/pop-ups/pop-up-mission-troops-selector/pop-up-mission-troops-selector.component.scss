@@ -1,0 +1,354 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.close {
+  font-family: 'magistral', sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding-right: 50px;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+      padding: 0;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+
+.selector {
+  padding: 1rem 1rem 0;
+  max-height: 60vh;
+  max-width: 60vw;
+  overflow: auto;
+  
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background-color: $blue-extra-dark;
+    margin: 25px auto 0;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $blue-light;
+  }
+  
+  .spinner {
+    margin: 2rem auto;
+  }
+
+  .main {
+
+    .slots {
+      display: flex;
+      flex-flow: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-evenly;
+      margin: 1rem 0 0;
+
+      .slot {
+        position: relative;
+        margin-bottom: 40px;
+      
+        .add {
+          cursor: pointer;
+          position: relative;
+          background: $white-transparent-10;
+          border-radius: 7px;
+          padding: 2rem;
+          border: 1px dashed $grey;
+          width: 50px;
+          height: 50px;
+
+          &:hover {
+            background: $white-transparent-25;
+          }
+
+          .line {
+            position: absolute;
+            background-color: $white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            &.horizontal {
+              height: 50%;
+              width: 1px;
+            }
+
+            &.vertical {
+              height: 1px;
+              width: 50%;
+            }
+          }
+        }
+
+        .added {
+          border: 1px solid $blue-medium;
+          border-radius: 7px;
+          padding: 0.5rem;
+          background: $black-transparent-60;
+
+          .soldier {
+            position: relative;
+            width: 50px;
+            height: 40px;
+            margin: 5px auto;
+
+            .image {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+
+            .number {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-40%, -70%);
+              color: $blue-medium;
+              font-family: $magistral !important;
+              font-weight: bold;
+              font-size: 1.1rem;
+              margin: 0;
+            }
+          }
+
+          .energy {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            align-items: center;
+
+            .image {
+              height: 15px;
+              width: 15px;
+              object-fit: contain;
+            }
+
+            .value {
+              font-family: $magistral !important;
+              font-weight: 300;
+            }
+          }
+
+          .equipment {
+            border-top: 1px solid $white;
+            padding-top: 0.5rem;
+            margin-top: 0.2rem;
+            text-align: center;
+
+            p {
+              font-family: $magistral !important;
+              margin: 0;
+              line-height: 1em;
+            }
+
+            .name {
+              text-transform: uppercase;
+              font-size: 0.7rem;
+              font-weight: 300;
+            }
+
+            .value {
+              font-size: 1.5rem;
+            }
+          }
+        }
+
+        .buttons {
+          cursor: pointer;
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          margin: 5px 0 0;
+          width: 100%;
+          text-align: center;
+
+          &:hover {
+            filter: hue-rotate(-300deg);
+          }
+
+          .icon {
+            height: 20px;
+            width: 20px;
+            object-fit: contain;
+            margin: auto;
+          }
+        }
+      }
+    }
+
+    .tip {
+      font-weight: 300;
+      line-height: 1em;
+      margin: 0;
+    }
+
+    .vehicles {
+      margin-bottom: 2rem;
+      padding: 1rem 0;
+      border-top: 1px solid $blue-light;
+      border-bottom: 1px solid $blue-light;
+
+      .checkboxes {
+        display: flex;
+        gap: 2rem;
+        justify-content: space-evenly;
+        margin: 1rem 0;
+
+        .checkbox {
+          cursor: pointer;
+          display: inline-block;
+          vertical-align: middle;
+          height: 10px;
+          width: 10px;
+          border: 1px solid white;
+          padding: 2px;
+          border-radius: 2px;
+          margin-right: 10px;
+
+          &.checked div {
+            height: 100%;
+            width: 100%;
+            background-color: $blue-extra-light;
+          }
+        }
+      }
+    }
+
+    .buttons {
+      margin-top: -1rem;
+
+      .button {
+        margin: 1rem auto 0;
+      }
+    }
+  }
+
+  .soldiers {
+    max-width: 700px;
+    display: flex;
+    flex-flow: wrap;
+    gap: 2rem 1rem;
+    justify-content: space-evenly;
+
+    .slot {
+      margin: 0 15px;
+
+      &.unavailable {
+        opacity: 0.5;
+      }
+
+      .soldier {
+        position: relative;
+        width: 50px;
+        height: 40px;
+        margin: 5px auto;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        .number {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-40%, -70%);
+          color: $blue-medium;
+          font-family: $magistral !important;
+          font-weight: bold;
+          font-size: 1.1rem;
+          margin: 0;
+        }
+      }
+
+      .energy {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+        margin: 5px 0;
+
+        .image {
+          height: 15px;
+          width: 15px;
+          object-fit: contain;
+        }
+
+        .value {
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  .equipments {
+    max-width: 700px;
+    display: flex;
+    flex-flow: wrap;
+    gap: 2rem 1rem;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .equipment {
+
+      p {
+        margin: 0;
+      }
+
+      &.unavailable {
+        opacity: 0.5;
+      }
+
+      .info {
+        margin: 5px 10px;
+
+        .name {
+          text-transform: uppercase;
+          font-weight: 300;
+          font-size: 0.7rem;
+          text-align: center;
+        }
+
+        .value {
+          font-family: $magistral !important;
+          font-size: 1.5rem;
+          text-align: center;
+        }
+      }
+
+      .buttons .button {
+        margin: 10px auto 0;
+      }
+    }
+  }
+}

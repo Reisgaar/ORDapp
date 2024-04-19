@@ -83,8 +83,11 @@ export class BlackMarketSaleCreatorComponent  implements OnInit, OnDestroy {
         this.materials = await this.processQueryData(data.data.usersMaterials[0])
         console.log(this.materials);
         this.materialsLoaded = true;
-      });
-    }
+      })
+      // .error( res => {
+      //   console.log('error')
+      // })
+  }
 
   /**
    * Process the query data
@@ -92,14 +95,18 @@ export class BlackMarketSaleCreatorComponent  implements OnInit, OnDestroy {
    * @returns array with the processed data
    */
   async processQueryData(queryData: any[]): Promise<any> {
-    let totalMaterialAmount = 0;
-    let data = userOwnedMaterials;
-    for (let [key, value] of Object.entries(data) ) {
-      value.amount = queryData[key];
-      totalMaterialAmount += parseFloat(this.connectionService.fromWei(queryData[key]));
+    try {
+      let totalMaterialAmount = 0;
+      let data = userOwnedMaterials;
+      for (let [key, value] of Object.entries(data) ) {
+        value.amount = queryData[key];
+        totalMaterialAmount += parseFloat(this.connectionService.fromWei(queryData[key]));
+      }
+      this.userHasMaterials = totalMaterialAmount > 0 ? true : false;
+      return data;
+    } catch (error) {
+      return [];
     }
-    this.userHasMaterials = totalMaterialAmount > 0 ? true : false;
-    return data;
   }
 
   /**

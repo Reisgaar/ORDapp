@@ -2,7 +2,7 @@
   <div class="top-side">
     <p class="name {{sale.material | materialFromAddress}}">{{'materials.' + (sale.material | materialFromAddress) | translate}}</p>
     <img class="image" src="assets/images/crafting/materials/{{sale.material | materialFromAddress}}.png" alt="{{sale.material | materialFromAddress}} material image"/>
-    <p class="amount {{sale.material | materialFromAddress}}">{{sale.quantity | fromWei | number:'1.0-4'}}</p>
+    <p class="amount {{sale.material | materialFromAddress}}">{{sale.quantity | fromWei | floor | number:'1.0-4'}}</p>
   </div>
   <div class="bottom-side">
     <p class="price">

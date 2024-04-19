@@ -64,6 +64,9 @@ export class PartnerNftComponent implements OnInit, OnDestroy {
   showMetadata: boolean = true;
   allowedNFTs: Array<string> = [];
 
+  // NFT in Game Data attributes;
+  inGameAttr: string[] = ['strength', 'speed', 'endurance', 'flexibility'];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private connectionService: ConnectionService,
@@ -196,7 +199,6 @@ export class PartnerNftComponent implements OnInit, OnDestroy {
     this.loadingData = true;
     this.nftData = await this.partnerNftService.getOneNftData(id, nftContractAddress);
     this.nftSaleData = await this.getSaleData();
-    this.getWalletImage();
     this.getNftPriceData();
     this.checkRedeemability();
     console.log(this.nftData);
@@ -262,19 +264,6 @@ export class PartnerNftComponent implements OnInit, OnDestroy {
     }
     if (this.saleType !== auxSaleType) { this.saleType = auxSaleType; }
     return data;
-  }
-
-  /**
-   * Gets the image for the user according to wallet first number
-   */
-  getWalletImage(): void {
-    if (this.nftSaleData.nftSeller !== this.zeroAddress) {
-      this.profileImage = this.utilsService.getWalletImage(this.nftSaleData.nftSeller);
-    } else if (this.nftData.owner !== this.zeroAddress) {
-      this.profileImage = this.utilsService.getWalletImage(this.nftData.owner);
-    } else {
-      this.profileImage = -1;
-    }
   }
 
   /**

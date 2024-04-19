@@ -44,6 +44,7 @@
         margin-bottom: 0.5rem;
       }
       mat-icon {
+        cursor: pointer;
         color: $green-light;
         margin-right: 0.5rem;
       }
@@ -137,6 +138,7 @@
       color: $white;
     }
     .switch label {
+      cursor: pointer;
       width: 55px;
       height: 23px;
       background-color: $grey-dark;

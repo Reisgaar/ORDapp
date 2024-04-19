@@ -3,20 +3,17 @@ export const partners: any = {
 
   // Example of partner to replicate for each partner (don't delete)
   noPartner: {
-    // Boolean to show in front or not
-    show: false,
-    // Boolean to set active or not
-    launched: false,
-    // Partner data, strings
-    name: 'No Partner',
+    show: false, // Boolean to show in front or not
+    launched: false, // Boolean to set active or not
+    name: 'No Partner', // Partner data, strings
     nameToShow: 'nó pärtnèr', // Used if name has any accent or similar
-    color: '#1a3341',
+    color: '#1a3341', // Color to customize partner section
     website: '',
     // Images, file name with extension, strings
     logo: '',
     header: '',
     button: '',
-    // Tradeable NFTs, Array of strings
+    // Tradeable NFTs, Array of address strings
     nfts: [],
     // NFT, Array of strings
     burneable: [],
@@ -26,7 +23,7 @@ export const partners: any = {
     // If redeemable NFT is able to collect on some place
     canReceiveOnStore: true,
     address: {
-      name: 'Name of the place',
+      name: '',
       street: '',
       zipCode: '',
       city: '',
@@ -37,30 +34,31 @@ export const partners: any = {
 
   // HASHAPON
   hashapon: {
-    show: false,
-    launched: false,
+    show: true,
+    launched: true,
     name: 'hashapon',
-    nameToShow: 'hashapon',
+    nameToShow: 'Hashapon',
     color: '#501496',
-    website: 'http://testnl.ovh/',
+    website: 'https://hashapon.com',
     logo: 'hashapon_logo.png',
     header: 'hashapon_header.png',
     button: 'hashapon_button.png',
     nfts: [
-      '0x2CE9A2DED7958fb4ed28A56CAaC60663BFDd8a06'
+      // '0x2b198123b8648d073c259251b4bc703116c3278c' //testnet
+      '0x4bb9d1827c792315868315bf053ec2c27af30b52' // mainnet
     ],
     burneable: [],
     redeemable: [],
     filter: {
-      type: ['Ursid', 'Feline', 'Canid', 'Bird', 'Primate', 'Reptile', 'Marsupial', 'Rodent'],
+      type: ['Ursid', 'Feline', 'Canid', 'Bird'],
       age: ['Egg', 'Baby', 'Young', 'Adult']
     }
   },
 
   // BASKONIA
   baskonia: {
-    show: true,
-    launched: true,
+    show: false,
+    launched: false,
     name: 'baskonia',
     nameToShow: 'baskonia',
     color: '#A6192E',

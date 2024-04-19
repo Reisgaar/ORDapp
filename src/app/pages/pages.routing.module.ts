@@ -31,6 +31,15 @@ import { HealthComponent } from './health/health.component';
 import { MaterialExtractionComponent } from './lands/material-extraction/material-extraction.component';
 import { CraftingFoundryComponent } from './crafting/crafting-foundry/crafting-foundry.component';
 import { BlackMarketComponent } from './black-market/black-market.component';
+import { MissionsHomeComponent } from './missions/missions-home/missions-home.component';
+import { MissionsRecruitmentComponent } from './missions/missions-screen/missions-recruitment/missions-recruitment.component';
+import { MissionsArmoryComponent } from './missions/missions-screen/missions-armory/missions-armory.component';
+import { MissionsGarageComponent } from './missions/missions-screen/missions-garage/missions-garage.component';
+import { MissionsWarehouseComponent } from './missions/missions-screen/missions-warehouse/missions-warehouse.component';
+import { MissionsRestingComponent } from './missions/missions-screen/missions-resting/missions-resting.component';
+import { MissionsBankComponent } from './missions/missions-screen/missions-bank/missions-bank.component';
+import { MissionsMissionsComponent } from './missions/missions-screen/missions-missions/missions-missions.component';
+import { MissionsScreenModule } from './missions/missions-screen/missions-screen.module';
 
 const routes: Routes = [
   {
@@ -71,18 +80,18 @@ const routes: Routes = [
         path: 'marketplace/nft',
         component: NftComponent
       },
-      // {
-      //   path: 'marketplace/partners',
-      //   component: PartnersHomeComponent
-      // },
-      // {
-      //   path: 'marketplace/partner',
-      //   component: PartnerSellComponent
-      // },
-      // {
-      //   path: 'marketplace/partner/nft',
-      //   component: PartnerNftComponent
-      // },
+      {
+        path: 'marketplace/partners',
+        component: PartnersHomeComponent
+      },
+      {
+        path: 'marketplace/partner',
+        component: PartnerSellComponent
+      },
+      {
+        path: 'marketplace/partner/nft',
+        component: PartnerNftComponent
+      },
       // GOVERNACE
       {
         path: 'governance',
@@ -131,7 +140,6 @@ const routes: Routes = [
         path: 'crafting/factory',
         component: CraftingFactoryComponent
       },
-      // },
       // FOUNDRY
       {
         path: 'crafting/foundry',
@@ -142,11 +150,6 @@ const routes: Routes = [
         path: 'undergroundMarket',
         component: BlackMarketComponent
       },
-      // TODO: Uncomment for foundry
-      // {
-      //   path: 'crafting/foundry',
-      //   component: CraftingFoundryComponent
-      // },
       // OTHERS
       {
         path: 'allowanceManager',
@@ -178,6 +181,11 @@ const routes: Routes = [
     path: 'defi',
     loadChildren: () =>
       import('./defi/defi.module').then((m) => m.DefiModule),
+  },
+  {
+    path: 'missions',
+    loadChildren: () =>
+      import('./missions/missions-screen/missions-screen.module').then((m) => m.MissionsScreenModule),
   },
 ];
 

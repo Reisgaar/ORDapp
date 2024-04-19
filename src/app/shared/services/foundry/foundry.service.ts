@@ -4,6 +4,7 @@ import { waitForTransaction } from '@wagmi/core';
 import { ConnectionService } from '../connection/connection.service';
 import { DialogService } from '../dialog.service';
 import { TokenService } from '../token/token.service';
+import { MaterialExtractionService } from '../lands/material-extraction.service';
 // Abi
 import { default as Foundry } from 'src/app/shared/contracts/foundry/GalacticFoundry.json';
 
@@ -15,8 +16,51 @@ export class FoundryService {
   constructor(
     private connectionService: ConnectionService,
     private tokenService: TokenService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private materialExtractionService: MaterialExtractionService
   ) { }
+
+  /**
+   * Gets the max size of the pools
+   * @returns max size of pools
+   */
+  async getMaxPoolSize(): Promise<number> {
+    const maxSize = await this.connectionService.readContract(contractAddresses.galacticFoundry, Foundry.abi, 'maxPoolSize', []);
+    return parseInt(maxSize);
+  }
+
+  /**
+   * Gets the min size of the pools
+   * @returns min size of pools
+   */
+  async getMinPoolSize(): Promise<number> {
+    const defaultSize = await this.connectionService.readContract(contractAddresses.galacticFoundry, Foundry.abi, 'defaultPoolSize', []);
+    return parseInt(defaultSize);
+  }
+
+  /**
+   * Gets the percentage reward for each collection
+   * @param collections Array with collection ids
+   * @returns array with collection rewards
+   */
+  async getCollectionRewardsPercentage(collections: number[]): Promise<any> {
+    const rewards = [];
+    for (let col of collections) {
+      const collectionReward = await this.connectionService.readContract(contractAddresses.galacticFoundry, Foundry.abi, 'collectionRewards', [col]);
+      rewards[col] = parseInt(collectionReward) / 100;
+    }
+    return rewards;
+  }
+
+  /**
+   * Get user land stake bonus
+   * @returns bonus percentage
+   */
+  async getUserLandStakeBonus(): Promise<number> {
+    const land = await this.materialExtractionService.getUserTopLandSize();
+    const bonus = await  this.connectionService.readContract(contractAddresses.galacticFoundry, Foundry.abi, 'landStakingRewardBonus', [land]);
+    return (parseInt(bonus) / 100);
+  }
 
   /**
    * Sends the given NFT to the first available pool
@@ -34,10 +78,14 @@ export class FoundryService {
     const nftnAllowed = await this.tokenService.nftCheckAllowance(contractAddresses.galacticFoundry, nftAddress);
     if (!nftnAllowed) { return }
     // Check token approvement
-    const tokenAllowed = await this.tokenService.tokenApprovement(contractAddresses.galacticFoundry, userAddr, contractAddresses.gq, '500000000000000000000');
+    const fee = await this.connectionService.readContract(contractAddresses.galacticFoundry, Foundry.abi, 'getFoundryFeeInGQ', [nftTokenIds.length]);
+    const tokenAllowed = await this.tokenService.tokenApprovement(contractAddresses.galacticFoundry, userAddr, contractAddresses.gq, fee);
     if (!tokenAllowed) { return }
     // Make the transaction
-    let dialog = this.dialogService.openRegularInfoDialog('actionNeeded', 'foundryDissasembleStart', '');
+    const feeInUsd = await this.connectionService.readContract(contractAddresses.galacticFoundry, Foundry.abi, 'foundryFees', [nftTokenIds.length]);
+    const formattedGQFee = parseFloat(parseFloat(this.connectionService.fromWei(fee)).toFixed(4)).toLocaleString('en-GB');
+    const formattedUSDFee = parseFloat(parseFloat(this.connectionService.fromWei(feeInUsd)).toFixed(4)).toLocaleString('en-GB');
+    let dialog = this.dialogService.openRegularInfoDialog('actionNeeded', 'foundryDissasembleStart', 'Fee: ' + formattedUSDFee + '$ (approx. ' + formattedGQFee + 'GQ)');
     try {
       const tx = await this.connectionService.writeContract(contractAddresses.galacticFoundry, Foundry.abi, 'disassembleItems', [nftType, nftTokenIds]);
       dialog.close();

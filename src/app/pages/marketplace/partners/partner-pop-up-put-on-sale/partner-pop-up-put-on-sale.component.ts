@@ -19,7 +19,7 @@ export class PartnerPopUpPutOnSaleComponent implements OnInit {
   auctionTime = 172800;
   isCustomAuction = false;
   isCustomSale = false;
-  bidPercentage = 1;
+  bidPercentage = 10;
   extraFeePercentage = 0;
   sendFeeTo: string = '';
 
@@ -164,7 +164,7 @@ export class PartnerPopUpPutOnSaleComponent implements OnInit {
    */
   resetCustomBid(): void {
     this.auctionTime = 172800;
-    this.bidPercentage = 1;
+    this.bidPercentage = 10;
   }
 
   /**

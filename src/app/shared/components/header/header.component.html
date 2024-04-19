@@ -14,7 +14,7 @@
         <p class="subtab" [routerLink]="['/marketplace/directSales']" [class.active]="actualRoute.includes('/marketplace/directSales')"><span>{{ 'navigation.directSells' | translate }}</span></p>
         <p class="subtab" [routerLink]="['/marketplace/auctions']" [class.active]="actualRoute.includes('/marketplace/auctions')"><span>{{ 'navigation.auctions' | translate }}</span></p>
         <p class="subtab" [routerLink]="['/undergroundMarket']" [class.active]="actualRoute.includes('/undergroundMarket')"><span>{{ 'navigation.blackMarket' | translate }}</span></p>
-        <!-- <p class="subtab" [routerLink]="['/marketplace/partners']" [class.active]="actualRoute.includes('/marketplace/partners')"><span>{{ 'navigation.partners' | translate }}</span></p> -->
+        <p class="subtab" [routerLink]="['/marketplace/partners']" [class.active]="actualRoute.includes('/marketplace/partners')"><span>{{ 'navigation.partners' | translate }}</span></p>
         <p class="subtab" [routerLink]="['/marketplace/statistics']" [class.active]="actualRoute.includes('/marketplace/statistics')"><span>{{ 'navigation.statistics' | translate }}</span></p>
       </div>
     </div>
@@ -69,6 +69,21 @@
       <div class="submenu">
         <p class="subtab" [routerLink]="['/crafting/factory']" [class.active]="actualRoute.includes('/crafting/factory')"><span>{{ 'navigation.factory' | translate }}</span></p>
         <p class="subtab" [routerLink]="['/crafting/foundry']" [class.active]="actualRoute.includes('/crafting/foundry')"><span>{{ 'navigation.foundry' | translate }}</span></p>
+      </div>
+    </div>
+    <!-- MISSIONS -->
+    <div class="navigation-tab" [class.active]="actualRoute.includes('/missions')">
+      <p [routerLink]="['/missions']">
+        <span class="tab-name">{{ 'navigation.missions' | translate }}</span>
+      </p>
+      <div class="submenu">
+        <p class="subtab" [routerLink]="['/missions/recruitment']" [class.active]="actualRoute.includes('/missions/recruitment')"><span>{{ 'navigation.recruitment' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/missions/armory']" [class.active]="actualRoute.includes('/missions/armory')"><span>{{ 'navigation.armory' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/missions/garage']" [class.active]="actualRoute.includes('/missions/garage')"><span>{{ 'navigation.garage' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/missions/warehouse']" [class.active]="actualRoute.includes('/missions/warehouse')"><span>{{ 'navigation.warehouse' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/missions/restingArea']" [class.active]="actualRoute.includes('/missions/restingArea')"><span>{{ 'navigation.restingArea' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/missions/bank']" [class.active]="actualRoute.includes('/missions/bank')"><span>{{ 'navigation.bank' | translate }}</span></p>
+        <p class="subtab" [routerLink]="['/missions/missionsSelection']" [class.active]="actualRoute.includes('/missions/missionsSelection')"><span>{{ 'navigation.missions' | translate }}</span></p>
       </div>
     </div>
   </div>
@@ -142,18 +157,16 @@
         <p class="link">{{ 'navigation.blackMarket' | translate }}</p>
         <p class="description">{{ 'navigation.blackMarketDescription' | translate }}</p>
       </div>
-      <!-- <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/partners']" (click)="toggleResponsiveMenu()">
+      <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/partners']" (click)="toggleResponsiveMenu()">
         <p class="link">{{ 'navigation.partners' | translate }}</p>
         <p class="description">{{ 'navigation.partnersDescription' | translate }}</p>
-      </div> -->
+      </div>
       <div class="navigation-tab sub-tab" [routerLink]="['/marketplace/statistics']" (click)="toggleResponsiveMenu()">
         <p class="link">{{ 'navigation.statistics' | translate }}</p>
         <p class="description">{{ 'navigation.statisticsDescription' | translate }}</p>
       </div>
     </div>
   </div>
-  <!-- COMMUNITY -->
-  <!-- <div class="navigation-tab" [routerLink]="['/community']">{{ 'navigation.community' | translate }}</div> -->
   <!-- LOOTBOXES -->
   <div class="section">
     <div class="navigation-tab" [routerLink]="['/lootboxes']" (click)="toggleResponsiveMenu()">{{ 'navigation.lootboxes' | translate }}</div>
@@ -239,6 +252,42 @@
       <div class="navigation-tab sub-tab" [routerLink]="['/crafting/foundry']" (click)="toggleResponsiveMenu()">
         <p class="link">{{ 'navigation.foundry' | translate }}</p>
         <p class="description">{{ 'navigation.foundryDescription' | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- MISSIONS -->
+  <div class="section">
+    <div class="navigation-tab" [routerLink]="['/missions']" (click)="toggleResponsiveMenu()">{{ 'navigation.missions' | translate }}</div>
+    <mat-icon *ngIf="!navigationCraftingIsOpen" class="icon" (click)="switchResponsiveMenuSection('crafting')">add</mat-icon>
+    <mat-icon *ngIf="navigationCraftingIsOpen" class="icon" (click)="switchResponsiveMenuSection('crafting')">remove</mat-icon>
+    <div *ngIf="navigationCraftingIsOpen">
+      <div class="navigation-tab sub-tab" [routerLink]="['/missions/recruitment']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.recruitment' | translate }}</p>
+        <p class="description">{{ 'navigation.recruitmentDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/missions/armory']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.armory' | translate }}</p>
+        <p class="description">{{ 'navigation.armoryDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/missions/garage']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.garage' | translate }}</p>
+        <p class="description">{{ 'navigation.garageDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/missions/warehouse']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.warehouse' | translate }}</p>
+        <p class="description">{{ 'navigation.warehouseDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/missions/restingArea']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.restingArea' | translate }}</p>
+        <p class="description">{{ 'navigation.restingAreaDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/missions/bank']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.bank' | translate }}</p>
+        <p class="description">{{ 'navigation.bankDescription' | translate }}</p>
+      </div>
+      <div class="navigation-tab sub-tab" [routerLink]="['/missions/missionsSelection']" (click)="toggleResponsiveMenu()">
+        <p class="link">{{ 'navigation.missions' | translate }}</p>
+        <p class="description">{{ 'navigation.missionsDescription' | translate }}</p>
       </div>
     </div>
   </div>

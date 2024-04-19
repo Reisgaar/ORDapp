@@ -1,0 +1,13 @@
+<div class="content" *ngIf="walletIsConnected === false">
+    <app-missions-connect-wallet></app-missions-connect-wallet>
+</div>
+  
+<div *ngIf="walletIsConnected === true">
+    <div class="resources">
+        <app-missions-resources-mini></app-missions-resources-mini>
+    </div>
+    <app-missions-navigation *ngIf="showQuickMenu === true"></app-missions-navigation>
+    <router-outlet></router-outlet>
+</div>
+
+  

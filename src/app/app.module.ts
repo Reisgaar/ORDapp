@@ -129,6 +129,27 @@ import { BlackMarketComponent } from './pages/black-market/black-market.componen
 import { BlackMarketSaleCreatorComponent } from './pages/black-market/black-market-sale-creator/black-market-sale-creator.component';
 import { BlackMarketMaterialCardComponent } from './pages/black-market/black-market-material-card/black-market-material-card.component';
 import { PopUpNumberInputComponent } from './shared/components/pop-ups/pop-up-number-input/pop-up-number-input.component';
+import { PopUpGetNftsComponent } from './shared/components/pop-ups/pop-up-get-nfts/pop-up-get-nfts.component';
+import { BlackMarketStatisticsComponent } from './pages/black-market/black-market-statistics/black-market-statistics.component';
+import { MissionsHomeComponent } from './pages/missions/missions-home/missions-home.component';
+import { MissionsNavigationComponent } from './pages/missions/missions-navigation/missions-navigation.component';
+import { MissionsRecruitmentComponent } from './pages/missions/missions-screen/missions-recruitment/missions-recruitment.component';
+import { MissionsArmoryComponent } from './pages/missions/missions-screen/missions-armory/missions-armory.component';
+import { MissionsGarageComponent } from './pages/missions/missions-screen/missions-garage/missions-garage.component';
+import { MissionsWarehouseComponent } from './pages/missions/missions-screen/missions-warehouse/missions-warehouse.component';
+import { MissionsBankComponent } from './pages/missions/missions-screen/missions-bank/missions-bank.component';
+import { MissionsMissionsComponent } from './pages/missions/missions-screen/missions-missions/missions-missions.component';
+import { MissionsRestingComponent } from './pages/missions/missions-screen/missions-resting/missions-resting.component';
+import { MissionsConnectWalletComponent } from './pages/missions/missions-connect-wallet/missions-connect-wallet.component';
+import { MissionsScreenComponent } from './pages/missions/missions-screen/missions-screen.component';
+import { PopUpNftSelectorComponent } from './shared/components/pop-ups/pop-up-nft-selector/pop-up-nft-selector.component';
+import { MissionsResourcesMiniComponent } from './pages/missions/missions-resources-mini/missions-resources-mini.component';
+import { PopUpRestingSoldierSelectorComponent } from './pages/missions/pop-ups/pop-up-resting-soldier-selector/pop-up-resting-soldier-selector.component';
+import { MissionCardComponent } from './pages/missions/missions-screen/missions-missions/mission-card/mission-card.component';
+import { PopUpMissionTroopsSelectorComponent } from './pages/missions/pop-ups/pop-up-mission-troops-selector/pop-up-mission-troops-selector.component';
+import { NftStatisticsComponent } from './pages/statistics/nft-statistics/nft-statistics.component';
+import { NftStatisticByTypeComponent } from './pages/statistics/nft-statistic-by-type/nft-statistic-by-type.component';
+import { PopUpMissionRewardsComponent } from './pages/missions/pop-ups/pop-up-mission-rewards/pop-up-mission-rewards.component';
 
 // Factory function required during AOT compilation
 export function httpTranslateLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -224,6 +245,27 @@ export function httpTranslateLoaderFactory(http: HttpClient): TranslateHttpLoade
     BlackMarketSaleCreatorComponent,
     BlackMarketMaterialCardComponent,
     PopUpNumberInputComponent,
+    PopUpGetNftsComponent,
+    BlackMarketStatisticsComponent,
+    MissionsHomeComponent,
+    MissionsNavigationComponent,
+    MissionsRecruitmentComponent,
+    MissionsArmoryComponent,
+    MissionsGarageComponent,
+    MissionsWarehouseComponent,
+    MissionsBankComponent,
+    MissionsMissionsComponent,
+    MissionsRestingComponent,
+    MissionsConnectWalletComponent,
+    MissionsScreenComponent,
+    PopUpNftSelectorComponent,
+    MissionsResourcesMiniComponent,
+    PopUpRestingSoldierSelectorComponent,
+    MissionCardComponent,
+    PopUpMissionTroopsSelectorComponent,
+    NftStatisticsComponent,
+    NftStatisticByTypeComponent,
+    PopUpMissionRewardsComponent,
   ],
   imports: [
     BrowserModule,

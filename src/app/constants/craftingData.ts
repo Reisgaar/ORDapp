@@ -112,6 +112,13 @@ export const stylingPartsOrder = {
   precisionRifle: [ 'grip', 'stock', 'barrel', 'body', 'magazine', 'sniperSight', 'laserPointer', 'bipod', 'silencer' ],
 };
 
+// Material cost for each weapon/tier
+export const collectionZeroMaterialReward = {
+  t1: { step1: { iron: 700, copper: 700 }, step2: { nickel: 700, carbon: 700 }, step3: { vanadium: 700 } },
+  t2: { step1: { iron: 750, copper: 750 }, step2: { hydrogen: 750 }, step3: { methane: 750, helium: 750 } },
+  t3: { step1: { iron: 1000, copper: 1000 }, step2: { oxygen: 1000, chromium: 1000 }, step3: { plutonium: 1000, acetylene: 1000, cobalt: 1000 } }
+};
+
 
 // Material cost for each weapon/tier
 export const craftingMaterialCost = {

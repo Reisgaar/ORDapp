@@ -24,17 +24,19 @@
   </div>
 
   <div class="buttons">
-    <!-- Buttons for lootboxes (not mystery) -->
-    <!-- <div class="buy-button" *ngIf="itemList[category].name !== 'Mystery'">
-      <p class="discount">{{ 'lootbox.discount' | translate }}</p>
-      <button class="button" (click)="buyLootbox(itemList[category].id, 1)">{{ 'lootbox.buttonSCK' | translate }}</button>
-      <button class="button" (click)="buyLootbox(itemList[category].id, 0)">{{ 'lootbox.buttonBUSD' | translate }}</button>
-    </div> -->
-    <!-- Buttons for Mystery box -->
-    <!-- <div class="buy-button" *ngIf="itemList[category].name === 'Mystery'">
-      <button class="button" (click)="buyMystery()">{{ 'lootbox.buttonSCK' | translate }}</button>
-    </div> -->
-    <!-- Buttons whitelisted -->
+    <ng-container *ngIf="isTestnet === true">
+      <!-- Buttons for lootboxes (not mystery) -->
+      <div class="buy-button" *ngIf="itemList[category].name !== 'Mystery'">
+        <p class="discount">{{ 'lootbox.discount' | translate }}</p>
+        <button class="button" (click)="buyLootbox(itemList[category].id, 1)">{{ 'lootbox.buttonSCK' | translate }}</button>
+        <button class="button" (click)="buyLootbox(itemList[category].id, 0)">{{ 'lootbox.buttonBUSD' | translate }}</button>
+      </div>
+      <!-- Buttons for Mystery box -->
+      <div class="buy-button" *ngIf="itemList[category].name === 'Mystery'">
+        <button class="button" (click)="buyMystery()">{{ 'lootbox.buttonSCK' | translate }}</button>
+      </div>
+      <!-- Buttons whitelisted -->
+    </ng-container>
     <div class="buy-button" *ngIf="free || disc">
       <button *ngIf="free" class="button" (click)="buyFreeWhiteList()">{{ 'lootbox.buttonFree' | translate }}</button>
       <button *ngIf="disc" class="button" (click)="buyDiscountWhiteList()">{{ 'lootbox.buttonDiscount1' | translate }}{{discount}}%{{ 'lootbox.buttonDiscount2' | translate }}</button>

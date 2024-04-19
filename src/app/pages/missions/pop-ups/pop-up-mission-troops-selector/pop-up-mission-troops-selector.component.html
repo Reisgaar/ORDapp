@@ -1,0 +1,110 @@
+<div class="close">
+  <p class="text">{{'missions.buttons.selectTroops' | translate}}<span class="button" (click)="closePopUp()">X</span></p>
+</div>
+
+<div class="selector">
+  <div *ngIf="dataIsLoaded === false" class="spinner">
+    <mat-spinner [diameter]="100" [strokeWidth]="5"></mat-spinner>
+  </div>
+  <ng-container *ngIf="dataIsLoaded === true">
+    <div class="main" *ngIf="step === 0">
+      <p class="tip">{{'missions.missions.selectTroops' | translate}}</p>
+      <div class="slots">
+        <div class="slot" *ngFor="let num of loopArray">
+          <div *ngIf="selection.soldiers[num] < 0 || selection.equipments[num] < 0; else selected" class="add" (click)="startSelection(num)">
+            <div class="line vertical"></div>
+            <div class="line horizontal"></div>
+          </div>
+          <ng-template #selected>
+            <div class="added">
+              <div class="soldier">
+                <img class="image" src="assets/images/missions/icons/soldier.svg" alt="soldier icon" />
+                <p class="number">{{selection.soldiers[num] + 1}}</p>
+              </div>
+              <div class="energy">
+                <img class="image" src="assets/images/missions/icons/energy.svg" alt="energy icon" />
+                <span class="value">{{userSoldiers[selection.soldiers[num]].energyPoints}}/10</span>
+              </div>
+              <div class="equipment">
+                <p class="name">Equipment {{selection.equipments[num] + 1}}</p>
+                <p class="value">{{userEquipments[selection.equipments[num]].probability}} %</p>
+              </div>
+            </div>
+            <div class="buttons" (click)="startSelection(num)">
+              <img class="icon" src="assets/images/missions/icons/replace.svg" alt="replace icon" />
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div class="vehicles" *ngIf="userVehiclesAvailable.includes(true)">
+        <p class="tip">{{'missions.missions.selectShip' | translate}}</p>
+        <div class="checkboxes">
+          <div (click)="selectVehicle(-1)">
+            <div class="checkbox" [class.checked]="selection.vehicle === -1"><div></div></div>
+            <span>{{'missions.missions.none' | translate}}</span>
+          </div>
+          <ng-container *ngFor="let type of userVehiclesAvailable; let i = index">
+            <div *ngIf="type === true" (click)="selectVehicle(i)">
+              <div class="checkbox" [class.checked]="selection.vehicle === i"><div></div></div>
+              <span>{{'missions.missions.vehicle' + i | translate}}</span>
+            </div>
+          </ng-container>
+        </div>
+        <p class="tip" style="text-align: center;">
+          <span *ngIf="selection.vehicle === -1">Actual duration: {{data.mission.duration | timeToDhms}}</span>
+          <span *ngIf="selection.vehicle > -1">Actual duration: {{(data.mission.duration - (data.mission.duration * (vehiclesTimeReduction[selection.vehicle] / 100))) | timeToDhms}}</span>
+        </p>
+      </div>
+      <div class="buttons">
+        <p class="button disabled" *ngIf="selection.soldiers.includes(-1)">{{'missions.missions.selectAllSoldiers' | translate}}</p>
+        <p class="button" *ngIf="!selection.soldiers.includes(-1)" (click)="sendData(i)">{{'missions.missions.sendOnMission' | translate}}</p>
+      </div>
+    </div>
+    <div class="soldiers" *ngIf="step === 1">
+      <ng-container *ngFor="let sol of userSoldiers; let i = index">
+        <div class="slot" *ngIf="sol.isRecruited === true && sol.status > 0" [class.unavailable]="selection.soldiers.includes(i) || sol.energyPoints < data.mission.consequences.soldierFatigue || sol.status > 1">
+          <div class="soldier">
+            <img class="image" src="assets/images/missions/icons/soldier.svg" alt="soldier icon" />
+            <p class="number">{{i + 1}}</p>
+          </div>
+          <div class="energy">
+            <img class="image" src="assets/images/missions/icons/energy.svg" alt="energy icon" />
+            <span class="value">{{sol.energyPoints}}/10</span>
+          </div>
+          <div class="buttons">
+            <p class="button disabled" *ngIf="sol.status === 2">{{'missions.missions.resting' | translate}}</p>
+            <p class="button disabled" *ngIf="sol.status === 3">{{'missions.missions.onMission' | translate}}</p>
+            <ng-container *ngIf="sol.status === 1">
+              <p class="button disabled" *ngIf="sol.energyPoints < data.mission.consequences.soldierFatigue">{{'missions.missions.tired' | translate}}</p>
+              <p class="button disabled" *ngIf="selection.soldiers.includes(i)">{{'missions.missions.selected' | translate}}</p>
+              <p class="button" *ngIf="!selection.soldiers.includes(i) && sol.energyPoints >= data.mission.consequences.soldierFatigue" (click)="selectSoldier(i)">{{'missions.missions.select' | translate}}</p>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="equipments" *ngIf="step === 2">
+      <ng-container *ngFor="let eq of userEquipments; let i = index">
+        <div class="equipment" [class.unavailable]="selection.equipments.includes(i) || eq.isInRepair === true || eq.isInUse === true || userEquipmentsDurabilities[i] < data.mission.consequences.itemUsage">
+          <div class="info">
+            <p class="name">{{'missions.missions.equipment' | translate}}</p>
+            <p class="value">{{i + 1}}</p>
+          </div>
+          <div class="info">
+            <p class="name">{{'missions.missions.protection' | translate}}</p>
+            <p class="value">{{userEquipments[i].probability}}%</p>
+          </div>
+          <div class="buttons">
+            <p class="button disabled" *ngIf="selection.equipments.includes(i)">{{'missions.missions.selected' | translate}}</p>
+            <p class="button disabled" *ngIf="eq.isInRepair === true">{{'missions.missions.inRepair' | translate}}</p>
+            <p class="button disabled" *ngIf="eq.isInUse === true">{{'missions.missions.onMission' | translate}}</p>
+            <ng-container *ngIf="!selection.equipments.includes(i) && eq.isInRepair === false && eq.isInUse === false">
+              <p class="button disabled" *ngIf="userEquipmentsDurabilities[i] < data.mission.consequences.itemUsage">{{'missions.missions.toRepair' | translate}}</p>
+              <p class="button" *ngIf="userEquipmentsDurabilities[i] >= data.mission.consequences.itemUsage" (click)="selectEquipment(i)">{{'missions.missions.select' | translate}}</p>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

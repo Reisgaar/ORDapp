@@ -208,7 +208,7 @@ export class CraftingCardComponent implements OnInit, OnDestroy {
       elementToSend = 0;
     }
     const stepMaterials = this.materialCost[this.itemData.item]['t' + this.itemData.tier]['step' + this.step];
-    await this.craftingCreationService.startCrafting(stepMaterials, this.pool, this.itemData.type, itemId, this.tier, elementToSend).then( () => {
+    await this.craftingCreationService.startCrafting(stepMaterials, this.pool, this.itemData.type, itemId, this.tier, elementToSend, this.discounts.cost).then( () => {
       this.getPoolData();
     });
   }
@@ -218,7 +218,7 @@ export class CraftingCardComponent implements OnInit, OnDestroy {
    */
   async startStyling(): Promise<any> {
     const stepMaterials = this.materialCost[this.itemData.item]['t' + this.itemData.tier]['step' + this.step];
-    await this.craftingStylingService.startStyling(stepMaterials, this.pool, this.step2Array, this.itemData.tier, this.step2AddOnAmount).then( () => {
+    await this.craftingStylingService.startStyling(stepMaterials, this.pool, this.step2Array, this.itemData.tier, this.step2AddOnAmount, this.discounts.cost).then( () => {
       this.getPoolData();
     });
   }
@@ -228,7 +228,7 @@ export class CraftingCardComponent implements OnInit, OnDestroy {
    */
   async startAssembly(): Promise<any> {
     const stepMaterials = this.materialCost[this.itemData.item]['t' + this.itemData.tier]['step' + this.step];
-    await this.craftingAssemblyService.startAssembly(stepMaterials, this.pool, this.step3Booster, this.itemData.tier).then( () => {
+    await this.craftingAssemblyService.startAssembly(stepMaterials, this.pool, this.step3Booster, this.itemData.tier, this.discounts.cost).then( () => {
       this.getPoolData();
     });}
 

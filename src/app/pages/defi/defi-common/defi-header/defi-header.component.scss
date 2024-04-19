@@ -81,6 +81,7 @@ height: auto;
       bottom: 0;
 
       .btn-header {
+        cursor: pointer;
         padding: 0.5rem;
         color: $blue-extra-light;
         font-weight: 500;
@@ -92,7 +93,7 @@ height: auto;
         &:hover {
           color: $white;
           font-weight: 700;
-          background: $green-light;
+          background: $blue-light;
           padding: 0.7rem 0.5rem 0.5rem 0.5rem;
           transition: all 300ms;
         }

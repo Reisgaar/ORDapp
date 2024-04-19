@@ -13,9 +13,7 @@
 </div>
 
 <ng-template #progressBar>
-  <div class="progress-bar">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </div>
+
 </ng-template>
 
 <div class="foundry">
@@ -38,10 +36,18 @@
           <img src="assets/images/crafting/foundry/founderW.png" alt="Weapon founder image" />
         </div>
         <div class="text">
-          <p>{{'foundry.select5Weapons' | translate}}</p>
+          <p>{{('foundry.select5Weapons' | translate).replace('***', burneableNFTMaxAmount)}}</p>
           <p>{{'foundry.nftsWillBeBurned' | translate}}</p>
           <div class="buttons">
-            <span *ngIf="nftListLoaded; else progressBar" class="button" (click)="openWeaponSelection()">{{'foundry.selectNFT' | translate}}</span>
+            <span *ngIf="walletIsConnected === false" class="button" (click)="connectWallet()">{{'foundry.connect' | translate}}</span>
+            <ng-container *ngIf="walletIsConnected === true" class="button">
+              <div *ngIf="nftListLoaded === false;" class="progress-bar"><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+              <ng-container *ngIf="nftListLoaded == true">
+                <span *ngIf="!poolAvailability.includes(true)" class="button disabled">{{'foundry.noPoolsAvailable' | translate}}</span>
+                <span *ngIf="poolAvailability.includes(true) && userWeapons.length > 0" class="button" (click)="openWeaponSelection()">{{'foundry.selectNFT' | translate}}</span>
+                <span *ngIf="poolAvailability.includes(true) && userWeapons.length === 0" class="button" (click)="openGetNFTsDialog()">{{'foundry.getWeapons' | translate}}</span>
+              </ng-container>
+            </ng-container>
           </div>
         </div>
       </div>
@@ -80,10 +86,18 @@
           <img src="assets/images/crafting/foundry/founderA.png" alt="Weapon founder image" />
         </div>
         <div class="text">
-          <p>{{'foundry.select5Armors' | translate}}</p>
+          <p>{{('foundry.select5Armors' | translate).replace('***', burneableNFTMaxAmount)}}</p>
           <p>{{'foundry.nftsWillBeBurned' | translate}}</p>
           <div class="buttons">
-            <span *ngIf="nftListLoaded; else progressBar" class="button" (click)="openArmorSelection()">{{'foundry.selectNFT' | translate}}</span>
+            <span *ngIf="walletIsConnected === false" class="button" (click)="connectWallet()">{{'foundry.connect' | translate}}</span>
+            <ng-container *ngIf="walletIsConnected === true" class="button">
+              <div *ngIf="nftListLoaded === false;" class="progress-bar"><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+              <ng-container *ngIf="nftListLoaded == true">
+                <span *ngIf="!poolAvailability.includes(true)" class="button disabled">{{'foundry.noPoolsAvailable' | translate}}</span>
+                <span *ngIf="poolAvailability.includes(true) && userArmors.length > 0" class="button" (click)="openArmorSelection()">{{'foundry.selectNFT' | translate}}</span>
+                <span *ngIf="poolAvailability.includes(true) && userArmors.length === 0" class="button" (click)="openGetNFTsDialog()">{{'foundry.getArmors' | translate}}</span>
+              </ng-container>
+            </ng-container>
           </div>
         </div>
       </div>
@@ -124,6 +138,17 @@
       <div class="text">Id: {{sn.tokenId}}</div>
       <div class="text">Tier {{sn.tier | slice:(sn.tier.length - 1)}}</div>
       <div class="text">{{'nft.rarity.' + (sn.rarity | lowercase) | translate}}</div>
+    </div>
+    <div class="rewards">
+      <span>{{'foundry.youWillReceive' | translate}}:</span>
+      <div class="rewards-list">
+        <ng-container *ngFor="let nft of materialRewards | keyvalue">
+          <div class="reward" *ngIf="nft.value > 0">
+            <img class="image" src="assets/images/crafting/materials/{{nft.key | lowercase}}.png" alt="{{nft.key}} image" />
+            <span>{{(nft.key | materialToTicker) + ': ' + nft.value}}</span>
+          </div>
+        </ng-container>
+      </div>
     </div>
     <div class="buttons">
       <button class="button" (click)="sendNFTsToPool()">{{'foundry.send' | translate}}</button>

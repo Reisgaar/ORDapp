@@ -1,0 +1,160 @@
+@import '/src/styleVariables.scss';
+
+.close {
+  font-family: 'magistral', sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding-right: 50px;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+
+.spinner {
+    padding: 2rem;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 0 5px;
+  border-bottom: 1px solid white;
+
+  &-option {
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+
+    .icon {
+      height: 15px;
+      width: 15px;
+      object-fit: contain;
+      padding: 2px;
+    }
+    
+    p {
+      width: 15px;
+      text-align: center;
+      
+      &.category {
+        cursor: default;
+        margin: 0 10px;
+        width: max-content;
+      }
+    }
+    
+    .icon, p {
+      cursor: pointer;
+      margin: 0 5px;
+      border: 1px solid transparent;
+    
+      &.selected {
+        border: 1px solid $pink;
+      }
+    }
+  }
+}
+
+.selector {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  max-height: 60vh;
+  max-width: 60vw;
+  overflow: auto;
+
+  .no-items {
+    font-size: 1.2rem;
+    margin: 2rem 0 1rem;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $blue-extra-dark;
+    margin: 25px auto 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $blue-light;
+  }
+
+  .item {
+    cursor: pointer;
+    position: relative;
+    border: 1px solid $blue-medium;
+    border-radius: 7px;
+    margin: 10px;
+    overflow: hidden;
+
+    &:hover {
+      background: radial-gradient($white-transparent-25, transparent 50%);
+      border-color: $pink;
+    }
+
+    .image {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+    }
+
+    .text {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
+      margin: 0;
+
+      span {
+        font-size: 0.7rem;
+        font-weight: 300;
+      }
+    }
+
+    .tier {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+
+    .rarity {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      width: 15px;
+      height: 15px;
+      object-fit: contain;
+    }
+  }
+}

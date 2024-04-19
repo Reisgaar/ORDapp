@@ -32,6 +32,11 @@ export class BridgeService {
    * @returns
    */
   async sendTokenToGame(receiver: string, tokenAddress: string, tokenTicker: string, tokenAmount: string): Promise<any> {
+    // Just fix for testnet
+    if (environment.network === 'testnet') {
+      tokenAddress = contractAddresses.gqBridge;
+    }
+    //
     console.log('Sending', tokenAmount, ' ', tokenTicker, '(', tokenAddress, ') to BG');
     // The price has to be on WEI
     const tokenAmountWei = this.connectionService.toWei(tokenAmount);
@@ -87,6 +92,11 @@ export class BridgeService {
    * @returns
    */
   async redeemTokens(receiver: string, dialog: any, tokenAddress: string, tokenTicker: string, tokenAmount: string, tokenAmountWei: string): Promise<any> {
+    // Just fix for testnet
+    if (environment.network === 'testnet') {
+      tokenAddress = contractAddresses.gqBridge;
+    }
+    //
     try {
       const deadline = Math.ceil(Date.now() / 1000) + 600;
       // Get the user signature
@@ -120,7 +130,11 @@ export class BridgeService {
    * @param deadline
    * @returns
    */
-  async sign(receiver: string, tokenAddress: string, amountToRedeem: string, deadline: any): Promise<any> {
+  async sign(receiver: string, tokenAddress: string, amountToRedeem: string, deadline: any): Promise<any> {// Just fix for testnet
+    if (environment.network === 'testnet') {
+      tokenAddress = contractAddresses.gqBridge;
+    }
+    //
     // Set the domain
     const domain = {
       name: 'Blockchain Bridge',

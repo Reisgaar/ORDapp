@@ -197,7 +197,6 @@ export class PoolCardComponent implements OnInit, OnDestroy {
         res.firstDeposit
         ? this.firstDeposit = res.firstDeposit
         : this.firstDeposit = '0';
-        console.log('firstDeposit', this.firstDeposit);
       });
 
       await this.dexService.getPendingRewards(this.pool.pool, this.userAccount, this.pool.type, this.pool.rewardToken[0].address, this.pool.rewardToken[1]?.address).then((res:any) => {
@@ -219,7 +218,6 @@ export class PoolCardComponent implements OnInit, OnDestroy {
     if(parseFloat(this.firstDeposit) > 0){
     this.dateToWithdraw = (parseInt(this.firstDeposit) + parseInt(this.lockupDuration)) * 1000;
     if (this.dateToWithdraw / 1000 < this.today ) {
-      console.log(this.dateToWithdraw / 1000 < this.today);
       this.canWithdraw = true;
     }
 

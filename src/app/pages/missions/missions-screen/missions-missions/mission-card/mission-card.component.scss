@@ -1,0 +1,263 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.card {
+  border: 1px solid $blue-medium;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 250px;
+
+  &.disabled {
+    border: 1px solid #7b7b7b;
+    
+    .head {
+      background-color: #7b7b7b;
+      filter: saturate(0.3);
+    }
+  }
+
+  &.ongoing {
+    border: 1px solid $red;
+    
+    .head {
+      background-color: $red;
+    }
+
+    &.finished {
+      border: 1px solid $green;
+      
+      .head {
+        background-color: $green;
+      }
+    }
+  }
+
+  .icon {
+    height: 15px;
+    width: 15px;
+  }
+
+  .head, .requirements, .consequences, .rewards, .buttons {
+    padding: 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  .head {
+    background-color: $blue-medium;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    gap: 10px;
+
+    p {
+      margin: 0;
+    }
+
+    .level {
+      align-self: center;
+    }
+
+    .name {
+      align-self: center;
+      text-transform: uppercase;
+      font-family: $magistral !important;
+      font-size: 1rem;
+    }
+
+    .duration {
+      align-self: center;
+      border-left: 1px solid $white;
+      padding-left: 5px;
+
+      .icon {
+
+      }
+
+      .value {
+
+      }
+    }
+  }
+
+  .info {
+    position: relative;
+
+    .background {
+      position: absolute;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+
+      .image, .gradient {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+      }
+
+      .image {
+        object-fit: cover;
+        height: 80%;
+      }
+
+      .gradient {
+        background: linear-gradient(to top, $black 30%, transparent 60%, transparent 80%, $black 100%);
+      }
+    }
+
+    .requirements {
+      filter: drop-shadow(1px 1px 2px black);
+      
+      &-wrapper {
+        display: flex;
+        flex-flow: nowrap;
+        justify-content: center;
+      }
+      
+      .title {
+        margin: 0;
+        text-align: center;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+
+      .requirement {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        padding: 0 10px;
+        border-right: 1px solid white;
+
+        &.missing {
+          color: $red-error;
+          text-shadow: 0px 0px 5px black;
+          font-weight: 500;
+        }
+
+        &:last-child {
+          border: unset;
+        }
+        
+        .value {
+          margin: 0;
+          font-family: $magistral !important;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .consequences {
+      display: block;
+      padding: 0;
+      width: max-content;
+      margin-bottom: 2rem;
+
+      .consequence {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 0 10px;
+        background: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        margin: 5px 0;
+        
+        &:last-child {
+          background: linear-gradient(to right, transparent, red 20%, red 80%, transparent);
+        }
+
+        .icon {
+          padding: 3px;
+        }
+
+        .value {
+          margin: 0;
+          font-family: $magistral !important;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .rewards {
+      filter: drop-shadow(1px 1px 2px black);
+      
+      &-wrapper {
+        display: flex;
+        flex-flow: nowrap;
+        justify-content: center;
+      }
+      
+      .title {
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+
+        span {
+          border-image: linear-gradient(to right, transparent -10%, $white, transparent 110%) 100% 1;
+          border-width: 0 0 2px 0;
+          border-style: solid;
+          padding: 0 1rem;
+        }
+      }
+
+      .reward {
+        display: flex;
+        gap: 3px;
+        align-items: center;
+        padding: 0 10px;
+        border-right: 1px solid $white;
+
+        &:last-child {
+          border: unset;
+        }
+        
+        .value {
+          margin: 0;
+          font-family: $magistral !important;
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    .buttons {
+
+      .button {
+        margin: 0 auto;
+        text-transform: uppercase;
+
+        &.finish {
+          background-color: $green;
+        }
+      }
+
+      .countdown {
+        position: relative;
+        background-color: $red;
+        margin: 0 auto;
+        text-transform: uppercase;
+        border-radius: 5px;
+        padding: 3px 10px;
+        width: max-content;
+        height: max-content;
+        min-width: 5rem;
+        text-align: center;
+
+        .accelerate {
+          cursor: pointer;
+          position: absolute;
+          left: 100%;
+          top: 50%;
+          transform: translateY(-50%);
+          margin: 0 5px;
+          background-color: #cb8300;
+          border-radius: 7px;
+          margin: 0 5px;
+          padding: 2px 6px;
+          height: 18px;
+          width: 20px;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

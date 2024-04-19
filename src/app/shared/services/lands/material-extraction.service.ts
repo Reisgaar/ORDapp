@@ -138,6 +138,16 @@ export class MaterialExtractionService {
   }
 
   /**
+   * Gets the staked top land size
+   * @returns string with the size
+   */
+  async getUserTopLandSize(): Promise<string> {
+    const userAddr = this.connectionService.getWalletAddress();
+    const topSize = await this.connectionService.readContract(contractAddresses.landStaking, LandStaking.abi, 'getUserTopLandSize', [userAddr]);
+    return topSize;
+  }
+
+  /**
    * Get material cost and time reductions for connected wallet
    * @returns cost and time reductions
    */

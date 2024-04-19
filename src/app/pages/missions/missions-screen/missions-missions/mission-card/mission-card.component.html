@@ -1,0 +1,82 @@
+<div class="card"
+  [class.ongoing]="ongoing === true"
+  [class.finished]="(endTime | timeStampIsPast) === false"
+  [class.disabled]="userResources.militaryLevel < mission.requirements.militaryLevel
+                 || userResources.numSoldiers < mission.requirements.numSoldiers
+                 || userResources.food < mission.requirements.food
+                 || userResources.fuel < mission.requirements.fuel"
+>
+  <div class="head">
+    <img class="level" src="assets/images/missions/icons/{{mission.level}}.svg" alt="Level {{mission.level}} icon" />
+    <p class="name">{{mission.name}}</p>
+    <div class="duration">
+      <img class="icon" src="assets/images/missions/icons/clock.svg" alt="Clock icon" />
+      <p class="value">{{mission.duration / 60 / 60 / 24 | number:'1.0-1'}} {{'missions.missions.day' | translate}}<span *ngIf="mission.duration / 60 / 60 / 24 > 1">{{'missions.missions.days' | translate}}</span></p>
+    </div>
+  </div>
+  <div class="info">
+    <div class="background">
+      <img class="image" src="assets/images/missions/images/{{mission.level}}_{{mission.missionId}}.png" alt="0 mission image" />
+      <div class="gradient"></div>
+    </div>
+    <div class="requirements">
+      <p class="title">{{'missions.missions.requirements' | translate}}</p>
+      <div class="requirements-wrapper">
+        <ng-container *ngFor="let req of mission.requirements | keyvalue">
+          <div class="requirement" *ngIf="req.value > 0" [class.missing]="req.value > userResources[req.key]">
+            <img class="icon" *ngIf="(req.key | lowercase) === 'militarylevel'" src="assets/images/missions/icons/rank.svg" alt="{{req.key}} icon" />
+            <img class="icon" *ngIf="(req.key | lowercase) === 'numsoldiers'" src="assets/images/missions/icons/soldiers.svg" alt="{{req.key}} icon" />
+            <img class="icon" *ngIf="(req.key | lowercase) !== 'militarylevel' && (req.key | lowercase) !== 'numsoldiers'" src="assets/images/missions/icons/{{req.key}}.svg" alt="{{req.key}} icon" />
+            <p class="value">{{req.value}}</p>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="consequences">
+      <div class="consequence">
+        <img class="icon" src="assets/images/missions/icons/soldierFatigue.svg" alt="Soldier fatigue icon" />
+        <p class="value">{{mission.consequences.soldierFatigue}}</p>
+      </div>
+      <div class="consequence">
+        <img class="icon" src="assets/images/missions/icons/itemUsage.svg" alt="Item usage icon" />
+        <p class="value">{{mission.consequences.itemUsage}}</p>
+      </div>
+      <div class="consequence">
+        <img class="icon" src="assets/images/missions/icons/deathProbability.svg" alt="Death probability icon" />
+        <p class="value">{{mission.consequences.deathProbability / 1000}}%</p>
+      </div>
+    </div>
+    <div class="rewards">
+      <p class="title"><span>{{'missions.missions.rewards' | translate}}</span></p>
+      <div class="rewards-wrapper">
+        <ng-container *ngFor="let rew of mission.rewards | keyvalue">
+          <div class="reward" *ngIf="rew.value > 0">
+            <img class="icon" *ngIf="(rew.key | lowercase) === 'militarylevel'" src="assets/images/missions/icons/rank.svg" alt="{{rew.key}} icon" />
+            <img class="icon" *ngIf="(rew.key | lowercase) !== 'militarylevel'" src="assets/images/missions/icons/{{rew.key}}.svg" alt="{{rew.key}} icon" />
+            <p class="value">{{rew.value}}</p>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="buttons">
+      <ng-container *ngIf="ongoing === false">
+        <p class="button disabled" *ngIf="userResources.militaryLevel < mission.requirements.militaryLevel
+        || userResources.numSoldiers < mission.requirements.numSoldiers
+        || userResources.food < mission.requirements.food
+        || userResources.fuel < mission.requirements.fuel; else sendTroops">{{'missions.buttons.unavailable' | translate}}</p>
+        <ng-template #sendTroops>
+          <p class="button" (click)="startMission()">{{'missions.buttons.selectTroops' | translate}}</p>
+        </ng-template>
+      </ng-container>
+      <ng-container *ngIf="ongoing === true">
+        <div class="countdown" *ngIf="(endTime | timeStampIsPast) === true">
+          <app-countdown [end]="endTime" (countdownEndedEvent)="receiveCounterData($event)"></app-countdown>
+          <mat-icon class="accelerate" (click)="skipMissionTime()">fast_forward</mat-icon>
+        </div>
+        <ng-container *ngIf="(endTime | timeStampIsPast) === false">
+          <p class="button finish" (click)="endMission()">{{'missions.buttons.endMission' | translate}}</p>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

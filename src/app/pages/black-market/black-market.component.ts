@@ -27,7 +27,7 @@ export class BlackMarketComponent implements OnInit, OnDestroy {
   matsPerPage: number = 12;
   paginationPage: number = 0;
   totalPages: number = 1;
-  salesAreLoaded: boolean = false;;
+  salesAreLoaded: boolean = false;
 
   constructor(
     private connectionService: ConnectionService,
@@ -138,5 +138,6 @@ export class BlackMarketComponent implements OnInit, OnDestroy {
   setItemsPerPage(itemAmount: number): void {
     this.matsPerPage = itemAmount;
     this.setTotalPages();
+    this.paginationPage = this.paginationPage <= this.totalPages ? this.paginationPage : this.totalPages;
   }
 }

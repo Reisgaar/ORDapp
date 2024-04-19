@@ -7,6 +7,7 @@
   margin: 10px 0;
   min-height: 125px;
   display: grid;
+  backdrop-filter: blur(2px);
 
   &-grid {
     grid-template-columns: max-content minmax(150px, 1fr) minmax(400px, 3fr) 150px;
@@ -21,12 +22,19 @@
     .nft-image {
       grid-column: 1;
       line-height: 0;
+      border-radius: 100%;
+      background: #3f427b;
+      border: 2px solid $blue-dark;
+      width: 70px;
+      height: 70px;
+      filter: drop-shadow(2px 4px 6px $black);
 
       .image {
-        width: 70px;
-        height: 70px;
+        width: calc(100% + 10px);
+        transform: translate(-5px, -10px) scaleX(-1);
         object-fit: contain;
         border-radius: 7px;
+        border-radius: 0 0 100% 100%;
       }
     }
 
@@ -57,7 +65,7 @@
 
       &::-webkit-scrollbar-track {
         background-color: $blue-extra-dark;
-        margin: 0 auto;
+        margin: 10px auto;
       }
 
       &::-webkit-scrollbar-thumb {
@@ -100,7 +108,7 @@
           }
 
           span {
-            padding-left: 15px;
+            padding-left: 5px;
             align-self: center;
             width: max-content;
             text-shadow: 0px 0px 1px #000000;
@@ -241,7 +249,6 @@
   &.unlock {
     border-color: $red;
     background-color: $red-transparent;
-    backdrop-filter: blur(5px);
     padding: 10px;
 
     .button {
@@ -312,11 +319,6 @@
       .nft-image {
         grid-column: 1;
         grid-row: 1;
-
-        .image {
-          width: 100px;
-          height: 100px;
-        }
       }
 
       .info {

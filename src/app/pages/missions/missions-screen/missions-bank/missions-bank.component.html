@@ -1,0 +1,108 @@
+<div *ngIf="dataIsLoaded === false" class="spinner">
+  <mat-spinner [diameter]="250" [strokeWidth]="10"></mat-spinner>
+</div>
+
+<div class="content" *ngIf="dataIsLoaded === true">
+  <h1 class="title">{{'missions.bank.name' | translate}}</h1>
+  <div class="countdown" *ngIf="(userWindowStart | timeStampIsPast) === true">
+    <p class="text">{{'missions.bank.opens' | translate}}</p>
+    <p>{{userWindowStart + '000' | date: 'MMM d, y, h:mm:ss a'}}</p>
+    <div style="display: none;"><app-countdown [end]="userWindowStart" (countdownEndedEvent)="receiveCounterData($event)"></app-countdown></div>
+  </div>
+  <div class="reroll" *ngIf="(userWindowStart | timeStampIsPast) === true">
+    <p class="text">{{'missions.bank.rerollText1' | translate}}</p>
+    <div class="options">
+      <p class="option" *ngFor="let time of windowDurations">
+        <span>{{time / 60 / 60 / 24}} </span>
+        <span *ngIf="(time / 60 / 60 / 24) <= 1">{{'missions.bank.day' | translate}}</span>
+        <span *ngIf="(time / 60 / 60 / 24) > 1">{{'missions.bank.days' | translate}}</span>
+      </p>
+    </div>
+    <p class="text">{{'missions.bank.rerollText2' | translate}}</p>
+    <p class="button" (click)="rerollWindow()">{{'missions.bank.reroll' | translate}}</p>
+  </div>
+  <div class="countdown open" *ngIf="(userWindowStart | timeStampIsPast) === false">
+    <p class="text">{{'missions.bank.open' | translate}}</p>
+  </div>
+  <div class="prices">
+    <div class="token">
+      <img class="icon" src="assets/images/missions/icons/gq.svg" alt="GQ icon" />
+      <p>
+        <span class="name">{{'missions.bank.gqPrice' | translate}}</span>
+        <span class="value">{{gqPrice | number:'1.0-4'}} $</span>
+      </p>
+    </div>
+    <div class="token">
+      <img class="icon" src="assets/images/missions/icons/treasures.svg" alt="GQ icon" />
+      <p>
+        <span class="name">{{'missions.bank.treasuresPrice' | translate}}</span>
+        <span class="value">{{treasureGqExchangeRate | number:'1.0-4'}} GQ</span>
+      </p>
+    </div>
+  </div>
+  <div class="prices">
+    <div class="token">
+      <img class="icon" src="assets/images/missions/icons/treasures.svg" alt="GQ icon" />
+      <p>
+        <span class="name">{{'missions.bank.dailyLimiy' | translate}}</span>
+        <span class="value">{{maxTreasureAmountPerWindow | number:'1.0-4'}}</span>
+      </p>
+    </div>
+  </div>
+  <div class="exchange" [class.disabled]="(userWindowStart | timeStampIsPast) === true">
+    <div class="headline">
+      <h3>{{'missions.bank.exchangeWindow' | translate}}</h3>
+      <p>{{'missions.bank.exchangeWindowText' | translate}}</p>
+    </div>
+    <div class="interaction box">
+      <div class="balance">
+        <span class="name">{{'missions.bank.yourTreasuresBalance' | translate}}</span>
+        <div class="value">
+          <p class="number">{{userTreasuresAmount | number:'1.0-4'}}</p>
+          <img class="icon" src="assets/images/missions/icons/treasures.svg" alt="Treasures icon" />
+        </div>
+      </div>
+      <div class="amount">
+        <span class="name">{{'missions.bank.exchangeAmount' | translate}}</span>
+        <div class="value">
+          <div class="input">
+            <input type="text"
+            class="input-field"
+            id="treasuresAmount"
+            name="treasuresAmount"
+            autocomplete="off"
+            inputmode="decimal"
+            placeholder="0"
+            pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+            value="0"
+            [(ngModel)]="amountToExchange"
+            (keypress)="controlInput($event)"
+            (input)="validateAmount()"
+            />
+            
+          </div>
+          <p class="button" (click)="setInputMaxAmount()">max.</p>
+        </div>
+      </div>
+      <div class="conversion">
+        <span class="name">{{'missions.bank.exchangeApprox' | translate}}</span>
+        <div class="value" *ngIf="balanceError === false && maxPerWindowError === false">
+          <p class="number">{{treasureGqExchangeRate * amountToExchange | number:'1.0-4'}}</p>
+          <img class="icon" src="assets/images/missions/icons/gq.svg" alt="GQ icon" />
+        </div>
+        <p class="error" *ngIf="balanceError === true || maxPerWindowError === true">
+          <span *ngIf="balanceError === true && maxPerWindowError === false">{{'missions.bank.balanceError' | translate}}</span>
+          <span *ngIf="maxPerWindowError === true && balanceError === false">{{'missions.bank.maxPerWindowError' | translate}}</span>
+          <span *ngIf="maxPerWindowError === true && balanceError === true">{{'missions.bank.bothErrors' | translate}}</span>
+        </p>
+      </div>
+      <div class="buttons">
+        <p class="button disabled" *ngIf="balanceError === true">{{'missions.buttons.exchange' | translate}}</p>
+        <p class="button" *ngIf="balanceError === false" (click)="exchangeTreasures()">{{'missions.buttons.exchange' | translate}}</p>
+      </div>
+    </div>
+    <div class="fee">
+      <p class="text">{{('missions.bank.fee' | translate).replace('***', exchangeFee)}}</p>
+    </div>
+  </div>
+</div>

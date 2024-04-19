@@ -59,7 +59,7 @@
 <ng-template #emptyPool>
   <div class="item empty">
     <p class="title">{{'foundry.card.poolEmpty' | translate}}</p>
-    <div class="capacity">
+    <div class="capacity" *ngIf="poolData">
       <p>{{'foundry.card.capacity' | translate}}: {{poolData.isUpgraded === true ? 3 : 1}}</p>
       <p *ngIf="poolData.isUpgraded === false" class="button" (click)="upgradePool(pool)">{{'foundry.card.upgrade' | translate}}</p>
     </div>

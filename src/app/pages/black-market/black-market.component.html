@@ -9,13 +9,22 @@
       <h1 class="title" [innerHTML]="'blackMarket.home.title_html' | translate"></h1>
       <p class="subtitle">{{'blackMarket.home.subtitle1' | translate}}</p>
       <p class="subtitle">{{'blackMarket.home.subtitle2' | translate}}</p>
-      <p class="subtitle">{{'blackMarket.home.subtitle3' | translate}}</p>
     </div>
   </div>
 
   <div class="market">
+    <div style="margin: 10px 0 100px;">
+      <app-black-market-statistics></app-black-market-statistics>
+    </div>
     <h2 class="title">{{'blackMarket.name' | translate}}</h2>
     <app-black-market-sale-creator [walletIsConnected]="walletIsConnected"></app-black-market-sale-creator>
+  </div>
+</div>
+<div class="decimals">
+  <p>{{'blackMarket.sales.decimals' | translate}}</p>
+</div>
+<div class="black-market">
+  <div class="market">
     <div class="sales">
       <div class="tabs">
         <p class="tab" [class.active]="selectedTab === 0" (click)="setSelectedTab(0)">{{'blackMarket.sales.allSales' | translate}}</p>

@@ -1,0 +1,20 @@
+<div *ngIf="dataIsProcessed" class="grid">
+  <div class="data">
+    <p class="value">{{finishedSales | number:'1.0-0'}}</p>
+    <p class="name">{{'blackMarket.salesCompleted' | translate}}</p>
+  </div>
+  <div class="data">
+    <p class="value token">
+      <span>{{movedGQ | number:'1.0-0'}}</span>
+      <img src="assets/images/tokens/gq_mini.png" alt="GQ icon" />
+    </p>
+    <p class="name">{{'blackMarket.gqMoved' | translate}}</p>
+  </div>
+  <div class="data">
+    <p class="value token">
+      <span>{{movedMaterials | number:'1.0-0'}}</span>
+      <img class="rotatehue" src="assets/images/crafting/materials/materials.png" alt="Materials icon" />
+    </p>
+    <p class="name">{{'blackMarket.materialsSold' | translate}}</p>
+  </div>
+</div>

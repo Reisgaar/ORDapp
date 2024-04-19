@@ -1,0 +1,26 @@
+<div class="menu" *ngIf="dataIsLoaded === true">
+  <div class="resource">
+    <img class="icon" src="assets/images/missions/icons/rank.svg" alt="military rank icon" />
+    <span class="value">{{rank}}</span>
+  </div>
+  <div class="resource">
+    <img class="icon" src="assets/images/missions/icons/soldier.svg" alt="soldier icon" />
+    <span class="value">{{soldiers}}</span>
+  </div>
+  <div class="resource">
+    <img class="icon" src="assets/images/missions/icons/fuel.svg" alt="fuel icon" />
+    <span class="value">{{fuel}}</span>
+  </div>
+  <div class="resource">
+    <img class="icon" src="assets/images/missions/icons/food.svg" alt="food icon" />
+    <span class="value">{{food}}</span>
+  </div>
+  <div class="resource">
+    <img class="icon" src="assets/images/missions/icons/treasures.svg" alt="treasures icon" />
+    <span class="value">{{treasures}}</span>
+  </div>
+  <div class="resource separator">
+    <img class="icon" src="assets/images/missions/icons/gq.svg" alt="gq icon" />
+    <span class="value">{{gq | number:'1.0-4'}}</span>
+  </div>
+</div>

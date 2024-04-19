@@ -1,0 +1,55 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missions-navigation/missions-navigation.component.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.content {
+    
+  .areas {
+
+    .area {
+      display: flex;
+      border: 1px solid $blue-medium;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 550px;
+      margin: auto;
+      
+      .description {
+        position: relative;
+        width: 50%;
+        background: linear-gradient(to right, black 85%, transparent 100%);
+        padding-right: 10%;
+        margin-right: -10%;
+        display: grid;
+        grid-template-rows: repeat(3, max-content);
+        
+        .name, .text, .button {
+          margin: 1rem;
+          line-height: 1em;
+        }
+
+        .name {
+          font-family: $magistral !important;
+          font-size: 2rem;
+          font-weight: 500;
+          text-transform: uppercase;
+        }
+        
+        .text {
+          font-size: 0.8rem;
+          font-weight: 300;
+        }
+        
+        .button {
+          text-transform: uppercase;
+          padding: 5px 10px;
+        }
+      }
+
+      .image {
+        width: 50%;
+        object-fit: contain;
+      }
+    }
+  }
+}

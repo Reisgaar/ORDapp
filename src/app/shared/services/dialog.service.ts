@@ -9,6 +9,11 @@ import { PopUpConfirmationComponent } from '../components/pop-ups/pop-up-confirm
 import { PopUpGeneralComponent } from 'src/app/pages/defi/defi-common/pop-up-general/pop-up-general.component';
 import { PopUpGetMaterialsComponent } from '../components/pop-ups/pop-up-get-materials/pop-up-get-materials.component';
 import { PopUpNumberInputComponent } from '../components/pop-ups/pop-up-number-input/pop-up-number-input.component';
+import { PopUpGetNftsComponent } from '../components/pop-ups/pop-up-get-nfts/pop-up-get-nfts.component';
+import { PopUpNftSelectorComponent } from '../components/pop-ups/pop-up-nft-selector/pop-up-nft-selector.component';
+import { PopUpRestingSoldierSelectorComponent } from 'src/app/pages/missions/pop-ups/pop-up-resting-soldier-selector/pop-up-resting-soldier-selector.component';
+import { PopUpMissionTroopsSelectorComponent } from 'src/app/pages/missions/pop-ups/pop-up-mission-troops-selector/pop-up-mission-troops-selector.component';
+import { PopUpMissionRewardsComponent } from 'src/app/pages/missions/pop-ups/pop-up-mission-rewards/pop-up-mission-rewards.component';
 
 /**
  * Service to manage some dialogs (Not added all pop ups to avoid circular dependencies)
@@ -97,11 +102,22 @@ export class DialogService {
   }
 
   /**
-   * Opens a dialog to select an specie
+   * Opens a dialog with materials getting options
    * @returns
    */
   openGetMaterialsDialog(): any {
       return this.dialog.open(PopUpGetMaterialsComponent, {
+      panelClass: 'lootbox-dialog-container',
+      autoFocus: false
+    });
+  }
+
+  /**
+   * Opens a dialog with NFT getting options
+   * @returns
+   */
+  openGetNFTsDialog(): any {
+      return this.dialog.open(PopUpGetNftsComponent, {
       panelClass: 'lootbox-dialog-container',
       autoFocus: false
     });
@@ -134,6 +150,69 @@ export class DialogService {
     return this.dialog.open(PopUpGeneralComponent, {
       panelClass: 'lootbox-dialog-container',
       data: {link}
+    });
+  }
+
+  /**
+   * Opens a dialog to select an specie
+   * @returns
+   */
+  openNFTSelectorDialog(nftContractAddress: string, userAddress: string, showTierRarityFilter: boolean, isClanShip?: boolean, armorFilter?: string): any {
+    if (isClanShip) {
+      return this.dialog.open(PopUpNftSelectorComponent, {
+        panelClass: 'lootbox-dialog-container',
+        data: { nftContractAddress, userAddress, isClanShip, showTierRarityFilter }
+      });
+    } else if (armorFilter) {
+      return this.dialog.open(PopUpNftSelectorComponent, {
+        panelClass: 'lootbox-dialog-container',
+        data: { nftContractAddress, userAddress, armorFilter, showTierRarityFilter }
+      });
+    } else {
+      return this.dialog.open(PopUpNftSelectorComponent, {
+        panelClass: 'lootbox-dialog-container',
+        data: { nftContractAddress, userAddress, showTierRarityFilter }
+      });
+    }
+  }
+
+  /**
+   * Opens a dialog to select a soldier to start resting
+   * @returns
+   */
+  openRestingSoldierSelectorDialog(soldiers: any): any {
+    return this.dialog.open(PopUpRestingSoldierSelectorComponent, {
+      panelClass: 'lootbox-dialog-container',
+      data: { soldiers }
+    });
+  }
+
+  /**
+   * Opens a dialog to select a soldiers and equipments to start mission
+   * @returns
+   */
+  openSoldierEquipmentMissionSelection(mission: any): any {
+    return this.dialog.open(PopUpMissionTroopsSelectorComponent, {
+      panelClass: 'lootbox-dialog-container',
+      data: { mission }
+    });
+  }
+
+  /**
+   * Opens an standard dialog valid to multiple messages
+   * @param title : the title to show on the pop up
+   * @param text : the text to show on the pop up
+   * @param detail : the detail to show on the pop up
+   * @param link : the link text
+   * @param tx : the transaction hash
+   * @param level : the level of the mission
+   * @param missionId : the id of the mission
+   * @returns : the dialog
+   */
+  openMissionRewardDialog(title: string, text: string, detail: string, link: string, tx: string, level: number, missionId: number): any {
+    return this.dialog.open(PopUpMissionRewardsComponent, {
+      panelClass: 'lootbox-dialog-container',
+      data: { title, text, detail, link, tx, level, missionId }
     });
   }
 

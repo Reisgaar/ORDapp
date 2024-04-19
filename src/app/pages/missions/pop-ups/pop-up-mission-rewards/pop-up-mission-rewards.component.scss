@@ -1,0 +1,122 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.close {
+  font-family: 'magistral', sans-serif;
+  border-bottom: 1px solid $blue-light;
+  padding-bottom: 5px;
+
+  .text {
+    position: relative;
+    text-align: left;
+    margin: -10px 0 0 0;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding-right: 50px;
+
+    .button {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      background-color: $blue-medium;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 300;
+      font-size: 0.8em;
+      line-height: 20px;
+      height: 20px;
+      width: 20px;
+      padding: 0;
+
+      &:hover {
+        background-color: $pink;
+      }
+    }
+  }
+}
+
+.message {
+
+  .text {
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .link {
+    font-weight: 300;
+    margin: 0.5rem;
+
+    a {
+      cursor: pointer;
+      color: $blue-extra-light;
+      text-decoration: underline;
+    
+      &:focus,
+      &:focus-visible,
+      &:focus-within,
+      &:active {
+        border: unset;
+        outline: unset;
+      }
+    }
+  }
+  
+  .spinner {
+    margin: 2rem auto;
+  }
+
+  .category {
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+
+    .title {
+      text-transform: uppercase;
+      margin: 0 0 0.5rem;
+      border-image: linear-gradient(to right, transparent -10%, #0088ff, transparent 110%) 100% 1;
+      border-width: 0 0 1px 0;
+      border-style: solid;
+    }
+
+    .item-wrapper {
+      display: flex;
+      flex-flow: wrap;
+      gap: 2rem;
+      justify-content: space-evenly;
+      align-items: end;
+
+      .item {
+
+        .name {
+          width: min-content;
+          word-break: normal;
+          text-transform: uppercase;
+          font-size: 0.7rem;
+          line-height: 1em;
+          margin: 0 auto;
+          font-weight: 300;
+          height: 2em;
+          display: flex;
+          align-items: center;
+        }
+
+        .icon {
+          display: inline-block;
+          vertical-align: middle;
+          width: 25px;
+          height: 25px;
+          object-fit: contain;
+        }
+
+        .value {
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0 0 0 10px;
+          font-family: $magistral !important;
+          font-size: 2.5rem;
+          line-height: 1em;
+        }
+      }
+    }
+  }
+}

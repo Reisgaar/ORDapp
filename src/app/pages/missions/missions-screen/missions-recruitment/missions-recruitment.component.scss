@@ -1,0 +1,282 @@
+@import '/src/styleVariables.scss';
+@import '/src/app/pages/missions/missionsStyleVariables.scss';
+
+.content {
+
+  .box {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 2rem;
+
+    &.ongoing {
+      opacity: 0.5;
+      background: $black;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .soldiers {
+      position: relative;
+
+      .image {
+        width: 150px;
+        object-fit: contain;
+        border-radius: 15px;
+        border: 1px solid $blue-medium;
+      }
+
+      .selector {
+        position: absolute;
+        width: 70%;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: grid;
+        grid-template-columns: max-content 1fr max-content;
+        
+        .name {
+          justify-self: center;
+          grid-column: 1/4;
+          text-transform: uppercase;
+          justify-self: center;
+          font-weight: 500;
+          font-size: 1.1rem;
+          height: 1em;
+          margin: 5px;
+        }
+
+        .icon {
+          cursor: pointer;
+          align-self: center;
+          justify-self: center;
+          height: auto;
+          width: auto;
+          font-size: 3rem;
+        }
+        
+        .number {
+          align-self: center;
+          justify-self: center;
+          font-family: $magistral !important;
+          font-size: 2.5rem;
+
+          &.no-arrow {
+            grid-column: 1 / 3;
+            padding: 1rem;
+          }
+        }
+      }
+    }
+    
+    .funding {
+      display: grid;
+      grid-template-rows: repeat(5, max-content);
+
+      h3 {
+        text-transform: uppercase;
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .description {
+        font-size: 0.8rem;
+        line-height: 1.1em;
+        font-weight: 300;
+        max-width: 15rem;
+        margin: 0;
+      }
+
+      .percentages {
+        width: max-content;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+
+        p {
+          height: max-content;
+          font-size: 0.7rem;
+          font-weight: 300;
+          line-height: 1em;
+          margin: 0;
+          padding: 5px;
+        }
+      }
+    }
+
+    .button {
+      display: flex;
+      height: 35px;
+      width: 35px;
+      justify-content: center;
+      padding: 0;
+
+      p {
+        align-self: center;
+        margin: 0;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .resume {
+    background-color: $white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: center;
+    
+    .separator {
+      background-color: $blue-medium;
+      width: 1px;
+      height: 85%;
+      align-self: center;
+      margin: 0 10px;
+    }
+    
+    .column {
+      align-self: center;
+      border-left: 1px solid $blue-medium;
+      padding: 0 1rem;
+
+      &:first-child {
+        border-left: unset;
+      }
+
+      .button {
+        margin: 0;
+      }
+      
+      .name {
+        color: $blue-medium;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        margin: 0 0 5px;
+        font-weight: 500;
+      }
+      
+      .value {
+        position: relative;
+        color: $black;
+        display: flex;
+        gap: 5px;
+        
+        .icon {
+          filter: invert(1);
+          object-fit: contain;
+        }
+        
+        p {
+          margin: 0;
+          font-family: $magistral !important;
+          font-weight: 500;
+          font-size: 2rem;
+        }
+
+        .progress {
+          position: absolute;
+          width: 100%;
+          top: 0;
+          left: 0;
+          transform: translateY(-100%);
+        }
+
+        .medium {
+          font-size: 1.5rem;
+        }
+
+        .mini {
+          padding-left: 20px;
+          font-family: $workSans !important;
+          font-size: 0.7rem;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+
+/*
+ * Responsive
+ */
+
+// Large devices
+@media (max-width: 850px) {
+  .content {
+    
+    .resume {
+      grid-template-columns: repeat(3, max-content);
+      gap: 10px 0;
+      
+      .column {
+        
+        &.buttons {
+          justify-self: center;
+          grid-column: 1/4;
+          grid-row: 1;
+          border-left: unset;
+        }
+      }
+    }
+  }
+}
+
+// Medium devices
+@media (max-width: 768px) {
+}
+
+// Small devices
+@media (max-width: 576px) {
+  .content {
+
+    .box {
+      grid-template-columns: max-content;
+
+      .soldiers {
+        position: relative;
+        width: max-content;
+        margin: auto;
+      }
+
+      .funding {
+        text-align: center;
+
+        .percentages {
+          margin: auto;
+        }
+      }
+    }
+    
+    .resume {
+      width: calc(100% - 1rem);
+      padding: 0.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px 0;
+      
+      .column {
+        padding: 0 5px;
+
+        .name {
+          font-size: 0.6rem;
+          line-height: 1em;
+        }
+
+        .value {
+
+          p {
+            font-size: 1.5rem;
+            line-height: 1em;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Extra small devices
+@media (max-width: 320px) {
+}

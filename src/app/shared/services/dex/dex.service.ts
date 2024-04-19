@@ -1148,8 +1148,8 @@ export class DexService {
           router.abi,
           'swapTokensForExactTokens',
           [
-            this.connectionService.toWei(inmax.toString()),
             this.connectionService.toWei(amountOut.toString()),
+            this.connectionService.toWei(inmax.toString()),
             [tokenIn, tokenOut],
             wallet,
             timestamp,

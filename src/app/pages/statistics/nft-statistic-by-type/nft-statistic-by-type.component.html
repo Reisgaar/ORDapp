@@ -1,0 +1,72 @@
+<div style="color: white;border: 1px solid white;padding: 1rem;" *ngIf="dataLoaded === true">
+  <p>Total: {{queriedNft}}: {{total}}</p>
+  <p>Owners: {{totalOwners}}</p>
+  <p>Average per owner: {{total / totalOwners}}</p>
+  <p>Owner with more {{queriedNft}}: {{maxOwner}}</p>
+  <table style="border: 1px solid white;border-collapse: collapse;text-align: center;" *ngIf="queriedNft === 'armors' || this.queriedNft === 'weapons'">
+    <tr>
+      <td style="border: 1px solid white; padding: 10px;"></td>
+      <td style="border: 1px solid white; padding: 10px;">Common</td>
+      <td style="border: 1px solid white; padding: 10px;">Uncommon</td>
+      <td style="border: 1px solid white; padding: 10px;">Rare</td>
+      <td style="border: 1px solid white; padding: 10px;">Epic</td>
+      <td style="border: 1px solid white; padding: 10px;">Legendary</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid white; padding: 10px;">Tier 1</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier1.common}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier1.uncommon}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier1.rare}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier1.epic}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier1.legendary}}</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid white; padding: 10px;">Tier 2</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier2.common}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier2.uncommon}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier2.rare}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier2.epic}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier2.legendary}}</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid white; padding: 10px;">Tier 3</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier3.common}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier3.uncommon}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier3.rare}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier3.epic}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{amounts.tier3.legendary}}</td>
+    </tr>
+  </table>
+  <table style="border: 1px solid white;border-collapse: collapse;text-align: center;" *ngIf="queriedNft === 'lands'">
+    <tr>
+      <td style="border: 1px solid white; padding: 10px;">Nano</td>
+      <td style="border: 1px solid white; padding: 10px;">Micro</td>
+      <td style="border: 1px solid white; padding: 10px;">Standard</td>
+      <td style="border: 1px solid white; padding: 10px;">Macro</td>
+      <td style="border: 1px solid white; padding: 10px;">Mega</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid white; padding: 10px;">{{landSizes.nano}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{landSizes.micro}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{landSizes.standard}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{landSizes.macro}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{landSizes.mega}}</td>
+    </tr>
+  </table>
+  <table style="border: 1px solid white;border-collapse: collapse;text-align: center;" *ngIf="queriedNft === 'keys'">
+    <tr>
+      <td style="border: 1px solid white; padding: 10px;">Standard</td>
+      <td style="border: 1px solid white; padding: 10px;">Junior</td>
+      <td style="border: 1px solid white; padding: 10px;">Executive</td>
+      <td style="border: 1px solid white; padding: 10px;">Deluxe</td>
+      <td style="border: 1px solid white; padding: 10px;">Royal</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid white; padding: 10px;">{{keySizes.standard}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{keySizes.executive}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{keySizes.junior}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{keySizes.deluxe}}</td>
+      <td style="border: 1px solid white; padding: 10px;">{{keySizes.royal}}</td>
+    </tr>
+  </table>
+</div>

@@ -1,105 +1,109 @@
 
-<div class="creator">
-  <p class="title">{{'blackMarket.sales.creator.title' | translate}}</p>
-  <img class="seller" src="assets/images/species/portrait_vaans.png" alt="Black Market seller image" />
-  <div class="conditions">
-    <p>{{'blackMarket.sales.creator.conditions' | translate}}</p>
-    <ul>
-      <li>{{'blackMarket.sales.creator.condition1' | translate}}</li>
-      <li *ngIf="saleFee === 0">{{('blackMarket.sales.creator.condition2' | translate).replace('***% ', '')}}</li>
-      <li *ngIf="saleFee > 0">{{('blackMarket.sales.creator.condition2' | translate).replace('***', saleFee)}}</li>
-    </ul>
-  </div>
-  <div class="connect" *ngIf="walletIsConnected === false; else walletConnected">
-    <p (click)="connectionService.openModal()">{{'blackMarket.sales.creator.connectWallet' | translate}}</p>
-  </div>
-  <ng-template #walletConnected>
-    <div class="sale">
-      <p>{{'blackMarket.sales.creator.setYourSale' | translate}}:</p>
-      <div *ngIf="materialsLoaded === false" class="progress-bar">
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-      </div>
-      <div class="inputs" *ngIf="materialsLoaded === true && userHasMaterials">
-        <div class="input">
-          <label class="label" for="material">{{'blackMarket.sales.creator.material' | translate}}:</label>
-          <div class="input-field select" name="materials" id="material">
-            <div class="material selected">
-              <span>
-                <img *ngIf="selectedMaterial !== ''" src="assets/images/crafting/materials/{{selectedMaterial | lowercase}}.png" alt="{{selectedMaterial}} material image" />
-                {{selectedMaterial !== '' ? selectedMaterial : 'Select'}}
-              </span>
-            </div>
-            <div class="select-panel">
-              <ng-container *ngFor="let mat of materials | keyvalue">
-                <div class="material" *ngIf="mat.value.amount !== '0' && mat.value.name !== selectedMaterial" (click)="setSelectedMaterial(mat.value.name)">
-                  <span>
-                    <img src="assets/images/crafting/materials/{{mat.value.image}}" alt="{{mat.value.name}} material image" />
-                    {{mat.value.name}}
-                  </span>
-                </div>
-              </ng-container>
+<div style="padding: 0 15px;">
+  <div class="creator">
+    <p class="title">{{'blackMarket.sales.creator.title' | translate}}</p>
+    <div class="seller">
+      <img src="assets/images/blackMarket/seller.png" alt="Black Market seller image" />
+    </div>
+    <div class="conditions">
+      <p>{{'blackMarket.sales.creator.conditions' | translate}}</p>
+      <ul>
+        <li>{{'blackMarket.sales.creator.condition1' | translate}}</li>
+        <li *ngIf="saleFee === 0">{{('blackMarket.sales.creator.condition2' | translate).replace('***% ', '')}}</li>
+        <li *ngIf="saleFee > 0">{{('blackMarket.sales.creator.condition2' | translate).replace('***', saleFee)}}</li>
+      </ul>
+    </div>
+    <div class="connect" *ngIf="walletIsConnected === false; else walletConnected">
+      <p (click)="connectionService.openModal()">{{'blackMarket.sales.creator.connectWallet' | translate}}</p>
+    </div>
+    <ng-template #walletConnected>
+      <div class="sale">
+        <p>{{'blackMarket.sales.creator.setYourSale' | translate}}:</p>
+        <div *ngIf="materialsLoaded === false" class="progress-bar">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="inputs" *ngIf="materialsLoaded === true && userHasMaterials">
+          <div class="input">
+            <label class="label" for="material">{{'blackMarket.sales.creator.material' | translate}}:</label>
+            <div class="input-field select" name="materials" id="material">
+              <div class="material selected">
+                <span>
+                  <img *ngIf="selectedMaterial !== ''" src="assets/images/crafting/materials/{{selectedMaterial | lowercase}}.png" alt="{{selectedMaterial}} material image" />
+                  {{selectedMaterial !== '' ? selectedMaterial : ('blackMarket.sales.creator.select' | translate)}}
+                </span>
+              </div>
+              <div class="select-panel">
+                <ng-container *ngFor="let mat of materials | keyvalue">
+                  <div class="material" *ngIf="mat.value.amount !== '0' && mat.value.name !== selectedMaterial" (click)="setSelectedMaterial(mat.value.name)">
+                    <span>
+                      <img src="assets/images/crafting/materials/{{mat.value.image}}" alt="{{mat.value.name}} material image" />
+                      {{'materials.' + (mat.value.name | lowercase) | translate}}
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="input">
-          <label class="label" for="amount">{{'blackMarket.sales.creator.amount' | translate}}:</label>
-          <input type="text"
-            class="input-field"
-            [class.error]="formError"
-            [disabled]="selectedMaterial === ''"
-            id="price"
-            name="price"
-            autocomplete="off"
-            inputmode="decimal"
-            placeholder="0.0"
-            pattern="^[0-9]*[.,]?[0-9]{0,18}$"
-            value="0"
-            [(ngModel)]="materialAmount"
-            (keypress)="controlInput($event)"
-            (input)="validateMaterialAmount()"
-          />
-          <span class="tip" *ngIf="selectedMaterial && selectedMaterial !== '' && materials[selectedMaterial | lowercase].amount !== '0'">{{'blackMarket.sales.creator.max' | translate}} {{materials[selectedMaterial | lowercase].amount | fromWei | number:'1.0-4'}}</span>
-        </div>
-        <div class="input">
-          <label class="label" for="price">{{'blackMarket.sales.creator.priceInGQ' | translate}}:</label>
-          <input type="text"
-            class="input-field"
-            [disabled]="selectedMaterial === '' || (materialAmount | number:'1.0-18') === '0' || !materialAmount || formError"
-            id="price"
-            name="price"
-            autocomplete="off"
-            inputmode="decimal"
-            placeholder="0.0"
-            pattern="^[0-9]*[.,]?[0-9]{0,18}$"
-            value="0"
-            [(ngModel)]="price"
-            (keypress)="controlInput($event)"
-            (input)="setGqPrice()"
-          />
-          <span class="tip" *ngIf="price && (price | number:'1.0-18') !== '0' && (price | number:'1.0-18') !== ''">{{'blackMarket.sales.creator.approx' | translate}} {{gqPrice | number:'1.0-4'}}$</span>
+          <div class="input">
+            <label class="label" for="amount">{{'blackMarket.sales.creator.amount' | translate}}:</label>
+            <input type="text"
+              class="input-field"
+              [class.error]="formError"
+              [disabled]="selectedMaterial === ''"
+              id="price"
+              name="price"
+              autocomplete="off"
+              inputmode="decimal"
+              placeholder="0.0"
+              pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+              value="0"
+              [(ngModel)]="materialAmount"
+              (keypress)="controlInput($event)"
+              (input)="validateMaterialAmount()"
+            />
+            <span class="tip" *ngIf="selectedMaterial && selectedMaterial !== '' && materials[selectedMaterial | lowercase].amount !== '0'">{{'blackMarket.sales.creator.max' | translate}} {{materials[selectedMaterial | lowercase].amount | fromWei | number:'1.0-4'}}</span>
+          </div>
+          <div class="input">
+            <label class="label" for="price">{{'blackMarket.sales.creator.priceInGQ' | translate}}:</label>
+            <input type="text"
+              class="input-field"
+              [disabled]="selectedMaterial === '' || (materialAmount | number:'1.0-18') === '0' || !materialAmount || formError"
+              id="price"
+              name="price"
+              autocomplete="off"
+              inputmode="decimal"
+              placeholder="0.0"
+              pattern="^[0-9]*[.,]?[0-9]{0,18}$"
+              value="0"
+              [(ngModel)]="price"
+              (keypress)="controlInput($event)"
+              (input)="setGqPrice()"
+            />
+            <span class="tip" *ngIf="price && (price | number:'1.0-18') !== '0' && (price | number:'1.0-18') !== ''">{{'blackMarket.sales.creator.approx' | translate}} {{gqPrice | number:'1.0-4'}}$</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="button">
-      <p *ngIf="!materialsLoaded; else hasMaterials">{{'blackMarket.sales.creator.loading' | translate}}</p>
-      <ng-template #hasMaterials>
-        <ng-container *ngIf="userHasMaterials == false; else materialAdvice">
-          <span>{{'blackMarket.sales.creator.notEnoughMaterials' | translate}}</span>
-          <p class="active" (click)="getMaterialsPopUp()">{{'blackMarket.sales.creator.getMaterials' | translate}}</p>
-        </ng-container>
-      </ng-template>
-      <ng-template #materialAdvice>
-        <p *ngIf="selectedMaterial === ''; else amountAdvice">{{'blackMarket.sales.creator.selectMaterial' | translate}}</p>
-      </ng-template>
-      <ng-template #amountAdvice>
-        <p *ngIf="!materialAmount || (materialAmount | number:'1.0-18') === '0' || formError; else priceAdvice">{{'blackMarket.sales.creator.setAmount' | translate}}</p>
-      </ng-template>
-      <ng-template #priceAdvice>
-        <p *ngIf="!price || (price | number:'1.0-18') === '0'; else sendButton">{{'blackMarket.sales.creator.setPrice' | translate}}</p>
-      </ng-template>
-      <ng-template #sendButton>
-        <p class="active" (click)="createBlackMarketSale()">{{'blackMarket.sales.creator.createSale' | translate}}</p>
-      </ng-template>
-    </div>
-  </ng-template>
+      <div class="button">
+        <p *ngIf="!materialsLoaded; else hasMaterials">{{'blackMarket.sales.creator.loading' | translate}}</p>
+        <ng-template #hasMaterials>
+          <ng-container *ngIf="userHasMaterials == false; else materialAdvice">
+            <span>{{'blackMarket.sales.creator.notEnoughMaterials' | translate}}</span>
+            <p class="active" (click)="getMaterialsPopUp()">{{'blackMarket.sales.creator.getMaterials' | translate}}</p>
+          </ng-container>
+        </ng-template>
+        <ng-template #materialAdvice>
+          <p *ngIf="selectedMaterial === ''; else amountAdvice">{{'blackMarket.sales.creator.selectMaterial' | translate}}</p>
+        </ng-template>
+        <ng-template #amountAdvice>
+          <p *ngIf="!materialAmount || (materialAmount | number:'1.0-18') === '0' || formError; else priceAdvice">{{'blackMarket.sales.creator.setAmount' | translate}}</p>
+        </ng-template>
+        <ng-template #priceAdvice>
+          <p *ngIf="!price || (price | number:'1.0-18') === '0'; else sendButton">{{'blackMarket.sales.creator.setPrice' | translate}}</p>
+        </ng-template>
+        <ng-template #sendButton>
+          <p class="active" (click)="createBlackMarketSale()">{{'blackMarket.sales.creator.createSale' | translate}}</p>
+        </ng-template>
+      </div>
+    </ng-template>
+  </div>
 </div>

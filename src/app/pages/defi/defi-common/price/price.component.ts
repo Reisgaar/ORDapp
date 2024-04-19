@@ -32,7 +32,6 @@ export class PriceComponent implements OnInit, OnChanges {
 
   async setPriceBUSD(): Promise<void> {
     this.priceBusd = await this.dexService.tokenPrice(this.pool, this.token, this.type);
-    console.log('price', this.priceBusd, parseInt(this.staked), this.type);
     this.price = this.priceBusd * parseInt(this.staked);
   }
 }

@@ -4,7 +4,7 @@ const contractAddressesTestnet = {
   // ERC-20
   bnb: '0x0000000000000000000000000000000000000000',
   busd: '0x78867bbeef44f2326bf8ddd1941a4439382ef2a7',
-  // gq: '0x50F1982aF472F2562ea7944CFDa73D70936FF320', // gq address for bridge
+  gqBridge: '0x50F1982aF472F2562ea7944CFDa73D70936FF320', // gq address for bridge
   gq: '0x1b71dc069b6531b5c443f75e8924299da57c7de9', // gq address for dapp
   vp: '0x3d3f1b16ae9e681191798527265ccef79c2e10ce',
   sck: '0x999C09318001c9136E4c308cb9aF88E7c375D893',
@@ -61,8 +61,8 @@ const contractAddressesTestnet = {
   // Black Market
   materialsSales: '0xf1274a94b5ea5990D256fD14340B9b33616a1d03',
   // Partners Marketplace
-  partnerBuySell: '0x021fF68CC9b0F0626Cd50Cdbf3Faf2F284Df9609',
-  partnerEnglishAuction: '0x0Ee92ecE1DEB159a1d7A71460D957fEE1f05f8C8',
+  partnerBuySell: '0xa2717aB848E46eb189383d897269d7FF9e6DEA1a',
+  partnerEnglishAuction: '0xe24c7AcDd758390Af354862364F5827CE4DBaee8',
   // Lands
   landsEnglishAuction: '0xD795348003f9b9Ce655175B31E14E9B8Bf0658d9',
   landsEnglishAuctionWL: '0x3E761Dd4035419db1B1C82AA04022E6359E9Bac8',
@@ -77,7 +77,16 @@ const contractAddressesTestnet = {
   species: '0x9729ac5501E94BED811dd3B0F28bF60AE29E9DAF',
   speciesClaim: '0x54E925F9CAB251f90e0938B0b02Be2Cf92f283AC',
   // Pre alpha keys
-  preAlphaKeys: ''
+  preAlphaKeys: '',
+  // Missions
+  missionsSharedStorage: '0x77909f18FFE6a3F838aE94Fd2D8dF909b1605E70',
+  recruitmentArea: '0xB0751e5397663488c3A91Bee74D79024095e3c60',
+  armory: '0xBe3e0a6D9526cA33045a583FB3Bf2F4d87848Aba',
+  warehouse: '0x45b8873591467101660747D06B991c585e9D73D8',
+  garage: '0xf3302D1649EF8d28502d4422C6EF09C6128c1F7E',
+  restingArea: '0x429B6edC4eE71702Cd8E8204A4fe462b81dc4fe0',
+  missions: '0xFc551ECFb4f7DC1debD4aB8678Eda753854FE7Ed',
+  bank: '0x21877cDE212b40998CB79D5cA0767dD454E51088'
 };
 
 const contractAddressesMainnet = {
@@ -176,7 +185,7 @@ const contractAddressesMainnet = {
   craftingResourcesController: '0x216334a3E8F2b63D12AF4d9BEEe0E0d0d61e46Cc',
   craftingRarityController: '0x8eec8db616cb0ed364b4157EACee3C67AaD1c6eC',
   // Foundry
-  galacticFoundry: '',
+  galacticFoundry: '0xd2e3b800ECB541405e3d6726d75e23Ab879f9eA9',
   // Governance
   voteManager: '0xeCeB6F7Fd8Cc326bb7f16eFABfFFF6fA8cFb3e60',
   stakingVote: '0x98F66C1b103E46f855f1Ad17C5C52286D5Fb7CDF',
@@ -202,7 +211,16 @@ const contractAddressesMainnet = {
   species: '0xB40190FEA9AD713391E20852772e855A0C373F03',
   speciesClaim: '0x36a96E29B2b546B1FE5B425B744d146304f32B83',
   // Pre alpha keys
-  preAlphaKeys: '0x18DC59BE0Bb58Bc9F3EE5638c570469871C0f458'
+  preAlphaKeys: '0x18DC59BE0Bb58Bc9F3EE5638c570469871C0f458',
+  // Missions
+  missionsSharedStorage: '0x00028C93Dce2b98e2Ce90Cb45049A7f1A79d1Ed9',
+  recruitmentArea: '0x641A96fD2703d2e63e604DB49Dcf84e74CFDe8F0',
+  armory: '0x61F2551Da402e4d41A1C34A7e366df6C4632bf63',
+  warehouse: '0xfcdB8932A08ea9569A8A0C5aD8409B8a2002D7E0',
+  garage: '0xd107BD6381d2Afd2daF3987828c6F0b95f83845b',
+  restingArea: '0xc3995ac4f538239f0A550426AD2969546550AA49',
+  missions: '0x7254251d353e8cD70Dc2709d117ad5D40a8f2ACf',
+  bank: '0x14Ae7BE9B7B32165599be5c6fefDeEE7eaBaa340'
 };
 
 // Get test/main contracts
