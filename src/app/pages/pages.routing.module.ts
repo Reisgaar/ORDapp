@@ -178,11 +178,6 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'defi',
-    loadChildren: () =>
-      import('./defi/defi.module').then((m) => m.DefiModule),
-  },
-  {
     path: 'missions',
     loadChildren: () =>
       import('./missions/missions-screen/missions-screen.module').then((m) => m.MissionsScreenModule),

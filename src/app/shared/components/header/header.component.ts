@@ -2,7 +2,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { activeUser } from 'src/app/constants/inventory';
-import { PopUpGeneralComponent } from 'src/app/pages/defi/defi-common/pop-up-general/pop-up-general.component';
 import { ConnectionService } from 'src/app/shared/services/connection/connection.service';
 import { GovernanceDialogService } from 'src/app/shared/services/governance-dialog.service';
 import { SpeciesService } from '../../services/species/species.service';
@@ -146,10 +145,6 @@ export class HeaderComponent implements OnInit {
    */
   async setSpecieForAddress(address: string): Promise<any> {
     await this.speciesService.setWalletSpecie(address);
-  }
-
-  openDefiPopUp(link): void {
-    this.dialogService.openDefiDialog(link)
   }
 
 }

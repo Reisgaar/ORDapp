@@ -49,18 +49,6 @@
         <p class="subtab" [routerLink]="['/lands/materialExtraction']" [class.active]="actualRoute.includes('/lands/materialExtraction')"><span>{{ 'navigation.materialExtraction' | translate }}</span></p>
       </div>
     </div>
-    <!-- DEFI -->
-    <div class="navigation-tab">
-        <p [routerLink]="['/defi']">
-          <span class="tab-name">{{ 'navigation.defi' | translate }}</span>
-        </p>
-      <div class="submenu">
-        <p class="subtab"  [routerLink]="['/defi/farms']">{{ 'navigation.farms' | translate }}</p>
-        <p class="subtab" [routerLink]="['/defi/pools']">{{ 'navigation.pools' | translate }}</p>
-        <p class="subtab" [routerLink]="['/defi/farms']" (click)="openDefiPopUp('liquidity')">{{ 'navigation.liquidity' | translate }}</p>
-        <p class="subtab" [routerLink]="['/defi/farms']" (click)="openDefiPopUp('swap')">{{ 'navigation.swap' | translate }}</p>
-      </div>
-    </div>
     <!-- CRAFTING -->
     <div class="navigation-tab" [class.active]="actualRoute.includes('/crafting')">
       <p [routerLink]="['/crafting']">
@@ -204,38 +192,6 @@
       <div class="navigation-tab sub-tab" [routerLink]="['/lands/materialExtraction']" (click)="toggleResponsiveMenu()">
         <p class="link">{{ 'navigation.materialExtraction' | translate }}</p>
         <p class="description">{{ 'navigation.materialExtractionDescription' | translate }}</p>
-      </div>
-    </div>
-  </div>
-  <!-- DEFI -->
-  <div class="section">
-    <div class="navigation-tab">{{ 'navigation.defi' | translate }}</div>
-    <mat-icon *ngIf="!navigationDefiIsOpen" class="icon" (click)="switchResponsiveMenuSection('defi')">add</mat-icon>
-    <mat-icon *ngIf="navigationDefiIsOpen" class="icon" (click)="switchResponsiveMenuSection('defi')">remove</mat-icon>
-    <div *ngIf="navigationDefiIsOpen">
-      <div class="navigation-tab sub-tab">
-        <a [routerLink]="['/defi/farms']" (click)="toggleResponsiveMenu()">
-          <p class="link">{{ 'navigation.farms' | translate }}</p>
-          <p class="description">{{ 'navigation.farmsDescription' | translate }}</p>
-        </a>
-      </div>
-      <div class="navigation-tab sub-tab">
-        <a [routerLink]="['/defi/pools']" (click)="toggleResponsiveMenu()">
-          <p class="link">{{ 'navigation.pools' | translate }}</p>
-          <p class="description">{{ 'navigation.poolsDescription' | translate }}</p>
-        </a>
-      </div>
-      <div class="navigation-tab sub-tab">
-        <a (click)="openDefiPopUp('swap'); toggleResponsiveMenu()">
-          <p class="link">{{ 'navigation.swap' | translate }}</p>
-          <p class="description">{{ 'navigation.swapDescription' | translate }}</p>
-        </a>
-      </div>
-      <div class="navigation-tab sub-tab">
-        <a (click)="openDefiPopUp('liquidity'); toggleResponsiveMenu()">
-          <p class="link">{{ 'navigation.liquidity' | translate }}</p>
-          <p class="description">{{ 'navigation.liquidityDescription' | translate }}</p>
-        </a>
       </div>
     </div>
   </div>

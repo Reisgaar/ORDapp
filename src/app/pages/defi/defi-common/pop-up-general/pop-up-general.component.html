@@ -1,6 +1,0 @@
-<div class="titles">
-  <span [ngClass]="menu === 'swap'?'link-activate':'link'" (click)="goTo('swap')">{{ 'defi.popUpGeneral.swap' | translate }}</span>
-  <span [ngClass]="menu === 'liquidity'?'link-activate':'link'"  (click)="goTo('liquidity')">{{ 'defi.popUpGeneral.liquidity' | translate }}</span>
-</div>
-<app-swap *ngIf="menu === 'swap'"></app-swap>
-<app-liquidity  *ngIf="menu === 'liquidity'"></app-liquidity>

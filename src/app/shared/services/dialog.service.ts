@@ -6,7 +6,6 @@ import { PopUpLootboxRewardsComponent } from 'src/app/pages/lootbox/pop-up-lootb
 import { PartnerPopUpBaskoniaFaqComponent } from 'src/app/pages/marketplace/partners/partner-pop-up-baskonia-faq/partner-pop-up-baskonia-faq.component';
 import { PopUpSpecieSelectorComponent } from '../components/pop-ups/pop-up-specie-selector/pop-up-specie-selector.component';
 import { PopUpConfirmationComponent } from '../components/pop-ups/pop-up-confirmation/pop-up-confirmation.component';
-import { PopUpGeneralComponent } from 'src/app/pages/defi/defi-common/pop-up-general/pop-up-general.component';
 import { PopUpGetMaterialsComponent } from '../components/pop-ups/pop-up-get-materials/pop-up-get-materials.component';
 import { PopUpNumberInputComponent } from '../components/pop-ups/pop-up-number-input/pop-up-number-input.component';
 import { PopUpGetNftsComponent } from '../components/pop-ups/pop-up-get-nfts/pop-up-get-nfts.component';
@@ -140,16 +139,6 @@ export class DialogService {
   openBaskoniaDialog(): any {
     return this.dialog.open(PartnerPopUpBaskoniaFaqComponent, {
       panelClass: 'lootbox-dialog-container'
-    });
-  }
-
-    /*
-  * Opens DeFi pop up
-  */
-  openDefiDialog(link): any {
-    return this.dialog.open(PopUpGeneralComponent, {
-      panelClass: 'lootbox-dialog-container',
-      data: {link}
     });
   }
 

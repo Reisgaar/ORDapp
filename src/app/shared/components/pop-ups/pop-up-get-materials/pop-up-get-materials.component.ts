@@ -21,8 +21,4 @@ export class PopUpGetMaterialsComponent {
     this.dialogRef.close();
   }
 
-  openDefiPopUp(link): void {
-    this.dialogService.openDefiDialog(link)
-  }
-
 }
